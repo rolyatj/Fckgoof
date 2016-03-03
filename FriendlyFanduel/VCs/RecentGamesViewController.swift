@@ -1,5 +1,5 @@
 //
-//  LiveGamesViewController.swift
+//  RecentGamesViewController.swift
 //  FriendlyFanduel
 //
 //  Created by Kurt Jensen on 3/3/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LiveGamesViewController: UIViewController {
+class RecentGamesViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     var teams = [PFTeam]() {
@@ -24,7 +24,7 @@ class LiveGamesViewController: UIViewController {
     }
     
     func fetchEvents() {
-        let query = PFTeam.myLiveTeamsQuery()
+        let query = PFTeam.myRecentTeamsQuery()
         query?.findObjectsInBackgroundWithBlock({ (teams, error) -> Void in
             if let teams = teams as? [PFTeam] {
                 self.teams = teams
@@ -46,10 +46,10 @@ class LiveGamesViewController: UIViewController {
     // Pass the selected object to the new view controller.
     }
     */
-
+    
 }
 
-extension LiveGamesViewController: UITableViewDataSource, UITableViewDelegate {
+extension RecentGamesViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1

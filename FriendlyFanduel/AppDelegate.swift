@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +16,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        PFDueler.registerSubclass()
+        PFLeague.registerSubclass()
+        PFGame.registerSubclass()
+        PFTeam.registerSubclass()
+        PFEvent.registerSubclass()
+        PFPlayer.registerSubclass()
+        PFPlayerEvent.registerSubclass()
+        PFSport.registerSubclass()
+        PFFlag.registerSubclass()
+        Parse.setApplicationId("83QAZ8bwzHbXs1i2v526iiv4qJLwkhfQbS9EpB8d",
+            clientKey: "POiXIGUX5MbvWagON8sGOd0x9oyellwg0rgH3miD")
+        PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+        
         return true
     }
 

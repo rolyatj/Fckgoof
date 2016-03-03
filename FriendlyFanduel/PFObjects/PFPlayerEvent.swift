@@ -9,10 +9,11 @@
 import UIKit
 import Parse
 
-class PFPlayerEvent: PFObject {
+class PFPlayerEvent: PFObject, PFSubclassing {
     
     @NSManaged var event: PFEvent!
     @NSManaged var player: PFPlayer!
+    @NSManaged var result: PFPlayerEventResult!
     @NSManaged var salary: Int
     
     class func parseClassName() -> String {

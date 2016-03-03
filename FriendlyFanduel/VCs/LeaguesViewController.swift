@@ -10,27 +10,43 @@ import UIKit
 
 class LeaguesViewController: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+    var leagues = [PFLeague]() {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        fetchLeagues()
     }
     
+    func fetchLeagues() {
+        let query = PFLeague.query()
+        query?.whereKey("duelers", containsAllObjectsInArray: [PFDueler.currentUser()!.objectId!])
+        query?.findObjectsInBackgroundWithBlock({ (leagues, error) -> Void in
+            if let leagues = leagues as? [PFLeague] {
+                self.leagues = leagues
+            }
+        })
+    }
 
-    /*
+    func showLeague(league: PFLeague) {
+        performSegueWithIdentifier("toLeague", sender: league)
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if (segue.identifier == "toLeague") {
+            if let leagueVC = segue.destinationViewController as? LeagueViewController {
+                leagueVC.league = sender as! PFLeague
+            }
+        }
     }
-    */
 
 }
 
@@ -41,16 +57,20 @@ extension LeaguesViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return leagues.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("LeagueCell", forIndexPath: indexPath) as! LeagueTableViewCell
+        let league = leagues[indexPath.row]
+        cell.configureWithLeague(league)
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let league = leagues[indexPath.row]
+        showLeague(league)
     }
     
 }
