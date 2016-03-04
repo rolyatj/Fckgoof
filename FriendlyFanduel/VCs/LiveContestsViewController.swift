@@ -1,5 +1,5 @@
 //
-//  LiveLineupsViewController.swift
+//  LiveContestsViewController.swift
 //  FriendlyFanduel
 //
 //  Created by Kurt Jensen on 3/3/16.
@@ -8,10 +8,10 @@
 
 import UIKit
 
-class LiveLineupsViewController: UIViewController {
+class LiveContestsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    var lineups = [PFLineup]() {
+    var contestLineups = [PFContestLineup]() {
         didSet {
             self.tableView?.reloadData()
         }
@@ -20,14 +20,14 @@ class LiveLineupsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchEvents()
+        fetchContests()
     }
     
-    func fetchEvents() {
-        let query = PFLineup.myLivelineupsQuery()
-        query?.findObjectsInBackgroundWithBlock({ (lineups, error) -> Void in
-            if let lineups = lineups as? [PFLineup] {
-                self.lineups = lineups
+    func fetchContests() {
+        let query = PFContestLineup.myLiveContestLineupsQuery()
+        query?.findObjectsInBackgroundWithBlock({ (contestLineups, error) -> Void in
+            if let contestLineups = contestLineups as? [PFContestLineup] {
+                self.contestLineups = contestLineups
             }
         })
     }
@@ -49,26 +49,26 @@ class LiveLineupsViewController: UIViewController {
 
 }
 
-extension LiveLineupsViewController: UITableViewDataSource, UITableViewDelegate {
+extension LiveContestsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return lineups.count
+        return contestLineups.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("EventCell", forIndexPath: indexPath) as! TeamTableViewCell
-        let team = lineups[indexPath.row]
-        cell.configureWithTeam(team)
+        let cell = tableView.dequeueReusableCellWithIdentifier("ContestCell", forIndexPath: indexPath) as! ContestTableViewCell
+        let contestLineup = contestLineups[indexPath.row]
+        cell.configureWithContestLineup(contestLineup)
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let team = lineups[indexPath.row]
+        let contestLineup = contestLineups[indexPath.row]
         
     }
     

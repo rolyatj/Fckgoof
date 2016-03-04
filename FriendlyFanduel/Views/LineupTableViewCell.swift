@@ -30,5 +30,5 @@ class LineupTableViewCell: UITableViewCell {
         sportLabel.text = "TODO"//lineup.event.sport.name
         descriptionLabel.text = "TODO"
     }
-    
+
 }

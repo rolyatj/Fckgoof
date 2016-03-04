@@ -15,6 +15,9 @@ class PFEvent: PFObject, PFSubclassing {
     @NSManaged var endDate: NSDate!
     @NSManaged var name: String?
     @NSManaged var sport: PFSport!
+    @NSManaged var numberHitters: Int
+    @NSManaged var numberPitchers: Int
+    @NSManaged var maxSalary: Int
     
     class func parseClassName() -> String {
         return "Event"

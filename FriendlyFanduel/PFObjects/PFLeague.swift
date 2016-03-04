@@ -31,17 +31,23 @@ class PFLeague: PFObject, PFSubclassing {
     }
     
     class func myLeaguesQuery() -> PFQuery? {
-        let query = PFLeague.query()
-        query?.whereKey("duelers", containsAllObjectsInArray: [PFDueler.currentUser()!.objectId!])
-        return query
+        if let userId = PFDueler.currentUser()?.objectId {
+            let query = PFLeague.query()
+            query?.whereKey("duelers", containsAllObjectsInArray: [userId])
+            return query
+        }
+        return nil
     }
     
     class func availableLeaguesForEvent(event: PFEvent) -> PFQuery? {
-        if let lineupQuery = PFLineup.myLineupsQuery(), let eventQuery = PFEvent.query() {
-            /*
-            lineupQuery.whereKey("event", equalTo: event)
+        if let lineupQuery = PFLineup.myLineupsQuery(), let contestQuery = PFContest.query(), let contestLineupQuery = PFContestLineup.query() {
+            contestLineupQuery.whereKey("event", equalTo: event)
+            contestLineupQuery.whereKey("lineup", matchesQuery: lineupQuery)
+            contestQuery.whereKey("objectId", matchesKey: "contestId", inQuery: contestLineupQuery)// TODO
             let query = PFLeague.myLeaguesQuery()
-            query?.whereKey("lineup", matchesQuery: eventQuery)*/
+            query?.whereKey("objectId", matchesKey: "leagueId", inQuery: contestLineupQuery)// TODO
+            return query
+            
         }
         return nil
     }

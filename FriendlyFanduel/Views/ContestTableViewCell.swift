@@ -1,5 +1,5 @@
 //
-//  TeamTableViewCell.swift
+//  ContestTableViewCell.swift
 //  FriendlyFanduel
 //
 //  Created by Kurt Jensen on 3/3/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TeamTableViewCell: UITableViewCell {
+class ContestTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var sportLabel: UILabel!
@@ -25,10 +25,10 @@ class TeamTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func configureWithTeam(team: PFLineup) {
+    func configureWithContestLineup(contestLineup: PFContestLineup) {
         nameLabel.text = "TODO"//lineup.
         sportLabel.text = "TODO"//lineup.event.sport.name
         descriptionLabel.text = "TODO"
     }
-
+    
 }

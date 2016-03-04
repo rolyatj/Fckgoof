@@ -13,7 +13,6 @@ class PFContest: PFObject, PFSubclassing {
     
     @NSManaged var league: PFLeague!
     @NSManaged var event: PFEvent!
-    @NSManaged var teamIds: [String]!
     
     class func parseClassName() -> String {
         return "Contest"
@@ -23,7 +22,6 @@ class PFContest: PFObject, PFSubclassing {
         self.init()
         self.league = league
         self.event = event
-        self.teamIds = [String]()
     }
     
     

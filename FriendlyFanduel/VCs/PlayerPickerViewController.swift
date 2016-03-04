@@ -18,7 +18,7 @@ class PlayerPickerViewController: UIViewController {
     @IBOutlet weak var searchTextField: UITextField!
     
     var event: PFEvent!
-    var disabledPlayerEvents = [PFPlayerEvent]()
+    var disabledPlayerEventIds = [String]()
     var filterType = 0
     var playerEvents = [PFPlayerEvent]() {
         didSet {
@@ -74,7 +74,7 @@ class PlayerPickerViewController: UIViewController {
             playerQuery.whereKey("type", equalTo: filterType)
             let query = PFPlayerEvent.queryWithIncludes()
             query?.fromLocalDatastore()
-            query?.whereKey("objectId", notContainedIn: disabledPlayerEvents)
+            query?.whereKey("objectId", notContainedIn: disabledPlayerEventIds)
             query?.whereKey("player", matchesQuery: playerQuery)
             query?.findObjectsInBackgroundWithBlock({ (playerEvents, error) -> Void in
                 if let playerEvents = playerEvents as? [PFPlayerEvent] {

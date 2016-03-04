@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -730,6 +731,31 @@
                                         <constraint firstItem="CdY-UG-SEV" firstAttribute="centerY" secondItem="gj0-fh-vc4" secondAttribute="centerY" id="heR-vu-HVn"/>
                                     </constraints>
                                 </view>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="ZmE-Gs-3AM">
+                                    <rect key="frame" x="0.0" y="216" width="320" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$TOTAL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iyi-bh-XDH">
+                                            <rect key="frame" x="266" y="8" width="46" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$/PLAYER REMAINING" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E3a-ph-3HH">
+                                            <rect key="frame" x="8" y="8" width="127" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="E3a-ph-3HH" firstAttribute="baseline" secondItem="iyi-bh-XDH" secondAttribute="baseline" id="0DW-id-boV"/>
+                                        <constraint firstItem="E3a-ph-3HH" firstAttribute="leading" secondItem="ZmE-Gs-3AM" secondAttribute="leadingMargin" id="0Jb-Mk-qrz"/>
+                                        <constraint firstItem="iyi-bh-XDH" firstAttribute="trailing" secondItem="ZmE-Gs-3AM" secondAttribute="trailingMargin" id="S7s-Pg-Mg2"/>
+                                        <constraint firstItem="E3a-ph-3HH" firstAttribute="firstBaseline" secondItem="iyi-bh-XDH" secondAttribute="firstBaseline" id="TEn-Mw-Hha"/>
+                                        <constraint firstItem="iyi-bh-XDH" firstAttribute="top" secondItem="ZmE-Gs-3AM" secondAttribute="topMargin" id="XYQ-CV-eNe"/>
+                                    </constraints>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PlayerSelectedCell" textLabel="1Tq-7p-H4a" detailTextLabel="aNm-6W-f6l" rowHeight="44" style="IBUITableViewCellStyleValue1" id="TWr-tr-Ftc">
                                         <rect key="frame" x="0.0" y="110" width="320" height="44"/>
@@ -795,8 +821,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="remainingLabel" destination="E3a-ph-3HH" id="evd-Kl-jF4"/>
                         <outlet property="selectedLeagueButton" destination="CdY-UG-SEV" id="6Mw-Sh-6Gk"/>
                         <outlet property="tableView" destination="d0g-bW-jSi" id="1ej-Pq-IZX"/>
+                        <outlet property="totalLabel" destination="iyi-bh-XDH" id="R5J-VE-ayk"/>
                         <segue destination="yYn-sV-Uy4" kind="show" identifier="toChooseHitter" id="XDS-Ai-E6y"/>
                         <segue destination="yYn-sV-Uy4" kind="show" identifier="toChoosePitcher" id="2eA-RZ-Iia"/>
                     </connections>

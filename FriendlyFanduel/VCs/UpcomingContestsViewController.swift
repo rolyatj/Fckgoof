@@ -1,5 +1,5 @@
 //
-//  UpcomingLineupsViewController.swift
+//  UpcomingContestsViewController.swift
 //  FriendlyFanduel
 //
 //  Created by Kurt Jensen on 3/3/16.
@@ -8,10 +8,10 @@
 
 import UIKit
 
-class UpcomingLineupsViewController: UIViewController {
+class UpcomingContestsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    var lineups = [PFLineup]() {
+    var contestLineups = [PFContestLineup]() {
         didSet {
             self.tableView?.reloadData()
         }
@@ -25,15 +25,15 @@ class UpcomingLineupsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        fetchLineups()
+        fetchContests()
         fetchEvents()
     }
     
-    func fetchLineups() {
-        let query = PFLineup.myUpcominglineupsQuery()
-        query?.findObjectsInBackgroundWithBlock({ (lineups, error) -> Void in
-            if let lineups = lineups as? [PFLineup] {
-                self.lineups = lineups
+    func fetchContests() {
+        let query = PFContestLineup.myUpcomingContestLineupsQuery()
+        query?.findObjectsInBackgroundWithBlock({ (contestLineups, error) -> Void in
+            if let contestLineups = contestLineups as? [PFContestLineup] {
+                self.contestLineups = contestLineups
             }
         })
     }
@@ -64,7 +64,7 @@ class UpcomingLineupsViewController: UIViewController {
     
 }
 
-extension UpcomingLineupsViewController: UITableViewDataSource, UITableViewDelegate {
+extension UpcomingContestsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
@@ -74,7 +74,7 @@ extension UpcomingLineupsViewController: UITableViewDataSource, UITableViewDeleg
         if (section == 0) {
             return availableEvents.count
         } else {
-            return lineups.count
+            return contestLineups.count
         }
     }
     
@@ -85,9 +85,9 @@ extension UpcomingLineupsViewController: UITableViewDataSource, UITableViewDeleg
             cell.configureWithEvent(event)
             return cell
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("LineupCell", forIndexPath: indexPath) as! TeamTableViewCell
-            let team = lineups[indexPath.row]
-            cell.configureWithTeam(team)
+            let cell = tableView.dequeueReusableCellWithIdentifier("LineupCell", forIndexPath: indexPath) as! ContestTableViewCell
+            let contestLineup = contestLineups[indexPath.row]
+            cell.configureWithContestLineup(contestLineup)
             return cell
         }
     }
@@ -98,7 +98,7 @@ extension UpcomingLineupsViewController: UITableViewDataSource, UITableViewDeleg
             let event = availableEvents[indexPath.row]
             toCreateTeamForEvent(event)
         } else {
-            let team = lineups[indexPath.row]
+            let contestLineup = contestLineups[indexPath.row]
 
         }
 
