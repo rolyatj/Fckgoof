@@ -12,6 +12,9 @@
 		90D43CA61C89DE250050DE6E /* PFContest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D43CA51C89DE250050DE6E /* PFContest.swift */; };
 		90D43CA81C89EADB0050DE6E /* PlayerPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D43CA71C89EADB0050DE6E /* PlayerPickerViewController.swift */; };
 		90D43CAA1C8A04C80050DE6E /* PFContestLineup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D43CA91C8A04C80050DE6E /* PFContestLineup.swift */; };
+		90D43CAC1C8A0F4A0050DE6E /* EditableContestLineup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D43CAB1C8A0F4A0050DE6E /* EditableContestLineup.swift */; };
+		90D43CB41C8A21030050DE6E /* EditLineupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D43CB31C8A21030050DE6E /* EditLineupViewController.swift */; };
+		90D43CB61C8A210E0050DE6E /* CreateLineupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D43CB51C8A210E0050DE6E /* CreateLineupViewController.swift */; };
 		90F7B2281C889B27003FBE49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F7B2271C889B27003FBE49 /* AppDelegate.swift */; };
 		90F7B22D1C889B27003FBE49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90F7B22B1C889B27003FBE49 /* Main.storyboard */; };
 		90F7B22F1C889B27003FBE49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90F7B22E1C889B27003FBE49 /* Assets.xcassets */; };
@@ -39,7 +42,7 @@
 		90F7B2701C88C8FF003FBE49 /* PFPlayerEventResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F7B26F1C88C8FF003FBE49 /* PFPlayerEventResult.swift */; };
 		90F7B2721C88DE95003FBE49 /* RecentContestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F7B2711C88DE95003FBE49 /* RecentContestsViewController.swift */; };
 		90F7B2751C88E41A003FBE49 /* LineupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F7B2741C88E41A003FBE49 /* LineupTableViewCell.swift */; };
-		90F7B2771C88E8AE003FBE49 /* CreateLineupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F7B2761C88E8AE003FBE49 /* CreateLineupViewController.swift */; };
+		90F7B2771C88E8AE003FBE49 /* SetLineupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F7B2761C88E8AE003FBE49 /* SetLineupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +53,9 @@
 		90D43CA51C89DE250050DE6E /* PFContest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFContest.swift; sourceTree = "<group>"; };
 		90D43CA71C89EADB0050DE6E /* PlayerPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerPickerViewController.swift; sourceTree = "<group>"; };
 		90D43CA91C8A04C80050DE6E /* PFContestLineup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFContestLineup.swift; sourceTree = "<group>"; };
+		90D43CAB1C8A0F4A0050DE6E /* EditableContestLineup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditableContestLineup.swift; sourceTree = "<group>"; };
+		90D43CB31C8A21030050DE6E /* EditLineupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditLineupViewController.swift; sourceTree = "<group>"; };
+		90D43CB51C8A210E0050DE6E /* CreateLineupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateLineupViewController.swift; sourceTree = "<group>"; };
 		90F7B2241C889B27003FBE49 /* FriendlyFanduel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FriendlyFanduel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90F7B2271C889B27003FBE49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90F7B22C1C889B27003FBE49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -79,7 +85,7 @@
 		90F7B26F1C88C8FF003FBE49 /* PFPlayerEventResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFPlayerEventResult.swift; sourceTree = "<group>"; };
 		90F7B2711C88DE95003FBE49 /* RecentContestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentContestsViewController.swift; sourceTree = "<group>"; };
 		90F7B2741C88E41A003FBE49 /* LineupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineupTableViewCell.swift; sourceTree = "<group>"; };
-		90F7B2761C88E8AE003FBE49 /* CreateLineupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateLineupViewController.swift; sourceTree = "<group>"; };
+		90F7B2761C88E8AE003FBE49 /* SetLineupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetLineupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +115,25 @@
 				17BB96FF7EA2EB5B037B1C44 /* Pods_FriendlyFanduel.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		90D43CAD1C8A0F4F0050DE6E /* NSObjects */ = {
+			isa = PBXGroup;
+			children = (
+				90D43CAB1C8A0F4A0050DE6E /* EditableContestLineup.swift */,
+			);
+			name = NSObjects;
+			sourceTree = "<group>";
+		};
+		90D43CB21C8A20EA0050DE6E /* Set Lineup */ = {
+			isa = PBXGroup;
+			children = (
+				90F7B2761C88E8AE003FBE49 /* SetLineupViewController.swift */,
+				90D43CB31C8A21030050DE6E /* EditLineupViewController.swift */,
+				90D43CB51C8A210E0050DE6E /* CreateLineupViewController.swift */,
+				90D43CA71C89EADB0050DE6E /* PlayerPickerViewController.swift */,
+			);
+			name = "Set Lineup";
 			sourceTree = "<group>";
 		};
 		90F7B21B1C889B27003FBE49 = {
@@ -196,8 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				90F7B2411C88A614003FBE49 /* UpcomingContestsViewController.swift */,
-				90F7B2761C88E8AE003FBE49 /* CreateLineupViewController.swift */,
-				90D43CA71C89EADB0050DE6E /* PlayerPickerViewController.swift */,
+				90D43CB21C8A20EA0050DE6E /* Set Lineup */,
 			);
 			name = "Upcoming Contests";
 			sourceTree = "<group>";
@@ -217,6 +241,7 @@
 				90F7B2571C88B12D003FBE49 /* PFLeague.swift */,
 				90D43CA51C89DE250050DE6E /* PFContest.swift */,
 				90D43CA91C8A04C80050DE6E /* PFContestLineup.swift */,
+				90D43CAD1C8A0F4F0050DE6E /* NSObjects */,
 				90D43CA31C89DD3B0050DE6E /* PFLineup.swift */,
 				90F7B2671C88B2DA003FBE49 /* Backend */,
 			);
@@ -391,7 +416,8 @@
 				90F7B24E1C88AD2E003FBE49 /* CreateLeagueViewController.swift in Sources */,
 				90D43CA61C89DE250050DE6E /* PFContest.swift in Sources */,
 				90F7B2581C88B12D003FBE49 /* PFLeague.swift in Sources */,
-				90F7B2771C88E8AE003FBE49 /* CreateLineupViewController.swift in Sources */,
+				90D43CAC1C8A0F4A0050DE6E /* EditableContestLineup.swift in Sources */,
+				90F7B2771C88E8AE003FBE49 /* SetLineupViewController.swift in Sources */,
 				90F7B2641C88B17F003FBE49 /* PFSport.swift in Sources */,
 				90F7B2401C88A60A003FBE49 /* LiveContestsViewController.swift in Sources */,
 				90F7B2661C88B2B5003FBE49 /* PFPlayerEvent.swift in Sources */,
@@ -401,9 +427,11 @@
 				90F7B25C1C88B143003FBE49 /* PFTeam.swift in Sources */,
 				90F7B2701C88C8FF003FBE49 /* PFPlayerEventResult.swift in Sources */,
 				90F7B2281C889B27003FBE49 /* AppDelegate.swift in Sources */,
+				90D43CB61C8A210E0050DE6E /* CreateLineupViewController.swift in Sources */,
 				90F7B26C1C88BC94003FBE49 /* ContestTableViewCell.swift in Sources */,
 				90F7B2621C88B16E003FBE49 /* PFPlayer.swift in Sources */,
 				90F7B23E1C88A5FE003FBE49 /* LeaguesViewController.swift in Sources */,
+				90D43CB41C8A21030050DE6E /* EditLineupViewController.swift in Sources */,
 				90F7B24C1C88AAA3003FBE49 /* LeagueViewController.swift in Sources */,
 				90F7B26E1C88BC9F003FBE49 /* LeagueTableViewCell.swift in Sources */,
 				90D43CA41C89DD3B0050DE6E /* PFLineup.swift in Sources */,

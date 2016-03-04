@@ -47,19 +47,18 @@ class UpcomingContestsViewController: UIViewController {
         })
     }
 
-    func toCreateTeamForEvent(event: PFEvent) {
-        performSegueWithIdentifier("toCreateLineup", sender: event)
+    func toCreateLineupForEvent(event: PFEvent) {
+        if let createLineupVC = storyboard?.instantiateViewControllerWithIdentifier("CreateLineupVC") as?  CreateLineupViewController {
+            createLineupVC.event = event
+            let navigationController = UINavigationController(rootViewController: createLineupVC)
+            self.presentViewController(navigationController, animated: true, completion: nil)
+        }
     }
     
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "toCreateLineup") {
-            if let createLineupVC = segue.destinationViewController as? CreateLineupViewController {
-                createLineupVC.event = sender as! PFEvent
-            }
-        }
     }
     
 }
@@ -96,7 +95,7 @@ extension UpcomingContestsViewController: UITableViewDataSource, UITableViewDele
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if (indexPath.section == 0) {
             let event = availableEvents[indexPath.row]
-            toCreateTeamForEvent(event)
+            toCreateLineupForEvent(event)
         } else {
             let contestLineup = contestLineups[indexPath.row]
 

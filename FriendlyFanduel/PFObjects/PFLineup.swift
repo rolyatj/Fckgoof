@@ -12,16 +12,22 @@ import Parse
 class PFLineup: PFObject, PFSubclassing {
     
     @NSManaged var dueler: PFDueler!
-    @NSManaged var playerEvents: [PFPlayerEvent]!
+    @NSManaged var pitcherPlayerEvents: [PFPlayerEvent]!
+    @NSManaged var hitterPlayerEvents: [PFPlayerEvent]!
     
     class func parseClassName() -> String {
         return "Lineup"
     }
     
-    convenience init(playerEvents: [PFPlayerEvent]) {
+    convenience init(editableContestLineup: EditableContestLineup) {
         self.init()
         self.dueler = PFDueler.currentUser()!
-        self.playerEvents = [PFPlayerEvent]()
+        self.setRoster(editableContestLineup)
+    }
+    
+    func setRoster(editableContestLineup: EditableContestLineup) {
+        self.pitcherPlayerEvents = editableContestLineup.hitters
+        self.hitterPlayerEvents = editableContestLineup.pitchers
     }
     
     class func myLineupsQuery() -> PFQuery? {

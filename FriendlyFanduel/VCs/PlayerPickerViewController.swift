@@ -9,7 +9,8 @@
 import UIKit
 
 protocol PlayerPickerViewControllerDelegate {
-    func didSelectPlayerEvent(playerEvent: PFPlayerEvent)
+    func playerPickerDidCancel()
+    func playerPickerDidSelectPlayerEvent(playerEvent: PFPlayerEvent)
 }
 
 class PlayerPickerViewController: UIViewController {
@@ -17,8 +18,11 @@ class PlayerPickerViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchTextField: UITextField!
     
-    var event: PFEvent!
-    var disabledPlayerEventIds = [String]()
+    var editableContestLineup: EditableContestLineup! {
+        didSet {
+            self.delegate = editableContestLineup
+        }
+    }
     var filterType = 0
     var playerEvents = [PFPlayerEvent]() {
         didSet {
@@ -74,7 +78,9 @@ class PlayerPickerViewController: UIViewController {
             playerQuery.whereKey("type", equalTo: filterType)
             let query = PFPlayerEvent.queryWithIncludes()
             query?.fromLocalDatastore()
-            query?.whereKey("objectId", notContainedIn: disabledPlayerEventIds)
+            if let disabledPlayerEventIds = editableContestLineup.disabledPlayerEventIds(filterType) {
+                query?.whereKey("objectId", notContainedIn: disabledPlayerEventIds)
+            }
             query?.whereKey("player", matchesQuery: playerQuery)
             query?.findObjectsInBackgroundWithBlock({ (playerEvents, error) -> Void in
                 if let playerEvents = playerEvents as? [PFPlayerEvent] {
@@ -99,15 +105,11 @@ class PlayerPickerViewController: UIViewController {
         }
     }
     
-    /*
-    // MARK: - Navigation
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
+    @IBAction func cancelTapped(sender: AnyObject) {
+        delegate?.playerPickerDidCancel()
+        dismissViewControllerAnimated(true, completion: nil)
     }
-    */
     
 }
 
@@ -128,8 +130,8 @@ extension PlayerPickerViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let playerEvent = playerEventsFiltered[indexPath.row]
-        delegate?.didSelectPlayerEvent(playerEvent)
-        navigationController?.popViewControllerAnimated(true)
+        delegate?.playerPickerDidSelectPlayerEvent(playerEvent)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
 }
