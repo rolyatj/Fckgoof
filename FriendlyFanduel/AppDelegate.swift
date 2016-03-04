@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFLeague.registerSubclass()
         PFContest.registerSubclass()
         PFLineup.registerSubclass()
+        PFContestLineup.registerSubclass()
         PFEvent.registerSubclass()
         PFPlayer.registerSubclass()
         PFPlayerEvent.registerSubclass()

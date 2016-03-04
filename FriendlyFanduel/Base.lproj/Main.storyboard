@@ -531,7 +531,7 @@
         <!--UPCOMING-->
         <scene sceneID="bxQ-vW-kq1">
             <objects>
-                <viewController id="0UL-FA-Vxv" customClass="UpcomingLineupsViewController" customModule="FriendlyFanduel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0UL-FA-Vxv" customClass="UpcomingContestsViewController" customModule="FriendlyFanduel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Rrk-UC-NnN"/>
                         <viewControllerLayoutGuide type="bottom" id="npN-DN-6YR"/>
@@ -617,7 +617,7 @@
                                             <outlet property="sportLabel" destination="6K4-Bz-SEZ" id="EvB-08-I7Y"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="LineupCell" rowHeight="78" id="Khg-su-Q2m" customClass="TeamTableViewCell" customModule="FriendlyFanduel" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="LineupCell" rowHeight="78" id="Khg-su-Q2m" customClass="ContestTableViewCell" customModule="FriendlyFanduel" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="172" width="320" height="78"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Khg-su-Q2m" id="eFN-Rr-YUD">
@@ -836,7 +836,7 @@
         <!--LIVE-->
         <scene sceneID="Tsb-Th-YnU">
             <objects>
-                <viewController id="wlv-SQ-GUq" customClass="LiveLineupsViewController" customModule="FriendlyFanduel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wlv-SQ-GUq" customClass="LiveContestsViewController" customModule="FriendlyFanduel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IMW-oe-dD8"/>
                         <viewControllerLayoutGuide type="bottom" id="7Nj-RG-IpQ"/>
@@ -849,7 +849,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="LineupCell" rowHeight="78" id="DiQ-h2-IIE" customClass="TeamTableViewCell" customModule="FriendlyFanduel" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="LineupCell" rowHeight="78" id="DiQ-h2-IIE" customClass="ContestTableViewCell" customModule="FriendlyFanduel" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="320" height="78"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DiQ-h2-IIE" id="QrR-kw-SSw">
@@ -949,7 +949,7 @@
         <!--RECENT-->
         <scene sceneID="kp4-RB-YAJ">
             <objects>
-                <viewController id="fVL-fV-AaV" customClass="RecentLineupsViewController" customModule="FriendlyFanduel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fVL-fV-AaV" customClass="RecentContestsViewController" customModule="FriendlyFanduel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2BA-pk-c0X"/>
                         <viewControllerLayoutGuide type="bottom" id="WR1-z5-3EO"/>
@@ -962,7 +962,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="LineupCell" rowHeight="78" id="Ac6-au-TDB" customClass="TeamTableViewCell" customModule="FriendlyFanduel" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="LineupCell" rowHeight="78" id="Ac6-au-TDB" customClass="ContestTableViewCell" customModule="FriendlyFanduel" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="320" height="78"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ac6-au-TDB" id="Hh9-d9-6OV">
