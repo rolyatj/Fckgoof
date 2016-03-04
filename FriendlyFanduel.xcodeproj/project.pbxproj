@@ -39,7 +39,7 @@
 		90F7B2701C88C8FF003FBE49 /* PFPlayerEventResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F7B26F1C88C8FF003FBE49 /* PFPlayerEventResult.swift */; };
 		90F7B2721C88DE95003FBE49 /* RecentContestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F7B2711C88DE95003FBE49 /* RecentContestsViewController.swift */; };
 		90F7B2751C88E41A003FBE49 /* LineupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F7B2741C88E41A003FBE49 /* LineupTableViewCell.swift */; };
-		90F7B2771C88E8AE003FBE49 /* CreateTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F7B2761C88E8AE003FBE49 /* CreateTeamViewController.swift */; };
+		90F7B2771C88E8AE003FBE49 /* CreateLineupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F7B2761C88E8AE003FBE49 /* CreateLineupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,7 +79,7 @@
 		90F7B26F1C88C8FF003FBE49 /* PFPlayerEventResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFPlayerEventResult.swift; sourceTree = "<group>"; };
 		90F7B2711C88DE95003FBE49 /* RecentContestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentContestsViewController.swift; sourceTree = "<group>"; };
 		90F7B2741C88E41A003FBE49 /* LineupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineupTableViewCell.swift; sourceTree = "<group>"; };
-		90F7B2761C88E8AE003FBE49 /* CreateTeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTeamViewController.swift; sourceTree = "<group>"; };
+		90F7B2761C88E8AE003FBE49 /* CreateLineupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateLineupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,7 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				90F7B2411C88A614003FBE49 /* UpcomingContestsViewController.swift */,
-				90F7B2761C88E8AE003FBE49 /* CreateTeamViewController.swift */,
+				90F7B2761C88E8AE003FBE49 /* CreateLineupViewController.swift */,
 				90D43CA71C89EADB0050DE6E /* PlayerPickerViewController.swift */,
 			);
 			name = "Upcoming Contests";
@@ -391,7 +391,7 @@
 				90F7B24E1C88AD2E003FBE49 /* CreateLeagueViewController.swift in Sources */,
 				90D43CA61C89DE250050DE6E /* PFContest.swift in Sources */,
 				90F7B2581C88B12D003FBE49 /* PFLeague.swift in Sources */,
-				90F7B2771C88E8AE003FBE49 /* CreateTeamViewController.swift in Sources */,
+				90F7B2771C88E8AE003FBE49 /* CreateLineupViewController.swift in Sources */,
 				90F7B2641C88B17F003FBE49 /* PFSport.swift in Sources */,
 				90F7B2401C88A60A003FBE49 /* LiveContestsViewController.swift in Sources */,
 				90F7B2661C88B2B5003FBE49 /* PFPlayerEvent.swift in Sources */,

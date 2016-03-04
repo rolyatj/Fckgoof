@@ -1,5 +1,5 @@
 //
-//  CreateTeamViewController.swift
+//  CreateLineupViewController.swift
 //  FriendlyFanduel
 //
 //  Created by Kurt Jensen on 3/3/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateTeamViewController: UIViewController {
+class CreateLineupViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var selectedLeagueButton: UIButton!
@@ -148,7 +148,7 @@ class CreateTeamViewController: UIViewController {
     
 }
 
-extension CreateTeamViewController: UITableViewDataSource, UITableViewDelegate {
+extension CreateLineupViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
@@ -204,7 +204,7 @@ extension CreateTeamViewController: UITableViewDataSource, UITableViewDelegate {
     
 }
 
-extension CreateTeamViewController: PlayerPickerViewControllerDelegate {
+extension CreateLineupViewController: PlayerPickerViewControllerDelegate {
     func didSelectPlayerEvent(playerEvent: PFPlayerEvent) {
         if (playerEvent.player.type == 0) {
             if (pitchers.count < event.numberPitchers) {

@@ -690,17 +690,17 @@
                     <navigationItem key="navigationItem" title="UPCOMING" id="2rx-Nn-8OY"/>
                     <connections>
                         <outlet property="tableView" destination="GD7-Xc-njQ" id="l6y-g9-31J"/>
-                        <segue destination="6LD-Gz-8Ys" kind="show" identifier="toCreateTeam" id="XBR-ZS-mnz"/>
+                        <segue destination="6LD-Gz-8Ys" kind="show" identifier="toCreateLineup" id="XBR-ZS-mnz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Dv-FW-N6H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="380" y="-140"/>
         </scene>
-        <!--CREATE TEAM-->
+        <!--CREATE LINEUP-->
         <scene sceneID="vtd-iS-aaE">
             <objects>
-                <viewController title="CREATE TEAM" hidesBottomBarWhenPushed="YES" id="6LD-Gz-8Ys" customClass="CreateTeamViewController" customModule="FriendlyFanduel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="CREATE LINEUP" hidesBottomBarWhenPushed="YES" id="6LD-Gz-8Ys" customClass="CreateLineupViewController" customModule="FriendlyFanduel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zoD-Ie-Pah"/>
                         <viewControllerLayoutGuide type="bottom" id="NGP-4z-Ovp"/>

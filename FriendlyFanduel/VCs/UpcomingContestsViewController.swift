@@ -48,16 +48,16 @@ class UpcomingContestsViewController: UIViewController {
     }
 
     func toCreateTeamForEvent(event: PFEvent) {
-        performSegueWithIdentifier("toCreateTeam", sender: event)
+        performSegueWithIdentifier("toCreateLineup", sender: event)
     }
     
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "toCreateTeam") {
-            if let createTeamVC = segue.destinationViewController as? CreateTeamViewController {
-                createTeamVC.event = sender as! PFEvent
+        if (segue.identifier == "toCreateLineup") {
+            if let createLineupVC = segue.destinationViewController as? CreateLineupViewController {
+                createLineupVC.event = sender as! PFEvent
             }
         }
     }
