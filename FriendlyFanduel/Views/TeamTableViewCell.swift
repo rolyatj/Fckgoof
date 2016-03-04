@@ -25,9 +25,9 @@ class TeamTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func configureWithTeam(team: PFTeam) {
-        nameLabel.text = "TODO"//game.
-        sportLabel.text = "TODO"//game.event.sport.name
+    func configureWithTeam(team: PFLineup) {
+        nameLabel.text = "TODO"//lineup.
+        sportLabel.text = "TODO"//lineup.event.sport.name
         descriptionLabel.text = "TODO"
     }
 

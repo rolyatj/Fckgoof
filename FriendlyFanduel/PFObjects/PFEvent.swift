@@ -21,11 +21,11 @@ class PFEvent: PFObject, PFSubclassing {
     }
     
     class func availableEventsQuery() -> PFQuery? {
-        if let teamQuery = PFTeam.myTeamsQuery(), let gameQuery = PFGame.query() {
-            gameQuery.whereKey("objectId", matchesKey:"game", inQuery:teamQuery)
+        if let teamQuery = PFLineup.myLineupsQuery(), let contestQuery = PFContest.query() {
+            contestQuery.whereKey("objectId", matchesKey:"lineup", inQuery:teamQuery)
             let eventQuery = PFEvent.query()
             eventQuery?.whereKey("startDate", lessThanOrEqualTo: NSDate())
-            eventQuery?.whereKey("objectId", doesNotMatchKey: "event", inQuery: gameQuery)
+            eventQuery?.whereKey("objectId", doesNotMatchKey: "event", inQuery: contestQuery)
             return eventQuery
         }
         return nil

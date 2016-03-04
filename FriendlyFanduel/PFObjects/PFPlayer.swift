@@ -14,7 +14,7 @@ class PFPlayer: PFObject, PFSubclassing {
     @NSManaged var sport: PFSport!
     @NSManaged var type: Int
     @NSManaged var name: String?
-    
+        
     class func parseClassName() -> String {
         return "Player"
     }

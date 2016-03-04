@@ -1,5 +1,5 @@
 //
-//  RecentGamesViewController.swift
+//  RecentLineupsViewController.swift
 //  FriendlyFanduel
 //
 //  Created by Kurt Jensen on 3/3/16.
@@ -8,10 +8,10 @@
 
 import UIKit
 
-class RecentGamesViewController: UIViewController {
+class RecentLineupsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    var teams = [PFTeam]() {
+    var lineups = [PFLineup]() {
         didSet {
             self.tableView?.reloadData()
         }
@@ -24,10 +24,10 @@ class RecentGamesViewController: UIViewController {
     }
     
     func fetchEvents() {
-        let query = PFTeam.myRecentTeamsQuery()
-        query?.findObjectsInBackgroundWithBlock({ (teams, error) -> Void in
-            if let teams = teams as? [PFTeam] {
-                self.teams = teams
+        let query = PFLineup.myRecentlineupsQuery()
+        query?.findObjectsInBackgroundWithBlock({ (lineups, error) -> Void in
+            if let lineups = lineups as? [PFLineup] {
+                self.lineups = lineups
             }
         })
     }
@@ -49,26 +49,26 @@ class RecentGamesViewController: UIViewController {
     
 }
 
-extension RecentGamesViewController: UITableViewDataSource, UITableViewDelegate {
+extension RecentLineupsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return teams.count
+        return lineups.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("EventCell", forIndexPath: indexPath) as! TeamTableViewCell
-        let team = teams[indexPath.row]
+        let team = lineups[indexPath.row]
         cell.configureWithTeam(team)
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let team = teams[indexPath.row]
+        let team = lineups[indexPath.row]
         
     }
     

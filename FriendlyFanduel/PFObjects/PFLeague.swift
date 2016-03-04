@@ -30,8 +30,25 @@ class PFLeague: PFObject, PFSubclassing {
         return self.commissioner.objectId == PFDueler.currentUser()?.objectId
     }
     
+    class func myLeaguesQuery() -> PFQuery? {
+        let query = PFLeague.query()
+        query?.whereKey("duelers", containsAllObjectsInArray: [PFDueler.currentUser()!.objectId!])
+        return query
+    }
+    
+    class func availableLeaguesForEvent(event: PFEvent) -> PFQuery? {
+        if let lineupQuery = PFLineup.myLineupsQuery(), let eventQuery = PFEvent.query() {
+            /*
+            lineupQuery.whereKey("event", equalTo: event)
+            let query = PFLeague.myLeaguesQuery()
+            query?.whereKey("lineup", matchesQuery: eventQuery)*/
+        }
+        return nil
+    }
+    
     class func queryWithIncludes() -> PFQuery? {
         let query = PFLeague.query()
+        query?.includeKey("commissioner")
         return query
     }
 

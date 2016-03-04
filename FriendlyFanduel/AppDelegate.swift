@@ -16,15 +16,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        // PARSE
         PFDueler.registerSubclass()
         PFLeague.registerSubclass()
-        PFGame.registerSubclass()
-        PFTeam.registerSubclass()
+        PFContest.registerSubclass()
+        PFLineup.registerSubclass()
         PFEvent.registerSubclass()
         PFPlayer.registerSubclass()
         PFPlayerEvent.registerSubclass()
+        PFPlayerEventResult.registerSubclass()
+        PFTeam.registerSubclass()
         PFSport.registerSubclass()
         PFFlag.registerSubclass()
+        Parse.enableLocalDatastore()
         Parse.setApplicationId("83QAZ8bwzHbXs1i2v526iiv4qJLwkhfQbS9EpB8d",
             clientKey: "POiXIGUX5MbvWagON8sGOd0x9oyellwg0rgH3miD")
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
@@ -34,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Lineups should use this method to pause the lineup.
     }
 
     func applicationDidEnterBackground(application: UIApplication) {

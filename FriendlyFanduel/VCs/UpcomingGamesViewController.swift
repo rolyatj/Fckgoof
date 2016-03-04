@@ -1,5 +1,5 @@
 //
-//  UpcomingGamesViewController.swift
+//  UpcomingLineupsViewController.swift
 //  FriendlyFanduel
 //
 //  Created by Kurt Jensen on 3/3/16.
@@ -8,10 +8,10 @@
 
 import UIKit
 
-class UpcomingGamesViewController: UIViewController {
+class UpcomingLineupsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    var teams = [PFTeam]() {
+    var lineups = [PFLineup]() {
         didSet {
             self.tableView?.reloadData()
         }
@@ -25,15 +25,15 @@ class UpcomingGamesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        fetchGames()
+        fetchLineups()
         fetchEvents()
     }
     
-    func fetchGames() {
-        let query = PFTeam.myUpcomingTeamsQuery()
-        query?.findObjectsInBackgroundWithBlock({ (teams, error) -> Void in
-            if let teams = teams as? [PFTeam] {
-                self.teams = teams
+    func fetchLineups() {
+        let query = PFLineup.myUpcominglineupsQuery()
+        query?.findObjectsInBackgroundWithBlock({ (lineups, error) -> Void in
+            if let lineups = lineups as? [PFLineup] {
+                self.lineups = lineups
             }
         })
     }
@@ -47,24 +47,24 @@ class UpcomingGamesViewController: UIViewController {
         })
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func toCreateTeamForEvent(event: PFEvent) {
+        performSegueWithIdentifier("toCreateTeam", sender: event)
     }
-
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if (segue.identifier == "toCreateTeam") {
+            if let createTeamVC = segue.destinationViewController as? CreateTeamViewController {
+                createTeamVC.event = sender as! PFEvent
+            }
+        }
     }
-    */
-
+    
 }
 
-extension UpcomingGamesViewController: UITableViewDataSource, UITableViewDelegate {
+extension UpcomingLineupsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
@@ -74,7 +74,7 @@ extension UpcomingGamesViewController: UITableViewDataSource, UITableViewDelegat
         if (section == 0) {
             return availableEvents.count
         } else {
-            return teams.count
+            return lineups.count
         }
     }
     
@@ -85,8 +85,8 @@ extension UpcomingGamesViewController: UITableViewDataSource, UITableViewDelegat
             cell.configureWithEvent(event)
             return cell
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("GameCell", forIndexPath: indexPath) as! TeamTableViewCell
-            let team = teams[indexPath.row]
+            let cell = tableView.dequeueReusableCellWithIdentifier("LineupCell", forIndexPath: indexPath) as! TeamTableViewCell
+            let team = lineups[indexPath.row]
             cell.configureWithTeam(team)
             return cell
         }
@@ -96,9 +96,9 @@ extension UpcomingGamesViewController: UITableViewDataSource, UITableViewDelegat
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if (indexPath.section == 0) {
             let event = availableEvents[indexPath.row]
-
+            toCreateTeamForEvent(event)
         } else {
-            let team = teams[indexPath.row]
+            let team = lineups[indexPath.row]
 
         }
 

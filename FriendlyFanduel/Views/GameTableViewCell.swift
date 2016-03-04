@@ -1,5 +1,5 @@
 //
-//  GameTableViewCell.swift
+//  LineupTableViewCell.swift
 //  FriendlyFanduel
 //
 //  Created by Kurt Jensen on 3/3/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GameTableViewCell: UITableViewCell {
+class LineupTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var sportLabel: UILabel!
@@ -25,9 +25,9 @@ class GameTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func configureWithGame(game: PFGame) {
-        nameLabel.text = "TODO"//game.
-        sportLabel.text = "TODO"//game.event.sport.name
+    func configureWithLineup(lineup: PFLineup) {
+        nameLabel.text = "TODO"//lineup.
+        sportLabel.text = "TODO"//lineup.event.sport.name
         descriptionLabel.text = "TODO"
     }
     

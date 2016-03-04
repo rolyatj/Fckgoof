@@ -24,8 +24,7 @@ class LeaguesViewController: UIViewController {
     }
     
     func fetchLeagues() {
-        let query = PFLeague.query()
-        query?.whereKey("duelers", containsAllObjectsInArray: [PFDueler.currentUser()!.objectId!])
+        let query = PFLeague.myLeaguesQuery()
         query?.findObjectsInBackgroundWithBlock({ (leagues, error) -> Void in
             if let leagues = leagues as? [PFLeague] {
                 self.leagues = leagues
