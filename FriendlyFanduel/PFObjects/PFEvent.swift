@@ -9,19 +9,12 @@
 import UIKit
 import Parse
 
-class PFEvent: PFObject, PFSubclassing {
+class PFEvent: PFObject {
     
     @NSManaged var startDate: NSDate!
     @NSManaged var endDate: NSDate!
     @NSManaged var name: String?
-    @NSManaged var sport: PFSport!
-    @NSManaged var numberHitters: Int
-    @NSManaged var numberPitchers: Int
     @NSManaged var maxSalary: Int
-    
-    class func parseClassName() -> String {
-        return "Event"
-    }
     
     class func myUpcomingAvailableEventsQuery() -> PFQuery? {
         if let lineupQuery = PFLineup.myLineupsQuery(), let contestQuery = PFContest.query(), let contestLineupQuery = PFContestLineup.query() {

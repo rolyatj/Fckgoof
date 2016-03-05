@@ -9,14 +9,10 @@
 import UIKit
 import Parse
 
-class PFContestLineup: PFObject, PFSubclassing {
+class PFContestLineup: PFObject {
     
     @NSManaged var contest: PFContest!
     @NSManaged var lineup: PFLineup!
-    
-    class func parseClassName() -> String {
-        return "ContestLineup"
-    }
     
     convenience init(contest: PFContest, lineup: PFLineup) {
         self.init()

@@ -9,13 +9,12 @@
 import UIKit
 import Parse
 
-class PFPlayerEvent: PFObject, PFSubclassing {
+class PFPlayerEvent: PFObject {
     
+    @NSManaged var salary: Int
     @NSManaged var event: PFEvent!
     @NSManaged var player: PFPlayer!
     @NSManaged var result: PFPlayerEventResult!
-    @NSManaged var salary: Int
-
     
     class func resetPinsForAllPlayersForEvent(event: PFEvent) {
         let localDatastoreQuery = PFPlayerEvent.query()
@@ -41,10 +40,6 @@ class PFPlayerEvent: PFObject, PFSubclassing {
                 NSNotificationCenter.defaultCenter().postNotificationName("pinnedPlayerEvents", object: event)
             })
         })
-    }
-
-    class func parseClassName() -> String {
-        return "PlayerEvent"
     }
     
     class func queryWithIncludes() -> PFQuery? {

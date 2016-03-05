@@ -9,13 +9,9 @@
 import UIKit
 import Parse
 
-class PFTeam: PFObject, PFSubclassing {
+class PFTeam: PFObject {
 
     @NSManaged var name: String?
-    
-    class func parseClassName() -> String {
-        return "Team"
-    }
     
 }
     

@@ -9,14 +9,10 @@
 import UIKit
 import Parse
 
-class PFGame: PFObject, PFSubclassing {
+class PFGame: PFObject {
     
     @NSManaged var homeTeam: PFTeam!
     @NSManaged var awayTeam: PFTeam!
     @NSManaged var lineupTime: NSDate!
-    
-    class func parseClassName() -> String {
-        return "Lineup"
-    }
     
 }

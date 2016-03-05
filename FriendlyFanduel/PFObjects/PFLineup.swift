@@ -9,25 +9,18 @@
 import UIKit
 import Parse
 
-class PFLineup: PFObject, PFSubclassing {
+class PFLineup: PFObject {
     
     @NSManaged var dueler: PFDueler!
-    @NSManaged var pitcherPlayerEvents: [PFPlayerEvent]!
-    @NSManaged var hitterPlayerEvents: [PFPlayerEvent]!
     
-    class func parseClassName() -> String {
-        return "Lineup"
-    }
-    
-    convenience init(editableContestLineup: EditableContestLineup) {
-        self.init()
-        self.dueler = PFDueler.currentUser()!
-        self.setRoster(editableContestLineup)
+    class func lineupFromEditableLineup(editableContestLineup: EditableContestLineup) -> PFLineup? {
+        if (editableContestLineup is MLBEditableContestLineup) {
+            return PFMLBLineup(editableContestLineup: editableContestLineup as! MLBEditableContestLineup)
+        }
+        return nil
     }
     
     func setRoster(editableContestLineup: EditableContestLineup) {
-        self.pitcherPlayerEvents = editableContestLineup.hitters
-        self.hitterPlayerEvents = editableContestLineup.pitchers
     }
     
     class func myLineupsQuery() -> PFQuery? {

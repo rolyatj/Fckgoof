@@ -16,6 +16,15 @@
 		90D43CB41C8A21030050DE6E /* EditLineupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D43CB31C8A21030050DE6E /* EditLineupViewController.swift */; };
 		90D43CB61C8A210E0050DE6E /* CreateLineupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D43CB51C8A210E0050DE6E /* CreateLineupViewController.swift */; };
 		90D43CCD1C8A83000050DE6E /* PFMLBContest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D43CCC1C8A83000050DE6E /* PFMLBContest.swift */; };
+		90D43CCF1C8A83520050DE6E /* PFMLBContestLineup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D43CCE1C8A83520050DE6E /* PFMLBContestLineup.swift */; };
+		90D43CD11C8A83810050DE6E /* PFMLBLineup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D43CD01C8A83810050DE6E /* PFMLBLineup.swift */; };
+		90D43CD31C8A83AB0050DE6E /* PFMLBEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D43CD21C8A83AB0050DE6E /* PFMLBEvent.swift */; };
+		90D43CD51C8A83D60050DE6E /* PFMLBGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D43CD41C8A83D60050DE6E /* PFMLBGame.swift */; };
+		90D43CD71C8A840D0050DE6E /* PFMLBPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D43CD61C8A840D0050DE6E /* PFMLBPlayer.swift */; };
+		90D43CD91C8A843A0050DE6E /* PFMLBPlayerEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D43CD81C8A843A0050DE6E /* PFMLBPlayerEvent.swift */; };
+		90D43CDB1C8A84750050DE6E /* PFMLBPlayerEventResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D43CDA1C8A84750050DE6E /* PFMLBPlayerEventResult.swift */; };
+		90D43CDD1C8A848E0050DE6E /* PFMLBTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D43CDC1C8A848E0050DE6E /* PFMLBTeam.swift */; };
+		90D43CDF1C8A8BE00050DE6E /* MLBEditableContestLineup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D43CDE1C8A8BE00050DE6E /* MLBEditableContestLineup.swift */; };
 		90F7B2281C889B27003FBE49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F7B2271C889B27003FBE49 /* AppDelegate.swift */; };
 		90F7B22D1C889B27003FBE49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90F7B22B1C889B27003FBE49 /* Main.storyboard */; };
 		90F7B22F1C889B27003FBE49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90F7B22E1C889B27003FBE49 /* Assets.xcassets */; };
@@ -58,6 +67,15 @@
 		90D43CB31C8A21030050DE6E /* EditLineupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditLineupViewController.swift; sourceTree = "<group>"; };
 		90D43CB51C8A210E0050DE6E /* CreateLineupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateLineupViewController.swift; sourceTree = "<group>"; };
 		90D43CCC1C8A83000050DE6E /* PFMLBContest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFMLBContest.swift; sourceTree = "<group>"; };
+		90D43CCE1C8A83520050DE6E /* PFMLBContestLineup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFMLBContestLineup.swift; sourceTree = "<group>"; };
+		90D43CD01C8A83810050DE6E /* PFMLBLineup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFMLBLineup.swift; sourceTree = "<group>"; };
+		90D43CD21C8A83AB0050DE6E /* PFMLBEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFMLBEvent.swift; sourceTree = "<group>"; };
+		90D43CD41C8A83D60050DE6E /* PFMLBGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFMLBGame.swift; sourceTree = "<group>"; };
+		90D43CD61C8A840D0050DE6E /* PFMLBPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFMLBPlayer.swift; sourceTree = "<group>"; };
+		90D43CD81C8A843A0050DE6E /* PFMLBPlayerEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFMLBPlayerEvent.swift; sourceTree = "<group>"; };
+		90D43CDA1C8A84750050DE6E /* PFMLBPlayerEventResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFMLBPlayerEventResult.swift; sourceTree = "<group>"; };
+		90D43CDC1C8A848E0050DE6E /* PFMLBTeam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFMLBTeam.swift; sourceTree = "<group>"; };
+		90D43CDE1C8A8BE00050DE6E /* MLBEditableContestLineup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLBEditableContestLineup.swift; sourceTree = "<group>"; };
 		90F7B2241C889B27003FBE49 /* FriendlyFanduel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FriendlyFanduel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90F7B2271C889B27003FBE49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90F7B22C1C889B27003FBE49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -123,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				90D43CAB1C8A0F4A0050DE6E /* EditableContestLineup.swift */,
+				90D43CDE1C8A8BE00050DE6E /* MLBEditableContestLineup.swift */,
 			);
 			name = NSObjects;
 			sourceTree = "<group>";
@@ -151,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				90D43CA91C8A04C80050DE6E /* PFContestLineup.swift */,
+				90D43CCE1C8A83520050DE6E /* PFMLBContestLineup.swift */,
 			);
 			name = PFContestLineup;
 			sourceTree = "<group>";
@@ -159,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				90D43CA31C89DD3B0050DE6E /* PFLineup.swift */,
+				90D43CD01C8A83810050DE6E /* PFMLBLineup.swift */,
 			);
 			name = PFLineup;
 			sourceTree = "<group>";
@@ -167,22 +188,25 @@
 			isa = PBXGroup;
 			children = (
 				90F7B25D1C88B14E003FBE49 /* PFEvent.swift */,
+				90D43CD21C8A83AB0050DE6E /* PFMLBEvent.swift */,
 			);
 			name = PFEvent;
 			sourceTree = "<group>";
 		};
-		90D43CC71C8A82CA0050DE6E /* PFGroup */ = {
+		90D43CC71C8A82CA0050DE6E /* PFGame */ = {
 			isa = PBXGroup;
 			children = (
 				90F7B2591C88B139003FBE49 /* PFGame.swift */,
+				90D43CD41C8A83D60050DE6E /* PFMLBGame.swift */,
 			);
-			name = PFGroup;
+			name = PFGame;
 			sourceTree = "<group>";
 		};
 		90D43CC81C8A82CF0050DE6E /* PFPlayer */ = {
 			isa = PBXGroup;
 			children = (
 				90F7B2611C88B16E003FBE49 /* PFPlayer.swift */,
+				90D43CD61C8A840D0050DE6E /* PFMLBPlayer.swift */,
 			);
 			name = PFPlayer;
 			sourceTree = "<group>";
@@ -191,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				90F7B2651C88B2B5003FBE49 /* PFPlayerEvent.swift */,
+				90D43CD81C8A843A0050DE6E /* PFMLBPlayerEvent.swift */,
 			);
 			name = PFPlayerEvent;
 			sourceTree = "<group>";
@@ -199,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				90F7B26F1C88C8FF003FBE49 /* PFPlayerEventResult.swift */,
+				90D43CDA1C8A84750050DE6E /* PFMLBPlayerEventResult.swift */,
 			);
 			name = PFPlayerEventResult;
 			sourceTree = "<group>";
@@ -207,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				90F7B25B1C88B143003FBE49 /* PFTeam.swift */,
+				90D43CDC1C8A848E0050DE6E /* PFMLBTeam.swift */,
 			);
 			name = PFTeam;
 			sourceTree = "<group>";
@@ -327,7 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				90D43CC61C8A82C60050DE6E /* PFEvent */,
-				90D43CC71C8A82CA0050DE6E /* PFGroup */,
+				90D43CC71C8A82CA0050DE6E /* PFGame */,
 				90D43CC81C8A82CF0050DE6E /* PFPlayer */,
 				90D43CC91C8A82D30050DE6E /* PFPlayerEvent */,
 				90D43CCA1C8A82D80050DE6E /* PFPlayerEventResult */,
@@ -482,9 +509,12 @@
 			files = (
 				90F7B25E1C88B14E003FBE49 /* PFEvent.swift in Sources */,
 				90D43CAA1C8A04C80050DE6E /* PFContestLineup.swift in Sources */,
+				90D43CD71C8A840D0050DE6E /* PFMLBPlayer.swift in Sources */,
+				90D43CD31C8A83AB0050DE6E /* PFMLBEvent.swift in Sources */,
 				90F7B2441C88A61E003FBE49 /* ProfileViewController.swift in Sources */,
 				90F7B2601C88B163003FBE49 /* PFFlag.swift in Sources */,
 				90F7B2421C88A614003FBE49 /* UpcomingContestsViewController.swift in Sources */,
+				90D43CD51C8A83D60050DE6E /* PFMLBGame.swift in Sources */,
 				90F7B2751C88E41A003FBE49 /* LineupTableViewCell.swift in Sources */,
 				90F7B2561C88B0F2003FBE49 /* PFDueler.swift in Sources */,
 				90F7B2721C88DE95003FBE49 /* RecentContestsViewController.swift in Sources */,
@@ -497,18 +527,24 @@
 				90F7B2401C88A60A003FBE49 /* LiveContestsViewController.swift in Sources */,
 				90F7B2661C88B2B5003FBE49 /* PFPlayerEvent.swift in Sources */,
 				90F7B2461C88A631003FBE49 /* SplashViewController.swift in Sources */,
+				90D43CD11C8A83810050DE6E /* PFMLBLineup.swift in Sources */,
 				90F7B26A1C88BC8A003FBE49 /* EventTableViewCell.swift in Sources */,
+				90D43CDB1C8A84750050DE6E /* PFMLBPlayerEventResult.swift in Sources */,
 				90F7B2501C88AD38003FBE49 /* EditLeagueViewController.swift in Sources */,
 				90F7B25C1C88B143003FBE49 /* PFTeam.swift in Sources */,
 				90F7B2701C88C8FF003FBE49 /* PFPlayerEventResult.swift in Sources */,
 				90F7B2281C889B27003FBE49 /* AppDelegate.swift in Sources */,
 				90D43CB61C8A210E0050DE6E /* CreateLineupViewController.swift in Sources */,
+				90D43CDD1C8A848E0050DE6E /* PFMLBTeam.swift in Sources */,
+				90D43CCF1C8A83520050DE6E /* PFMLBContestLineup.swift in Sources */,
+				90D43CD91C8A843A0050DE6E /* PFMLBPlayerEvent.swift in Sources */,
 				90F7B26C1C88BC94003FBE49 /* ContestTableViewCell.swift in Sources */,
 				90F7B2621C88B16E003FBE49 /* PFPlayer.swift in Sources */,
 				90F7B23E1C88A5FE003FBE49 /* LeaguesViewController.swift in Sources */,
 				90D43CCD1C8A83000050DE6E /* PFMLBContest.swift in Sources */,
 				90D43CB41C8A21030050DE6E /* EditLineupViewController.swift in Sources */,
 				90F7B24C1C88AAA3003FBE49 /* LeagueViewController.swift in Sources */,
+				90D43CDF1C8A8BE00050DE6E /* MLBEditableContestLineup.swift in Sources */,
 				90F7B26E1C88BC9F003FBE49 /* LeagueTableViewCell.swift in Sources */,
 				90D43CA41C89DD3B0050DE6E /* PFLineup.swift in Sources */,
 				90D43CA81C89EADB0050DE6E /* PlayerPickerViewController.swift in Sources */,

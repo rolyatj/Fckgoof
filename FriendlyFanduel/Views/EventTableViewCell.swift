@@ -27,7 +27,7 @@ class EventTableViewCell: UITableViewCell {
 
     func configureWithEvent(event: PFEvent) {
         nameLabel.text = event.name
-        sportLabel.text = event.sport.name
+        sportLabel.text = "TODO"//event.sport.name
         descriptionLabel.text = "TODO"
     }
     

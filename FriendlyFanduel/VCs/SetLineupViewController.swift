@@ -78,10 +78,11 @@ class SetLineupViewController: UIViewController {
                 } else {
                     // create contestLineup
                     do {
-                        let lineup = PFLineup(editableContestLineup: self.editableContestLineup)
-                        let contestLineup = PFContestLineup(contest: contest, lineup: lineup)
-                        try contestLineup.save()
-                        self.dismissViewControllerAnimated(true, completion: nil)
+                        if let lineup = PFLineup.lineupFromEditableLineup(self.editableContestLineup) {
+                            let contestLineup = PFContestLineup(contest: contest, lineup: lineup)
+                            try contestLineup.save()
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                        }
                     } catch {
                         // TODO
                         print(error)
