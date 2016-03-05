@@ -24,7 +24,8 @@ class RecentContestsViewController: UIViewController {
     }
     
     func fetchEvents() {
-        let query = PFContestLineup.myRecentContestLineupsQuery()
+        let sport = SportType.MLB
+        let query = PFContestLineup.myRecentContestLineupsQuery(sport)
         query?.findObjectsInBackgroundWithBlock({ (contestLineups, error) -> Void in
             if let contestLineups = contestLineups as? [PFContestLineup] {
                 self.contestLineups = contestLineups

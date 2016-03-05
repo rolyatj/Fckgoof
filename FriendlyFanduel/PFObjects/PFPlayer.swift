@@ -9,9 +9,32 @@
 import UIKit
 import Parse
 
-class PFPlayer: PFObject {
+class PFPlayer: PFSuperclass {
     
     @NSManaged var type: Int
     @NSManaged var name: String?
+    
+    // SUPERCLASSING
+    
+    override class func queryWithIncludes(sport: SportType) -> PFQuery? {
+        let query = PFPlayer.query(sport)
+        return query
+    }
+    
+    override class func query(sport: SportType) -> PFQuery? {
+        if (sport == .MLB) {
+            return PFMLBPlayer.query()
+        }
+        
+        return nil
+    }
+    
+    override class func sport() -> SportType? {
+        if (self.isKindOfClass(PFMLBPlayer)) {
+            return .MLB
+        }
+        
+        return nil
+    }
     
 }

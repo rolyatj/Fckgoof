@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class PFLineup: PFObject {
+class PFLineup: PFSuperclass {
     
     @NSManaged var dueler: PFDueler!
     
@@ -23,12 +23,36 @@ class PFLineup: PFObject {
     func setRoster(editableContestLineup: EditableContestLineup) {
     }
     
-    class func myLineupsQuery() -> PFQuery? {
+    class func myLineupsQuery(sport: SportType) -> PFQuery? {
         if let user = PFDueler.currentUser(){
-            let query = PFLineup.query()
+            let query = PFLineup.query(sport)
             query?.whereKey("dueler", equalTo: user)
             return query
         }
+        return nil
+    }
+    
+    // SUPERCLASSING
+    
+    override class func queryWithIncludes(sport: SportType) -> PFQuery? {
+        let query = PFLineup.query(sport)
+        query?.includeKey("dueler")
+        return query
+    }
+    
+    override class func query(sport: SportType) -> PFQuery? {
+        if (sport == .MLB) {
+            return PFMLBLineup.query()
+        }
+        
+        return nil
+    }
+    
+    override class func sport() -> SportType? {
+        if (self.isKindOfClass(PFMLBLineup)) {
+            return .MLB
+        }
+        
         return nil
     }
     

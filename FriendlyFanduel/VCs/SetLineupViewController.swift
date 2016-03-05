@@ -59,8 +59,8 @@ class SetLineupViewController: UIViewController {
     }
     
     func saveToContest(contest: PFContest) {
-        if let lineupQuery = PFLineup.myLineupsQuery() {
-            let query = PFContestLineup.query()
+        if let sport = contest.dynamicType.sport(), let lineupQuery = PFLineup.myLineupsQuery(sport) {
+            let query = PFContestLineup.query(sport)
             query?.whereKey("contest", equalTo: contest)
             query?.whereKey("lineup", matchesQuery: lineupQuery)
             query?.getFirstObjectInBackgroundWithBlock({ (contestLineup, error) -> Void in

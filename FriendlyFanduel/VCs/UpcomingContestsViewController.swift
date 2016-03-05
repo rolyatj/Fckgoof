@@ -30,7 +30,8 @@ class UpcomingContestsViewController: UIViewController {
     }
     
     func fetchContests() {
-        let query = PFContestLineup.myUpcomingContestLineupsQuery()
+        let sport = SportType.MLB
+        let query = PFMLBContestLineup.myUpcomingContestLineupsQuery(sport)
         query?.findObjectsInBackgroundWithBlock({ (contestLineups, error) -> Void in
             if let contestLineups = contestLineups as? [PFContestLineup] {
                 self.contestLineups = contestLineups
@@ -39,7 +40,8 @@ class UpcomingContestsViewController: UIViewController {
     }
     
     func fetchEvents() {
-        let query = PFEvent.myUpcomingAvailableEventsQuery()
+        let sport = SportType.MLB
+        let query = PFEvent.myUpcomingAvailableEventsQuery(sport)
         query?.findObjectsInBackgroundWithBlock({ (events, error) -> Void in
             if let events = events as? [PFEvent] {
                 self.availableEvents = events

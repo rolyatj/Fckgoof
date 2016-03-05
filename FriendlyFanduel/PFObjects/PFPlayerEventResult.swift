@@ -9,10 +9,33 @@
 import UIKit
 import Parse
 
-class PFPlayerEventResult: PFObject {
+class PFPlayerEventResult: PFSuperclass {
     
     @NSManaged var score: Float
     @NSManaged var result: String?
+    
+    // SUPERCLASSING
+    
+    override class func queryWithIncludes(sport: SportType) -> PFQuery? {
+        let query = PFPlayerEventResult.query(sport)
+        return query
+    }
+    
+    override class func query(sport: SportType) -> PFQuery? {
+        if (sport == .MLB) {
+            return PFMLBPlayerEventResult.query()
+        }
+        
+        return nil
+    }
+    
+    override class func sport() -> SportType? {
+        if (self.isKindOfClass(PFMLBPlayerEventResult)) {
+            return .MLB
+        }
+        
+        return nil
+    }
     
 }
 

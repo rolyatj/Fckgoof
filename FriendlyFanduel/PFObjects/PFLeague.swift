@@ -40,12 +40,12 @@ class PFLeague: PFObject, PFSubclassing {
     }
     
     class func availableLeaguesForEvent(event: PFEvent) -> PFQuery? {
-        if let lineupQuery = PFLineup.myLineupsQuery(), let contestQuery = PFContest.query(), let contestLineupQuery = PFContestLineup.query() {
+        if let sport = event.dynamicType.sport(), let lineupQuery = PFLineup.myLineupsQuery(sport), let contestQuery = PFContest.query(sport), let contestLineupQuery = PFContestLineup.query(sport) {
             contestLineupQuery.whereKey("event", equalTo: event)
             contestLineupQuery.whereKey("lineup", matchesQuery: lineupQuery)
-            contestQuery.whereKey("objectId", matchesKey: "contestId", inQuery: contestLineupQuery)// TODO
+            contestQuery.whereKey("objectId", matchesKey: "contest.objectId", inQuery: contestLineupQuery)// TODO
             let query = PFLeague.myLeaguesQuery()
-            query?.whereKey("objectId", matchesKey: "leagueId", inQuery: contestLineupQuery)// TODO
+            query?.whereKey("objectId", matchesKey: "league.objectId", inQuery: contestLineupQuery)// TODO
             return query
             
         }

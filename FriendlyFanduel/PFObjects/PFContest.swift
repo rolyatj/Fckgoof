@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class PFContest: PFObject {
+class PFContest: PFSuperclass {
     
     @NSManaged var league: PFLeague!
     @NSManaged var event: PFEvent!
@@ -20,8 +20,8 @@ class PFContest: PFObject {
         self.event = event
     }
     
-    class  func leagueContestsQuery(league: PFLeague) -> PFQuery? {
-        let contestQuery = PFContest.query()
+    class func leagueContestsQuery(league: PFLeague, sport: SportType) -> PFQuery? {
+        let contestQuery = PFContest.query(sport)
         contestQuery?.whereKey("league", equalTo: league)
         return contestQuery
     }
@@ -68,11 +68,29 @@ class PFContest: PFObject {
     return nil
     }*/
     
-    class func queryWithIncludes() -> PFQuery? {
-        let query = PFContest.query()
+    // SUPERCLASSING
+    
+    override class func queryWithIncludes(sport: SportType) -> PFQuery? {
+        let query = PFContest.query(sport)
         query?.includeKey("league")
         query?.includeKey("event")
         return query
+    }
+    
+    override class func query(sport: SportType) -> PFQuery? {
+        if (sport == .MLB) {
+            return PFMLBContest.query()
+        }
+        
+        return nil
+    }
+    
+    override class func sport() -> SportType? {
+        if (self.isKindOfClass(PFMLBContest)) {
+            return .MLB
+        }
+    
+        return nil
     }
     
 }

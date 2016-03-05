@@ -41,7 +41,8 @@ class LeagueViewController: UIViewController {
     }
     
     func fetchEvents() {
-        let query = PFContest.leagueContestsQuery(league)
+        let sport = SportType.MLB
+        let query = PFContest.leagueContestsQuery(league, sport: sport)
         query?.findObjectsInBackgroundWithBlock({ (contests, error) -> Void in
             if let contests = contests as? [PFContest] {
                 self.contests = contests

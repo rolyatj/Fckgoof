@@ -24,7 +24,8 @@ class LiveContestsViewController: UIViewController {
     }
     
     func fetchContests() {
-        let query = PFContestLineup.myLiveContestLineupsQuery()
+        let sport = SportType.MLB
+        let query = PFContestLineup.myLiveContestLineupsQuery(sport)
         query?.findObjectsInBackgroundWithBlock({ (contestLineups, error) -> Void in
             if let contestLineups = contestLineups as? [PFContestLineup] {
                 self.contestLineups = contestLineups

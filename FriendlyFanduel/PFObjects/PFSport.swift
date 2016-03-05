@@ -11,10 +11,6 @@ import Parse
 
 class PFSport: PFObject, PFSubclassing {
     
-    enum SportType: Int {
-        case MLB = 0
-    }
-    
     @NSManaged var name: String
     @NSManaged var type: Int
     

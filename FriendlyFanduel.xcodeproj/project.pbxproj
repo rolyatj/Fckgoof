@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		472CC3B9BC292E7BBA9CBD05 /* Pods_FriendlyFanduel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17BB96FF7EA2EB5B037B1C44 /* Pods_FriendlyFanduel.framework */; };
+		9063F6CD1C8B5AAA00B3177E /* PFSuperclassing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9063F6CC1C8B5AAA00B3177E /* PFSuperclassing.swift */; };
 		90D43CA41C89DD3B0050DE6E /* PFLineup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D43CA31C89DD3B0050DE6E /* PFLineup.swift */; };
 		90D43CA61C89DE250050DE6E /* PFContest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D43CA51C89DE250050DE6E /* PFContest.swift */; };
 		90D43CA81C89EADB0050DE6E /* PlayerPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D43CA71C89EADB0050DE6E /* PlayerPickerViewController.swift */; };
@@ -59,6 +60,7 @@
 		126F043D276612DCBC43E2E4 /* Pods-FriendlyFanduel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyFanduel.release.xcconfig"; path = "Pods/Target Support Files/Pods-FriendlyFanduel/Pods-FriendlyFanduel.release.xcconfig"; sourceTree = "<group>"; };
 		17BB96FF7EA2EB5B037B1C44 /* Pods_FriendlyFanduel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FriendlyFanduel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E7949B32583AEF219FFE9B2 /* Pods-FriendlyFanduel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyFanduel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FriendlyFanduel/Pods-FriendlyFanduel.debug.xcconfig"; sourceTree = "<group>"; };
+		9063F6CC1C8B5AAA00B3177E /* PFSuperclassing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFSuperclassing.swift; sourceTree = "<group>"; };
 		90D43CA31C89DD3B0050DE6E /* PFLineup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFLineup.swift; sourceTree = "<group>"; };
 		90D43CA51C89DE250050DE6E /* PFContest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFContest.swift; sourceTree = "<group>"; };
 		90D43CA71C89EADB0050DE6E /* PlayerPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerPickerViewController.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 				90D43CAD1C8A0F4F0050DE6E /* NSObjects */,
 				90D43CC51C8A82BD0050DE6E /* PFLineup */,
 				90F7B2671C88B2DA003FBE49 /* Backend */,
+				9063F6CC1C8B5AAA00B3177E /* PFSuperclassing.swift */,
 			);
 			path = PFObjects;
 			sourceTree = "<group>";
@@ -546,6 +549,7 @@
 				90F7B24C1C88AAA3003FBE49 /* LeagueViewController.swift in Sources */,
 				90D43CDF1C8A8BE00050DE6E /* MLBEditableContestLineup.swift in Sources */,
 				90F7B26E1C88BC9F003FBE49 /* LeagueTableViewCell.swift in Sources */,
+				9063F6CD1C8B5AAA00B3177E /* PFSuperclassing.swift in Sources */,
 				90D43CA41C89DD3B0050DE6E /* PFLineup.swift in Sources */,
 				90D43CA81C89EADB0050DE6E /* PlayerPickerViewController.swift in Sources */,
 				90F7B25A1C88B139003FBE49 /* PFGame.swift in Sources */,

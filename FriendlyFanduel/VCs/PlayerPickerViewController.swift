@@ -73,10 +73,11 @@ class PlayerPickerViewController: UIViewController {
     */
     
     func fetchPlayerEvents() {
-        if let playerQuery = PFPlayer.query() {
+        let sport = SportType.MLB
+        if let playerQuery = PFPlayer.query(sport) {
             playerQuery.fromLocalDatastore()
             playerQuery.whereKey("type", equalTo: filterType)
-            let query = PFPlayerEvent.queryWithIncludes()
+            let query = PFPlayerEvent.queryWithIncludes(sport)
             query?.fromLocalDatastore()
             if let disabledPlayerEventIds = editableContestLineup.disabledPlayerEventIds(filterType) {
                 query?.whereKey("objectId", notContainedIn: disabledPlayerEventIds)

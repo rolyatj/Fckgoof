@@ -67,28 +67,34 @@ class CreateLineupViewController: SetLineupViewController {
         } else {
             // check if there is an existing contest for selected league
             if let selectedLeague = selectedLeague {
-                let query = PFContest.query()
-                query?.whereKey("league", equalTo: selectedLeague)
-                query?.getFirstObjectInBackgroundWithBlock({ (contest, error) -> Void in
-                    if let contest = contest as? PFContest {
-                        self.saveToContest(contest)
-                    } else {
-                        // create contest
-                        do {
-                            let contest = PFContest(league: selectedLeague, event: self.event)
-                            try contest.save()
-                            self.saveToContest(contest)
-                        } catch {
-                            // TODO
-                            print(error)
-                        }
-                    }
-                })
-            } else {
-                // TODO
+                checkIfExistingContest(selectedLeague, event: event)
             }
         }
 
+    }
+    
+    func checkIfExistingContest(league: PFLeague, event: PFEvent) {
+        if let sport = event.dynamicType.sport() {
+            let query = PFContest.query(sport)
+            query?.whereKey("league", equalTo: league)
+            query?.getFirstObjectInBackgroundWithBlock({ (contest, error) -> Void in
+                if let contest = contest as? PFContest {
+                    self.saveToContest(contest)
+                } else {
+                    // create contest
+                    do {
+                        let contest = PFContest(league: league, event: event)
+                        try contest.save()
+                        self.saveToContest(contest)
+                    } catch {
+                        // TODO
+                        print(error)
+                    }
+                }
+            })
+        } else {
+            // TODO
+        }
     }
     
 }
