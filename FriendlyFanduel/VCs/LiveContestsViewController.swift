@@ -60,7 +60,7 @@ extension LiveContestsViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ContestCell", forIndexPath: indexPath) as! ContestTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("ContestLineupCell", forIndexPath: indexPath) as! ContestTableViewCell
         let contestLineup = contestLineups[indexPath.row]
         cell.configureWithContestLineup(contestLineup)
         return cell

@@ -32,10 +32,11 @@ class PFContestLineup: PFObject, PFSubclassing {
     }
     
     class func myUpcomingContestLineupsQuery() -> PFQuery? {
-        if let eventQuery = PFEvent.query(), let lineupQuery = PFLineup.myLineupsQuery()  {
+        if let eventQuery = PFEvent.query(), let lineupQuery = PFLineup.myLineupsQuery(), let contestQuery = PFContest.query() {
             eventQuery.whereKey("startDate", greaterThanOrEqualTo: NSDate())
-            lineupQuery.whereKey("event", matchesQuery: eventQuery)
+            contestQuery.whereKey("event", matchesQuery: eventQuery)
             let query = PFContestLineup.queryWithIncludes()
+            query?.whereKey("contest", matchesQuery: contestQuery)
             query?.whereKey("lineup", matchesQuery: lineupQuery)
             return query
         }
@@ -43,11 +44,12 @@ class PFContestLineup: PFObject, PFSubclassing {
     }
     
     class func myLiveContestLineupsQuery() -> PFQuery? {
-        if let eventQuery = PFEvent.query(), let lineupQuery = PFLineup.myLineupsQuery()  {
+        if let eventQuery = PFEvent.query(), let lineupQuery = PFLineup.myLineupsQuery(), let contestQuery = PFContest.query()  {
             eventQuery.whereKey("startDate", lessThanOrEqualTo: NSDate())
             eventQuery.whereKey("endDate", greaterThanOrEqualTo: NSDate())
-            lineupQuery.whereKey("event", matchesQuery: eventQuery)
+            contestQuery.whereKey("event", matchesQuery: eventQuery)
             let query = PFContestLineup.queryWithIncludes()
+            query?.whereKey("contest", matchesQuery: contestQuery)
             query?.whereKey("lineup", matchesQuery: lineupQuery)
             return query
         }
@@ -55,10 +57,11 @@ class PFContestLineup: PFObject, PFSubclassing {
     }
     
     class func myRecentContestLineupsQuery() -> PFQuery? {
-        if let eventQuery = PFEvent.query(), let lineupQuery = PFLineup.myLineupsQuery()  {
+        if let eventQuery = PFEvent.query(), let lineupQuery = PFLineup.myLineupsQuery(), let contestQuery = PFContest.query()  {
             eventQuery.whereKey("endDate", lessThanOrEqualTo: NSDate())
-            lineupQuery.whereKey("event", matchesQuery: eventQuery)
+            contestQuery.whereKey("event", matchesQuery: eventQuery)
             let query = PFContestLineup.queryWithIncludes()
+            query?.whereKey("contest", matchesQuery: contestQuery)
             query?.whereKey("lineup", matchesQuery: lineupQuery)
             return query
         }

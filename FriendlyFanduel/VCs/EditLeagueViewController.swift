@@ -23,6 +23,7 @@ class EditLeagueViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        leagueNameButton.setTitle(league.name, forState: .Normal)
         tableView.setEditing(true, animated: false)
         fetchDuelers()
     }

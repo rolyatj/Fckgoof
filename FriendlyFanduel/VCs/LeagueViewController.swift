@@ -12,7 +12,7 @@ class LeagueViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     var league: PFLeague!
-    var events = [PFEvent]() {
+    var contests = [PFContest]() {
         didSet {
             self.tableView?.reloadData()
         }
@@ -38,6 +38,15 @@ class LeagueViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
+    }
+    
+    func fetchEvents() {
+        let query = PFContest.leagueContestsQuery(league)
+        query?.findObjectsInBackgroundWithBlock({ (contests, error) -> Void in
+            if let contests = contests as? [PFContest] {
+                self.contests = contests
+            }
+        })
     }
     
     func fetchDuelers() {
@@ -75,17 +84,25 @@ extension LeagueViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (section == 0) {
-            return events.count
+            return contests.count
         } else {
             return duelers.count
         }
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if (indexPath.section == 0) {
+            return 78
+        } else {
+            return 44
+        }
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if (indexPath.section == 0) {
-            let event = events[indexPath.row]
-            let cell = tableView.dequeueReusableCellWithIdentifier("EventCell", forIndexPath: indexPath) as! EventTableViewCell
-            cell.configureWithEvent(event)
+            let contest = contests[indexPath.row]
+            let cell = tableView.dequeueReusableCellWithIdentifier("ContestCell", forIndexPath: indexPath) as! ContestTableViewCell
+            cell.configureWithContest(contest)
             return cell
         } else {
             let dueler = duelers[indexPath.row]

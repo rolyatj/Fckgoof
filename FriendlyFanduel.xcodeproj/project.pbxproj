@@ -15,6 +15,7 @@
 		90D43CAC1C8A0F4A0050DE6E /* EditableContestLineup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D43CAB1C8A0F4A0050DE6E /* EditableContestLineup.swift */; };
 		90D43CB41C8A21030050DE6E /* EditLineupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D43CB31C8A21030050DE6E /* EditLineupViewController.swift */; };
 		90D43CB61C8A210E0050DE6E /* CreateLineupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D43CB51C8A210E0050DE6E /* CreateLineupViewController.swift */; };
+		90D43CCD1C8A83000050DE6E /* PFMLBContest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D43CCC1C8A83000050DE6E /* PFMLBContest.swift */; };
 		90F7B2281C889B27003FBE49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F7B2271C889B27003FBE49 /* AppDelegate.swift */; };
 		90F7B22D1C889B27003FBE49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90F7B22B1C889B27003FBE49 /* Main.storyboard */; };
 		90F7B22F1C889B27003FBE49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90F7B22E1C889B27003FBE49 /* Assets.xcassets */; };
@@ -56,6 +57,7 @@
 		90D43CAB1C8A0F4A0050DE6E /* EditableContestLineup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditableContestLineup.swift; sourceTree = "<group>"; };
 		90D43CB31C8A21030050DE6E /* EditLineupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditLineupViewController.swift; sourceTree = "<group>"; };
 		90D43CB51C8A210E0050DE6E /* CreateLineupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateLineupViewController.swift; sourceTree = "<group>"; };
+		90D43CCC1C8A83000050DE6E /* PFMLBContest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFMLBContest.swift; sourceTree = "<group>"; };
 		90F7B2241C889B27003FBE49 /* FriendlyFanduel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FriendlyFanduel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90F7B2271C889B27003FBE49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90F7B22C1C889B27003FBE49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -134,6 +136,79 @@
 				90D43CA71C89EADB0050DE6E /* PlayerPickerViewController.swift */,
 			);
 			name = "Set Lineup";
+			sourceTree = "<group>";
+		};
+		90D43CC31C8A82B20050DE6E /* PFContest */ = {
+			isa = PBXGroup;
+			children = (
+				90D43CA51C89DE250050DE6E /* PFContest.swift */,
+				90D43CCC1C8A83000050DE6E /* PFMLBContest.swift */,
+			);
+			name = PFContest;
+			sourceTree = "<group>";
+		};
+		90D43CC41C8A82B70050DE6E /* PFContestLineup */ = {
+			isa = PBXGroup;
+			children = (
+				90D43CA91C8A04C80050DE6E /* PFContestLineup.swift */,
+			);
+			name = PFContestLineup;
+			sourceTree = "<group>";
+		};
+		90D43CC51C8A82BD0050DE6E /* PFLineup */ = {
+			isa = PBXGroup;
+			children = (
+				90D43CA31C89DD3B0050DE6E /* PFLineup.swift */,
+			);
+			name = PFLineup;
+			sourceTree = "<group>";
+		};
+		90D43CC61C8A82C60050DE6E /* PFEvent */ = {
+			isa = PBXGroup;
+			children = (
+				90F7B25D1C88B14E003FBE49 /* PFEvent.swift */,
+			);
+			name = PFEvent;
+			sourceTree = "<group>";
+		};
+		90D43CC71C8A82CA0050DE6E /* PFGroup */ = {
+			isa = PBXGroup;
+			children = (
+				90F7B2591C88B139003FBE49 /* PFGame.swift */,
+			);
+			name = PFGroup;
+			sourceTree = "<group>";
+		};
+		90D43CC81C8A82CF0050DE6E /* PFPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				90F7B2611C88B16E003FBE49 /* PFPlayer.swift */,
+			);
+			name = PFPlayer;
+			sourceTree = "<group>";
+		};
+		90D43CC91C8A82D30050DE6E /* PFPlayerEvent */ = {
+			isa = PBXGroup;
+			children = (
+				90F7B2651C88B2B5003FBE49 /* PFPlayerEvent.swift */,
+			);
+			name = PFPlayerEvent;
+			sourceTree = "<group>";
+		};
+		90D43CCA1C8A82D80050DE6E /* PFPlayerEventResult */ = {
+			isa = PBXGroup;
+			children = (
+				90F7B26F1C88C8FF003FBE49 /* PFPlayerEventResult.swift */,
+			);
+			name = PFPlayerEventResult;
+			sourceTree = "<group>";
+		};
+		90D43CCB1C8A82E40050DE6E /* PFTeam */ = {
+			isa = PBXGroup;
+			children = (
+				90F7B25B1C88B143003FBE49 /* PFTeam.swift */,
+			);
+			name = PFTeam;
 			sourceTree = "<group>";
 		};
 		90F7B21B1C889B27003FBE49 = {
@@ -239,10 +314,10 @@
 			children = (
 				90F7B2551C88B0F2003FBE49 /* PFDueler.swift */,
 				90F7B2571C88B12D003FBE49 /* PFLeague.swift */,
-				90D43CA51C89DE250050DE6E /* PFContest.swift */,
-				90D43CA91C8A04C80050DE6E /* PFContestLineup.swift */,
+				90D43CC31C8A82B20050DE6E /* PFContest */,
+				90D43CC41C8A82B70050DE6E /* PFContestLineup */,
 				90D43CAD1C8A0F4F0050DE6E /* NSObjects */,
-				90D43CA31C89DD3B0050DE6E /* PFLineup.swift */,
+				90D43CC51C8A82BD0050DE6E /* PFLineup */,
 				90F7B2671C88B2DA003FBE49 /* Backend */,
 			);
 			path = PFObjects;
@@ -251,13 +326,13 @@
 		90F7B2671C88B2DA003FBE49 /* Backend */ = {
 			isa = PBXGroup;
 			children = (
-				90F7B25D1C88B14E003FBE49 /* PFEvent.swift */,
-				90F7B2591C88B139003FBE49 /* PFGame.swift */,
-				90F7B2611C88B16E003FBE49 /* PFPlayer.swift */,
-				90F7B2651C88B2B5003FBE49 /* PFPlayerEvent.swift */,
-				90F7B26F1C88C8FF003FBE49 /* PFPlayerEventResult.swift */,
+				90D43CC61C8A82C60050DE6E /* PFEvent */,
+				90D43CC71C8A82CA0050DE6E /* PFGroup */,
+				90D43CC81C8A82CF0050DE6E /* PFPlayer */,
+				90D43CC91C8A82D30050DE6E /* PFPlayerEvent */,
+				90D43CCA1C8A82D80050DE6E /* PFPlayerEventResult */,
+				90D43CCB1C8A82E40050DE6E /* PFTeam */,
 				90F7B2631C88B17F003FBE49 /* PFSport.swift */,
-				90F7B25B1C88B143003FBE49 /* PFTeam.swift */,
 				90F7B25F1C88B163003FBE49 /* PFFlag.swift */,
 			);
 			name = Backend;
@@ -431,6 +506,7 @@
 				90F7B26C1C88BC94003FBE49 /* ContestTableViewCell.swift in Sources */,
 				90F7B2621C88B16E003FBE49 /* PFPlayer.swift in Sources */,
 				90F7B23E1C88A5FE003FBE49 /* LeaguesViewController.swift in Sources */,
+				90D43CCD1C8A83000050DE6E /* PFMLBContest.swift in Sources */,
 				90D43CB41C8A21030050DE6E /* EditLineupViewController.swift in Sources */,
 				90F7B24C1C88AAA3003FBE49 /* LeagueViewController.swift in Sources */,
 				90F7B26E1C88BC9F003FBE49 /* LeagueTableViewCell.swift in Sources */,

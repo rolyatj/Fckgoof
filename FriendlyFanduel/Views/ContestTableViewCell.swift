@@ -31,4 +31,10 @@ class ContestTableViewCell: UITableViewCell {
         descriptionLabel.text = "TODO"
     }
     
+    func configureWithContest(contest: PFContest) {
+        nameLabel.text = "TODO"//lineup.
+        sportLabel.text = "TODO"//lineup.event.sport.name
+        descriptionLabel.text = "TODO"
+    }
+    
 }

@@ -39,7 +39,7 @@ class UpcomingContestsViewController: UIViewController {
     }
     
     func fetchEvents() {
-        let query = PFEvent.queryWithIncludes()
+        let query = PFEvent.myUpcomingAvailableEventsQuery()
         query?.findObjectsInBackgroundWithBlock({ (events, error) -> Void in
             if let events = events as? [PFEvent] {
                 self.availableEvents = events
@@ -84,7 +84,7 @@ extension UpcomingContestsViewController: UITableViewDataSource, UITableViewDele
             cell.configureWithEvent(event)
             return cell
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("LineupCell", forIndexPath: indexPath) as! ContestTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("ContestLineupCell", forIndexPath: indexPath) as! ContestTableViewCell
             let contestLineup = contestLineups[indexPath.row]
             cell.configureWithContestLineup(contestLineup)
             return cell

@@ -60,7 +60,7 @@ extension RecentContestsViewController: UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("EventCell", forIndexPath: indexPath) as! ContestTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("ContestLineupCell", forIndexPath: indexPath) as! ContestTableViewCell
         let contestLineup = contestLineups[indexPath.row]
         cell.configureWithContestLineup(contestLineup)
         return cell

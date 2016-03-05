@@ -9,14 +9,10 @@
 import UIKit
 import Parse
 
-class PFContest: PFObject, PFSubclassing {
+class PFContest: PFObject {
     
     @NSManaged var league: PFLeague!
     @NSManaged var event: PFEvent!
-    
-    class func parseClassName() -> String {
-        return "Contest"
-    }
     
     convenience init(league: PFLeague, event: PFEvent) {
         self.init()
@@ -24,6 +20,11 @@ class PFContest: PFObject, PFSubclassing {
         self.event = event
     }
     
+    class  func leagueContestsQuery(league: PFLeague) -> PFQuery? {
+        let contestQuery = PFContest.query()
+        contestQuery?.whereKey("league", equalTo: league)
+        return contestQuery
+    }
     
     /*
     class func myLineupsQuery() -> PFQuery? {
