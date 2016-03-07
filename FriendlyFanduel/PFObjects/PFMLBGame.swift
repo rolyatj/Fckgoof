@@ -14,5 +14,9 @@ class PFMLBGame: PFGame, PFSubclassing {
     class func parseClassName() -> String {
         return "MLBGame"
     }
+    
+    override class func sport() -> SportType? {
+        return .MLB
+    }
 
 }

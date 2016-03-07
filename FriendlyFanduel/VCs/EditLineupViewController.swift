@@ -14,7 +14,7 @@ class EditLineupViewController: SetLineupViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        editableContestLineup = EditableContestLineup(contestLineup: contestLineup)
+        editableContestLineup = EditableContestLineup.editableContestLineupWithLineup(contestLineup)
     }
     
     @IBAction override func submitTapped(sender: AnyObject) {

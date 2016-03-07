@@ -19,15 +19,24 @@ class EditableContestLineup: NSObject {
     var lineup: PFLineup?
     var swappingPlayerEvent: PFPlayerEvent?
     
-    convenience init(event: PFEvent) {
-        self.init()
-        self.event = event
+    class func editableContestLineupWithEvent(event: PFEvent) -> EditableContestLineup? {
+        if let sport = event.dynamicType.sport() {
+            if (sport == .MLB) {
+                let editableContestLineup = MLBEditableContestLineup(event: event)
+                return editableContestLineup
+            }
+        }
+        return nil
     }
     
-    convenience init(contestLineup: PFContestLineup) {
-        self.init()
-        self.event = contestLineup.contest.event
-        self.lineup = contestLineup.lineup
+    class func editableContestLineupWithLineup(contestLineup: PFContestLineup) -> EditableContestLineup? {
+        if let event = contestLineup.contest.event, let sport = event.dynamicType.sport() {
+            if (sport == .MLB) {
+                let editableContestLineup = MLBEditableContestLineup(contestLineup: contestLineup)
+                return editableContestLineup
+            }
+        }
+        return nil
     }
     
     func currentSalary() -> Int {

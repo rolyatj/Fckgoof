@@ -14,11 +14,13 @@ class SetLineupViewController: UIViewController {
     @IBOutlet weak var remainingLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     
-    var editableContestLineup: EditableContestLineup! {
+    var editableContestLineup: EditableContestLineup? {
         didSet {
-            self.refreshLabels()
-            PFPlayerEvent.resetPinsForAllPlayersForEvent(editableContestLineup.event) // TODO
-            editableContestLineup.delegate = self
+            if let editableContestLineup = editableContestLineup {
+                self.refreshLabels()
+                PFPlayerEvent.resetPinsForAllPlayersForEvent(editableContestLineup.event) // TODO
+                editableContestLineup.delegate = self
+            }
         }
     }
     
@@ -27,14 +29,16 @@ class SetLineupViewController: UIViewController {
     }
     
     func refreshLabels() {
-        let salary = editableContestLineup.currentSalary()
-        let numplayers = editableContestLineup.lineupSize()
-        let remainingSalary = editableContestLineup.maxSalary() - salary
-        let remainingSalaryAvg = remainingSalary/numplayers
-        remainingLabel?.text = "$\(remainingSalaryAvg) per player remaining"
-        remainingLabel?.textColor = remainingSalaryAvg > 0 ? UIColor.blackColor() : UIColor.redColor()
-        totalLabel?.text = "$\(remainingSalary)"
-        totalLabel?.textColor = remainingSalary > 0 ? UIColor.blackColor() : UIColor.redColor()
+        if let editableContestLineup = editableContestLineup {
+            let salary = editableContestLineup.currentSalary()
+            let numplayers = editableContestLineup.lineupSize()
+            let remainingSalary = editableContestLineup.maxSalary() - salary
+            let remainingSalaryAvg = remainingSalary/numplayers
+            remainingLabel?.text = "$\(remainingSalaryAvg) per player remaining"
+            remainingLabel?.textColor = remainingSalaryAvg > 0 ? UIColor.blackColor() : UIColor.redColor()
+            totalLabel?.text = "$\(remainingSalary)"
+            totalLabel?.textColor = remainingSalary > 0 ? UIColor.blackColor() : UIColor.redColor()
+        }
     }
     
     func toChoosePitcher() {
@@ -59,7 +63,7 @@ class SetLineupViewController: UIViewController {
     }
     
     func saveToContest(contest: PFContest) {
-        if let sport = contest.dynamicType.sport(), let lineupQuery = PFLineup.myLineupsQuery(sport) {
+        if let editableContestLineup = editableContestLineup, let sport = contest.dynamicType.sport(), let lineupQuery = PFLineup.myLineupsQuery(sport) {
             let query = PFContestLineup.query(sport)
             query?.whereKey("contest", equalTo: contest)
             query?.whereKey("lineup", matchesQuery: lineupQuery)
@@ -68,7 +72,7 @@ class SetLineupViewController: UIViewController {
                     // update
                     do {
                         let lineup = contestLineup.lineup
-                        lineup.setRoster(self.editableContestLineup)
+                        lineup.setRoster(editableContestLineup)
                         try lineup.save()
                         self.dismissViewControllerAnimated(true, completion: nil)
                     } catch {
@@ -78,7 +82,7 @@ class SetLineupViewController: UIViewController {
                 } else {
                     // create contestLineup
                     do {
-                        if let lineup = PFLineup.lineupFromEditableLineup(self.editableContestLineup) {
+                        if let lineup = PFLineup.lineupFromEditableLineup(editableContestLineup) {
                             let contestLineup = PFContestLineup(contest: contest, lineup: lineup)
                             try contestLineup.save()
                             self.dismissViewControllerAnimated(true, completion: nil)
@@ -102,15 +106,15 @@ class SetLineupViewController: UIViewController {
 extension SetLineupViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return editableContestLineup.numberOfPositionsOnRoster()
+        return editableContestLineup?.numberOfPositionsOnRoster() ?? 0
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return editableContestLineup.numberOfSpotsForPosition(section)
+        return editableContestLineup?.numberOfSpotsForPosition(section) ?? 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let playerEvent = editableContestLineup.playerEventForPositionSpot(indexPath.section, spot: indexPath.row) {
+        if let playerEvent = editableContestLineup?.playerEventForPositionSpot(indexPath.section, spot: indexPath.row) {
             let cell = tableView.dequeueReusableCellWithIdentifier("PlayerSelectedCell", forIndexPath: indexPath)
             cell.textLabel?.text = playerEvent.player.name
             cell.detailTextLabel?.text = "\(playerEvent.salary)"
@@ -125,8 +129,8 @@ extension SetLineupViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        if let playerEvent = editableContestLineup.playerEventForPositionSpot(indexPath.section, spot: indexPath.row) {
-            editableContestLineup.swappingPlayerEvent = playerEvent
+        if let playerEvent = editableContestLineup?.playerEventForPositionSpot(indexPath.section, spot: indexPath.row) {
+            editableContestLineup?.swappingPlayerEvent = playerEvent
         }
         if (indexPath.section == 0) {
             toChoosePitcher()

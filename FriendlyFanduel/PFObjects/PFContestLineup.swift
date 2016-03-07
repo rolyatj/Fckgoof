@@ -75,10 +75,6 @@ class PFContestLineup: PFSuperclass {
     }
     
     override class func sport() -> SportType? {
-        if (self.isKindOfClass(PFMLBContestLineup)) {
-            return .MLB
-        }
-        
         return nil
     }
     

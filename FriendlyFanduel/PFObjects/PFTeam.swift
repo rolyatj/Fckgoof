@@ -29,10 +29,6 @@ class PFTeam: PFSuperclass {
     }
     
     override class func sport() -> SportType? {
-        if (self.isKindOfClass(PFMLBTeam)) {
-            return .MLB
-        }
-        
         return nil
     }
     

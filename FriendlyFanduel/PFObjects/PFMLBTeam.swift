@@ -15,4 +15,8 @@ class PFMLBTeam: PFTeam, PFSubclassing {
         return "MLBTeam"
     }
     
+    override class func sport() -> SportType? {
+        return .MLB
+    }
+    
 }

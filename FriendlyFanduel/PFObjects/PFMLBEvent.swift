@@ -18,4 +18,8 @@ class PFMLBEvent: PFEvent, PFSubclassing {
         return "MLBEvent"
     }
     
+    override class func sport() -> SportType? {
+        return .MLB
+    }
+    
 }

@@ -68,6 +68,17 @@ class MLBEditableContestLineup: EditableContestLineup {
         }
     }
     
+    convenience init(event: PFEvent) {
+        self.init()
+        self.event = event
+    }
+    
+    convenience init(contestLineup: PFContestLineup) {
+        self.init()
+        self.event = contestLineup.contest.event
+        self.lineup = contestLineup.lineup
+    }
+    
     override func currentSalary() -> Int {
         var salary = 0
         for player in pitchers {

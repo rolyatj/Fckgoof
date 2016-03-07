@@ -31,7 +31,7 @@ class CreateLineupViewController: SetLineupViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        editableContestLineup = EditableContestLineup(event: event)
+        editableContestLineup = EditableContestLineup.editableContestLineupWithEvent(event)
         
         fetchAvailableLeagues()
     }
@@ -62,7 +62,7 @@ class CreateLineupViewController: SetLineupViewController {
     }
     
     @IBAction override func submitTapped(sender: AnyObject) {
-        if let errorMessage = editableContestLineup.checkIfCanSubmit() {
+        if let errorMessage = editableContestLineup?.checkIfCanSubmit() {
             // TODO
         } else {
             // check if there is an existing contest for selected league
