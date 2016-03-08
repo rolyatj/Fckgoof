@@ -14,10 +14,14 @@ class PFContest: PFSuperclass {
     @NSManaged var league: PFLeague!
     @NSManaged var event: PFEvent!
     
-    convenience init(league: PFLeague, event: PFEvent) {
-        self.init()
-        self.league = league
-        self.event = event
+    class func contestWithSport(sport: SportType, league: PFLeague, event: PFEvent) -> PFContest {
+        switch (sport) {
+        case .MLB:
+            let contest = PFMLBContest()
+            contest.league = league
+            contest.event = event
+            return contest
+        }
     }
     
     class func leagueContestsQuery(league: PFLeague, sport: SportType) -> PFQuery? {

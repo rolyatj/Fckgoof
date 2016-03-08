@@ -14,10 +14,14 @@ class PFContestLineup: PFSuperclass {
     @NSManaged var contest: PFContest!
     @NSManaged var lineup: PFLineup!
     
-    convenience init(contest: PFContest, lineup: PFLineup) {
-        self.init()
-        self.contest = contest
-        self.lineup = lineup
+    class func contestLineupWithSport(sport: SportType, contest: PFContest, lineup: PFLineup) -> PFContestLineup {
+        switch (sport) {
+        case .MLB:
+            let contestLineup = PFMLBContestLineup()
+            contestLineup.contest = contest
+            contestLineup.lineup = lineup
+            return contestLineup
+        }
     }
 
     class func myUpcomingContestLineupsQuery(sport: SportType) -> PFQuery? {

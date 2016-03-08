@@ -10,13 +10,6 @@ import UIKit
 
 class MLBEditableContestLineup: EditableContestLineup {
     
-    enum PositionType : Int {
-        case Pitcher = 0
-        case Hitter
-        
-        case count
-    }
-    
     var mlbEvent: PFMLBEvent!
     override var event : PFEvent! {
         get {
@@ -26,7 +19,7 @@ class MLBEditableContestLineup: EditableContestLineup {
             if newValue is PFMLBEvent {
                 mlbEvent = newValue as! PFMLBEvent
             } else {
-                print("incorrect chassis type for racecar")
+                print("incorrect type for PFMLBEvent")
             }
         }
     }
@@ -38,8 +31,8 @@ class MLBEditableContestLineup: EditableContestLineup {
         set {
             if newValue is PFMLBLineup {
                 mlbLineup = newValue as? PFMLBLineup
-            } else {
-                print("incorrect chassis type for racecar")
+            } else if (newValue != nil) {
+                print("incorrect type for mlbLineup")
             }
         }
     }
@@ -51,18 +44,13 @@ class MLBEditableContestLineup: EditableContestLineup {
         set {
             if newValue is PFMLBPlayerEvent {
                 swappingMLBPlayerEvent = newValue as? PFMLBPlayerEvent
-            } else {
-                print("incorrect chassis type for racecar")
+            } else if (newValue != nil) {
+                print("incorrect type for swappingMLBPlayerEvent")
             }
         }
     }
 
-    var pitchers = [PFPlayerEvent]() {
-        didSet {
-            delegate?.editableContestLineupChanged()
-        }
-    }
-    var hitters = [PFPlayerEvent]() {
+    var posititionPlayerEvents = [MLBPosition:NSMutableArray]() {
         didSet {
             delegate?.editableContestLineupChanged()
         }
@@ -77,52 +65,58 @@ class MLBEditableContestLineup: EditableContestLineup {
         self.init()
         self.event = contestLineup.contest.event
         self.lineup = contestLineup.lineup
+        for playerEvent in contestLineup.lineup.playerEvents {
+            if let positionType = playerEvent.player.positionType(), let position = MLBPosition(rawValue: positionType) {
+                if let playerEvents = posititionPlayerEvents[position] {
+                    if (playerEvents.count < mlbEvent.numberOfSpots(positionType)) {
+                        playerEvents.addObject(playerEvent)
+                    }
+                } else {
+                    posititionPlayerEvents[position] = [playerEvent]
+                }
+            }
+        }
     }
     
     override func currentSalary() -> Int {
         var salary = 0
-        for player in pitchers {
-            salary += player.salary
+        for posititionPlayerEvent in posititionPlayerEvents {
+            for playerEvent in posititionPlayerEvent.1 {
+                if let playerEvent = playerEvent as? PFPlayerEvent {
+                    salary += playerEvent.salary
+                }
+            }
         }
-        for player in hitters {
-            salary += player.salary
-        }
+
         return salary
     }
     
     override func lineupSize() -> Int {
-        return mlbEvent.numberPitchers + mlbEvent.numberHitters
+        return mlbEvent.lineupSize()
     }
     
     override func maxSalary() -> Int {
         return mlbEvent.maxSalary
     }
     
-    func disabledPitcherEventIds() -> [String] {
-        var pitcherEventIds = [String]()
-        for pitcher in pitchers {
-            if let objectId = pitcher.objectId {
-                pitcherEventIds.append(objectId)
+    func disabledPlayerEventIds(position: MLBPosition) -> [String] {
+        var playerEventIds = [String]()
+        if let playerEvents = posititionPlayerEvents[position] {
+            for playerEvent in playerEvents {
+                if let playerEvent = playerEvent as? PFPlayerEvent {
+                    if let objectId = playerEvent.objectId {
+                        playerEventIds.append(objectId)
+                    }
+                }
             }
         }
-        return pitcherEventIds
+
+        return playerEventIds
     }
-    
-    func disabledHitterEventIds() -> [String] {
-        var hitterEventIds = [String]()
-        for hitter in hitters {
-            if let objectId = hitter.objectId {
-                hitterEventIds.append(objectId)
-            }
-        }
-        return hitterEventIds
-    }
-    
+
     override func disabledPlayerEventIds(filterType: Int) -> [String]? {
-        if (filterType == PositionType.Pitcher.rawValue) {
-            return disabledPitcherEventIds()
-        } else if (filterType == PositionType.Hitter.rawValue) {
-            return disabledHitterEventIds()
+        if let position = MLBPosition(rawValue: filterType) {
+            return disabledPlayerEventIds(position)
         }
         return nil
     }
@@ -135,48 +129,47 @@ class MLBEditableContestLineup: EditableContestLineup {
     // DATASOURCE
     
     override func numberOfPositionsOnRoster() -> Int {
-        return PositionType.count.rawValue
+        return mlbEvent.numberOfPositions()
     }
     
     override func numberOfSpotsForPosition(position: Int) -> Int {
-        if (position == PositionType.Pitcher.rawValue) {
-            return mlbEvent.numberPitchers
-        }
-        return mlbEvent.numberHitters
+        return mlbEvent.numberOfSpots(position)
     }
     
     override func playerEventForPositionSpot(position: Int, spot: Int) -> PFPlayerEvent? {
-        if (position == PositionType.Pitcher.rawValue) {
-            if (pitchers.count > 0 && spot < pitchers.count) {
-                return pitchers[spot]
-            }
-        } else {
-            if (hitters.count > 0 && spot < hitters.count) {
-                return hitters[spot]
+        var playerEvent: PFPlayerEvent?
+        if let position = MLBPosition(rawValue: position) {
+            if let playerEvents = posititionPlayerEvents[position] {
+                if (playerEvents.count > 0 && spot < playerEvents.count) {
+                    playerEvent = playerEvents[spot] as? PFPlayerEvent
+                }
             }
         }
-        
-        return nil
+        print(playerEvent?.player.description)
+        return playerEvent
     }
     
     override func playerPickerDidCancel() {
         swappingPlayerEvent = nil
     }
+    
     override func playerPickerDidSelectPlayerEvent(playerEvent: PFPlayerEvent) {
         if let playerEvent = playerEvent as? PFMLBPlayerEvent {
-            if (playerEvent.player.type == PositionType.Pitcher.rawValue) {
-                if let swappingPlayerEvent = swappingPlayerEvent, index = pitchers.indexOf(swappingPlayerEvent) {
-                    pitchers.removeAtIndex(index)
+            if let positionType = playerEvent.player.positionType(), let position = MLBPosition(rawValue: positionType) {
+                if let swappingMLBPlayerEvent = swappingMLBPlayerEvent {
+                    for swappablePlayerEvent in posititionPlayerEvents {
+                        let playerEvents = swappablePlayerEvent.1
+                        playerEvents.removeObject(swappingMLBPlayerEvent)
+                        posititionPlayerEvents[swappablePlayerEvent.0] = playerEvents
+                    }
                 }
-                if (pitchers.count < mlbEvent.numberPitchers) {
-                    pitchers.append(playerEvent)
-                }
-            } else if (playerEvent.player.type == PositionType.Hitter.rawValue) {
-                if let swappingPlayerEvent = swappingPlayerEvent, index = hitters.indexOf(swappingPlayerEvent) {
-                    hitters.removeAtIndex(index)
-                }
-                if (hitters.count < mlbEvent.numberHitters) {
-                    hitters.append(playerEvent)
+                if let playerEvents = posititionPlayerEvents[position] {
+                    if (playerEvents.count < mlbEvent.numberOfSpots(positionType)) {
+                        playerEvents.addObject(playerEvent)
+                        posititionPlayerEvents[position] = playerEvents
+                    }
+                } else {
+                    posititionPlayerEvents[position] = [playerEvent]
                 }
             }
         }

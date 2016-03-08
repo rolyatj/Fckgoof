@@ -10,10 +10,7 @@ import UIKit
 import Parse
 
 class PFMLBLineup: PFLineup, PFSubclassing {
-    
-    @NSManaged var pitcherPlayerEvents: [PFPlayerEvent]!
-    @NSManaged var hitterPlayerEvents: [PFPlayerEvent]!
-    
+        
     convenience init(editableContestLineup: MLBEditableContestLineup) {
         self.init()
         self.dueler = PFDueler.currentUser()!
@@ -21,9 +18,15 @@ class PFMLBLineup: PFLineup, PFSubclassing {
     }
     
     override func setRoster(editableContestLineup: EditableContestLineup) {
+        self.playerEvents = [PFPlayerEvent]()
         if let editableContestLineup = editableContestLineup as? MLBEditableContestLineup {
-            self.pitcherPlayerEvents = editableContestLineup.hitters
-            self.hitterPlayerEvents = editableContestLineup.pitchers
+            for positionPlayerEvent in editableContestLineup.posititionPlayerEvents {
+                for playerEvent in positionPlayerEvent.1 {
+                    if let playerEvent = playerEvent as? PFPlayerEvent {
+                        playerEvents.append(playerEvent)
+                    }
+                }
+            }
         }
 
     }

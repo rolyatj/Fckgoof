@@ -11,8 +11,12 @@ import Parse
 
 class PFPlayer: PFSuperclass {
     
-    @NSManaged var type: Int
     @NSManaged var name: String?
+    @NSManaged var position: String?
+    
+    func positionType() -> Int? {
+        return nil
+    }
     
     // SUPERCLASSING
     

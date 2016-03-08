@@ -83,7 +83,7 @@ class CreateLineupViewController: SetLineupViewController {
                 } else {
                     // create contest
                     do {
-                        let contest = PFContest(league: league, event: event)
+                        let contest = PFContest.contestWithSport(sport, league: league, event: event)
                         try contest.save()
                         self.saveToContest(contest)
                     } catch {

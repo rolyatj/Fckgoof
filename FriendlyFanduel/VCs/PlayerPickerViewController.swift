@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ParseUI
 
 protocol PlayerPickerViewControllerDelegate {
     func playerPickerDidCancel()
@@ -23,7 +24,7 @@ class PlayerPickerViewController: UIViewController {
             self.delegate = editableContestLineup
         }
     }
-    var filterType = 0
+
     var playerEvents = [PFPlayerEvent]() {
         didSet {
             self.filter()
@@ -31,7 +32,7 @@ class PlayerPickerViewController: UIViewController {
     }
     var playerEventsFiltered = [PFPlayerEvent]() {
         didSet {
-            self.tableView.reloadData()
+            self.tableView?.reloadData()
         }
     }
     var delegate: PlayerPickerViewControllerDelegate?
@@ -39,8 +40,8 @@ class PlayerPickerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchPlayerEvents()
     }
+    
      /*
         let headerHeight = self.tableView.tableHeaderView?.bounds.height ?? 0
         self.tableView.contentInset = UIEdgeInsetsMake(-headerHeight, 0, 0, 0);
@@ -72,31 +73,12 @@ class PlayerPickerViewController: UIViewController {
     }
     */
     
-    func fetchPlayerEvents() {
-        let sport = SportType.MLB
-        if let playerQuery = PFPlayer.query(sport) {
-            playerQuery.fromLocalDatastore()
-            playerQuery.whereKey("type", equalTo: filterType)
-            let query = PFPlayerEvent.queryWithIncludes(sport)
-            query?.fromLocalDatastore()
-            if let disabledPlayerEventIds = editableContestLineup.disabledPlayerEventIds(filterType) {
-                query?.whereKey("objectId", notContainedIn: disabledPlayerEventIds)
-            }
-            query?.whereKey("player", matchesQuery: playerQuery)
-            query?.findObjectsInBackgroundWithBlock({ (playerEvents, error) -> Void in
-                if let playerEvents = playerEvents as? [PFPlayerEvent] {
-                    self.playerEvents = playerEvents
-                }
-            })
-        }
-    }
-    
     @IBAction func searchTextFieldChanged(sender: AnyObject) {
         filter()
     }
     
     func filter() {
-        if let text = searchTextField.text?.lowercaseString where text.characters.count > 0 {
+        if let text = searchTextField?.text?.lowercaseString where text.characters.count > 0 {
             playerEventsFiltered = playerEvents.filter({ (playerEvent) -> Bool in
                 let playerName = playerEvent.player?.name?.lowercaseString.containsString(text) ?? false
                 return playerName
@@ -105,7 +87,6 @@ class PlayerPickerViewController: UIViewController {
             playerEventsFiltered = playerEvents
         }
     }
-    
     
     @IBAction func cancelTapped(sender: AnyObject) {
         delegate?.playerPickerDidCancel()

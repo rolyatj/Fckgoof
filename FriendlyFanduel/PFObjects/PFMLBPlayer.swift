@@ -19,4 +19,27 @@ class PFMLBPlayer: PFPlayer, PFSubclassing {
         return .MLB
     }
 
+    override func positionType() -> Int? {
+        if let position = position {
+            if position == "P" {
+                return MLBPosition.Pitcher.rawValue
+            } else if position == "C" {
+                return MLBPosition.Catcher.rawValue
+            } else if position == "1B" {
+                return MLBPosition.FirstBase.rawValue
+            } else if position == "2B" {
+                return MLBPosition.SecondBase.rawValue
+            } else if position == "SS" {
+                return MLBPosition.ShortStop.rawValue
+            } else if position == "3B" {
+                return MLBPosition.ThirdBase.rawValue
+            } else if (position == "LF" || position == "CF" || position == "RF") {
+                return MLBPosition.OutField.rawValue
+            } else if position == "DH" {
+                return MLBPosition.DesignatedHitter.rawValue
+            }
+        }
+        return nil
+    }
+    
 }

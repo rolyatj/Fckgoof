@@ -13,6 +13,7 @@ class SetLineupViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var remainingLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
+    var playerEvents = [PFPlayerEvent]()
     
     var editableContestLineup: EditableContestLineup? {
         didSet {
@@ -26,7 +27,27 @@ class SetLineupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        fetchPlayerEvents()
     }
+    
+    func fetchPlayerEvents() {
+        let sport = SportType.MLB
+        if let playerQuery = PFPlayer.query(sport) {
+            playerQuery.fromLocalDatastore()
+            let query = PFPlayerEvent.queryWithIncludes(sport)
+            query?.fromLocalDatastore()
+            query?.orderByDescending("salary")
+            query?.whereKey("player", matchesQuery: playerQuery)
+            query?.limit = 1000
+            query?.findObjectsInBackgroundWithBlock({ (playerEvents, error) -> Void in
+                if let playerEvents = playerEvents as? [PFPlayerEvent] {
+                    self.playerEvents = playerEvents
+                }
+            })
+        }
+    }
+    
     
     func refreshLabels() {
         if let editableContestLineup = editableContestLineup {
@@ -41,18 +62,28 @@ class SetLineupViewController: UIViewController {
         }
     }
     
-    func toChoosePitcher() {
-        toPlayerPicker(0)
+    func toChoosePlayer(positionType: Int) {
+        let playerEvents = playerEventsForType(positionType)
+        if (playerEvents.count > 0) {
+            toPlayerPicker(playerEvents)
+        }
     }
     
-    func toChooseHitter() {
-        toPlayerPicker(1)
+    func playerEventsForType(type: Int) -> [PFPlayerEvent] {
+        let sport = SportType.MLB
+        let disabledPlayerEventIds = editableContestLineup?.disabledPlayerEventIds(type)
+        let playerEventsForType = playerEvents.filter { (playerEvent) -> Bool in
+            let isDisabled = disabledPlayerEventIds?.contains(playerEvent.objectId ?? "") ?? false
+            let isPosition = (playerEvent.player?.positionType() == type) ?? false
+            return !isDisabled && isPosition
+        }
+        return playerEventsForType
     }
     
-    func toPlayerPicker(type: Int) {
+    func toPlayerPicker(playerEvents: [PFPlayerEvent]) {
         if let playerPickerVC = storyboard?.instantiateViewControllerWithIdentifier("PlayerPickerVC") as?  PlayerPickerViewController {
             playerPickerVC.editableContestLineup = editableContestLineup
-            playerPickerVC.filterType = type
+            playerPickerVC.playerEvents = playerEvents
             let navigationController = UINavigationController(rootViewController: playerPickerVC)
             self.presentViewController(navigationController, animated: true, completion: nil)
         }
@@ -82,11 +113,10 @@ class SetLineupViewController: UIViewController {
                 } else {
                     // create contestLineup
                     do {
-                        if let lineup = PFLineup.lineupFromEditableLineup(editableContestLineup) {
-                            let contestLineup = PFContestLineup(contest: contest, lineup: lineup)
-                            try contestLineup.save()
-                            self.dismissViewControllerAnimated(true, completion: nil)
-                        }
+                        let lineup = PFLineup.lineupFromEditableLineup(sport, editableContestLineup: editableContestLineup)
+                        let contestLineup = PFContestLineup.contestLineupWithSport(sport, contest: contest, lineup: lineup)
+                        try contestLineup.save()
+                        self.dismissViewControllerAnimated(true, completion: nil)
                     } catch {
                         // TODO
                         print(error)
@@ -130,13 +160,10 @@ extension SetLineupViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if let playerEvent = editableContestLineup?.playerEventForPositionSpot(indexPath.section, spot: indexPath.row) {
+            print(playerEvent.player.description)
             editableContestLineup?.swappingPlayerEvent = playerEvent
         }
-        if (indexPath.section == 0) {
-            toChoosePitcher()
-        } else {
-            toChooseHitter()
-        }
+        toChoosePlayer(indexPath.section)
     }
     
 }

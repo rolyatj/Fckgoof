@@ -12,12 +12,13 @@ import Parse
 class PFLineup: PFSuperclass {
     
     @NSManaged var dueler: PFDueler!
-    
-    class func lineupFromEditableLineup(editableContestLineup: EditableContestLineup) -> PFLineup? {
-        if (editableContestLineup is MLBEditableContestLineup) {
+    @NSManaged var playerEvents: [PFPlayerEvent]!
+
+    class func lineupFromEditableLineup(sport: SportType, editableContestLineup: EditableContestLineup) -> PFLineup {
+        switch (sport) {
+        case .MLB:
             return PFMLBLineup(editableContestLineup: editableContestLineup as! MLBEditableContestLineup)
         }
-        return nil
     }
     
     func setRoster(editableContestLineup: EditableContestLineup) {

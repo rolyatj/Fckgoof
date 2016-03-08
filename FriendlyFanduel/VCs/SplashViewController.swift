@@ -14,17 +14,39 @@ class SplashViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if let _ = PFDueler.currentUser() {
-            self.performSegueWithIdentifier("toApp", sender: nil)
-        } else {
-            let loginVC = LogInViewController()
-            loginVC.fields = [PFLogInFields.LogInButton, PFLogInFields.UsernameAndPassword, PFLogInFields.SignUpButton, PFLogInFields.PasswordForgotten]
-            loginVC.signUpController = SignUpViewController()
-            loginVC.signUpController?.delegate = self
-            loginVC.delegate = self
-            self.presentViewController(loginVC, animated: true, completion: nil)
+        if (isValidAppVersion()) {
+            if let _ = PFDueler.currentUser() {
+                self.performSegueWithIdentifier("toApp", sender: nil)
+            } else {
+                let loginVC = LogInViewController()
+                loginVC.fields = [PFLogInFields.LogInButton, PFLogInFields.UsernameAndPassword, PFLogInFields.SignUpButton, PFLogInFields.PasswordForgotten]
+                loginVC.signUpController = SignUpViewController()
+                loginVC.signUpController?.delegate = self
+                loginVC.delegate = self
+                self.presentViewController(loginVC, animated: true, completion: nil)
+            }
         }
     }
+    
+    func isValidAppVersion() -> Bool {
+        let isValid = true  // TODO
+        if (!isValid) {
+            showUpdatePrompt()
+        }
+        return isValid
+    }
+    
+    func showUpdatePrompt() {
+        let alertController = UIAlertController(title: "Hey!", message: "Your version of the app is outdated. Please update to continue playing!", preferredStyle: .Alert)
+        let okAction = UIAlertAction(title: "Download", style: .Cancel) { (action) -> Void in
+            if let url = NSURL(string: "www.google.com") {
+                UIApplication.sharedApplication().openURL(url)
+            }
+        }
+        alertController.addAction(okAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
 }
 
 extension SplashViewController: PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate {

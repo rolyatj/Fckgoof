@@ -21,12 +21,25 @@ class PFEvent: PFSuperclass {
             contestLineupQuery.whereKey("lineup", matchesQuery: lineupQuery)
             contestQuery.whereKey("objectId", matchesKey:"contest.objectId", inQuery: lineupQuery)
             let eventQuery = PFEvent.query(sport)
-            eventQuery?.whereKey("startDate", greaterThanOrEqualTo: NSDate())
+            eventQuery?.whereKey("openDate", lessThan: NSDate())
+            eventQuery?.whereKey("startDate", greaterThan: NSDate())
             eventQuery?.whereKey("objectId", doesNotMatchKey: "event.objectId", inQuery: contestQuery)
 
             return eventQuery
         }
         return nil
+    }
+
+    func numberOfPositions() -> Int {
+        return 0
+    }
+
+    func lineupSize() -> Int {
+        return 0
+    }
+    
+    func numberOfSpots(position: Int) -> Int {
+        return 0
     }
     
     // SUPERCLASSING
