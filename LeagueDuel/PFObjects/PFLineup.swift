@@ -12,7 +12,16 @@ import Parse
 class PFLineup: PFSuperclass {
     
     @NSManaged var dueler: PFDueler!
-    @NSManaged var playerEvents: [PFPlayerEvent]!
+    @NSManaged var playerEvents0: [PFPlayerEvent]!
+    @NSManaged var playerEvents1: [PFPlayerEvent]!
+    @NSManaged var playerEvents2: [PFPlayerEvent]!
+    @NSManaged var playerEvents3: [PFPlayerEvent]!
+    @NSManaged var playerEvents4: [PFPlayerEvent]!
+    @NSManaged var playerEvents5: [PFPlayerEvent]!
+    @NSManaged var playerEvents6: [PFPlayerEvent]!
+    @NSManaged var playerEvents7: [PFPlayerEvent]!
+    @NSManaged var playerEvents8: [PFPlayerEvent]!
+    @NSManaged var playerEvents9: [PFPlayerEvent]!
 
     class func lineupFromEditableLineup(sport: SportType, editableContestLineup: EditableContestLineup) -> PFLineup {
         switch (sport) {
@@ -22,6 +31,11 @@ class PFLineup: PFSuperclass {
     }
     
     func setRoster(editableContestLineup: EditableContestLineup) {
+    }
+    
+    
+    func positionMapping() -> [Int: [PFPlayerEvent]]? {
+        return nil
     }
     
     class func myLineupsQuery(sport: SportType) -> PFQuery? {

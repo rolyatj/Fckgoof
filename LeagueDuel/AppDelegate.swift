@@ -28,12 +28,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFMLBPlayerEvent.registerSubclass()
         PFMLBPlayerEventResult.registerSubclass()
         PFMLBTeam.registerSubclass()
+        PFMLBGame.registerSubclass()
         PFSport.registerSubclass()
         PFFlag.registerSubclass()
         Parse.enableLocalDatastore()
         Parse.setApplicationId("83QAZ8bwzHbXs1i2v526iiv4qJLwkhfQbS9EpB8d",
             clientKey: "POiXIGUX5MbvWagON8sGOd0x9oyellwg0rgH3miD")
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+        
+        UINavigationBar.appearance().barTintColor = UIColor.defaultBarTintColor()
+        UINavigationBar.appearance().tintColor = UIColor.defaultTintColor()
+        UINavigationBar.appearance().barStyle = UIBarStyle.Black
+        UITabBar.appearance().barTintColor = UIColor.defaultBarTintColor()
+        UITabBar.appearance().tintColor = UIColor.defaultTintColor()
+        UISearchBar.appearance().barTintColor = UIColor.defaultBarTintColor()
         
         return true
     }

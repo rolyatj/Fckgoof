@@ -22,8 +22,8 @@ class PFPlayerEvent: PFSuperclass {
             query?.limit = 1000
             query?.whereKey("event", equalTo: event)
             query?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
-                print("found \((objects ?? []).count) objects to pin for event \(event)")
-                PFObject.pinAllInBackground(objects, block: { (success, error) -> Void in
+                print("found \((objects ?? []).count) player events to pin for event \(event)")
+                PFObject.pinAllInBackground(objects, withName: event.objectId!+"PLAYEREVENT", block: { (success, error) -> Void in
                     // TODO?
                     NSNotificationCenter.defaultCenter().postNotificationName("pinnedPlayerEvents", object: event)
                 })

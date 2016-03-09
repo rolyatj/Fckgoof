@@ -48,11 +48,20 @@ class PFEvent: PFSuperclass {
         for sport in allSports {
             if let liveEventsQuery = liveEventsQuery(sport), let upcomingEventsQuery = upcomingEventsQuery(sport) {
                 let query = PFQuery.orQueryWithSubqueries([liveEventsQuery, upcomingEventsQuery])
-                let localDatastoreQuery = PFPlayerEvent.query(sport)
-                localDatastoreQuery?.fromLocalDatastore()
-                localDatastoreQuery?.whereKey("event", doesNotMatchQuery: query)
-                localDatastoreQuery?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
-                    print("found \((objects ?? []).count) objects that were pinned to expired events")
+                let playerEventQuery = PFPlayerEvent.query(sport)
+                playerEventQuery?.fromLocalDatastore()
+                playerEventQuery?.whereKey("event", doesNotMatchQuery: query)
+                playerEventQuery?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
+                    print("found \((objects ?? []).count) player events that were pinned to expired events")
+                    PFObject.unpinAllInBackground(objects, block: { (success, error) -> Void in
+                        // TODO?
+                    })
+                })
+                let gameQuery = PFGame.query(sport)
+                gameQuery?.fromLocalDatastore()
+                gameQuery?.whereKey("event", doesNotMatchQuery: query)
+                gameQuery?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
+                    print("found \((objects ?? []).count) games that were pinned to expired events")
                     PFObject.unpinAllInBackground(objects, block: { (success, error) -> Void in
                         // TODO?
                     })

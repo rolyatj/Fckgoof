@@ -14,10 +14,25 @@ protocol PlayerPickerViewControllerDelegate {
     func playerPickerDidSelectPlayerEvent(playerEvent: PFPlayerEvent)
 }
 
-class PlayerPickerViewController: UIViewController {
+class PlayerPickerViewController: UIViewController, UISearchBarDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    var isSearching = false {
+        didSet {
+            searchBar.hidden = !isSearching
+            searchBar.text = nil
+            if (isSearching) {
+                searchBar.becomeFirstResponder()
+                if let tableHeaderView = tableView.tableHeaderView {
+                    tableView.scrollRectToVisible(tableHeaderView.frame, animated: true)
+                }
+            } else {
+                searchBar.resignFirstResponder()
+            }
+        }
+    }
     
     var editableContestLineup: EditableContestLineup! {
         didSet {
@@ -27,7 +42,7 @@ class PlayerPickerViewController: UIViewController {
 
     var playerEvents = [PFPlayerEvent]() {
         didSet {
-            self.filter()
+            self.filter(nil)
         }
     }
     var playerEventsFiltered = [PFPlayerEvent]() {
@@ -40,6 +55,11 @@ class PlayerPickerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        isSearching = false
+    }
+    
+    @IBAction func searchingTapped(sender: AnyObject) {
+        isSearching = !isSearching
     }
     
      /*
@@ -73,14 +93,14 @@ class PlayerPickerViewController: UIViewController {
     }
     */
     
-    @IBAction func searchTextFieldChanged(sender: AnyObject) {
-        filter()
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        filter(searchText)
     }
     
-    func filter() {
-        if let text = searchTextField?.text?.lowercaseString where text.characters.count > 0 {
+    func filter(searchText: String?) {
+        if let searchText = searchText?.lowercaseString where searchText.characters.count > 0 && isSearching {
             playerEventsFiltered = playerEvents.filter({ (playerEvent) -> Bool in
-                let playerName = playerEvent.player?.name?.lowercaseString.containsString(text) ?? false
+                let playerName = playerEvent.player?.name?.lowercaseString.containsString(searchText) ?? false
                 return playerName
             })
         } else {

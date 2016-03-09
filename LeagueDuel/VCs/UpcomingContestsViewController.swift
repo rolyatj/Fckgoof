@@ -41,19 +41,73 @@ class UpcomingContestsViewController: UIViewController {
     
     func fetchEvents() {
         let sport = SportType.MLB
-        let query = PFEvent.myUpcomingAvailableEventsQuery(sport)
-        query?.findObjectsInBackgroundWithBlock({ (events, error) -> Void in
+        let lineupQuery = PFEvent.upcomingEventsQuery(sport)
+        lineupQuery?.findObjectsInBackgroundWithBlock({ (events, error) -> Void in
             if let events = events as? [PFEvent] {
                 self.availableEvents = events
             }
         })
     }
 
-    func toCreateLineupForEvent(event: PFEvent) {
-        if let createLineupVC = storyboard?.instantiateViewControllerWithIdentifier("CreateLineupVC") as?  CreateLineupViewController {
+    func toCreateLineupForEvent(event: PFEvent, league: PFLeague) {
+        var editableContestLineup: PFContestLineup?
+        for contestLineup in contestLineups {
+            if (contestLineup.contest.league.objectId == league.objectId &&
+                contestLineup.contest.event.objectId == event.objectId) {
+                    editableContestLineup = contestLineup
+                    break
+            }
+        }
+        if let editableContestLineup = editableContestLineup {
+            toEditContestLineup(editableContestLineup)
+        } else if let createLineupVC = storyboard?.instantiateViewControllerWithIdentifier("CreateLineupVC") as? CreateLineupViewController {
             createLineupVC.event = event
+            createLineupVC.league = league
             let navigationController = UINavigationController(rootViewController: createLineupVC)
             self.presentViewController(navigationController, animated: true, completion: nil)
+        }
+    }
+
+    func toEditContestLineup(contestLineup: PFContestLineup) {
+        if let editLineupVC = storyboard?.instantiateViewControllerWithIdentifier("EditLineupVC") as? EditLineupViewController {
+            editLineupVC.contestLineup = contestLineup
+            let navigationController = UINavigationController(rootViewController: editLineupVC)
+            self.presentViewController(navigationController, animated: true, completion: nil)
+        }
+    }
+    
+    func toCreateLineupForEvent(event: PFEvent) {
+        fetchAvailableLeaguesForEvent(event)
+    }
+    
+    func fetchAvailableLeaguesForEvent(event: PFEvent) {
+        let sport = SportType.MLB
+        let query = PFLeague.myLeaguesQuery()
+        query?.findObjectsInBackgroundWithBlock({ (leagues, error) -> Void in
+            if let leagues = leagues as? [PFLeague] {
+                print("found \(leagues.count) leagues \(event)")
+                self.chooseLeagueForEvent(event, availableLeagues:leagues)
+            }
+        })
+    }
+    
+    func chooseLeagueForEvent(event: PFEvent, availableLeagues: [PFLeague]) {
+        if availableLeagues.count > 1 {
+            let alertController = UIAlertController(title: "Which League?", message: nil, preferredStyle: .Alert)
+            for league in availableLeagues {
+                let sportAction = UIAlertAction(title: league.name, style: .Default) { (action) -> Void in
+                    self.toCreateLineupForEvent(event, league: league)
+                }
+                alertController.addAction(sportAction)
+            }
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
+        } else if let league = availableLeagues.first {
+            toCreateLineupForEvent(event, league: league)
+        } else {
+            // TODO "you don't have any available leagues. Create one?"
         }
     }
     
@@ -100,7 +154,8 @@ extension UpcomingContestsViewController: UITableViewDataSource, UITableViewDele
             toCreateLineupForEvent(event)
         } else {
             let contestLineup = contestLineups[indexPath.row]
-
+            toEditContestLineup(contestLineup)
+            
         }
 
     }

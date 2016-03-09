@@ -13,7 +13,24 @@ class PFGame: PFSuperclass {
     
     @NSManaged var homeTeam: PFTeam!
     @NSManaged var awayTeam: PFTeam!
-    @NSManaged var lineupTime: NSDate!
+    @NSManaged var event: PFEvent!
+    @NSManaged var startDate: NSDate!
+    
+    class func pinAllGamesForEvent(event: PFEvent) {
+        if let sport = event.dynamicType.sport() {
+            let query = PFGame.queryWithIncludes(sport)
+            query?.limit = 1000
+            query?.whereKey("event", equalTo: event)
+            query?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
+                print("found \((objects ?? []).count) games to pin for event \(event)")
+                PFObject.pinAllInBackground(objects, withName: event.objectId!+"GAME", block: { (success, error) -> Void in
+                    // TODO?
+                    NSNotificationCenter.defaultCenter().postNotificationName("pinnedGames", object: event)
+                })
+            })
+        }
+    }
+    
     
     // SUPERCLASSING
     

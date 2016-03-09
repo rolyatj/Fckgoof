@@ -65,17 +65,14 @@ class MLBEditableContestLineup: EditableContestLineup {
         self.init()
         self.event = contestLineup.contest.event
         self.lineup = contestLineup.lineup
-        for playerEvent in contestLineup.lineup.playerEvents {
-            if let positionType = playerEvent.player.positionType(), let position = MLBPosition(rawValue: positionType) {
-                if let playerEvents = posititionPlayerEvents[position] {
-                    if (playerEvents.count < mlbEvent.numberOfSpots(positionType)) {
-                        playerEvents.addObject(playerEvent)
-                    }
-                } else {
-                    posititionPlayerEvents[position] = [playerEvent]
+        if let playerEventsMapping = contestLineup.lineup.positionMapping() {
+            for playerEventMap in playerEventsMapping {
+                if let position = MLBPosition(rawValue: playerEventMap.0) {
+                    posititionPlayerEvents[position] = NSMutableArray(array: playerEventMap.1)
                 }
             }
         }
+
     }
     
     override func currentSalary() -> Int {

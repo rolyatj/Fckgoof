@@ -57,6 +57,7 @@ class SplashViewController: UIViewController {
             liveQuery?.findObjectsInBackgroundWithBlock({ (events, error) -> Void in
                 if let events = events as? [PFEvent] {
                     for event in events {
+                        PFGame.pinAllGamesForEvent(event)
                         PFPlayerEvent.pinAllPlayersForEvent(event)
                     }
                 }
@@ -65,6 +66,7 @@ class SplashViewController: UIViewController {
             upcomingQuery?.findObjectsInBackgroundWithBlock({ (events, error) -> Void in
                 if let events = events as? [PFEvent] {
                     for event in events {
+                        PFGame.pinAllGamesForEvent(event)
                         PFPlayerEvent.pinAllPlayersForEvent(event)
                     }
                 }

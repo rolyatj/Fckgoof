@@ -8,12 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2A07F4CCC36B7EAFAC1779CA /* Pods_LeagueDuel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7545B34206AA5C59A63C456E /* Pods_LeagueDuel.framework */; };
-		472CC3B9BC292E7BBA9CBD05 /* Pods_FriendlyFanduel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17BB96FF7EA2EB5B037B1C44 /* Pods_FriendlyFanduel.framework */; };
 		900E11CC1C8F9EF300C4B7A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900E11981C8F9EF200C4B7A4 /* AppDelegate.swift */; };
 		900E11CD1C8F9EF300C4B7A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 900E11991C8F9EF200C4B7A4 /* Assets.xcassets */; };
 		900E11CE1C8F9EF300C4B7A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 900E119A1C8F9EF200C4B7A4 /* LaunchScreen.storyboard */; };
 		900E11CF1C8F9EF300C4B7A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 900E119C1C8F9EF200C4B7A4 /* Main.storyboard */; };
-		900E11D01C8F9EF300C4B7A4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 900E119E1C8F9EF200C4B7A4 /* Info.plist */; };
 		900E11D11C8F9EF300C4B7A4 /* EditableContestLineup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900E11A01C8F9EF200C4B7A4 /* EditableContestLineup.swift */; };
 		900E11D21C8F9EF300C4B7A4 /* MLBEditableContestLineup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900E11A11C8F9EF200C4B7A4 /* MLBEditableContestLineup.swift */; };
 		900E11D31C8F9EF300C4B7A4 /* PFContest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900E11A21C8F9EF200C4B7A4 /* PFContest.swift */; };
@@ -56,13 +54,14 @@
 		900E11F81C8F9EF300C4B7A4 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900E11C91C8F9EF200C4B7A4 /* EventTableViewCell.swift */; };
 		900E11F91C8F9EF300C4B7A4 /* LeagueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900E11CA1C8F9EF200C4B7A4 /* LeagueTableViewCell.swift */; };
 		900E11FA1C8F9EF300C4B7A4 /* LineupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900E11CB1C8F9EF300C4B7A4 /* LineupTableViewCell.swift */; };
+		90629A2F1C90919F0083680D /* ContestHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90629A2E1C90919F0083680D /* ContestHeaderView.swift */; };
+		90629A311C9091AF0083680D /* ContestHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90629A301C9091AF0083680D /* ContestHeaderView.xib */; };
+		90629A341C9095120083680D /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90629A331C9095120083680D /* Style.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		126F043D276612DCBC43E2E4 /* Pods-FriendlyFanduel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyFanduel.release.xcconfig"; path = "Pods/Target Support Files/Pods-FriendlyFanduel/Pods-FriendlyFanduel.release.xcconfig"; sourceTree = "<group>"; };
 		17BB96FF7EA2EB5B037B1C44 /* Pods_FriendlyFanduel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FriendlyFanduel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AA7A90315F9F184FF61F633 /* Pods-LeagueDuel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeagueDuel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LeagueDuel/Pods-LeagueDuel.debug.xcconfig"; sourceTree = "<group>"; };
-		4E7949B32583AEF219FFE9B2 /* Pods-FriendlyFanduel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyFanduel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FriendlyFanduel/Pods-FriendlyFanduel.debug.xcconfig"; sourceTree = "<group>"; };
 		7545B34206AA5C59A63C456E /* Pods_LeagueDuel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LeagueDuel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		900E11981C8F9EF200C4B7A4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		900E11991C8F9EF200C4B7A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -111,6 +110,9 @@
 		900E11C91C8F9EF200C4B7A4 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		900E11CA1C8F9EF200C4B7A4 /* LeagueTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueTableViewCell.swift; sourceTree = "<group>"; };
 		900E11CB1C8F9EF300C4B7A4 /* LineupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineupTableViewCell.swift; sourceTree = "<group>"; };
+		90629A2E1C90919F0083680D /* ContestHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContestHeaderView.swift; sourceTree = "<group>"; };
+		90629A301C9091AF0083680D /* ContestHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestHeaderView.xib; sourceTree = "<group>"; };
+		90629A331C9095120083680D /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		90F7B2241C889B27003FBE49 /* LeagueDuel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeagueDuel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9C391357D720FBAC7B3D93D /* Pods-LeagueDuel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeagueDuel.release.xcconfig"; path = "Pods/Target Support Files/Pods-LeagueDuel/Pods-LeagueDuel.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,7 +122,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				472CC3B9BC292E7BBA9CBD05 /* Pods_FriendlyFanduel.framework in Frameworks */,
 				2A07F4CCC36B7EAFAC1779CA /* Pods_LeagueDuel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -131,8 +132,6 @@
 		65DD228AF4682A8B55DACCBC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				4E7949B32583AEF219FFE9B2 /* Pods-FriendlyFanduel.debug.xcconfig */,
-				126F043D276612DCBC43E2E4 /* Pods-FriendlyFanduel.release.xcconfig */,
 				2AA7A90315F9F184FF61F633 /* Pods-LeagueDuel.debug.xcconfig */,
 				D9C391357D720FBAC7B3D93D /* Pods-LeagueDuel.release.xcconfig */,
 			);
@@ -155,7 +154,7 @@
 				900E11991C8F9EF200C4B7A4 /* Assets.xcassets */,
 				900E119A1C8F9EF200C4B7A4 /* LaunchScreen.storyboard */,
 				900E119C1C8F9EF200C4B7A4 /* Main.storyboard */,
-				900E119E1C8F9EF200C4B7A4 /* Info.plist */,
+				90629A321C9094ED0083680D /* Supporting Files */,
 				900E119F1C8F9EF200C4B7A4 /* PFObjects */,
 				900E11B91C8F9EF200C4B7A4 /* VCs */,
 				900E11C71C8F9EF200C4B7A4 /* Views */,
@@ -166,31 +165,21 @@
 		900E119F1C8F9EF200C4B7A4 /* PFObjects */ = {
 			isa = PBXGroup;
 			children = (
-				900E11A01C8F9EF200C4B7A4 /* EditableContestLineup.swift */,
-				900E11A11C8F9EF200C4B7A4 /* MLBEditableContestLineup.swift */,
-				900E11A21C8F9EF200C4B7A4 /* PFContest.swift */,
-				900E11A31C8F9EF200C4B7A4 /* PFContestLineup.swift */,
+				900E12011C8FA06200C4B7A4 /* NSObjects */,
 				900E11A41C8F9EF200C4B7A4 /* PFDueler.swift */,
-				900E11A51C8F9EF200C4B7A4 /* PFEvent.swift */,
-				900E11A61C8F9EF200C4B7A4 /* PFFlag.swift */,
-				900E11A71C8F9EF200C4B7A4 /* PFGame.swift */,
 				900E11A81C8F9EF200C4B7A4 /* PFLeague.swift */,
-				900E11A91C8F9EF200C4B7A4 /* PFLineup.swift */,
-				900E11AA1C8F9EF200C4B7A4 /* PFMLBContest.swift */,
-				900E11AB1C8F9EF200C4B7A4 /* PFMLBContestLineup.swift */,
-				900E11AC1C8F9EF200C4B7A4 /* PFMLBEvent.swift */,
-				900E11AD1C8F9EF200C4B7A4 /* PFMLBGame.swift */,
-				900E11AE1C8F9EF200C4B7A4 /* PFMLBLineup.swift */,
-				900E11AF1C8F9EF200C4B7A4 /* PFMLBPlayer.swift */,
-				900E11B01C8F9EF200C4B7A4 /* PFMLBPlayerEvent.swift */,
-				900E11B11C8F9EF200C4B7A4 /* PFMLBPlayerEventResult.swift */,
-				900E11B21C8F9EF200C4B7A4 /* PFMLBTeam.swift */,
-				900E11B31C8F9EF200C4B7A4 /* PFPlayer.swift */,
-				900E11B41C8F9EF200C4B7A4 /* PFPlayerEvent.swift */,
-				900E11B51C8F9EF200C4B7A4 /* PFPlayerEventResult.swift */,
-				900E11B61C8F9EF200C4B7A4 /* PFSport.swift */,
+				900E12071C8FA0A300C4B7A4 /* PFPlayer */,
+				900E12051C8FA08900C4B7A4 /* PFGame */,
+				900E12041C8FA08200C4B7A4 /* PFEvent */,
+				900E12021C8FA06A00C4B7A4 /* PFContest */,
+				900E12031C8FA07900C4B7A4 /* PFContestLineup */,
+				900E12061C8FA09000C4B7A4 /* PFLineup */,
+				900E12081C8FA0AA00C4B7A4 /* PFPlayerEvent */,
+				900E12091C8FA0B100C4B7A4 /* PFPlayerEventResult */,
+				900E120A1C8FA0BA00C4B7A4 /* PFTeam */,
 				900E11B71C8F9EF200C4B7A4 /* PFSuperclassing.swift */,
-				900E11B81C8F9EF200C4B7A4 /* PFTeam.swift */,
+				900E11B61C8F9EF200C4B7A4 /* PFSport.swift */,
+				900E11A61C8F9EF200C4B7A4 /* PFFlag.swift */,
 			);
 			path = PFObjects;
 			sourceTree = "<group>";
@@ -198,19 +187,12 @@
 		900E11B91C8F9EF200C4B7A4 /* VCs */ = {
 			isa = PBXGroup;
 			children = (
-				900E11BA1C8F9EF200C4B7A4 /* CreateLeagueViewController.swift */,
-				900E11BB1C8F9EF200C4B7A4 /* CreateLineupViewController.swift */,
-				900E11BC1C8F9EF200C4B7A4 /* EditLeagueViewController.swift */,
-				900E11BD1C8F9EF200C4B7A4 /* EditLineupViewController.swift */,
-				900E11BE1C8F9EF200C4B7A4 /* LeaguesViewController.swift */,
-				900E11BF1C8F9EF200C4B7A4 /* LeagueViewController.swift */,
-				900E11C01C8F9EF200C4B7A4 /* LiveContestsViewController.swift */,
-				900E11C11C8F9EF200C4B7A4 /* PlayerPickerViewController.swift */,
-				900E11C21C8F9EF200C4B7A4 /* ProfileViewController.swift */,
-				900E11C31C8F9EF200C4B7A4 /* RecentContestsViewController.swift */,
-				900E11C41C8F9EF200C4B7A4 /* SetLineupViewController.swift */,
-				900E11C51C8F9EF200C4B7A4 /* SplashViewController.swift */,
-				900E11C61C8F9EF200C4B7A4 /* UpcomingContestsViewController.swift */,
+				900E12001C8FA05500C4B7A4 /* Onboarding */,
+				900E11FB1C8FA02A00C4B7A4 /* Leagues */,
+				900E11FC1C8FA03800C4B7A4 /* Upcoming */,
+				900E11FD1C8FA03E00C4B7A4 /* Live */,
+				900E11FF1C8FA04F00C4B7A4 /* Profile */,
+				900E11FE1C8FA04B00C4B7A4 /* Recent */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -222,8 +204,172 @@
 				900E11C91C8F9EF200C4B7A4 /* EventTableViewCell.swift */,
 				900E11CA1C8F9EF200C4B7A4 /* LeagueTableViewCell.swift */,
 				900E11CB1C8F9EF300C4B7A4 /* LineupTableViewCell.swift */,
+				90629A2E1C90919F0083680D /* ContestHeaderView.swift */,
+				90629A301C9091AF0083680D /* ContestHeaderView.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		900E11FB1C8FA02A00C4B7A4 /* Leagues */ = {
+			isa = PBXGroup;
+			children = (
+				900E11BA1C8F9EF200C4B7A4 /* CreateLeagueViewController.swift */,
+				900E11BC1C8F9EF200C4B7A4 /* EditLeagueViewController.swift */,
+				900E11BE1C8F9EF200C4B7A4 /* LeaguesViewController.swift */,
+				900E11BF1C8F9EF200C4B7A4 /* LeagueViewController.swift */,
+			);
+			name = Leagues;
+			sourceTree = "<group>";
+		};
+		900E11FC1C8FA03800C4B7A4 /* Upcoming */ = {
+			isa = PBXGroup;
+			children = (
+				900E11C61C8F9EF200C4B7A4 /* UpcomingContestsViewController.swift */,
+				900E120B1C8FA32200C4B7A4 /* Lineup */,
+			);
+			name = Upcoming;
+			sourceTree = "<group>";
+		};
+		900E11FD1C8FA03E00C4B7A4 /* Live */ = {
+			isa = PBXGroup;
+			children = (
+				900E11C01C8F9EF200C4B7A4 /* LiveContestsViewController.swift */,
+			);
+			name = Live;
+			sourceTree = "<group>";
+		};
+		900E11FE1C8FA04B00C4B7A4 /* Recent */ = {
+			isa = PBXGroup;
+			children = (
+				900E11C31C8F9EF200C4B7A4 /* RecentContestsViewController.swift */,
+			);
+			name = Recent;
+			sourceTree = "<group>";
+		};
+		900E11FF1C8FA04F00C4B7A4 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				900E11C21C8F9EF200C4B7A4 /* ProfileViewController.swift */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		900E12001C8FA05500C4B7A4 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				900E11C51C8F9EF200C4B7A4 /* SplashViewController.swift */,
+			);
+			name = Onboarding;
+			sourceTree = "<group>";
+		};
+		900E12011C8FA06200C4B7A4 /* NSObjects */ = {
+			isa = PBXGroup;
+			children = (
+				900E11A01C8F9EF200C4B7A4 /* EditableContestLineup.swift */,
+				900E11A11C8F9EF200C4B7A4 /* MLBEditableContestLineup.swift */,
+			);
+			name = NSObjects;
+			sourceTree = "<group>";
+		};
+		900E12021C8FA06A00C4B7A4 /* PFContest */ = {
+			isa = PBXGroup;
+			children = (
+				900E11A21C8F9EF200C4B7A4 /* PFContest.swift */,
+				900E11AA1C8F9EF200C4B7A4 /* PFMLBContest.swift */,
+			);
+			name = PFContest;
+			sourceTree = "<group>";
+		};
+		900E12031C8FA07900C4B7A4 /* PFContestLineup */ = {
+			isa = PBXGroup;
+			children = (
+				900E11A31C8F9EF200C4B7A4 /* PFContestLineup.swift */,
+				900E11AB1C8F9EF200C4B7A4 /* PFMLBContestLineup.swift */,
+			);
+			name = PFContestLineup;
+			sourceTree = "<group>";
+		};
+		900E12041C8FA08200C4B7A4 /* PFEvent */ = {
+			isa = PBXGroup;
+			children = (
+				900E11A51C8F9EF200C4B7A4 /* PFEvent.swift */,
+				900E11AC1C8F9EF200C4B7A4 /* PFMLBEvent.swift */,
+			);
+			name = PFEvent;
+			sourceTree = "<group>";
+		};
+		900E12051C8FA08900C4B7A4 /* PFGame */ = {
+			isa = PBXGroup;
+			children = (
+				900E11A71C8F9EF200C4B7A4 /* PFGame.swift */,
+				900E11AD1C8F9EF200C4B7A4 /* PFMLBGame.swift */,
+			);
+			name = PFGame;
+			sourceTree = "<group>";
+		};
+		900E12061C8FA09000C4B7A4 /* PFLineup */ = {
+			isa = PBXGroup;
+			children = (
+				900E11A91C8F9EF200C4B7A4 /* PFLineup.swift */,
+				900E11AE1C8F9EF200C4B7A4 /* PFMLBLineup.swift */,
+			);
+			name = PFLineup;
+			sourceTree = "<group>";
+		};
+		900E12071C8FA0A300C4B7A4 /* PFPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				900E11AF1C8F9EF200C4B7A4 /* PFMLBPlayer.swift */,
+				900E11B31C8F9EF200C4B7A4 /* PFPlayer.swift */,
+			);
+			name = PFPlayer;
+			sourceTree = "<group>";
+		};
+		900E12081C8FA0AA00C4B7A4 /* PFPlayerEvent */ = {
+			isa = PBXGroup;
+			children = (
+				900E11B41C8F9EF200C4B7A4 /* PFPlayerEvent.swift */,
+				900E11B01C8F9EF200C4B7A4 /* PFMLBPlayerEvent.swift */,
+			);
+			name = PFPlayerEvent;
+			sourceTree = "<group>";
+		};
+		900E12091C8FA0B100C4B7A4 /* PFPlayerEventResult */ = {
+			isa = PBXGroup;
+			children = (
+				900E11B11C8F9EF200C4B7A4 /* PFMLBPlayerEventResult.swift */,
+				900E11B51C8F9EF200C4B7A4 /* PFPlayerEventResult.swift */,
+			);
+			name = PFPlayerEventResult;
+			sourceTree = "<group>";
+		};
+		900E120A1C8FA0BA00C4B7A4 /* PFTeam */ = {
+			isa = PBXGroup;
+			children = (
+				900E11B21C8F9EF200C4B7A4 /* PFMLBTeam.swift */,
+				900E11B81C8F9EF200C4B7A4 /* PFTeam.swift */,
+			);
+			name = PFTeam;
+			sourceTree = "<group>";
+		};
+		900E120B1C8FA32200C4B7A4 /* Lineup */ = {
+			isa = PBXGroup;
+			children = (
+				900E11C41C8F9EF200C4B7A4 /* SetLineupViewController.swift */,
+				900E11BB1C8F9EF200C4B7A4 /* CreateLineupViewController.swift */,
+				900E11BD1C8F9EF200C4B7A4 /* EditLineupViewController.swift */,
+				900E11C11C8F9EF200C4B7A4 /* PlayerPickerViewController.swift */,
+			);
+			name = Lineup;
+			sourceTree = "<group>";
+		};
+		90629A321C9094ED0083680D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				90629A331C9095120083680D /* Style.swift */,
+				900E119E1C8F9EF200C4B7A4 /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		90F7B21B1C889B27003FBE49 = {
@@ -305,9 +451,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				900E11D01C8F9EF300C4B7A4 /* Info.plist in Resources */,
 				900E11CF1C8F9EF300C4B7A4 /* Main.storyboard in Resources */,
 				900E11CD1C8F9EF300C4B7A4 /* Assets.xcassets in Resources */,
+				90629A311C9091AF0083680D /* ContestHeaderView.xib in Resources */,
 				900E11CE1C8F9EF300C4B7A4 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -401,6 +547,8 @@
 				900E11DA1C8F9EF300C4B7A4 /* PFLineup.swift in Sources */,
 				900E11D81C8F9EF300C4B7A4 /* PFGame.swift in Sources */,
 				900E11F71C8F9EF300C4B7A4 /* ContestTableViewCell.swift in Sources */,
+				90629A341C9095120083680D /* Style.swift in Sources */,
+				90629A2F1C90919F0083680D /* ContestHeaderView.swift in Sources */,
 				900E11DC1C8F9EF300C4B7A4 /* PFMLBContestLineup.swift in Sources */,
 				900E11E81C8F9EF300C4B7A4 /* PFSuperclassing.swift in Sources */,
 				900E11F51C8F9EF300C4B7A4 /* SplashViewController.swift in Sources */,

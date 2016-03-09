@@ -13,20 +13,21 @@ class PFContestLineup: PFSuperclass {
     
     @NSManaged var contest: PFContest!
     @NSManaged var lineup: PFLineup!
-    
+    @NSManaged var contestId: String?
+
     class func contestLineupWithSport(sport: SportType, contest: PFContest, lineup: PFLineup) -> PFContestLineup {
         switch (sport) {
         case .MLB:
             let contestLineup = PFMLBContestLineup()
             contestLineup.contest = contest
             contestLineup.lineup = lineup
+            contestLineup.contestId = contest.objectId
             return contestLineup
         }
     }
 
     class func myUpcomingContestLineupsQuery(sport: SportType) -> PFQuery? {
-        if let sport = self.sport(), let eventQuery = PFEvent.query(sport), let lineupQuery = PFLineup.myLineupsQuery(sport), let contestQuery = PFContest.query(sport) {
-            eventQuery.whereKey("startDate", greaterThanOrEqualTo: NSDate())
+        if let sport = self.sport(), let eventQuery = PFEvent.upcomingEventsQuery(sport), let lineupQuery = PFLineup.myLineupsQuery(sport), let contestQuery = PFContest.query(sport) {
             contestQuery.whereKey("event", matchesQuery: eventQuery)
             let query = PFContestLineup.queryWithIncludes(sport)
             query?.whereKey("contest", matchesQuery: contestQuery)
@@ -66,7 +67,28 @@ class PFContestLineup: PFSuperclass {
     override class func queryWithIncludes(sport: SportType) -> PFQuery? {
         let query = PFContestLineup.query(sport)
         query?.includeKey("contest")
+        query?.includeKey("contest.league")
         query?.includeKey("lineup")
+        query?.includeKey("lineup.playerEvents0")
+        query?.includeKey("lineup.playerEvents1")
+        query?.includeKey("lineup.playerEvents2")
+        query?.includeKey("lineup.playerEvents3")
+        query?.includeKey("lineup.playerEvents4")
+        query?.includeKey("lineup.playerEvents5")
+        query?.includeKey("lineup.playerEvents6")
+        query?.includeKey("lineup.playerEvents7")
+        query?.includeKey("lineup.playerEvents8")
+        query?.includeKey("lineup.playerEvents9")
+        query?.includeKey("lineup.playerEvents0.player")
+        query?.includeKey("lineup.playerEvents1.player")
+        query?.includeKey("lineup.playerEvents2.player")
+        query?.includeKey("lineup.playerEvents3.player")
+        query?.includeKey("lineup.playerEvents4.player")
+        query?.includeKey("lineup.playerEvents5.player")
+        query?.includeKey("lineup.playerEvents6.player")
+        query?.includeKey("lineup.playerEvents7.player")
+        query?.includeKey("lineup.playerEvents8.player")
+        query?.includeKey("lineup.playerEvents9.player")
         return query
     }
     

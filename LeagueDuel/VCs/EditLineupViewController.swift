@@ -15,6 +15,8 @@ class EditLineupViewController: SetLineupViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         editableContestLineup = EditableContestLineup.editableContestLineupWithLineup(contestLineup)
+        contestHeaderView.titleLabel.text = contestLineup.contest.event.name
+        contestHeaderView.subtitleLabel.text = contestLineup.contest.league?.name?.uppercaseString
     }
     
     @IBAction override func submitTapped(sender: AnyObject) {

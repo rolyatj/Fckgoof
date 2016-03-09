@@ -51,7 +51,7 @@
         <!--LEAGUES-->
         <scene sceneID="Qmf-ST-Ckz">
             <objects>
-                <viewController id="gnd-mJ-uRI" customClass="LeaguesViewController" customModule="FriendlyFanduel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gnd-mJ-uRI" customClass="LeaguesViewController" customModule="LeagueDuel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ohM-2i-w62"/>
                         <viewControllerLayoutGuide type="bottom" id="3Sx-EP-VHK"/>
@@ -64,7 +64,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="LeagueCell" rowHeight="78" id="sbx-3W-rU7" customClass="LeagueTableViewCell" customModule="FriendlyFanduel" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="LeagueCell" rowHeight="78" id="sbx-3W-rU7" customClass="LeagueTableViewCell" customModule="LeagueDuel" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="320" height="78"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sbx-3W-rU7" id="6CP-84-e1S">
@@ -152,7 +152,7 @@
         <!--Splash View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="SplashViewController" customModule="FriendlyFanduel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="SplashViewController" customModule="LeagueDuel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -225,7 +225,7 @@
         <!--League View Controller-->
         <scene sceneID="m9x-Wo-bh4">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="SJ6-ZA-zDN" customClass="LeagueViewController" customModule="FriendlyFanduel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="SJ6-ZA-zDN" customClass="LeagueViewController" customModule="LeagueDuel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rBT-Oh-yOR"/>
                         <viewControllerLayoutGuide type="bottom" id="F8F-SX-1NM"/>
@@ -238,7 +238,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ContestCell" rowHeight="78" id="ZLy-NL-HIJ" customClass="ContestTableViewCell" customModule="FriendlyFanduel" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ContestCell" rowHeight="78" id="ZLy-NL-HIJ" customClass="ContestTableViewCell" customModule="LeagueDuel" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="320" height="78"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZLy-NL-HIJ" id="pdx-W4-KEw">
@@ -338,7 +338,7 @@
         <!--EDIT LEAGUE-->
         <scene sceneID="Hrc-kw-acA">
             <objects>
-                <viewController title="EDIT LEAGUE" hidesBottomBarWhenPushed="YES" id="w0V-EY-uNM" customClass="EditLeagueViewController" customModule="FriendlyFanduel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="EDIT LEAGUE" hidesBottomBarWhenPushed="YES" id="w0V-EY-uNM" customClass="EditLeagueViewController" customModule="LeagueDuel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JJl-XZ-qot"/>
                         <viewControllerLayoutGuide type="bottom" id="NL1-X0-SFV"/>
@@ -431,7 +431,7 @@
         <!--CREATE LEAGUE-->
         <scene sceneID="sUo-v9-0Hq">
             <objects>
-                <viewController title="CREATE LEAGUE" hidesBottomBarWhenPushed="YES" id="Myx-GG-5o8" customClass="CreateLeagueViewController" customModule="FriendlyFanduel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="CREATE LEAGUE" hidesBottomBarWhenPushed="YES" id="Myx-GG-5o8" customClass="CreateLeagueViewController" customModule="LeagueDuel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1w1-Gd-Eo8"/>
                         <viewControllerLayoutGuide type="bottom" id="e1w-Tu-WHt"/>
@@ -531,7 +531,7 @@
         <!--UPCOMING-->
         <scene sceneID="bxQ-vW-kq1">
             <objects>
-                <viewController id="0UL-FA-Vxv" customClass="UpcomingContestsViewController" customModule="FriendlyFanduel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0UL-FA-Vxv" customClass="UpcomingContestsViewController" customModule="LeagueDuel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Rrk-UC-NnN"/>
                         <viewControllerLayoutGuide type="bottom" id="npN-DN-6YR"/>
@@ -562,7 +562,7 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="EventCell" rowHeight="78" id="tnF-0S-Qd9" customClass="EventTableViewCell" customModule="FriendlyFanduel" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="EventCell" rowHeight="78" id="tnF-0S-Qd9" customClass="EventTableViewCell" customModule="LeagueDuel" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="94" width="320" height="78"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tnF-0S-Qd9" id="FSM-KQ-3FD">
@@ -617,7 +617,7 @@
                                             <outlet property="sportLabel" destination="6K4-Bz-SEZ" id="EvB-08-I7Y"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ContestLineupCell" rowHeight="78" id="Khg-su-Q2m" customClass="ContestTableViewCell" customModule="FriendlyFanduel" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ContestLineupCell" rowHeight="78" id="Khg-su-Q2m" customClass="ContestTableViewCell" customModule="LeagueDuel" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="172" width="320" height="78"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Khg-su-Q2m" id="eFN-Rr-YUD">
@@ -699,39 +699,20 @@
         <!--CREATE LINEUP-->
         <scene sceneID="vtd-iS-aaE">
             <objects>
-                <viewController storyboardIdentifier="CreateLineupVC" title="CREATE LINEUP" hidesBottomBarWhenPushed="YES" id="6LD-Gz-8Ys" customClass="CreateLineupViewController" customModule="FriendlyFanduel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateLineupVC" title="CREATE LINEUP" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="6LD-Gz-8Ys" customClass="CreateLineupViewController" customModule="LeagueDuel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zoD-Ie-Pah"/>
                         <viewControllerLayoutGuide type="bottom" id="NGP-4z-Ovp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="oB6-mG-T9j">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="d0g-bW-jSi">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="d0g-bW-jSi">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="gj0-fh-vc4">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CdY-UG-SEV">
-                                            <rect key="frame" x="111" y="15" width="98" height="30"/>
-                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                            <state key="normal" title="League Name"/>
-                                            <connections>
-                                                <action selector="changeLeague:" destination="6LD-Gz-8Ys" eventType="touchUpInside" id="YEU-Sc-y8x"/>
-                                                <action selector="leagueNameTapped:" destination="Myx-GG-5o8" eventType="touchUpInside" id="ucE-VC-2be"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="CdY-UG-SEV" firstAttribute="centerX" secondItem="gj0-fh-vc4" secondAttribute="centerX" id="Skn-nG-rQZ"/>
-                                        <constraint firstItem="CdY-UG-SEV" firstAttribute="centerY" secondItem="gj0-fh-vc4" secondAttribute="centerY" id="heR-vu-HVn"/>
-                                    </constraints>
-                                </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="ZmE-Gs-3AM">
-                                    <rect key="frame" x="0.0" y="216" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="156" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$TOTAL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iyi-bh-XDH">
@@ -757,7 +738,7 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PlayerSelectedCell" textLabel="1Tq-7p-H4a" detailTextLabel="aNm-6W-f6l" rowHeight="44" style="IBUITableViewCellStyleValue1" id="TWr-tr-Ftc">
-                                        <rect key="frame" x="0.0" y="110" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="50" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TWr-tr-Ftc" id="ebg-Bh-V5L">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -781,7 +762,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PlayerCell" textLabel="k0y-bQ-lJb" detailTextLabel="RQL-WE-bdU" rowHeight="44" style="IBUITableViewCellStyleValue1" id="hq4-FK-VPU">
-                                        <rect key="frame" x="0.0" y="154" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="94" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hq4-FK-VPU" id="FFU-tc-B7Z">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -820,6 +801,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Y3z-Fo-GXG">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="vyd-cj-eCe">
                             <connections>
                                 <action selector="cancelTapped:" destination="6LD-Gz-8Ys" id="f0M-Rz-y5U"/>
@@ -831,11 +813,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="remainingLabel" destination="E3a-ph-3HH" id="evd-Kl-jF4"/>
-                        <outlet property="selectedLeagueButton" destination="CdY-UG-SEV" id="6Mw-Sh-6Gk"/>
                         <outlet property="tableView" destination="d0g-bW-jSi" id="1ej-Pq-IZX"/>
                         <outlet property="totalLabel" destination="iyi-bh-XDH" id="R5J-VE-ayk"/>
                     </connections>
@@ -847,7 +828,7 @@
         <!--LIVE-->
         <scene sceneID="Tsb-Th-YnU">
             <objects>
-                <viewController id="wlv-SQ-GUq" customClass="LiveContestsViewController" customModule="FriendlyFanduel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wlv-SQ-GUq" customClass="LiveContestsViewController" customModule="LeagueDuel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IMW-oe-dD8"/>
                         <viewControllerLayoutGuide type="bottom" id="7Nj-RG-IpQ"/>
@@ -860,7 +841,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ContestLineupCell" rowHeight="78" id="DiQ-h2-IIE" customClass="ContestTableViewCell" customModule="FriendlyFanduel" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ContestLineupCell" rowHeight="78" id="DiQ-h2-IIE" customClass="ContestTableViewCell" customModule="LeagueDuel" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="320" height="78"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DiQ-h2-IIE" id="QrR-kw-SSw">
@@ -960,7 +941,7 @@
         <!--RECENT-->
         <scene sceneID="kp4-RB-YAJ">
             <objects>
-                <viewController id="fVL-fV-AaV" customClass="RecentContestsViewController" customModule="FriendlyFanduel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fVL-fV-AaV" customClass="RecentContestsViewController" customModule="LeagueDuel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2BA-pk-c0X"/>
                         <viewControllerLayoutGuide type="bottom" id="WR1-z5-3EO"/>
@@ -973,7 +954,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ContestLineupCell" rowHeight="78" id="Ac6-au-TDB" customClass="ContestTableViewCell" customModule="FriendlyFanduel" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ContestLineupCell" rowHeight="78" id="Ac6-au-TDB" customClass="ContestTableViewCell" customModule="LeagueDuel" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="320" height="78"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ac6-au-TDB" id="Hh9-d9-6OV">
@@ -1055,40 +1036,29 @@
         <!--PLAYERS-->
         <scene sceneID="Y12-wG-aHi">
             <objects>
-                <viewController storyboardIdentifier="PlayerPickerVC" title="PLAYERS" hidesBottomBarWhenPushed="YES" id="yYn-sV-Uy4" customClass="PlayerPickerViewController" customModule="FriendlyFanduel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlayerPickerVC" title="PLAYERS" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="yYn-sV-Uy4" customClass="PlayerPickerViewController" customModule="LeagueDuel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="exJ-yw-kfv"/>
                         <viewControllerLayoutGuide type="bottom" id="pem-0T-HzZ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uep-GD-8jc">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="5cs-nM-mZB">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="Kc5-kG-f5L">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" barStyle="black" id="HxH-2n-3hq">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GAu-q0-cXP">
-                                            <rect key="frame" x="8" y="15" width="304" height="30"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                            <connections>
-                                                <action selector="searchTextFieldChanged:" destination="yYn-sV-Uy4" eventType="editingChanged" id="5M8-L8-str"/>
-                                            </connections>
-                                        </textField>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="GAu-q0-cXP" firstAttribute="trailing" secondItem="Kc5-kG-f5L" secondAttribute="trailingMargin" id="CdP-MN-yiQ"/>
-                                        <constraint firstItem="GAu-q0-cXP" firstAttribute="leading" secondItem="Kc5-kG-f5L" secondAttribute="leadingMargin" id="mRq-X5-mKX"/>
-                                        <constraint firstItem="GAu-q0-cXP" firstAttribute="centerY" secondItem="Kc5-kG-f5L" secondAttribute="centerY" id="q4Z-Qe-h7D"/>
-                                    </constraints>
-                                </view>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="yYn-sV-Uy4" id="bm2-bn-xjE"/>
+                                    </connections>
+                                </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PlayerCell" textLabel="n6D-RO-LZ9" detailTextLabel="m9F-TI-W7G" rowHeight="44" style="IBUITableViewCellStyleValue1" id="9su-Xb-bg2">
-                                        <rect key="frame" x="0.0" y="110" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="94" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9su-Xb-bg2" id="2aK-uM-zYL">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -1127,16 +1097,22 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Nxq-JT-fdA">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="scX-zB-W04">
                             <connections>
                                 <action selector="cancelTapped:" destination="yYn-sV-Uy4" id="P2W-Ug-eiJ"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="3dD-t3-vDT">
+                            <connections>
+                                <action selector="searchingTapped:" destination="yYn-sV-Uy4" id="RDj-rg-eVg"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="searchTextField" destination="GAu-q0-cXP" id="MEn-3T-Gan"/>
+                        <outlet property="searchBar" destination="HxH-2n-3hq" id="Evo-XT-2N8"/>
                         <outlet property="tableView" destination="5cs-nM-mZB" id="vu7-cb-26v"/>
                     </connections>
                 </viewController>
@@ -1147,39 +1123,20 @@
         <!--EDIT LINEUP-->
         <scene sceneID="Zuy-wR-jnx">
             <objects>
-                <viewController storyboardIdentifier="EditLineupVC" title="EDIT LINEUP" hidesBottomBarWhenPushed="YES" id="rwe-2m-zHn" customClass="EditLineupViewController" customModule="FriendlyFanduel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditLineupVC" title="EDIT LINEUP" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="rwe-2m-zHn" customClass="EditLineupViewController" customModule="LeagueDuel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lNR-O7-aUO"/>
                         <viewControllerLayoutGuide type="bottom" id="Hac-Ab-YC9"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Yse-Gj-aA8">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="A7e-8a-GGo">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="A7e-8a-GGo">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="8Fd-n0-vIT">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xug-cm-sRr">
-                                            <rect key="frame" x="111" y="15" width="98" height="30"/>
-                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                            <state key="normal" title="League Name"/>
-                                            <connections>
-                                                <action selector="changeLeague:" destination="rwe-2m-zHn" eventType="touchUpInside" id="3jJ-wk-gry"/>
-                                                <action selector="leagueNameTapped:" destination="Myx-GG-5o8" eventType="touchUpInside" id="ko6-U8-GV7"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="Xug-cm-sRr" firstAttribute="centerX" secondItem="8Fd-n0-vIT" secondAttribute="centerX" id="buQ-wJ-rtR"/>
-                                        <constraint firstItem="Xug-cm-sRr" firstAttribute="centerY" secondItem="8Fd-n0-vIT" secondAttribute="centerY" id="xxV-av-NJh"/>
-                                    </constraints>
-                                </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="HBN-kl-vi2">
-                                    <rect key="frame" x="0.0" y="216" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="156" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$TOTAL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VtL-yl-59j">
@@ -1205,7 +1162,7 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PlayerSelectedCell" textLabel="Q4S-RJ-thf" detailTextLabel="6gh-Is-dFF" rowHeight="44" style="IBUITableViewCellStyleValue1" id="EKN-4y-o2d">
-                                        <rect key="frame" x="0.0" y="110" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="50" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EKN-4y-o2d" id="fto-lg-esr">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1229,7 +1186,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PlayerCell" textLabel="Ncy-Os-Bch" detailTextLabel="1oK-yo-K5I" rowHeight="44" style="IBUITableViewCellStyleValue1" id="BB5-4e-0ih">
-                                        <rect key="frame" x="0.0" y="154" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="94" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BB5-4e-0ih" id="CRd-dE-Feq">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -1269,6 +1226,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Yak-1L-1zh">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="7SZ-a7-hmf">
                             <connections>
                                 <action selector="cancelTapped:" destination="rwe-2m-zHn" id="faI-1Y-2X5"/>
@@ -1280,16 +1238,94 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="remainingLabel" destination="Vpk-Ou-MEl" id="X1f-05-kaU"/>
-                        <outlet property="selectedLeagueButton" destination="Xug-cm-sRr" id="2Tk-dc-5eg"/>
                         <outlet property="tableView" destination="A7e-8a-GGo" id="GIu-y5-Vff"/>
                         <outlet property="totalLabel" destination="VtL-yl-59j" id="h5I-X7-vod"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DfY-Qy-oao" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="GeM-1H-tNT">
+                    <rect key="frame" x="0.0" y="0.0" width="184" height="60"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HXc-HH-pKZ">
+                            <rect key="frame" x="0.0" y="8" width="184" height="44"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LEAGUE NAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEh-RZ-yrB">
+                                    <rect key="frame" x="30" y="4" width="116" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dky-Lm-hPZ">
+                                    <rect key="frame" x="154" y="11" width="22" height="22"/>
+                                    <connections>
+                                        <action selector="infoTapped:" destination="6LD-Gz-8Ys" eventType="touchUpInside" id="Hmb-1Q-ORr"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcN-VI-kv2">
+                                    <rect key="frame" x="73" y="24" width="31" height="15"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="lcN-VI-kv2" firstAttribute="top" secondItem="PEh-RZ-yrB" secondAttribute="bottom" constant="-1" id="054-dY-LP5"/>
+                                <constraint firstItem="PEh-RZ-yrB" firstAttribute="centerY" secondItem="HXc-HH-pKZ" secondAttribute="centerY" constant="-8" id="4Rh-dL-TQF"/>
+                                <constraint firstItem="lcN-VI-kv2" firstAttribute="centerX" secondItem="PEh-RZ-yrB" secondAttribute="centerX" id="NeQ-OH-S3p"/>
+                                <constraint firstItem="dky-Lm-hPZ" firstAttribute="leading" secondItem="PEh-RZ-yrB" secondAttribute="trailing" constant="8" symbolic="YES" id="f3D-iy-pfI"/>
+                                <constraint firstItem="dky-Lm-hPZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lcN-VI-kv2" secondAttribute="trailing" constant="45" id="f4i-0q-Ked"/>
+                                <constraint firstItem="PEh-RZ-yrB" firstAttribute="centerX" secondItem="HXc-HH-pKZ" secondAttribute="centerX" priority="700" id="hFe-mI-U6R"/>
+                                <constraint firstItem="dky-Lm-hPZ" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="HXc-HH-pKZ" secondAttribute="trailingMargin" id="mbm-gF-Mul"/>
+                                <constraint firstItem="dky-Lm-hPZ" firstAttribute="centerY" secondItem="HXc-HH-pKZ" secondAttribute="centerY" id="uIn-Cb-8rL"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="HXc-HH-pKZ" firstAttribute="leading" secondItem="GeM-1H-tNT" secondAttribute="leading" id="LRn-kQ-Fxk"/>
+                        <constraint firstItem="HXc-HH-pKZ" firstAttribute="top" secondItem="GeM-1H-tNT" secondAttribute="topMargin" id="i54-FH-oQV"/>
+                        <constraint firstItem="HXc-HH-pKZ" firstAttribute="bottom" secondItem="GeM-1H-tNT" secondAttribute="bottomMargin" id="xDT-Um-WEA"/>
+                        <constraint firstAttribute="trailing" secondItem="HXc-HH-pKZ" secondAttribute="trailing" id="zVv-9V-jnu"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" id="AL3-yo-KzY">
+                    <rect key="frame" x="0.0" y="0.0" width="184" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LEAGUE NAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3xw-8N-GTf">
+                            <rect key="frame" x="30" y="4" width="116" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zXa-u7-2iG">
+                            <rect key="frame" x="154" y="11" width="22" height="22"/>
+                            <connections>
+                                <action selector="infoTapped:" destination="6LD-Gz-8Ys" eventType="touchUpInside" id="idT-4C-ygE"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OXT-op-8AT">
+                            <rect key="frame" x="73" y="24" width="31" height="15"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="OXT-op-8AT" firstAttribute="top" secondItem="3xw-8N-GTf" secondAttribute="bottom" constant="-1" id="0Wg-xZ-fgN"/>
+                        <constraint firstItem="zXa-u7-2iG" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="AL3-yo-KzY" secondAttribute="trailingMargin" id="6tB-p5-gTv"/>
+                        <constraint firstItem="zXa-u7-2iG" firstAttribute="centerY" secondItem="AL3-yo-KzY" secondAttribute="centerY" id="9WE-66-bGc"/>
+                        <constraint firstItem="3xw-8N-GTf" firstAttribute="centerY" secondItem="AL3-yo-KzY" secondAttribute="centerY" constant="-8" id="GT0-YW-u0M"/>
+                        <constraint firstItem="zXa-u7-2iG" firstAttribute="leading" secondItem="3xw-8N-GTf" secondAttribute="trailing" constant="8" symbolic="YES" id="Sax-Eq-3C7"/>
+                        <constraint firstItem="zXa-u7-2iG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="OXT-op-8AT" secondAttribute="trailing" constant="45" id="btX-t8-aD8"/>
+                        <constraint firstItem="OXT-op-8AT" firstAttribute="centerX" secondItem="3xw-8N-GTf" secondAttribute="centerX" id="nab-Rm-a3H"/>
+                        <constraint firstItem="3xw-8N-GTf" firstAttribute="centerX" secondItem="AL3-yo-KzY" secondAttribute="centerX" priority="700" id="pAx-6N-LIA"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="1162" y="-140"/>
         </scene>

@@ -14,6 +14,7 @@ class SetLineupViewController: UIViewController {
     @IBOutlet weak var remainingLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     var playerEvents = [PFPlayerEvent]()
+    var contestHeaderView = ContestHeaderView.contestHeaderView()
     
     var editableContestLineup: EditableContestLineup? {
         didSet {
@@ -27,7 +28,7 @@ class SetLineupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationItem.titleView = contestHeaderView
     }
     
     func fetchPlayerEvents(event: PFEvent) {
@@ -127,6 +128,10 @@ class SetLineupViewController: UIViewController {
 
     }
 
+    @IBAction func infoTapped(sender: AnyObject) {
+    
+    }
+    
     @IBAction func submitTapped(sender: AnyObject) {
         // subclassed
     }
