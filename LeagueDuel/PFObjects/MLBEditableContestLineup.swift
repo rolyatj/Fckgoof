@@ -145,7 +145,6 @@ class MLBEditableContestLineup: EditableContestLineup {
                 }
             }
         }
-        print(playerEvent?.player.description)
         return playerEvent
     }
     

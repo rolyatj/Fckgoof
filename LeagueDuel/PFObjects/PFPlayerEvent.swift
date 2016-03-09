@@ -16,22 +16,6 @@ class PFPlayerEvent: PFSuperclass {
     @NSManaged var player: PFPlayer!
     @NSManaged var result: PFPlayerEventResult!
     
-    class func resetPinsForAllPlayersForEvent(event: PFEvent) {
-        if let sport = event.dynamicType.sport() {
-            let localDatastoreQuery = PFPlayerEvent.query(sport)
-            localDatastoreQuery?.fromLocalDatastore()
-            localDatastoreQuery?.whereKey("event", notEqualTo: event)
-            localDatastoreQuery?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
-                print("found \((objects ?? []).count) objects that were pinned not belonging to this event \(event)")
-                PFObject.unpinAllInBackground(objects, block: { (success, error) -> Void in
-                    // TODO?
-                    PFPlayerEvent.pinAllPlayersForEvent(event)
-                })
-            })
-        }
-
-    }
-    
     class func pinAllPlayersForEvent(event: PFEvent) {
         if let sport = event.dynamicType.sport() {
             let query = PFPlayerEvent.queryWithIncludes(sport)

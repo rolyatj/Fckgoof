@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "90F7B2231C889B27003FBE49"
-               BuildableName = "FriendlyFanduel.app"
-               BlueprintName = "FriendlyFanduel"
-               ReferencedContainer = "container:FriendlyFanduel.xcodeproj">
+               BuildableName = "LeagueDuel.app"
+               BlueprintName = "LeagueDuel"
+               ReferencedContainer = "container:LeagueDuel.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "90F7B2231C889B27003FBE49"
-            BuildableName = "FriendlyFanduel.app"
-            BlueprintName = "FriendlyFanduel"
-            ReferencedContainer = "container:FriendlyFanduel.xcodeproj">
+            BuildableName = "LeagueDuel.app"
+            BlueprintName = "LeagueDuel"
+            ReferencedContainer = "container:LeagueDuel.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "90F7B2231C889B27003FBE49"
-            BuildableName = "FriendlyFanduel.app"
-            BlueprintName = "FriendlyFanduel"
-            ReferencedContainer = "container:FriendlyFanduel.xcodeproj">
+            BuildableName = "LeagueDuel.app"
+            BlueprintName = "LeagueDuel"
+            ReferencedContainer = "container:LeagueDuel.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "90F7B2231C889B27003FBE49"
-            BuildableName = "FriendlyFanduel.app"
-            BlueprintName = "FriendlyFanduel"
-            ReferencedContainer = "container:FriendlyFanduel.xcodeproj">
+            BuildableName = "LeagueDuel.app"
+            BlueprintName = "LeagueDuel"
+            ReferencedContainer = "container:LeagueDuel.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

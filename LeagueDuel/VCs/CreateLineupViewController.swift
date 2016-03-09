@@ -77,6 +77,7 @@ class CreateLineupViewController: SetLineupViewController {
         if let sport = event.dynamicType.sport() {
             let query = PFContest.query(sport)
             query?.whereKey("league", equalTo: league)
+            query?.whereKey("event", equalTo: event)
             query?.getFirstObjectInBackgroundWithBlock({ (contest, error) -> Void in
                 if let contest = contest as? PFContest {
                     self.saveToContest(contest)

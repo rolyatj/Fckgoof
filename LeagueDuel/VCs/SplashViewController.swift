@@ -16,6 +16,7 @@ class SplashViewController: UIViewController {
         
         if (isValidAppVersion()) {
             if let _ = PFDueler.currentUser() {
+                setupPlayerEvents()
                 self.performSegueWithIdentifier("toApp", sender: nil)
             } else {
                 let loginVC = LogInViewController()
@@ -45,6 +46,31 @@ class SplashViewController: UIViewController {
         }
         alertController.addAction(okAction)
         self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func setupPlayerEvents() {
+        PFEvent.resetPinsForExpiredEvents()
+        
+        var liveSports = [SportType.MLB] // TODO
+        for sport in liveSports {
+            let liveQuery = PFEvent.liveEventsQuery(sport)
+            liveQuery?.findObjectsInBackgroundWithBlock({ (events, error) -> Void in
+                if let events = events as? [PFEvent] {
+                    for event in events {
+                        PFPlayerEvent.pinAllPlayersForEvent(event)
+                    }
+                }
+            })
+            let upcomingQuery = PFEvent.upcomingEventsQuery(sport)
+            upcomingQuery?.findObjectsInBackgroundWithBlock({ (events, error) -> Void in
+                if let events = events as? [PFEvent] {
+                    for event in events {
+                        PFPlayerEvent.pinAllPlayersForEvent(event)
+                    }
+                }
+            })
+        }
+
     }
     
 }

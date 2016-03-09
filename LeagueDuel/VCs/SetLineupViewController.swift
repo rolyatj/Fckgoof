@@ -19,7 +19,7 @@ class SetLineupViewController: UIViewController {
         didSet {
             if let editableContestLineup = editableContestLineup {
                 self.refreshLabels()
-                PFPlayerEvent.resetPinsForAllPlayersForEvent(editableContestLineup.event) // TODO
+                fetchPlayerEvents(editableContestLineup.event)
                 editableContestLineup.delegate = self
             }
         }
@@ -28,10 +28,9 @@ class SetLineupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchPlayerEvents()
     }
     
-    func fetchPlayerEvents() {
+    func fetchPlayerEvents(event: PFEvent) {
         let sport = SportType.MLB
         if let playerQuery = PFPlayer.query(sport) {
             playerQuery.fromLocalDatastore()
@@ -39,6 +38,7 @@ class SetLineupViewController: UIViewController {
             query?.fromLocalDatastore()
             query?.orderByDescending("salary")
             query?.whereKey("player", matchesQuery: playerQuery)
+            query?.whereKey("event", equalTo: event)
             query?.limit = 1000
             query?.findObjectsInBackgroundWithBlock({ (playerEvents, error) -> Void in
                 if let playerEvents = playerEvents as? [PFPlayerEvent] {
