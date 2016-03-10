@@ -19,12 +19,17 @@ class LeaguesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "fetchLeagues", name: "pinnedMyLeagues", object: nil)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         fetchLeagues()
     }
     
     func fetchLeagues() {
         let query = PFLeague.myLeaguesQuery()
+        query?.fromLocalDatastore()
         query?.findObjectsInBackgroundWithBlock({ (leagues, error) -> Void in
             if let leagues = leagues as? [PFLeague] {
                 self.leagues = leagues
@@ -34,6 +39,44 @@ class LeaguesViewController: UIViewController {
 
     func showLeague(league: PFLeague) {
         performSegueWithIdentifier("toLeague", sender: league)
+    }
+    
+    @IBAction func joinLeagueTapped(sender: AnyObject) {
+        let alertController = UIAlertController(title: "Join League", message: "What's the unique ID?", preferredStyle: .Alert)
+        alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
+            textField.placeholder = "10 Character ID"
+        }
+        let okAction = UIAlertAction(title: "Join", style: .Default) { (action) -> Void in
+            if let text = alertController.textFields?.first?.text where text.characters.count == 10 {
+                self.findLeague(text)
+            } else {
+                // TODO
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+
+    func findLeague(objectId: String) {
+        let query = PFLeague.query()
+        query?.getObjectInBackgroundWithId(objectId, block: { (league, error) -> Void in
+            if let league = league as? PFLeague {
+                self.joinLeague(league)
+            } else {
+                // TODO
+            }
+        })
+    }
+    
+    func joinLeague(league: PFLeague) {
+        if let user = PFDueler.currentUser(), let objectId = user.objectId {
+            league.addUniqueObject(objectId, forKey: "duelers")
+            league.saveEventually({ (success, error) -> Void in
+                self.fetchLeagues()
+            })
+        }
     }
     
     // MARK: - Navigation

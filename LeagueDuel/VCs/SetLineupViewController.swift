@@ -49,7 +49,6 @@ class SetLineupViewController: UIViewController {
         }
     }
     
-    
     func refreshLabels() {
         if let editableContestLineup = editableContestLineup {
             let salary = editableContestLineup.currentSalary()

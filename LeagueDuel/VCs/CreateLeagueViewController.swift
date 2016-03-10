@@ -7,20 +7,14 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CreateLeagueViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var leagueNameButton: UIButton!
-    var leagueName = "" {
-        didSet {
-            if (leagueName.characters.count > 0) {
-                leagueNameButton?.setTitle(leagueName, forState: .Normal)
-            } else {
-                leagueNameButton?.setTitle("League Name", forState: .Normal)
-            }
-        }
-    }
+    @IBOutlet weak var imageView: UIImageView!
+    
+    var league = PFLeague()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,18 +26,21 @@ class CreateLeagueViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func leagueNameTapped(sender: AnyObject) {
-        editLeagueName()
+    @IBAction func leagueImageTapped(sender: AnyObject) {
+        changeLeagueImage()
     }
     
-    func editLeagueName() {
-        let alertController = UIAlertController(title: "League Name", message: nil, preferredStyle: .Alert)
+    func changeLeagueImage() {
+        let alertController = UIAlertController(title: "League Image", message: nil, preferredStyle: .Alert)
         alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            // TODO
+            textField.placeholder = "Image URL (ex: www.example.com/url.png)"
         }
         let okAction = UIAlertAction(title: "Save", style: .Default) { (action) -> Void in
             if let text = alertController.textFields?.first?.text {
-                self.leagueName = text
+                self.league.imageURL = text
+                if let url = NSURL(string: text) {
+                    self.imageView.sd_setImageWithURL(url)
+                }
             }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
@@ -57,58 +54,47 @@ class CreateLeagueViewController: UIViewController {
     }
     
     func save() {
-        if (leagueName.characters.count > 0) {
-            let league = PFLeague(name: leagueName)
-            league.saveInBackgroundWithBlock({ (success, error) -> Void in
-                if (success) {
-                    // TODO SHARE
-                    self.navigationController?.popViewControllerAnimated(true)
-                } else {
-                    // TODO
-                }
-            })
-        } else {
+        if let errorMessage = league.isValid() {
             // TODO
+        } else {
+            league.setup()
+            league.saveEventually()
+            self.navigationController?.popViewControllerAnimated(true)
         }
     }
-    
-    /*
-    func changeSport() {
-        let alertController = UIAlertController(title: "League Sport", message: nil, preferredStyle: .Alert)
-        for sport in sports {
-            let sportAction = UIAlertAction(title: sport.name, style: .Default) { (action) -> Void in
-                self.sport = sport
-            }
-            alertController.addAction(sportAction)
-        }
-
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-        alertController.addAction(cancelAction)
-        self.presentViewController(alertController, animated: true, completion: nil)
-    }*/
 
 }
 
-extension CreateLeagueViewController: UITableViewDataSource, UITableViewDelegate {
+extension CreateLeagueViewController: UITableViewDataSource, UITableViewDelegate, TextFieldTableViewCellDelegate {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 2
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("SportCell", forIndexPath: indexPath)
-        cell.textLabel?.text = "Sport"
-        //cell.detailTextLabel?.text = sport?.name
+        let cell = tableView.dequeueReusableCellWithIdentifier("InputCell", forIndexPath: indexPath) as! TextFieldTableViewCell
+        cell.delegate = self
+        if (indexPath.row == 0) {
+            cell.textField.placeholder = "League Name"
+        } else {
+            cell.textField.placeholder = "Tagline (optional)"
+        }
+        
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        //changeSport()
+    func textChanged(cell: TextFieldTableViewCell, text: String?) {
+        if let indexPath = self.tableView.indexPathForCell(cell) {
+            if (indexPath.row == 0) {
+                league.name = text
+            } else {
+                league.tagline = text
+            }
+        }
     }
     
 }

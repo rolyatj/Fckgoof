@@ -31,7 +31,7 @@ class PFEvent: PFSuperclass {
     class func upcomingEventsQuery(sport: SportType) -> PFQuery? {
         let eventQuery = PFEvent.query(sport)
         eventQuery?.whereKey("openDate", lessThan: NSDate())
-        //eventQuery?.whereKey("startDate", greaterThan: NSDate()) // TODO
+        eventQuery?.whereKey("startDate", greaterThan: NSDate())
         return eventQuery
     }
     
@@ -39,6 +39,12 @@ class PFEvent: PFSuperclass {
         let eventQuery = PFEvent.query(sport)
         eventQuery?.whereKey("startDate", lessThan: NSDate())
         eventQuery?.whereKey("endDate", greaterThan: NSDate())
+        return eventQuery
+    }
+    
+    class func recentEventsQuery(sport: SportType) -> PFQuery? {
+        let eventQuery = PFEvent.query(sport)
+        eventQuery?.whereKey("endDate", lessThan: NSDate()) // TODO cap?
         return eventQuery
     }
     

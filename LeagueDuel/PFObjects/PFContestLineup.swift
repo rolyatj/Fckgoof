@@ -27,7 +27,7 @@ class PFContestLineup: PFSuperclass {
     }
 
     class func myUpcomingContestLineupsQuery(sport: SportType) -> PFQuery? {
-        if let sport = self.sport(), let eventQuery = PFEvent.upcomingEventsQuery(sport), let lineupQuery = PFLineup.myLineupsQuery(sport), let contestQuery = PFContest.query(sport) {
+        if let eventQuery = PFEvent.upcomingEventsQuery(sport), let lineupQuery = PFLineup.myLineupsQuery(sport), let contestQuery = PFContest.query(sport) {
             contestQuery.whereKey("event", matchesQuery: eventQuery)
             let query = PFContestLineup.queryWithIncludes(sport)
             query?.whereKey("contest", matchesQuery: contestQuery)
@@ -38,9 +38,7 @@ class PFContestLineup: PFSuperclass {
     }
     
     class func myLiveContestLineupsQuery(sport: SportType) -> PFQuery? {
-        if let sport = self.sport(), let eventQuery = PFEvent.query(sport), let lineupQuery = PFLineup.myLineupsQuery(sport), let contestQuery = PFContest.query(sport) {
-            eventQuery.whereKey("startDate", lessThanOrEqualTo: NSDate())
-            eventQuery.whereKey("endDate", greaterThanOrEqualTo: NSDate())
+        if let eventQuery = PFEvent.liveEventsQuery(sport), let lineupQuery = PFLineup.myLineupsQuery(sport), let contestQuery = PFContest.query(sport) {
             contestQuery.whereKey("event", matchesQuery: eventQuery)
             let query = PFContestLineup.queryWithIncludes(sport)
             query?.whereKey("contest", matchesQuery: contestQuery)
@@ -51,8 +49,7 @@ class PFContestLineup: PFSuperclass {
     }
     
     class func myRecentContestLineupsQuery(sport: SportType) -> PFQuery? {
-        if let sport = self.sport(), let eventQuery = PFEvent.query(sport), let lineupQuery = PFLineup.myLineupsQuery(sport), let contestQuery = PFContest.query(sport) {
-            eventQuery.whereKey("endDate", lessThanOrEqualTo: NSDate())
+        if let eventQuery = PFEvent.recentEventsQuery(sport), let lineupQuery = PFLineup.myLineupsQuery(sport), let contestQuery = PFContest.query(sport) {
             contestQuery.whereKey("event", matchesQuery: eventQuery)
             let query = PFContestLineup.queryWithIncludes(sport)
             query?.whereKey("contest", matchesQuery: contestQuery)

@@ -14,16 +14,33 @@ class PFLeague: PFObject, PFSubclassing {
     @NSManaged var commissioner: PFDueler!
     @NSManaged var duelers: [String]!
     @NSManaged var name: String?
+    @NSManaged var imageURL: String?
+    @NSManaged var tagline: String?
     
     class func parseClassName() -> String {
         return "League"
     }
     
-    convenience init(name: String) {
-        self.init()
+    class func pinMyLeagues() {
+        let query = PFLeague.myLeaguesQuery()
+        query?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
+            PFObject.pinAllInBackground(objects, block: { (success, error) -> Void in
+                // TODO?
+                NSNotificationCenter.defaultCenter().postNotificationName("pinnedMyLeagues", object: nil)
+            })
+        })
+    }
+    
+    func setup() {
         self.commissioner = PFDueler.currentUser()!
         self.duelers = [PFDueler.currentUser()!.objectId!]
-        self.name = name
+    }
+    
+    func isValid() -> String? {
+        if (name ?? "").characters.count == 0 {
+            return "You need to add a name"
+        }
+        return nil
     }
     
     func isCommissioner() -> Bool {

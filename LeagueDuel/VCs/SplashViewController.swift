@@ -16,6 +16,7 @@ class SplashViewController: UIViewController {
         
         if (isValidAppVersion()) {
             if let _ = PFDueler.currentUser() {
+                setupLeagues()
                 setupPlayerEvents()
                 self.performSegueWithIdentifier("toApp", sender: nil)
             } else {
@@ -46,6 +47,10 @@ class SplashViewController: UIViewController {
         }
         alertController.addAction(okAction)
         self.presentViewController(alertController, animated: true, completion: nil)
+    }
+
+    func setupLeagues() {
+        PFLeague.pinMyLeagues()
     }
     
     func setupPlayerEvents() {

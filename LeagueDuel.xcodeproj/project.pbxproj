@@ -57,6 +57,7 @@
 		90629A2F1C90919F0083680D /* ContestHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90629A2E1C90919F0083680D /* ContestHeaderView.swift */; };
 		90629A311C9091AF0083680D /* ContestHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90629A301C9091AF0083680D /* ContestHeaderView.xib */; };
 		90629A341C9095120083680D /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90629A331C9095120083680D /* Style.swift */; };
+		90629A361C90B5760083680D /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90629A351C90B5760083680D /* TextFieldTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -113,6 +114,7 @@
 		90629A2E1C90919F0083680D /* ContestHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContestHeaderView.swift; sourceTree = "<group>"; };
 		90629A301C9091AF0083680D /* ContestHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestHeaderView.xib; sourceTree = "<group>"; };
 		90629A331C9095120083680D /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		90629A351C90B5760083680D /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		90F7B2241C889B27003FBE49 /* LeagueDuel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeagueDuel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9C391357D720FBAC7B3D93D /* Pods-LeagueDuel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeagueDuel.release.xcconfig"; path = "Pods/Target Support Files/Pods-LeagueDuel/Pods-LeagueDuel.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -206,6 +208,7 @@
 				900E11CB1C8F9EF300C4B7A4 /* LineupTableViewCell.swift */,
 				90629A2E1C90919F0083680D /* ContestHeaderView.swift */,
 				90629A301C9091AF0083680D /* ContestHeaderView.xib */,
+				90629A351C90B5760083680D /* TextFieldTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -536,6 +539,7 @@
 				900E11F01C8F9EF300C4B7A4 /* LiveContestsViewController.swift in Sources */,
 				900E11DD1C8F9EF300C4B7A4 /* PFMLBEvent.swift in Sources */,
 				900E11E01C8F9EF300C4B7A4 /* PFMLBPlayer.swift in Sources */,
+				90629A361C90B5760083680D /* TextFieldTableViewCell.swift in Sources */,
 				900E11F11C8F9EF300C4B7A4 /* PlayerPickerViewController.swift in Sources */,
 				900E11D21C8F9EF300C4B7A4 /* MLBEditableContestLineup.swift in Sources */,
 				900E11D11C8F9EF300C4B7A4 /* EditableContestLineup.swift in Sources */,
