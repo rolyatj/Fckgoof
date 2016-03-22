@@ -11,7 +11,7 @@ import Parse
 
 class PFTeam: PFSuperclass {
 
-    @NSManaged var name: String?
+    @NSManaged var teamName: String?
     
     // SUPERCLASSING
     

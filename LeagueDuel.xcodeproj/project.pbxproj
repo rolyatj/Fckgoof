@@ -58,6 +58,11 @@
 		90629A311C9091AF0083680D /* ContestHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90629A301C9091AF0083680D /* ContestHeaderView.xib */; };
 		90629A341C9095120083680D /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90629A331C9095120083680D /* Style.swift */; };
 		90629A361C90B5760083680D /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90629A351C90B5760083680D /* TextFieldTableViewCell.swift */; };
+		908308F71CA17C1B0015AD07 /* ResultRaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908308F61CA17C1B0015AD07 /* ResultRaceView.swift */; };
+		908308F91CA17F0E0015AD07 /* LeagueContestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908308F81CA17F0E0015AD07 /* LeagueContestViewController.swift */; };
+		908308FB1CA182750015AD07 /* PlayerEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908308FA1CA182750015AD07 /* PlayerEventTableViewCell.swift */; };
+		908528FD1CA1AA5A000E606E /* PlayerEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908528FC1CA1AA5A000E606E /* PlayerEventViewController.swift */; };
+		908529001CA1D1B2000E606E /* LDTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908528FF1CA1D1B2000E606E /* LDTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,6 +120,11 @@
 		90629A301C9091AF0083680D /* ContestHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestHeaderView.xib; sourceTree = "<group>"; };
 		90629A331C9095120083680D /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		90629A351C90B5760083680D /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		908308F61CA17C1B0015AD07 /* ResultRaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultRaceView.swift; sourceTree = "<group>"; };
+		908308F81CA17F0E0015AD07 /* LeagueContestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueContestViewController.swift; sourceTree = "<group>"; };
+		908308FA1CA182750015AD07 /* PlayerEventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerEventTableViewCell.swift; sourceTree = "<group>"; };
+		908528FC1CA1AA5A000E606E /* PlayerEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerEventViewController.swift; sourceTree = "<group>"; };
+		908528FF1CA1D1B2000E606E /* LDTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDTabBarController.swift; sourceTree = "<group>"; };
 		90F7B2241C889B27003FBE49 /* LeagueDuel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeagueDuel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9C391357D720FBAC7B3D93D /* Pods-LeagueDuel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeagueDuel.release.xcconfig"; path = "Pods/Target Support Files/Pods-LeagueDuel/Pods-LeagueDuel.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -193,8 +203,10 @@
 				900E11FB1C8FA02A00C4B7A4 /* Leagues */,
 				900E11FC1C8FA03800C4B7A4 /* Upcoming */,
 				900E11FD1C8FA03E00C4B7A4 /* Live */,
-				900E11FF1C8FA04F00C4B7A4 /* Profile */,
 				900E11FE1C8FA04B00C4B7A4 /* Recent */,
+				908528FE1CA1AA60000E606E /* Player */,
+				900E11FF1C8FA04F00C4B7A4 /* Profile */,
+				908528FF1CA1D1B2000E606E /* LDTabBarController.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -206,9 +218,11 @@
 				900E11C91C8F9EF200C4B7A4 /* EventTableViewCell.swift */,
 				900E11CA1C8F9EF200C4B7A4 /* LeagueTableViewCell.swift */,
 				900E11CB1C8F9EF300C4B7A4 /* LineupTableViewCell.swift */,
+				908308FA1CA182750015AD07 /* PlayerEventTableViewCell.swift */,
 				90629A2E1C90919F0083680D /* ContestHeaderView.swift */,
 				90629A301C9091AF0083680D /* ContestHeaderView.xib */,
 				90629A351C90B5760083680D /* TextFieldTableViewCell.swift */,
+				908308F61CA17C1B0015AD07 /* ResultRaceView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -237,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				900E11C01C8F9EF200C4B7A4 /* LiveContestsViewController.swift */,
+				908308F81CA17F0E0015AD07 /* LeagueContestViewController.swift */,
 			);
 			name = Live;
 			sourceTree = "<group>";
@@ -349,8 +364,8 @@
 		900E120A1C8FA0BA00C4B7A4 /* PFTeam */ = {
 			isa = PBXGroup;
 			children = (
-				900E11B21C8F9EF200C4B7A4 /* PFMLBTeam.swift */,
 				900E11B81C8F9EF200C4B7A4 /* PFTeam.swift */,
+				900E11B21C8F9EF200C4B7A4 /* PFMLBTeam.swift */,
 			);
 			name = PFTeam;
 			sourceTree = "<group>";
@@ -373,6 +388,14 @@
 				900E119E1C8F9EF200C4B7A4 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		908528FE1CA1AA60000E606E /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				908528FC1CA1AA5A000E606E /* PlayerEventViewController.swift */,
+			);
+			name = Player;
 			sourceTree = "<group>";
 		};
 		90F7B21B1C889B27003FBE49 = {
@@ -522,17 +545,20 @@
 				900E11E41C8F9EF300C4B7A4 /* PFPlayer.swift in Sources */,
 				900E11EB1C8F9EF300C4B7A4 /* CreateLineupViewController.swift in Sources */,
 				900E11D41C8F9EF300C4B7A4 /* PFContestLineup.swift in Sources */,
+				908528FD1CA1AA5A000E606E /* PlayerEventViewController.swift in Sources */,
 				900E11DB1C8F9EF300C4B7A4 /* PFMLBContest.swift in Sources */,
 				900E11ED1C8F9EF300C4B7A4 /* EditLineupViewController.swift in Sources */,
 				900E11E21C8F9EF300C4B7A4 /* PFMLBPlayerEventResult.swift in Sources */,
 				900E11EF1C8F9EF300C4B7A4 /* LeagueViewController.swift in Sources */,
 				900E11EA1C8F9EF300C4B7A4 /* CreateLeagueViewController.swift in Sources */,
 				900E11D31C8F9EF300C4B7A4 /* PFContest.swift in Sources */,
+				908308FB1CA182750015AD07 /* PlayerEventTableViewCell.swift in Sources */,
 				900E11D51C8F9EF300C4B7A4 /* PFDueler.swift in Sources */,
 				900E11EE1C8F9EF300C4B7A4 /* LeaguesViewController.swift in Sources */,
 				900E11CC1C8F9EF300C4B7A4 /* AppDelegate.swift in Sources */,
 				900E11E91C8F9EF300C4B7A4 /* PFTeam.swift in Sources */,
 				900E11F61C8F9EF300C4B7A4 /* UpcomingContestsViewController.swift in Sources */,
+				908529001CA1D1B2000E606E /* LDTabBarController.swift in Sources */,
 				900E11DE1C8F9EF300C4B7A4 /* PFMLBGame.swift in Sources */,
 				900E11EC1C8F9EF300C4B7A4 /* EditLeagueViewController.swift in Sources */,
 				900E11E51C8F9EF300C4B7A4 /* PFPlayerEvent.swift in Sources */,
@@ -556,6 +582,8 @@
 				900E11DC1C8F9EF300C4B7A4 /* PFMLBContestLineup.swift in Sources */,
 				900E11E81C8F9EF300C4B7A4 /* PFSuperclassing.swift in Sources */,
 				900E11F51C8F9EF300C4B7A4 /* SplashViewController.swift in Sources */,
+				908308F71CA17C1B0015AD07 /* ResultRaceView.swift in Sources */,
+				908308F91CA17F0E0015AD07 /* LeagueContestViewController.swift in Sources */,
 				900E11F21C8F9EF300C4B7A4 /* ProfileViewController.swift in Sources */,
 				900E11E71C8F9EF300C4B7A4 /* PFSport.swift in Sources */,
 				900E11E61C8F9EF300C4B7A4 /* PFPlayerEventResult.swift in Sources */,
@@ -623,7 +651,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -662,7 +690,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -676,6 +704,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "$(SRCROOT)/LeagueDuel/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.arborapps.Leagueduel;
 				PRODUCT_NAME = LeagueDuel;
@@ -689,6 +718,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "$(SRCROOT)/LeagueDuel/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.arborapps.Leagueduel;
 				PRODUCT_NAME = LeagueDuel;

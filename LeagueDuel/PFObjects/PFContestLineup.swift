@@ -59,6 +59,12 @@ class PFContestLineup: PFSuperclass {
         return nil
     }
     
+    class func leagueContestLineupsQuery(sport: SportType, contest: PFContest) -> PFQuery? {
+        let query = PFContestLineup.queryWithIncludes(sport)
+        query?.whereKey("contest", equalTo: contest)
+        return query
+    }
+    
     // SUPERCLASSING
     
     override class func queryWithIncludes(sport: SportType) -> PFQuery? {
@@ -66,26 +72,13 @@ class PFContestLineup: PFSuperclass {
         query?.includeKey("contest")
         query?.includeKey("contest.league")
         query?.includeKey("lineup")
-        query?.includeKey("lineup.playerEvents0")
-        query?.includeKey("lineup.playerEvents1")
-        query?.includeKey("lineup.playerEvents2")
-        query?.includeKey("lineup.playerEvents3")
-        query?.includeKey("lineup.playerEvents4")
-        query?.includeKey("lineup.playerEvents5")
-        query?.includeKey("lineup.playerEvents6")
-        query?.includeKey("lineup.playerEvents7")
-        query?.includeKey("lineup.playerEvents8")
-        query?.includeKey("lineup.playerEvents9")
-        query?.includeKey("lineup.playerEvents0.player")
-        query?.includeKey("lineup.playerEvents1.player")
-        query?.includeKey("lineup.playerEvents2.player")
-        query?.includeKey("lineup.playerEvents3.player")
-        query?.includeKey("lineup.playerEvents4.player")
-        query?.includeKey("lineup.playerEvents5.player")
-        query?.includeKey("lineup.playerEvents6.player")
-        query?.includeKey("lineup.playerEvents7.player")
-        query?.includeKey("lineup.playerEvents8.player")
-        query?.includeKey("lineup.playerEvents9.player")
+        query?.includeKey("lineup.dueler")
+        for i in 0...9 {
+            query?.includeKey("lineup.playerEvents\(i)")
+            query?.includeKey("lineup.playerEvents\(i).player")
+            query?.includeKey("lineup.playerEvents\(i).result")
+        }
+
         return query
     }
     

@@ -74,6 +74,10 @@ class EditableContestLineup: NSObject {
         return nil
     }
     
+    func hasSelectedPlayerEvent(playerEvent: PFPlayerEvent) -> Bool {
+        return false
+    }
+    
 }
 
 extension EditableContestLineup: PlayerPickerViewControllerDelegate {
@@ -82,5 +86,10 @@ extension EditableContestLineup: PlayerPickerViewControllerDelegate {
     }
     func playerPickerDidSelectPlayerEvent(playerEvent: PFPlayerEvent) {
         swappingPlayerEvent = nil
+        togglePlayerEvent(playerEvent)
+    }
+    
+    func togglePlayerEvent(playerEvent: PFPlayerEvent) {
+        // subclassed
     }
 }

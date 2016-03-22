@@ -145,11 +145,21 @@ class MLBEditableContestLineup: EditableContestLineup {
         return playerEvent
     }
     
-    override func playerPickerDidCancel() {
-        swappingPlayerEvent = nil
+    override func hasSelectedPlayerEvent(playerEvent: PFPlayerEvent) -> Bool {
+        var hasSelectedPlayerEvent = false
+        if let playerEvent = playerEvent as? PFMLBPlayerEvent {
+            if let positionType = playerEvent.player.positionType(), let position = MLBPosition(rawValue: positionType) {
+                if let playerEvents = posititionPlayerEvents[position] {
+                    hasSelectedPlayerEvent = playerEvents.containsObject(playerEvent)
+                }
+            }
+        }
+        return hasSelectedPlayerEvent
     }
     
-    override func playerPickerDidSelectPlayerEvent(playerEvent: PFPlayerEvent) {
+    // DELEGATE
+    
+    override func togglePlayerEvent(playerEvent: PFPlayerEvent) {
         if let playerEvent = playerEvent as? PFMLBPlayerEvent {
             if let positionType = playerEvent.player.positionType(), let position = MLBPosition(rawValue: positionType) {
                 if let swappingMLBPlayerEvent = swappingMLBPlayerEvent {
@@ -161,7 +171,11 @@ class MLBEditableContestLineup: EditableContestLineup {
                 }
                 if let playerEvents = posititionPlayerEvents[position] {
                     if (playerEvents.count < mlbEvent.numberOfSpots(positionType)) {
-                        playerEvents.addObject(playerEvent)
+                        if (playerEvents.containsObject(playerEvent)) {
+                            playerEvents.removeObject(playerEvent)
+                        } else {
+                            playerEvents.addObject(playerEvent)
+                        }
                         posititionPlayerEvents[position] = playerEvents
                     }
                 } else {
@@ -169,7 +183,5 @@ class MLBEditableContestLineup: EditableContestLineup {
                 }
             }
         }
-
-        swappingPlayerEvent = nil
     }
 }

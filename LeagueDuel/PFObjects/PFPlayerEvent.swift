@@ -12,9 +12,14 @@ import Parse
 class PFPlayerEvent: PFSuperclass {
     
     @NSManaged var salary: Int
+    @NSManaged var percentRemaining: Float
     @NSManaged var event: PFEvent!
     @NSManaged var player: PFPlayer!
     @NSManaged var result: PFPlayerEventResult!
+    
+    func toString() -> String? {
+        return "TODO"
+    }
     
     class func pinAllPlayersForEvent(event: PFEvent) {
         if let sport = event.dynamicType.sport() {
@@ -31,11 +36,23 @@ class PFPlayerEvent: PFSuperclass {
         }
     }
     
+    class func recentPlayerEventsForPlayerEvent(sport: SportType, playerEvent: PFPlayerEvent) -> PFQuery? {
+        // TODO
+        if let recentEventsQuery = PFEvent.liveEventsQuery(sport) {
+            let query = PFPlayerEvent.queryWithIncludes(sport)
+            query?.whereKey("event", matchesQuery: recentEventsQuery)
+            query?.whereKey("player", equalTo: playerEvent.player)
+            return query
+        }
+        return nil
+    }
+    
     // SUPERCLASSING
     
     override class func queryWithIncludes(sport: SportType) -> PFQuery? {
         let query = PFPlayerEvent.query(sport)
         query?.includeKey("player")
+        query?.includeKey("player.team")
         query?.includeKey("result")
         return query
     }

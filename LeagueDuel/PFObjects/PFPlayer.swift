@@ -13,6 +13,7 @@ class PFPlayer: PFSuperclass {
     
     @NSManaged var name: String?
     @NSManaged var position: String?
+    @NSManaged var team: PFTeam?
     
     func positionType() -> Int? {
         return nil

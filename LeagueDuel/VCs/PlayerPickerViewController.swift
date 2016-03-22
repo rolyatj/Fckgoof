@@ -113,6 +113,17 @@ class PlayerPickerViewController: UIViewController, UISearchBarDelegate {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "toSelectablePlayerEvent") {
+            if let vc = segue.destinationViewController as? SelectablePlayerEventViewController {
+                vc.playerEvent = sender as! PFPlayerEvent
+                vc.delegate = self.delegate
+                vc.editableContestLineup = editableContestLineup
+            }
+        }
+    }
+    
 }
 
 extension PlayerPickerViewController: UITableViewDataSource, UITableViewDelegate {
@@ -122,18 +133,27 @@ extension PlayerPickerViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("PlayerCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("SelectablePlayerEventCell", forIndexPath: indexPath) as! SelectablePlayerEventTableViewCell
         let playerEvent = playerEventsFiltered[indexPath.row]
-        cell.textLabel?.text = playerEvent.player.name
-        cell.detailTextLabel?.text = "\(playerEvent.salary)"
+        cell.configureWithPlayerEvent(playerEvent)
+        cell.delegate = self
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let playerEvent = playerEventsFiltered[indexPath.row]
-        delegate?.playerPickerDidSelectPlayerEvent(playerEvent)
-        dismissViewControllerAnimated(true, completion: nil)
+        performSegueWithIdentifier("toSelectablePlayerEvent", sender: playerEvent)
     }
     
+}
+
+extension PlayerPickerViewController: SelectablePlayerEventTableViewCellDelegate {
+    func selectTapped(cell: SelectablePlayerEventTableViewCell) {
+        if let indexPath = tableView.indexPathForCell(cell) {
+            let playerEvent = playerEventsFiltered[indexPath.row]
+            delegate?.playerPickerDidSelectPlayerEvent(playerEvent)
+            dismissViewControllerAnimated(true, completion: nil)
+        }
+    }
 }

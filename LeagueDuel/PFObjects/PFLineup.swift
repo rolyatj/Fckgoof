@@ -22,6 +22,8 @@ class PFLineup: PFSuperclass {
     @NSManaged var playerEvents7: [PFPlayerEvent]!
     @NSManaged var playerEvents8: [PFPlayerEvent]!
     @NSManaged var playerEvents9: [PFPlayerEvent]!
+    @NSManaged var score: Float
+    @NSManaged var rank: Int
 
     class func lineupFromEditableLineup(sport: SportType, editableContestLineup: EditableContestLineup) -> PFLineup {
         switch (sport) {
@@ -36,6 +38,41 @@ class PFLineup: PFSuperclass {
     
     func positionMapping() -> [Int: [PFPlayerEvent]]? {
         return nil
+    }
+    
+    func allPlayerEvents() -> [PFPlayerEvent] {
+        var allPlayers = [PFPlayerEvent]()
+        if let playerEvents0 = playerEvents0 {
+            allPlayers += playerEvents0
+        }
+        if let playerEvents1 = playerEvents1 {
+            allPlayers += playerEvents1
+        }
+        if let playerEvents2 = playerEvents2 {
+            allPlayers += playerEvents2
+        }
+        if let playerEvents3 = playerEvents3 {
+            allPlayers += playerEvents3
+        }
+        if let playerEvents4 = playerEvents4 {
+            allPlayers += playerEvents4
+        }
+        if let playerEvents5 = playerEvents5 {
+            allPlayers += playerEvents5
+        }
+        if let playerEvents6 = playerEvents6 {
+            allPlayers += playerEvents6
+        }
+        if let playerEvents7 = playerEvents7 {
+            allPlayers += playerEvents7
+        }
+        if let playerEvents8 = playerEvents8 {
+            allPlayers += playerEvents8
+        }
+        if let playerEvents9 = playerEvents9 {
+            allPlayers += playerEvents9
+        }
+        return allPlayers
     }
     
     class func myLineupsQuery(sport: SportType) -> PFQuery? {

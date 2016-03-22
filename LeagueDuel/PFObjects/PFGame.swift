@@ -16,6 +16,10 @@ class PFGame: PFSuperclass {
     @NSManaged var event: PFEvent!
     @NSManaged var startDate: NSDate!
     
+    func toString() -> String? {
+        return "\(awayTeam.teamName ?? "") @ \(homeTeam.teamName ?? "") \(startDate)"
+    }
+    
     class func pinAllGamesForEvent(event: PFEvent) {
         if let sport = event.dynamicType.sport() {
             let query = PFGame.queryWithIncludes(sport)
@@ -31,6 +35,23 @@ class PFGame: PFSuperclass {
         }
     }
     
+    class func gamesForTeam(sport: SportType, team: PFTeam, event: PFEvent) -> PFQuery? {
+        if let queryH = PFGame.query(sport), let queryA = PFGame.query(sport) {
+            queryH.whereKey("event", equalTo: event)
+            queryA.whereKey("event", equalTo: event)
+            queryH.whereKey("homeTeam", equalTo: team)
+            queryA.whereKey("awayTeam", equalTo: team)
+            let query = PFQuery.orQueryWithSubqueries([queryH, queryA])
+            PFGame.addIncludes(query)
+            return query
+        }
+        return nil
+    }
+    
+    class func addIncludes(query: PFQuery) {
+        query.includeKey("homeTeam")
+        query.includeKey("awayTeam")
+    }
     
     // SUPERCLASSING
     
