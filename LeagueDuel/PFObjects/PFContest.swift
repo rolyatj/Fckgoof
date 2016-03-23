@@ -12,6 +12,7 @@ import Parse
 class PFContest: PFSuperclass {
     
     @NSManaged var league: PFLeague!
+    @NSManaged var leagueId: String?
     @NSManaged var event: PFEvent!
     
     class func contestWithSport(sport: SportType, league: PFLeague, event: PFEvent) -> PFContest {
@@ -19,6 +20,7 @@ class PFContest: PFSuperclass {
         case .MLB:
             let contest = PFMLBContest()
             contest.league = league
+            contest.leagueId = league.objectId
             contest.event = event
             return contest
         }
@@ -29,48 +31,6 @@ class PFContest: PFSuperclass {
         contestQuery?.whereKey("league", equalTo: league)
         return contestQuery
     }
-    
-    /*
-    class func myLineupsQuery() -> PFQuery? {
-    if let leagueQuery = PFLeague.query(), let lineupQuery = PFLineup.queryWithIncludes(), let teamQuery = PFLineup.query(), let user = PFDueler.currentUser(), let userId = user.objectId {
-    teamQuery.whereKey("dueler", equalTo: user)
-    leagueQuery.whereKey("duelers", containsAllObjectsInArray: [userId])
-    lineupQuery.whereKey("league", matchesQuery: leagueQuery)
-    return lineupQuery
-    }
-    return nil
-    }
-    
-    class func myUpcomingLineupsQuery() -> PFQuery? {
-    if let eventQuery = PFEvent.query() {
-    eventQuery.whereKey("startDate", greaterThanOrEqualTo: NSDate())
-    let query = PFLineup.myLineupsQuery()
-    query?.whereKey("event", matchesQuery: eventQuery)
-    return query
-    }
-    return nil
-    }
-    
-    class func myLiveLineupsQuery() -> PFQuery? {
-    if let eventQuery = PFEvent.query() {
-    eventQuery.whereKey("startDate", lessThanOrEqualTo: NSDate())
-    eventQuery.whereKey("endDate", greaterThanOrEqualTo: NSDate())
-    let query = PFLineup.myLineupsQuery()
-    query?.whereKey("event", matchesQuery: eventQuery)
-    return query
-    }
-    return nil
-    }
-    
-    class func myRecentLineupsQuery() -> PFQuery? {
-    if let eventQuery = PFEvent.query() {
-    eventQuery.whereKey("endDate", lessThanOrEqualTo: NSDate())
-    let query = PFLineup.myLineupsQuery()
-    query?.whereKey("event", matchesQuery: eventQuery)
-    return query
-    }
-    return nil
-    }*/
     
     // SUPERCLASSING
     

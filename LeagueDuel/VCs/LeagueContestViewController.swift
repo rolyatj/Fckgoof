@@ -10,59 +10,18 @@ import UIKit
 
 class LeagueContestViewController: UIViewController {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: LeagueContestTableView!
     var contest: PFContest!
     var contestLineups = [PFContestLineup]() {
         didSet {
-            self.tableView?.reloadData()
+            self.tableView?.contestLineups = contestLineups
         }
-    }
-    var selectedLineup: Int?
-    
-    func changeSelectedLineup(newSelectedLineup: Int?) {
-        tableView.beginUpdates()
-        if (newSelectedLineup == selectedLineup) {
-            if let selectedLineup = selectedLineup {
-                deselectLineup(selectedLineup)
-            }
-            selectedLineup = nil
-        } else {
-            if let selectedLineup = selectedLineup {
-                deselectLineup(selectedLineup)
-            }
-            if let newSelectedLineup = newSelectedLineup {
-                selectLineup(newSelectedLineup)
-            }
-            selectedLineup = newSelectedLineup
-        }
-        tableView.endUpdates()
-        if let newSelectedLineup = newSelectedLineup {
-            tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: newSelectedLineup), atScrollPosition: .Top, animated: true)
-        }
-    }
-    
-    func deselectLineup(lineupIndex: Int) {
-        let contestLineup = contestLineups[lineupIndex]
-        var indexPaths = [NSIndexPath]()
-        for i in 1...contestLineup.lineup.allPlayerEvents().count {
-            indexPaths.append(NSIndexPath(forRow: i, inSection: lineupIndex))
-        }
-        tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
-        tableView.deselectRowAtIndexPath(NSIndexPath(forRow: 0, inSection: lineupIndex), animated: true)
-    }
-    
-    func selectLineup(lineupIndex: Int) {
-        let contestLineup = contestLineups[lineupIndex]
-        var indexPaths = [NSIndexPath]()
-        for i in 1...contestLineup.lineup.allPlayerEvents().count {
-            indexPaths.append(NSIndexPath(forRow: i, inSection: lineupIndex))
-        }
-        tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
-        tableView.selectRowAtIndexPath(NSIndexPath(forRow: 0, inSection: lineupIndex), animated: true, scrollPosition: .Middle)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.lcDelegate = self
         
         fetchContests()
     }
@@ -97,13 +56,91 @@ class LeagueContestViewController: UIViewController {
             if let vc = segue.destinationViewController as? PlayerEventViewController {
                 vc.playerEvent = sender as! PFPlayerEvent
             }
+        } else if (segue.identifier == "toDueler") {
+            if let vc = segue.destinationViewController as? LeagueDuelTeamViewController {
+                vc.duelTeam = sender as! PFDuelTeam
+                vc.league = contest.league
+            }
         }
     }
     
 
 }
 
-extension LeagueContestViewController: UITableViewDataSource, UITableViewDelegate {
+extension LeagueContestViewController: LeagueContestTableViewDelegate {
+    
+    func duelTeamTapped(duelTeam: PFDuelTeam) {
+        performSegueWithIdentifier("toDueler", sender:duelTeam)
+    }
+    
+    func playerEventTapped(playerEvent: PFPlayerEvent) {
+        performSegueWithIdentifier("toPlayerEvent", sender: playerEvent)
+    }
+    
+}
+
+protocol LeagueContestTableViewDelegate {
+    func duelTeamTapped(duelTeam: PFDuelTeam)
+    func playerEventTapped(playerEvent: PFPlayerEvent)
+}
+
+class LeagueContestTableView: UITableView, UITableViewDataSource, UITableViewDelegate {
+    
+    var lcDelegate: LeagueContestTableViewDelegate?
+    var contestLineups = [PFContestLineup]() {
+        didSet {
+            self.reloadData()
+        }
+    }
+    var selectedLineup: Int?
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.delegate = self
+        self.dataSource = self
+    }
+    
+    func changeSelectedLineup(newSelectedLineup: Int?) {
+        self.beginUpdates()
+        if (newSelectedLineup == selectedLineup) {
+            if let selectedLineup = selectedLineup {
+                deselectLineup(selectedLineup)
+            }
+            selectedLineup = nil
+        } else {
+            if let selectedLineup = selectedLineup {
+                deselectLineup(selectedLineup)
+            }
+            if let newSelectedLineup = newSelectedLineup {
+                selectLineup(newSelectedLineup)
+            }
+            selectedLineup = newSelectedLineup
+        }
+        self.endUpdates()
+        if let newSelectedLineup = newSelectedLineup {
+            self.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: newSelectedLineup), atScrollPosition: .Top, animated: true)
+        }
+    }
+    
+    func deselectLineup(lineupIndex: Int) {
+        let contestLineup = contestLineups[lineupIndex]
+        var indexPaths = [NSIndexPath]()
+        for i in 1...contestLineup.lineup.allPlayerEvents().count {
+            indexPaths.append(NSIndexPath(forRow: i, inSection: lineupIndex))
+        }
+        self.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+        self.deselectRowAtIndexPath(NSIndexPath(forRow: 0, inSection: lineupIndex), animated: true)
+    }
+    
+    func selectLineup(lineupIndex: Int) {
+        let contestLineup = contestLineups[lineupIndex]
+        var indexPaths = [NSIndexPath]()
+        for i in 1...contestLineup.lineup.allPlayerEvents().count {
+            indexPaths.append(NSIndexPath(forRow: i, inSection: lineupIndex))
+        }
+        self.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+        self.selectRowAtIndexPath(NSIndexPath(forRow: 0, inSection: lineupIndex), animated: true, scrollPosition: .Middle)
+    }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return contestLineups.count
@@ -145,22 +182,25 @@ extension LeagueContestViewController: UITableViewDataSource, UITableViewDelegat
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if (indexPath.row == 0) {
+            let contestLineup = contestLineups[indexPath.section]
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             changeSelectedLineup(nil)
+            lcDelegate?.duelTeamTapped(contestLineup.lineup.duelTeam)
+
         } else {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             let contestLineup = contestLineups[indexPath.section]
             let playerEvent = contestLineup.lineup.allPlayerEvents()[indexPath.row-1]
-            performSegueWithIdentifier("toPlayerEvent", sender: playerEvent)
+            lcDelegate?.playerEventTapped(playerEvent)
         }
     }
     
 }
 
-extension LeagueContestViewController: LineupTableViewCellDelegate {
+extension LeagueContestTableView: LineupTableViewCellDelegate {
     
     func lineupCellDropdownTapped(cell: UITableViewCell, selected: Bool) {
-        if let indexPath = tableView.indexPathForCell(cell) {
+        if let indexPath = self.indexPathForCell(cell) {
             changeSelectedLineup(indexPath.section)
         }
     }

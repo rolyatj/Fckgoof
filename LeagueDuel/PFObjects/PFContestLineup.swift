@@ -27,18 +27,28 @@ class PFContestLineup: PFSuperclass {
     }
 
     class func myUpcomingContestLineupsQuery(sport: SportType) -> PFQuery? {
-        if let eventQuery = PFEvent.upcomingEventsQuery(sport), let lineupQuery = PFLineup.myLineupsQuery(sport), let contestQuery = PFContest.query(sport) {
-            contestQuery.whereKey("event", matchesQuery: eventQuery)
-            let query = PFContestLineup.queryWithIncludes(sport)
-            query?.whereKey("contest", matchesQuery: contestQuery)
-            query?.whereKey("lineup", matchesQuery: lineupQuery)
-            return query
+        if let user = PFDueler.currentUser() {
+            return PFContestLineup.upcomingContestLineupsQueryForUser(sport, user: user)
         }
         return nil
     }
     
     class func myLiveContestLineupsQuery(sport: SportType) -> PFQuery? {
-        if let eventQuery = PFEvent.liveEventsQuery(sport), let lineupQuery = PFLineup.myLineupsQuery(sport), let contestQuery = PFContest.query(sport) {
+        if let user = PFDueler.currentUser() {
+            return PFContestLineup.liveContestLineupsQueryForUser(sport, user: user)
+        }
+        return nil
+    }
+    
+    class func myRecentContestLineupsQuery(sport: SportType) -> PFQuery? {
+        if let user = PFDueler.currentUser() {
+            return PFContestLineup.recentContestLineupsQueryForUser(sport, user: user)
+        }
+        return nil
+    }
+    
+    class func upcomingContestLineupsQueryForUser(sport: SportType, user: PFDueler) -> PFQuery? {
+        if let eventQuery = PFEvent.upcomingEventsQuery(sport), let lineupQuery = PFLineup.lineupsQueryForUser(sport, user: user), let contestQuery = PFContest.query(sport) {
             contestQuery.whereKey("event", matchesQuery: eventQuery)
             let query = PFContestLineup.queryWithIncludes(sport)
             query?.whereKey("contest", matchesQuery: contestQuery)
@@ -48,8 +58,30 @@ class PFContestLineup: PFSuperclass {
         return nil
     }
     
-    class func myRecentContestLineupsQuery(sport: SportType) -> PFQuery? {
-        if let eventQuery = PFEvent.recentEventsQuery(sport), let lineupQuery = PFLineup.myLineupsQuery(sport), let contestQuery = PFContest.query(sport) {
+    class func liveContestLineupsQueryForUser(sport: SportType, user: PFDueler) -> PFQuery? {
+        if let eventQuery = PFEvent.liveEventsQuery(sport), let lineupQuery = PFLineup.lineupsQueryForUser(sport, user: user), let contestQuery = PFContest.query(sport) {
+            contestQuery.whereKey("event", matchesQuery: eventQuery)
+            let query = PFContestLineup.queryWithIncludes(sport)
+            query?.whereKey("contest", matchesQuery: contestQuery)
+            query?.whereKey("lineup", matchesQuery: lineupQuery)
+            return query
+        }
+        return nil
+    }
+    
+    class func recentContestLineupsQueryForUser(sport: SportType, user: PFDueler) -> PFQuery? {
+        if let eventQuery = PFEvent.recentEventsQuery(sport), let lineupQuery = PFLineup.lineupsQueryForUser(sport, user: user), let contestQuery = PFContest.query(sport) {
+            contestQuery.whereKey("event", matchesQuery: eventQuery)
+            let query = PFContestLineup.queryWithIncludes(sport)
+            query?.whereKey("contest", matchesQuery: contestQuery)
+            query?.whereKey("lineup", matchesQuery: lineupQuery)
+            return query
+        }
+        return nil
+    }
+    
+    class func recentContestLineupsQueryForDuelTeam(sport: SportType, duelTeam: PFDuelTeam) -> PFQuery? {
+        if let eventQuery = PFEvent.recentEventsQuery(sport), let lineupQuery = PFLineup.lineupsQueryForDuelTeam(sport, duelTeam: duelTeam), let contestQuery = PFContest.query(sport) {
             contestQuery.whereKey("event", matchesQuery: eventQuery)
             let query = PFContestLineup.queryWithIncludes(sport)
             query?.whereKey("contest", matchesQuery: contestQuery)

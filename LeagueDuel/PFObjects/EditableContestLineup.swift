@@ -39,6 +39,10 @@ class EditableContestLineup: NSObject {
         return nil
     }
     
+    func setupWithLineup(lineup: PFLineup) {
+        
+    }
+    
     func currentSalary() -> Int {
         return 0
     }
@@ -68,6 +72,10 @@ class EditableContestLineup: NSObject {
     
     func numberOfSpotsForPosition(position: Int) -> Int {
         return 0
+    }
+    
+    func titleForPosition(position: Int) -> String? {
+        return nil
     }
     
     func playerEventForPositionSpot(position: Int, spot: Int) -> PFPlayerEvent? {

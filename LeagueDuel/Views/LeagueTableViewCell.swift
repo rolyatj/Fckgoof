@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import SDWebImage
 
 class LeagueTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var leagueImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,9 +26,17 @@ class LeagueTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        leagueImageView.sd_cancelCurrentImageLoad()
+    }
+    
     func configureWithLeague(league: PFLeague) {
         nameLabel.text = league.name
-        descriptionLabel.text = "TODO"
+        descriptionLabel.text = league.tagline
+        if let imageURL = league.imageURL, let url = NSURL(string: imageURL) {
+            leagueImageView.sd_setImageWithURL(url)
+        }
     }
 
 }

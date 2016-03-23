@@ -12,15 +12,17 @@ import Parse
 class PFFlag: PFObject, PFSubclassing {
     
     @NSManaged var userFlagged: PFDueler?
+    @NSManaged var teamFlagged: PFDuelTeam?
     @NSManaged var userFlagging: PFDueler?
     
     class func parseClassName() -> String {
         return "Flag"
     }
     
-    convenience init(userFlagging: PFDueler) {
+    convenience init(userFlagged: PFDueler, teamFlagged: PFDuelTeam) {
         self.init()
-        self.userFlagged = userFlagging
+        self.userFlagged = userFlagged
+        self.teamFlagged = teamFlagged
         self.userFlagging = PFDueler.currentUser()
     }
 }

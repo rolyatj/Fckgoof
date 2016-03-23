@@ -9,26 +9,14 @@
 import UIKit
 
 class CreateLineupViewController: SetLineupViewController {
-    
-    @IBOutlet weak var selectedLeagueButton: UIButton!
-    
+        
     var event: PFEvent!
-    
-    var league: PFLeague?/* {
-        didSet {
-            if let selectedLeague = selectedLeague {
-                selectedLeagueButton?.setTitle(selectedLeague.name, forState: .Normal)
-            } else {
-                selectedLeagueButton?.setTitle("Select League", forState: .Normal)
-            }
-        }
-    }*/
     
     override func viewDidLoad() {
         super.viewDidLoad()
         editableContestLineup = EditableContestLineup.editableContestLineupWithEvent(event)
         contestHeaderView.titleLabel.text = event.name
-        contestHeaderView.subtitleLabel.text = league?.name?.uppercaseString
+        contestHeaderView.subtitleLabel.text = duelTeam.league?.name?.uppercaseString
     }
     
     @IBAction override func submitTapped(sender: AnyObject) {
@@ -36,17 +24,17 @@ class CreateLineupViewController: SetLineupViewController {
             // TODO
         } else {
             // check if there is an existing contest for selected league
-            if let league = league {
-                checkIfExistingContest(league, event: event)
+            if let duelTeam = duelTeam {
+                checkIfExistingContest(duelTeam, event: event)
             }
         }
 
     }
     
-    func checkIfExistingContest(league: PFLeague, event: PFEvent) {
+    func checkIfExistingContest(duelTeam: PFDuelTeam, event: PFEvent) {
         if let sport = event.dynamicType.sport() {
             let query = PFContest.query(sport)
-            query?.whereKey("league", equalTo: league)
+            query?.whereKey("league", equalTo: duelTeam.league)
             query?.whereKey("event", equalTo: event)
             query?.getFirstObjectInBackgroundWithBlock({ (contest, error) -> Void in
                 if let contest = contest as? PFContest {
@@ -54,7 +42,7 @@ class CreateLineupViewController: SetLineupViewController {
                 } else {
                     // create contest
                     do {
-                        let contest = PFContest.contestWithSport(sport, league: league, event: event)
+                        let contest = PFContest.contestWithSport(sport, league: duelTeam.league, event: event)
                         try contest.save()
                         self.saveToContest(contest)
                     } catch {

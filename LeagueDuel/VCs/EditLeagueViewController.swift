@@ -7,14 +7,15 @@
 //
 
 import UIKit
+import SDWebImage
 
 class EditLeagueViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var leagueNameButton: UIButton!
+    @IBOutlet weak var imageView: UIImageView!
 
     var league: PFLeague!
-    var duelers = [PFDueler]() {
+    var duelTeams = [PFDuelTeam]() {
         didSet {
             self.tableView?.reloadData()
         }
@@ -23,9 +24,12 @@ class EditLeagueViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        leagueNameButton.setTitle(league.name, forState: .Normal)
         tableView.setEditing(true, animated: false)
         fetchDuelers()
+        
+        if let imageURL = self.league.imageURL, let url = NSURL(string: imageURL) {
+            self.imageView.sd_setImageWithURL(url)
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -36,27 +40,30 @@ class EditLeagueViewController: UIViewController {
     }
     
     func fetchDuelers() {
-        let query = PFDueler.query()
-        query?.whereKey("objectId", containedIn: league.duelers)
-        query?.findObjectsInBackgroundWithBlock({ (duelers, error) -> Void in
-            if let duelers = duelers as? [PFDueler] {
-                self.duelers = duelers
+        let query = PFDuelTeam.query()
+        query?.whereKey("league", equalTo: league)
+        query?.findObjectsInBackgroundWithBlock({ (duelTeams, error) -> Void in
+            if let duelTeams = duelTeams as? [PFDuelTeam] {
+                self.duelTeams = duelTeams
             }
         })
     }
     
-    @IBAction func leagueNameTapped(sender: AnyObject) {
-        editLeagueName()
+    @IBAction func leagueImageTapped(sender: AnyObject) {
+        changeLeagueImage()
     }
     
-    func editLeagueName() {
-        let alertController = UIAlertController(title: "League Name", message: nil, preferredStyle: .Alert)
+    func changeLeagueImage() {
+        let alertController = UIAlertController(title: "League Image", message: nil, preferredStyle: .Alert)
         alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            // TODO
+            textField.placeholder = "Image URL (ex: www.example.com/url.png)"
         }
         let okAction = UIAlertAction(title: "Save", style: .Default) { (action) -> Void in
-            if let text = alertController.textFields?.first?.text where text.characters.count > 0 {
-                self.league.name = text
+            if let text = alertController.textFields?.first?.text {
+                self.league.imageURL = text
+                if let url = NSURL(string: text) {
+                    self.imageView.sd_setImageWithURL(url)
+                }
             }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
@@ -70,49 +77,88 @@ class EditLeagueViewController: UIViewController {
     }
     
     func save() {
-        league.saveInBackgroundWithBlock({ (success, error) -> Void in
-            if (success) {
-                // TODO SHARE
-                self.navigationController?.popViewControllerAnimated(true)
-            } else {
-                // TODO
-            }
-        })
+        if let errorMessage = league.isValid() {
+            // TODO
+        } else {
+            league.saveEventually()
+            self.navigationController?.popViewControllerAnimated(true)
+        }
     }
     
 }
 
-extension EditLeagueViewController: UITableViewDataSource, UITableViewDelegate {
+extension EditLeagueViewController: UITableViewDataSource, UITableViewDelegate, TextFieldTableViewCellDelegate {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return duelers.count
+        if (section == 0) {
+            return 2
+        } else {
+            return duelTeams.count
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("DuelerCell", forIndexPath: indexPath)
-        let dueler = duelers[indexPath.row]
-        cell.textLabel?.text = dueler.username
-        return cell
+        if (indexPath.section == 0) {
+            let cell = tableView.dequeueReusableCellWithIdentifier("InputCell", forIndexPath: indexPath) as! TextFieldTableViewCell
+            cell.delegate = self
+            if (indexPath.row == 0) {
+                cell.textField.placeholder = "League Name"
+                cell.textField.text = league.name
+            } else {
+                cell.textField.placeholder = "Tagline (optional)"
+                cell.textField.text = league.tagline
+            }
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("DuelerCell", forIndexPath: indexPath)
+            let duelTeam = duelTeams[indexPath.row]
+            cell.textLabel?.text = duelTeam.name
+            return cell
+        }
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        let dueler = duelers[indexPath.row]
-        return dueler.objectId != PFDueler.currentUser()?.objectId
+        if (indexPath.section == 0) {
+            return false
+        } else {
+            let duelTeam = duelTeams[indexPath.row]
+            return duelTeam.dueler.objectId != PFDueler.currentUser()?.objectId
+        }
+
     }
     
     func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-        return UITableViewCellEditingStyle.Delete
+        if (indexPath.section == 0) {
+            return UITableViewCellEditingStyle.None
+        } else {
+            return UITableViewCellEditingStyle.Delete
+        }
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if (editingStyle == .Delete) {
-            let dueler = duelers[indexPath.row]
-            duelers.removeAtIndex(indexPath.row)
-            league.removeObject(dueler.objectId!, forKey: "duelers")
+        if (indexPath.section == 1) {
+            if (editingStyle == .Delete) {
+                let duelTeam = duelTeams[indexPath.row]
+                duelTeams.removeAtIndex(indexPath.row)
+                league.removeObject(duelTeam.objectId!, forKey: "duelers") // TODO
+            }
+        }
+    }
+    
+    func textChanged(cell: TextFieldTableViewCell, text: String?) {
+        if let indexPath = self.tableView.indexPathForCell(cell) {
+            if (indexPath.section == 0) {
+                if (indexPath.row == 0) {
+                    league.name = text
+                } else {
+                    league.tagline = text
+                }
+            }
         }
     }
     

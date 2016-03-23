@@ -12,7 +12,7 @@ import Parse
 class PFLeague: PFObject, PFSubclassing {
     
     @NSManaged var commissioner: PFDueler!
-    @NSManaged var duelers: [String]!
+    @NSManaged var duelers: [String]! // user objectIds
     @NSManaged var name: String?
     @NSManaged var imageURL: String?
     @NSManaged var tagline: String?
@@ -29,11 +29,6 @@ class PFLeague: PFObject, PFSubclassing {
                 NSNotificationCenter.defaultCenter().postNotificationName("pinnedMyLeagues", object: nil)
             })
         })
-    }
-    
-    func setup() {
-        self.commissioner = PFDueler.currentUser()!
-        self.duelers = [PFDueler.currentUser()!.objectId!]
     }
     
     func isValid() -> String? {
@@ -72,6 +67,7 @@ class PFLeague: PFObject, PFSubclassing {
     class func queryWithIncludes() -> PFQuery? {
         let query = PFLeague.query()
         query?.includeKey("commissioner")
+        query?.includeKey("duelers")
         return query
     }
 

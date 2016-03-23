@@ -16,6 +16,8 @@ class PFEvent: PFSuperclass {
     @NSManaged var name: String?
     @NSManaged var maxSalary: Int
     
+    static var importableLineups = [PFEvent:PFLineup]()
+    
     class func myUpcomingAvailableEventsQuery(sport: SportType) -> PFQuery? {
         if let lineupQuery = PFLineup.myLineupsQuery(sport), let contestQuery = PFContest.query(sport), let contestLineupQuery = PFContestLineup.query(sport) {
             contestLineupQuery.whereKey("lineup", matchesQuery: lineupQuery)
@@ -88,6 +90,10 @@ class PFEvent: PFSuperclass {
     
     func numberOfSpots(position: Int) -> Int {
         return 0
+    }
+    
+    func titleForPosition(position: Int) -> String? {
+        return nil
     }
     
     // SUPERCLASSING

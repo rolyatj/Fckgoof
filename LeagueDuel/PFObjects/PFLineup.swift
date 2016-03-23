@@ -11,7 +11,7 @@ import Parse
 
 class PFLineup: PFSuperclass {
     
-    @NSManaged var dueler: PFDueler!
+    @NSManaged var duelTeam: PFDuelTeam!
     @NSManaged var playerEvents0: [PFPlayerEvent]!
     @NSManaged var playerEvents1: [PFPlayerEvent]!
     @NSManaged var playerEvents2: [PFPlayerEvent]!
@@ -24,11 +24,18 @@ class PFLineup: PFSuperclass {
     @NSManaged var playerEvents9: [PFPlayerEvent]!
     @NSManaged var score: Float
     @NSManaged var rank: Int
-
-    class func lineupFromEditableLineup(sport: SportType, editableContestLineup: EditableContestLineup) -> PFLineup {
+    
+    class func tempLineupFromEditableLineup(sport: SportType, editableContestLineup: EditableContestLineup) -> PFLineup {
         switch (sport) {
         case .MLB:
             return PFMLBLineup(editableContestLineup: editableContestLineup as! MLBEditableContestLineup)
+        }
+    }
+
+    class func lineupFromEditableLineup(sport: SportType, duelTeam: PFDuelTeam, editableContestLineup: EditableContestLineup) -> PFLineup {
+        switch (sport) {
+        case .MLB:
+            return PFMLBLineup(duelTeam: duelTeam, editableContestLineup: editableContestLineup as! MLBEditableContestLineup)
         }
     }
     
@@ -77,18 +84,31 @@ class PFLineup: PFSuperclass {
     
     class func myLineupsQuery(sport: SportType) -> PFQuery? {
         if let user = PFDueler.currentUser(){
+            return PFLineup.lineupsQueryForUser(sport, user: user)
+        }
+        return nil
+    }
+    
+    class func lineupsQueryForUser(sport: SportType, user: PFDueler) -> PFQuery? {
+        if let teamQuery = PFDuelTeam.teamsForUserQuery(user) {
             let query = PFLineup.query(sport)
-            query?.whereKey("dueler", equalTo: user)
+            query?.whereKey("duelTeam", matchesQuery: teamQuery)
             return query
         }
         return nil
+    }
+    
+    class func lineupsQueryForDuelTeam(sport: SportType, duelTeam: PFDuelTeam) -> PFQuery? {
+        let query = PFLineup.query(sport)
+        query?.whereKey("duelTeam", equalTo: duelTeam)
+        return query
     }
     
     // SUPERCLASSING
     
     override class func queryWithIncludes(sport: SportType) -> PFQuery? {
         let query = PFLineup.query(sport)
-        query?.includeKey("dueler")
+        query?.includeKey("duelTeam")
         return query
     }
     

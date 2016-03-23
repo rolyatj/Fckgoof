@@ -17,7 +17,7 @@ class LeagueViewController: UIViewController {
             self.tableView?.reloadData()
         }
     }
-    var duelers = [PFDueler]() {
+    var duelTeams = [PFDuelTeam]() {
         didSet {
             self.tableView?.reloadData()
         }
@@ -32,7 +32,7 @@ class LeagueViewController: UIViewController {
             let editButton = UIBarButtonItem(title: "Edit", style: .Plain, target: self, action: "editLeague")
             navigationItem.rightBarButtonItem = editButton
         }
-        fetchDuelers()
+        fetchDuelTeams()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -50,12 +50,13 @@ class LeagueViewController: UIViewController {
         })
     }
     
-    func fetchDuelers() {
-        let query = PFDueler.query()
-        query?.whereKey("objectId", containedIn: league.duelers)
-        query?.findObjectsInBackgroundWithBlock({ (duelers, error) -> Void in
-            if let duelers = duelers as? [PFDueler] {
-                self.duelers = duelers
+    func fetchDuelTeams() {
+        let query = PFDuelTeam.query()
+        query?.whereKey("league", equalTo: league)
+        query?.orderByAscending("createdAt")
+        query?.findObjectsInBackgroundWithBlock({ (duelTeams, error) -> Void in
+            if let duelTeams = duelTeams as? [PFDuelTeam] {
+                self.duelTeams = duelTeams
             }
         })
     }
@@ -87,7 +88,7 @@ extension LeagueViewController: UITableViewDataSource, UITableViewDelegate {
         if (section == 0) {
             return contests.count
         } else {
-            return duelers.count
+            return duelTeams.count
         }
     }
     
@@ -106,9 +107,9 @@ extension LeagueViewController: UITableViewDataSource, UITableViewDelegate {
             cell.configureWithContest(contest)
             return cell
         } else {
-            let dueler = duelers[indexPath.row]
-            let cell = tableView.dequeueReusableCellWithIdentifier("DuelerCell", forIndexPath: indexPath)
-            cell.textLabel?.text = dueler.name
+            let duelTeam = duelTeams[indexPath.row]
+            let cell = tableView.dequeueReusableCellWithIdentifier("DuelTeamCell", forIndexPath: indexPath)
+            cell.textLabel?.text = duelTeam.name
             return cell
         }
     }

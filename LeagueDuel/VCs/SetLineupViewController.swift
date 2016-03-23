@@ -13,8 +13,17 @@ class SetLineupViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var remainingLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var importButton: UIBarButtonItem!
+    @IBOutlet weak var exportButton: UIBarButtonItem!
+
+    var duelTeam: PFDuelTeam!
     var playerEvents = [PFPlayerEvent]()
     var contestHeaderView = ContestHeaderView.contestHeaderView()
+    var importableLineup: PFLineup? {
+        didSet {
+            importButton.enabled = (importableLineup != nil)
+        }
+    }
     
     var editableContestLineup: EditableContestLineup? {
         didSet {
@@ -29,6 +38,30 @@ class SetLineupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.titleView = contestHeaderView
+        navigationController?.setToolbarHidden(false, animated: false)
+        
+        exportButton.enabled = true
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if let event = editableContestLineup?.event {
+            importableLineup = PFEvent.importableLineups[event]
+        }
+    }
+    
+    @IBAction func importTapped(sender: AnyObject) {
+        if let importableLineup = importableLineup {
+            editableContestLineup?.setupWithLineup(importableLineup)
+        }
+    }
+    
+    @IBAction func exportTapped(sender: AnyObject) {
+        if let editableContestLineup = editableContestLineup, let event = editableContestLineup.event, let sport = event.dynamicType.sport() {
+            let lineup = PFLineup.tempLineupFromEditableLineup(sport, editableContestLineup: editableContestLineup)
+            PFEvent.importableLineups[event] = lineup
+            importableLineup = lineup
+        }
     }
     
     func fetchPlayerEvents(event: PFEvent) {
@@ -113,7 +146,7 @@ class SetLineupViewController: UIViewController {
                 } else {
                     // create contestLineup
                     do {
-                        let lineup = PFLineup.lineupFromEditableLineup(sport, editableContestLineup: editableContestLineup)
+                        let lineup = PFLineup.lineupFromEditableLineup(sport, duelTeam: self.duelTeam, editableContestLineup: editableContestLineup)
                         let contestLineup = PFContestLineup.contestLineupWithSport(sport, contest: contest, lineup: lineup)
                         try contestLineup.save()
                         self.dismissViewControllerAnimated(true, completion: nil)
@@ -145,6 +178,10 @@ extension SetLineupViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return editableContestLineup?.numberOfSpotsForPosition(section) ?? 0
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return editableContestLineup?.titleForPosition(section)
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

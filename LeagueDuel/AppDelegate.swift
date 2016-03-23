@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // PARSE
         PFDueler.registerSubclass()
+        PFDuelTeam.registerSubclass()
         PFLeague.registerSubclass()
         PFMLBContest.registerSubclass()
         PFMLBLineup.registerSubclass()
@@ -39,8 +40,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor.defaultBarTintColor()
         UINavigationBar.appearance().tintColor = UIColor.defaultTintColor()
         UINavigationBar.appearance().barStyle = UIBarStyle.Black
+        UINavigationBar.appearance().translucent = false
         UITabBar.appearance().barTintColor = UIColor.defaultBarTintColor()
         UITabBar.appearance().tintColor = UIColor.defaultTintColor()
+        UITabBar.appearance().translucent = false
+        UIToolbar.appearance().barTintColor = UIColor.defaultBarTintColor()
+        UIToolbar.appearance().tintColor = UIColor.defaultTintColor()
+        UIToolbar.appearance().translucent = false
         UISearchBar.appearance().barTintColor = UIColor.defaultBarTintColor()
         
         return true

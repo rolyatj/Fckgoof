@@ -25,13 +25,21 @@ class UpcomingContestsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        fetchContests()
         fetchEvents()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchContests()
     }
     
     func fetchContests() {
         let sport = SportType.MLB
-        let query = PFMLBContestLineup.myUpcomingContestLineupsQuery(sport)
+        let q = PFLineup.myLineupsQuery(sport)
+        q?.findObjectsInBackgroundWithBlock({ (objc, Dictionary) -> Void in
+            print(objc)
+        })
+        let query = PFContestLineup.myUpcomingContestLineupsQuery(sport)
         query?.findObjectsInBackgroundWithBlock({ (contestLineups, error) -> Void in
             if let contestLineups = contestLineups as? [PFContestLineup] {
                 self.contestLineups = contestLineups
@@ -49,10 +57,10 @@ class UpcomingContestsViewController: UIViewController {
         })
     }
 
-    func toCreateLineupForEvent(event: PFEvent, league: PFLeague) {
+    func toCreateLineupForEvent(event: PFEvent, duelTeam: PFDuelTeam) {
         var editableContestLineup: PFContestLineup?
         for contestLineup in contestLineups {
-            if (contestLineup.contest.league.objectId == league.objectId &&
+            if (contestLineup.contest.league.objectId == duelTeam.league.objectId &&
                 contestLineup.contest.event.objectId == event.objectId) {
                     editableContestLineup = contestLineup
                     break
@@ -62,7 +70,7 @@ class UpcomingContestsViewController: UIViewController {
             toEditContestLineup(editableContestLineup)
         } else if let createLineupVC = storyboard?.instantiateViewControllerWithIdentifier("CreateLineupVC") as? CreateLineupViewController {
             createLineupVC.event = event
-            createLineupVC.league = league
+            createLineupVC.duelTeam = duelTeam
             let navigationController = UINavigationController(rootViewController: createLineupVC)
             self.presentViewController(navigationController, animated: true, completion: nil)
         }
@@ -77,26 +85,26 @@ class UpcomingContestsViewController: UIViewController {
     }
     
     func toCreateLineupForEvent(event: PFEvent) {
-        fetchAvailableLeaguesForEvent(event)
+        fetchAvailableTeamsForEvent(event)
     }
     
-    func fetchAvailableLeaguesForEvent(event: PFEvent) {
+    func fetchAvailableTeamsForEvent(event: PFEvent) {
         let sport = SportType.MLB
-        let query = PFLeague.myLeaguesQuery()
-        query?.findObjectsInBackgroundWithBlock({ (leagues, error) -> Void in
-            if let leagues = leagues as? [PFLeague] {
-                print("found \(leagues.count) leagues \(event)")
-                self.chooseLeagueForEvent(event, availableLeagues:leagues)
+        let query = PFDuelTeam.myTeamsQuery()
+        query?.findObjectsInBackgroundWithBlock({ (duelTeams, error) -> Void in
+            if let duelTeams = duelTeams as? [PFDuelTeam] {
+                print("found \(duelTeams.count) duelTeams for \(event)")
+                self.chooseTeamForEvent(event, duelTeams:duelTeams)
             }
         })
     }
     
-    func chooseLeagueForEvent(event: PFEvent, availableLeagues: [PFLeague]) {
-        if availableLeagues.count > 1 {
-            let alertController = UIAlertController(title: "Which League?", message: nil, preferredStyle: .Alert)
-            for league in availableLeagues {
-                let sportAction = UIAlertAction(title: league.name, style: .Default) { (action) -> Void in
-                    self.toCreateLineupForEvent(event, league: league)
+    func chooseTeamForEvent(event: PFEvent, duelTeams: [PFDuelTeam]) {
+        if duelTeams.count > 1 {
+            let alertController = UIAlertController(title: "Which Team?", message: nil, preferredStyle: .Alert)
+            for duelTeam in duelTeams {
+                let sportAction = UIAlertAction(title: duelTeam.name, style: .Default) { (action) -> Void in
+                    self.toCreateLineupForEvent(event, duelTeam: duelTeam)
                 }
                 alertController.addAction(sportAction)
             }
@@ -104,8 +112,8 @@ class UpcomingContestsViewController: UIViewController {
             let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
             alertController.addAction(cancelAction)
             self.presentViewController(alertController, animated: true, completion: nil)
-        } else if let league = availableLeagues.first {
-            toCreateLineupForEvent(event, league: league)
+        } else if let duelTeam = duelTeams.first {
+            toCreateLineupForEvent(event, duelTeam: duelTeam)
         } else {
             // TODO "you don't have any available leagues. Create one?"
         }
@@ -130,6 +138,14 @@ extension UpcomingContestsViewController: UITableViewDataSource, UITableViewDele
             return availableEvents.count
         } else {
             return contestLineups.count
+        }
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if (section == 0) {
+            return "Upcoming Events"
+        } else {
+            return "Your Set Lineups"
         }
     }
     

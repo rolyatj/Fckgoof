@@ -77,7 +77,7 @@ class LineupTableViewCell: UITableViewCell {
     }
 
     func configureWithLineup(lineup: PFLineup, delegate: LineupTableViewCellDelegate?) {
-        nameLabel.text = lineup.dueler.name
+        nameLabel.text = lineup.duelTeam.name
         sportLabel?.text = "TODO"//lineup.event.sport.name
         descriptionLabel?.text = "TODO"
         self.delegate = delegate

@@ -10,10 +10,16 @@ import UIKit
 import Parse
 
 class PFMLBLineup: PFLineup, PFSubclassing {
-        
+
     convenience init(editableContestLineup: MLBEditableContestLineup) {
         self.init()
-        self.dueler = PFDueler.currentUser()!
+        print("WARNING: temp MLBLineup created (without reference to a duelTeam). only should be used when 'exporting'")
+        self.setRoster(editableContestLineup)
+    }
+    
+    convenience init(duelTeam: PFDuelTeam, editableContestLineup: MLBEditableContestLineup) {
+        self.init()
+        self.duelTeam = duelTeam
         self.setRoster(editableContestLineup)
     }
     
@@ -29,7 +35,7 @@ class PFMLBLineup: PFLineup, PFSubclassing {
         self.playerEvents8 = [PFPlayerEvent]()
         self.playerEvents9 = [PFPlayerEvent]()
         if let editableContestLineup = editableContestLineup as? MLBEditableContestLineup {
-            for positionPlayerEvent in editableContestLineup.posititionPlayerEvents {
+            for positionPlayerEvent in editableContestLineup.positionPlayerEvents {
                 
                 for playerEvent in positionPlayerEvent.1 {
                     if let playerEvent = playerEvent as? PFPlayerEvent {

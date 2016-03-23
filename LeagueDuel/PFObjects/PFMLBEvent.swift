@@ -62,4 +62,8 @@ class PFMLBEvent: PFEvent, PFSubclassing {
         return 0
     }
     
+    override func titleForPosition(position: Int) -> String? {
+        return MLBPosition(rawValue: position)?.toSearchableString()
+    }
+    
 }

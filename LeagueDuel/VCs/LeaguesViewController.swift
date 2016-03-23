@@ -71,6 +71,7 @@ class LeaguesViewController: UIViewController {
     }
     
     func joinLeague(league: PFLeague) {
+        // TODO PFDueler
         if let user = PFDueler.currentUser(), let objectId = user.objectId {
             league.addUniqueObject(objectId, forKey: "duelers")
             league.saveEventually({ (success, error) -> Void in
@@ -87,9 +88,21 @@ class LeaguesViewController: UIViewController {
             if let leagueVC = segue.destinationViewController as? LeagueViewController {
                 leagueVC.league = sender as! PFLeague
             }
+        } else if (segue.identifier == "toCreateLeague") {
+            if let createLeagueVC = segue.destinationViewController as? CreateLeagueViewController {
+                createLeagueVC.delegate = self
+            }
         }
     }
 
+}
+
+extension LeaguesViewController: CreateLeagueViewControllerDelegate {
+    
+    func didCreateLeague(league: PFLeague) {
+        //TODO share.
+    }
+    
 }
 
 extension LeaguesViewController: UITableViewDataSource, UITableViewDelegate {
