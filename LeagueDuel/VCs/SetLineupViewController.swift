@@ -7,6 +7,11 @@
 //
 
 import UIKit
+import Parse
+
+protocol SetLineupViewControllerDelegate {
+    func didAddOrChangeLineup()
+}
 
 class SetLineupViewController: UIViewController {
 
@@ -15,6 +20,7 @@ class SetLineupViewController: UIViewController {
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var importButton: UIBarButtonItem!
     @IBOutlet weak var exportButton: UIBarButtonItem!
+    @IBOutlet weak var findingPlayersView: UIView!
 
     var duelTeam: PFDuelTeam!
     var playerEvents = [PFPlayerEvent]()
@@ -34,6 +40,7 @@ class SetLineupViewController: UIViewController {
             }
         }
     }
+    var delegate: SetLineupViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,11 +72,9 @@ class SetLineupViewController: UIViewController {
     }
     
     func fetchPlayerEvents(event: PFEvent) {
-        let sport = SportType.MLB
-        if let playerQuery = PFPlayer.query(sport) {
-            playerQuery.fromLocalDatastore()
+        if let sport = event.dynamicType.sport(), let playerQuery = PFPlayer.query(sport) {
             let query = PFPlayerEvent.queryWithIncludes(sport)
-            query?.fromLocalDatastore()
+            query?.cachePolicy = PFCachePolicy.CacheThenNetwork
             query?.orderByDescending("salary")
             query?.whereKey("player", matchesQuery: playerQuery)
             query?.whereKey("event", equalTo: event)
@@ -78,6 +83,7 @@ class SetLineupViewController: UIViewController {
                 if let playerEvents = playerEvents as? [PFPlayerEvent] {
                     self.playerEvents = playerEvents
                 }
+                self.findingPlayersView.hidden = true
             })
         }
     }
@@ -103,7 +109,6 @@ class SetLineupViewController: UIViewController {
     }
     
     func playerEventsForType(type: Int) -> [PFPlayerEvent] {
-        let sport = SportType.MLB
         let disabledPlayerEventIds = editableContestLineup?.disabledPlayerEventIds(type)
         let playerEventsForType = playerEvents.filter { (playerEvent) -> Bool in
             let isDisabled = disabledPlayerEventIds?.contains(playerEvent.objectId ?? "") ?? false
@@ -138,6 +143,7 @@ class SetLineupViewController: UIViewController {
                         let lineup = contestLineup.lineup
                         lineup.setRoster(editableContestLineup)
                         try lineup.save()
+                        self.delegate?.didAddOrChangeLineup()
                         self.dismissViewControllerAnimated(true, completion: nil)
                     } catch {
                         // TODO
@@ -149,6 +155,7 @@ class SetLineupViewController: UIViewController {
                         let lineup = PFLineup.lineupFromEditableLineup(sport, duelTeam: self.duelTeam, editableContestLineup: editableContestLineup)
                         let contestLineup = PFContestLineup.contestLineupWithSport(sport, contest: contest, lineup: lineup)
                         try contestLineup.save()
+                        self.delegate?.didAddOrChangeLineup()
                         self.dismissViewControllerAnimated(true, completion: nil)
                     } catch {
                         // TODO

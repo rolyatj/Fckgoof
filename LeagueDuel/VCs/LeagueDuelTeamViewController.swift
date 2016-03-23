@@ -7,10 +7,15 @@
 //
 
 import UIKit
+import Parse
 
 class LeagueDuelTeamViewController: UIViewController {
 
     @IBOutlet weak var tableView: LeagueContestTableView!
+    @IBOutlet weak var contestsEnteredLabel: UILabel!
+    @IBOutlet weak var contestsWonLabel: UILabel!
+    
+    let sport = SportType.MLB // TODO
     var duelTeam: PFDuelTeam!
     var league: PFLeague!
     var contestLineups = [PFContestLineup]() {
@@ -22,23 +27,23 @@ class LeagueDuelTeamViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        contestsEnteredLabel.text = "\(duelTeam.numberContestsEntered)"
+        contestsWonLabel.text = "\(duelTeam.numberContestsWon)"
+        
         tableView.lcDelegate = self
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         fetchContests()
     }
     
     func fetchContests() {
-        let sport = SportType.MLB
         let query = PFContestLineup.recentContestLineupsQueryForDuelTeam(sport, duelTeam: duelTeam)
+        query?.cachePolicy = PFCachePolicy.NetworkElseCache
         query?.findObjectsInBackgroundWithBlock({ (contestLineups, error) -> Void in
             if let contestLineups = contestLineups as? [PFContestLineup] {
                 self.contestLineups = contestLineups
-                self.contestLineups += contestLineups
-                self.contestLineups += contestLineups
-                self.contestLineups += contestLineups
-                self.contestLineups += contestLineups
-                self.contestLineups += contestLineups
-                self.contestLineups += contestLineups
-                self.contestLineups += contestLineups
             }
         })
     }

@@ -25,6 +25,18 @@ class PFContestLineup: PFSuperclass {
             return contestLineup
         }
     }
+    
+    func isUpcoming() -> Bool {
+        return contest.event.isUpcoming()
+    }
+    
+    func isLive() -> Bool {
+        return contest.event.isLive()
+    }
+    
+    func isPast() -> Bool {
+        return contest.event.isPast()
+    }
 
     class func myUpcomingContestLineupsQuery(sport: SportType) -> PFQuery? {
         if let user = PFDueler.currentUser() {
@@ -103,6 +115,7 @@ class PFContestLineup: PFSuperclass {
         let query = PFContestLineup.query(sport)
         query?.includeKey("contest")
         query?.includeKey("contest.league")
+        query?.includeKey("contest.event")
         query?.includeKey("lineup")
         query?.includeKey("lineup.duelTeam")
         for i in 0...9 {

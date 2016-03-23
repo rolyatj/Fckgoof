@@ -55,6 +55,8 @@
 		900E11F91C8F9EF300C4B7A4 /* LeagueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900E11CA1C8F9EF200C4B7A4 /* LeagueTableViewCell.swift */; };
 		900E11FA1C8F9EF300C4B7A4 /* LineupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900E11CB1C8F9EF300C4B7A4 /* LineupTableViewCell.swift */; };
 		903C534F1CA2E83800E20E93 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903C534D1CA2E83800E20E93 /* MenuViewController.swift */; };
+		903C53511CA3132E00E20E93 /* LDCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903C53501CA3132E00E20E93 /* LDCoordinator.swift */; };
+		903C53531CA3136C00E20E93 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903C53521CA3136C00E20E93 /* Constants.swift */; };
 		90629A2F1C90919F0083680D /* ContestHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90629A2E1C90919F0083680D /* ContestHeaderView.swift */; };
 		90629A311C9091AF0083680D /* ContestHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90629A301C9091AF0083680D /* ContestHeaderView.xib */; };
 		90629A341C9095120083680D /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90629A331C9095120083680D /* Style.swift */; };
@@ -121,6 +123,8 @@
 		900E11CA1C8F9EF200C4B7A4 /* LeagueTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueTableViewCell.swift; sourceTree = "<group>"; };
 		900E11CB1C8F9EF300C4B7A4 /* LineupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineupTableViewCell.swift; sourceTree = "<group>"; };
 		903C534D1CA2E83800E20E93 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		903C53501CA3132E00E20E93 /* LDCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDCoordinator.swift; sourceTree = "<group>"; };
+		903C53521CA3136C00E20E93 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		90629A2E1C90919F0083680D /* ContestHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContestHeaderView.swift; sourceTree = "<group>"; };
 		90629A301C9091AF0083680D /* ContestHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestHeaderView.xib; sourceTree = "<group>"; };
 		90629A331C9095120083680D /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
@@ -396,6 +400,8 @@
 			children = (
 				90629A331C9095120083680D /* Style.swift */,
 				900E119E1C8F9EF200C4B7A4 /* Info.plist */,
+				903C53501CA3132E00E20E93 /* LDCoordinator.swift */,
+				903C53521CA3136C00E20E93 /* Constants.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -561,6 +567,7 @@
 			files = (
 				900E11F31C8F9EF300C4B7A4 /* RecentContestsViewController.swift in Sources */,
 				900E11FA1C8F9EF300C4B7A4 /* LineupTableViewCell.swift in Sources */,
+				903C53511CA3132E00E20E93 /* LDCoordinator.swift in Sources */,
 				900E11D61C8F9EF300C4B7A4 /* PFEvent.swift in Sources */,
 				900E11E41C8F9EF300C4B7A4 /* PFPlayer.swift in Sources */,
 				900E11EB1C8F9EF300C4B7A4 /* CreateLineupViewController.swift in Sources */,
@@ -578,6 +585,7 @@
 				900E11EE1C8F9EF300C4B7A4 /* LeaguesViewController.swift in Sources */,
 				900E11CC1C8F9EF300C4B7A4 /* AppDelegate.swift in Sources */,
 				900E11E91C8F9EF300C4B7A4 /* PFTeam.swift in Sources */,
+				903C53531CA3136C00E20E93 /* Constants.swift in Sources */,
 				900E11F61C8F9EF300C4B7A4 /* UpcomingContestsViewController.swift in Sources */,
 				908529001CA1D1B2000E606E /* LDTabBarController.swift in Sources */,
 				900E11DE1C8F9EF300C4B7A4 /* PFMLBGame.swift in Sources */,

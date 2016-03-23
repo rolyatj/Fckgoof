@@ -12,20 +12,41 @@ import Parse
 class ProfileViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var leaguesLabel: UILabel!
+    @IBOutlet weak var contestsEnteredLabel: UILabel!
+    @IBOutlet weak var contestsWonLabel: UILabel!
 
     var duelTeams = [PFDuelTeam]() {
         didSet {
+            leaguesLabel?.text = "\(duelTeams.count)"
+            var numberContestsEntered = 0
+            var numberContestsWon = 0
+            for duelTeam in duelTeams {
+                numberContestsEntered += duelTeam.numberContestsEntered
+                numberContestsWon += duelTeam.numberContestsWon
+            }
+            contestsEnteredLabel?.text = "\(numberContestsEntered)"
+            contestsWonLabel?.text = "\(numberContestsWon)"
             tableView?.reloadData()
         }
     }
+    var forceNetwork = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchTeams()
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchTeams(forceNetwork)
+        forceNetwork = false
     }
     
-    func fetchTeams() {
+    func fetchTeams(shouldForceNetwork: Bool) {
         let query = PFDuelTeam.myTeamsQuery()
+        if (!shouldForceNetwork) {
+            query?.cachePolicy = PFCachePolicy.CacheElseNetwork
+        }
         query?.findObjectsInBackgroundWithBlock({ (duelTeams, error) -> Void in
             if let duelTeams = duelTeams as? [PFDuelTeam] {
                 self.duelTeams = duelTeams
@@ -35,6 +56,7 @@ class ProfileViewController: UIViewController {
     
     @IBAction func logoutTapped(sender: AnyObject) {
         PFDueler.logOutInBackgroundWithBlock { (error) -> Void in
+            PFQuery.clearAllCachedResults()
             self.dismissViewControllerAnimated(true, completion: nil)
         }
     }

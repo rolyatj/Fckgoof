@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 enum SelectableType : Int {
     case Add = 0
@@ -127,9 +128,9 @@ class PlayerEventViewController: UIViewController {
     
     func fetchGames() {
         hasFetchedTeamGames = true
-        let sport = SportType.MLB
-        if let team = playerEvent.player.team {
+        if let sport = playerEvent!.dynamicType.sport(), let team = playerEvent.player.team {
             let query = PFGame.gamesForTeam(sport, team: team, event: playerEvent.event)
+            query?.cachePolicy = PFCachePolicy.CacheElseNetwork
             query?.findObjectsInBackgroundWithBlock({ (teamGames, error) -> Void in
                 if let teamGames = teamGames as? [PFGame] {
                     print(teamGames)
@@ -141,14 +142,17 @@ class PlayerEventViewController: UIViewController {
     
     func fetchPlayerEvents() {
         hasFetchedPlayerEvents = true
-        let sport = SportType.MLB
-        let query = PFPlayerEvent.recentPlayerEventsForPlayerEvent(sport, playerEvent: playerEvent)
-        query?.findObjectsInBackgroundWithBlock({ (playerEvents, error) -> Void in
-            if let playerEvents = playerEvents as? [PFPlayerEvent] {
-                print(playerEvents)
-                self.recentPlayerEvents = playerEvents
-            }
-        })
+        if let sport = playerEvent!.dynamicType.sport() {
+            let query = PFPlayerEvent.recentPlayerEventsForPlayerEvent(sport, playerEvent: playerEvent)
+            query?.cachePolicy = PFCachePolicy.NetworkElseCache
+            query?.findObjectsInBackgroundWithBlock({ (playerEvents, error) -> Void in
+                if let playerEvents = playerEvents as? [PFPlayerEvent] {
+                    print(playerEvents)
+                    self.recentPlayerEvents = playerEvents
+                }
+            })
+        }
+
     }
     
     @IBAction func playerInfoTypeChanged(sender: UISegmentedControl) {

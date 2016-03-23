@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class LeagueContestViewController: UIViewController {
 
@@ -17,30 +18,32 @@ class LeagueContestViewController: UIViewController {
             self.tableView?.contestLineups = contestLineups
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.lcDelegate = self
-        
-        fetchContests()
+        fetchContests(true)
     }
     
-    func fetchContests() {
-        let sport = SportType.MLB
-        let query = PFContestLineup.leagueContestLineupsQuery(sport, contest:contest)
-        query?.findObjectsInBackgroundWithBlock({ (contestLineups, error) -> Void in
-            if let contestLineups = contestLineups as? [PFContestLineup] {
-                self.contestLineups = contestLineups
-                self.contestLineups += contestLineups
-                self.contestLineups += contestLineups
-                self.contestLineups += contestLineups
-                self.contestLineups += contestLineups
-                self.contestLineups += contestLineups
-                self.contestLineups += contestLineups
-                self.contestLineups += contestLineups
+    func fetchContests(isFirstTime: Bool) {
+        if let sport = contest!.dynamicType.sport() {
+            let query = PFContestLineup.leagueContestLineupsQuery(sport, contest:contest)
+            if (contest.event.isLive()) {
+                if (isFirstTime) {
+                    query?.cachePolicy = PFCachePolicy.CacheThenNetwork
+                } else {
+                    query?.cachePolicy = PFCachePolicy.NetworkOnly
+                }
+            } else {
+                query?.cachePolicy = PFCachePolicy.IgnoreCache
             }
-        })
+            query?.findObjectsInBackgroundWithBlock({ (contestLineups, error) -> Void in
+                if let contestLineups = contestLineups as? [PFContestLineup] {
+                    self.contestLineups = contestLineups
+                }
+            })
+            self.performSelector("fetchContests:", withObject: false, afterDelay: 30)
+        }
     }
     
     override func didReceiveMemoryWarning() {

@@ -22,6 +22,8 @@ class PFPlayerEvent: PFSuperclass {
     }
     
     class func pinAllPlayersForEvent(event: PFEvent) {
+        return
+        
         if let sport = event.dynamicType.sport() {
             let query = PFPlayerEvent.queryWithIncludes(sport)
             query?.limit = 1000

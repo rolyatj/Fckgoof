@@ -11,7 +11,6 @@ import UIKit
 class EventTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var sportLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
     override func awakeFromNib() {
@@ -27,8 +26,7 @@ class EventTableViewCell: UITableViewCell {
 
     func configureWithEvent(event: PFEvent) {
         nameLabel.text = event.name
-        sportLabel.text = "TODO"//event.sport.name
-        descriptionLabel.text = "TODO"
+        descriptionLabel.text = event.dateString()
     }
     
 }

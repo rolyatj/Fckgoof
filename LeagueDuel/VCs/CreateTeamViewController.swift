@@ -92,9 +92,7 @@ class CreateTeamViewController: UIViewController {
         duelTeam.dueler = PFDueler.currentUser()!
         duelTeam.saveEventually()
         navigationController?.popToRootViewControllerAnimated(true)
-        if (isNewLeague) {
-            delegate?.didCreateLeague(league)
-        }
+        delegate?.didJoinLeague(league, shouldPromptShare: isNewLeague)
     }
     
 }

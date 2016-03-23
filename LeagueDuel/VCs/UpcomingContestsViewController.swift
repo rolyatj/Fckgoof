@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class UpcomingContestsViewController: UIViewController {
 
@@ -21,25 +22,40 @@ class UpcomingContestsViewController: UIViewController {
             self.tableView?.reloadData()
         }
     }
+    var lastRefreshDate = [SportType:NSDate]()
+    let sport = SportType.MLB
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        fetchEvents()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        fetchContests()
+        updateIfNeeded()
     }
     
-    func fetchContests() {
-        let sport = SportType.MLB
-        let q = PFLineup.myLineupsQuery(sport)
-        q?.findObjectsInBackgroundWithBlock({ (objc, Dictionary) -> Void in
-            print(objc)
-        })
+    func updateIfNeeded() {
+        if let lastRefreshDate = lastRefreshDate[sport] {
+            if (LDCoordinator.instance.shouldRefresh(lastRefreshDate, sport: SportType.MLB, dateTypes: [DateType.Start, DateType.End])) {
+                fetchContestLineups(false)
+                fetchEvents(false)
+            }
+        } else {
+            fetchContestLineups(true)
+            fetchEvents(true)
+        }
+        
+        lastRefreshDate[sport] = NSDate()
+    }
+    
+    func fetchContestLineups(isFirstTime: Bool) {
+        print("UPCOMING fetchContestLineups: \(isFirstTime)")
         let query = PFContestLineup.myUpcomingContestLineupsQuery(sport)
+        if (isFirstTime) {
+            query?.cachePolicy = PFCachePolicy.CacheThenNetwork
+        } else {
+            query?.cachePolicy = PFCachePolicy.NetworkOnly
+        }
         query?.findObjectsInBackgroundWithBlock({ (contestLineups, error) -> Void in
             if let contestLineups = contestLineups as? [PFContestLineup] {
                 self.contestLineups = contestLineups
@@ -47,10 +63,15 @@ class UpcomingContestsViewController: UIViewController {
         })
     }
     
-    func fetchEvents() {
-        let sport = SportType.MLB
-        let lineupQuery = PFEvent.upcomingEventsQuery(sport)
-        lineupQuery?.findObjectsInBackgroundWithBlock({ (events, error) -> Void in
+    func fetchEvents(isFirstTime: Bool) {
+        print("UPCOMING fetchEvents: \(isFirstTime)")
+        let query = PFEvent.upcomingEventsQuery(sport)
+        if (isFirstTime) {
+            query?.cachePolicy = PFCachePolicy.CacheThenNetwork
+        } else {
+            query?.cachePolicy = PFCachePolicy.NetworkOnly
+        }
+        query?.findObjectsInBackgroundWithBlock({ (events, error) -> Void in
             if let events = events as? [PFEvent] {
                 self.availableEvents = events
             }
@@ -60,9 +81,6 @@ class UpcomingContestsViewController: UIViewController {
     func toCreateLineupForEvent(event: PFEvent, duelTeam: PFDuelTeam) {
         var editableContestLineup: PFContestLineup?
         for contestLineup in contestLineups {
-            print("\(contestLineup.contest.league.objectId) == \(duelTeam.league.objectId)")
-            print("\(contestLineup.contest.leagueId) == \(duelTeam.league.objectId)")
-            print("\(contestLineup.contest.event.objectId) == \(event.objectId)")
             if (contestLineup.contest.league.objectId == duelTeam.league.objectId &&
                 contestLineup.contest.event.objectId == event.objectId) {
                     editableContestLineup = contestLineup
@@ -92,7 +110,6 @@ class UpcomingContestsViewController: UIViewController {
     }
     
     func fetchAvailableTeamsForEvent(event: PFEvent) {
-        let sport = SportType.MLB
         let query = PFDuelTeam.myTeamsQuery()
         query?.findObjectsInBackgroundWithBlock({ (duelTeams, error) -> Void in
             if let duelTeams = duelTeams as? [PFDuelTeam] {
@@ -128,6 +145,12 @@ class UpcomingContestsViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     }
     
+}
+
+extension UpcomingContestsViewController: SetLineupViewControllerDelegate {
+    func didAddOrChangeLineup() {
+        self.fetchContestLineups(false)
+    }
 }
 
 extension UpcomingContestsViewController: UITableViewDataSource, UITableViewDelegate {

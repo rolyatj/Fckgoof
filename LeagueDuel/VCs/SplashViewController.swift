@@ -16,9 +16,11 @@ class SplashViewController: UIViewController {
         
         if (isValidAppVersion()) {
             if let _ = PFDueler.currentUser() {
-                setupLeagues()
-                setupPlayerEvents()
-                self.performSegueWithIdentifier("toApp", sender: nil)
+                setupApp({ (success, error) -> Void in
+                    if (success) {
+                        self.performSegueWithIdentifier("toApp", sender: nil)
+                    }
+                })
             } else {
                 let loginVC = LogInViewController()
                 loginVC.fields = [PFLogInFields.LogInButton, PFLogInFields.UsernameAndPassword, PFLogInFields.SignUpButton, PFLogInFields.PasswordForgotten]
@@ -49,34 +51,14 @@ class SplashViewController: UIViewController {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
 
-    func setupLeagues() {
-        PFLeague.pinMyLeagues()
-    }
-    
-    func setupPlayerEvents() {
-        PFEvent.resetPinsForExpiredEvents()
+    func setupApp(completion: (success: Bool, error: NSError?) -> Void) {
         
-        var liveSports = [SportType.MLB] // TODO
-        for sport in liveSports {
-            let liveQuery = PFEvent.liveEventsQuery(sport)
-            liveQuery?.findObjectsInBackgroundWithBlock({ (events, error) -> Void in
-                if let events = events as? [PFEvent] {
-                    for event in events {
-                        PFGame.pinAllGamesForEvent(event)
-                        PFPlayerEvent.pinAllPlayersForEvent(event)
-                    }
-                }
-            })
-            let upcomingQuery = PFEvent.upcomingEventsQuery(sport)
-            upcomingQuery?.findObjectsInBackgroundWithBlock({ (events, error) -> Void in
-                if let events = events as? [PFEvent] {
-                    for event in events {
-                        PFGame.pinAllGamesForEvent(event)
-                        PFPlayerEvent.pinAllPlayersForEvent(event)
-                    }
-                }
-            })
-        }
+        
+        let activeSports = [SportType.MLB] // TODO async
+
+        LDCoordinator.instance.setupRefreshTimes(activeSports)
+        
+        completion(success: true, error: nil)
 
     }
     

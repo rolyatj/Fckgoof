@@ -10,7 +10,7 @@ import UIKit
 import SDWebImage
 
 protocol CreateLeagueViewControllerDelegate {
-    func didCreateLeague(league: PFLeague)
+    func didJoinLeague(league: PFLeague, shouldPromptShare: Bool)
 }
 
 class CreateLeagueViewController: UIViewController {

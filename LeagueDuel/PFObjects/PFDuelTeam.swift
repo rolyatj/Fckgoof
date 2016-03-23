@@ -13,6 +13,8 @@ class PFDuelTeam: PFObject, PFSubclassing {
 
     @NSManaged var name: String?
     @NSManaged var imageURL: String?
+    @NSManaged var numberContestsEntered: Int
+    @NSManaged var numberContestsWon: Int
     @NSManaged var dueler: PFDueler!
     @NSManaged var league: PFLeague!
     
@@ -30,8 +32,15 @@ class PFDuelTeam: PFObject, PFSubclassing {
     }
     
     class func teamsForUserQuery(user: PFDueler) -> PFQuery? {
-        let query = PFDuelTeam.query()
+        let query = PFDuelTeam.queryWithIncludes()
         query?.whereKey("dueler", equalTo: user)
+        return query
+    }
+    
+    class func queryWithIncludes() -> PFQuery? {
+        let query = PFDuelTeam.query()
+        query?.includeKey("dueler")
+        query?.includeKey("league")
         return query
     }
     

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class RecentContestsViewController: UIViewController {
 
@@ -16,16 +17,38 @@ class RecentContestsViewController: UIViewController {
             self.tableView?.reloadData()
         }
     }
+    var lastRefreshDate = [SportType:NSDate]()
+    let sport = SportType.MLB
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        fetchEvents()
     }
     
-    func fetchEvents() {
-        let sport = SportType.MLB
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        updateIfNeeded()
+    }
+    
+    func updateIfNeeded() {
+        if let lastRefreshDate = lastRefreshDate[sport] {
+            if (LDCoordinator.instance.shouldRefresh(lastRefreshDate, sport: SportType.MLB, dateTypes: [DateType.End])) {
+                fetchContests(false)
+            }
+        } else {
+            fetchContests(true)
+        }
+    
+        lastRefreshDate[sport] = NSDate()
+    }
+    
+    func fetchContests(isFirstTime: Bool) {
+        print("RECENT fetchContests: \(isFirstTime)")
         let query = PFContestLineup.myRecentContestLineupsQuery(sport)
+        if (isFirstTime) {
+            query?.cachePolicy = PFCachePolicy.CacheThenNetwork
+        } else {
+            query?.cachePolicy = PFCachePolicy.NetworkOnly
+        }
         query?.findObjectsInBackgroundWithBlock({ (contestLineups, error) -> Void in
             if let contestLineups = contestLineups as? [PFContestLineup] {
                 self.contestLineups = contestLineups

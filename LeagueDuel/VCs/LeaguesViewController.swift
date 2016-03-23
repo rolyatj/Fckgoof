@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import Parse
 
 class LeaguesViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    
     var leagues = [PFLeague]() {
         didSet {
             self.tableView.reloadData()
@@ -19,17 +21,16 @@ class LeaguesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "fetchLeagues", name: "pinnedMyLeagues", object: nil)
+        fetchLeagues(false)
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        fetchLeagues()
-    }
-    
-    func fetchLeagues() {
+    func fetchLeagues(forceNetwork: Bool) {
         let query = PFLeague.myLeaguesQuery()
-        query?.fromLocalDatastore()
+        if (forceNetwork) {
+            query?.cachePolicy = PFCachePolicy.NetworkElseCache
+        } else {
+            query?.cachePolicy = PFCachePolicy.CacheOnly
+        }
         query?.findObjectsInBackgroundWithBlock({ (leagues, error) -> Void in
             if let leagues = leagues as? [PFLeague] {
                 self.leagues = leagues
@@ -63,21 +64,13 @@ class LeaguesViewController: UIViewController {
         let query = PFLeague.query()
         query?.getObjectInBackgroundWithId(objectId, block: { (league, error) -> Void in
             if let league = league as? PFLeague {
-                self.joinLeague(league)
+                if true { // TODO //league.canAddAnotherMember() {
+                    self.performSegueWithIdentifier("toCreateTeam", sender: league)
+                }
             } else {
                 // TODO
             }
         })
-    }
-    
-    func joinLeague(league: PFLeague) {
-        // TODO PFDueler
-        if let user = PFDueler.currentUser(), let objectId = user.objectId {
-            league.addUniqueObject(objectId, forKey: "duelers")
-            league.saveEventually({ (success, error) -> Void in
-                self.fetchLeagues()
-            })
-        }
     }
     
     // MARK: - Navigation
@@ -92,6 +85,11 @@ class LeaguesViewController: UIViewController {
             if let createLeagueVC = segue.destinationViewController as? CreateLeagueViewController {
                 createLeagueVC.delegate = self
             }
+        } else if (segue.identifier == "toCreateTeam") {
+            if let createTeamVC = segue.destinationViewController as? CreateTeamViewController {
+                createTeamVC.delegate = self
+                createTeamVC.league = sender as! PFLeague
+            }
         }
     }
 
@@ -99,17 +97,16 @@ class LeaguesViewController: UIViewController {
 
 extension LeaguesViewController: CreateLeagueViewControllerDelegate {
     
-    func didCreateLeague(league: PFLeague) {
-        //TODO share.
+    func didJoinLeague(league: PFLeague, shouldPromptShare: Bool) {
+        fetchLeagues(true)
+        if (shouldPromptShare) {
+            // TODO
+        }
     }
     
 }
 
 extension LeaguesViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return leagues.count

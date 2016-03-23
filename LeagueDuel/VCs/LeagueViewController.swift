@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import Parse
 
 class LeagueViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
+    
     var league: PFLeague!
     var duelTeams = [PFDuelTeam]() {
         didSet {
@@ -28,18 +30,19 @@ class LeagueViewController: UIViewController {
             let editButton = UIBarButtonItem(title: "Edit", style: .Plain, target: self, action: "editLeague")
             navigationItem.rightBarButtonItem = editButton
         }
-        fetchDuelTeams()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.reloadData()
+        fetchDuelTeams()
     }
     
     func fetchDuelTeams() {
         let query = PFDuelTeam.query()
         query?.whereKey("league", equalTo: league)
         query?.orderByAscending("createdAt")
+        query?.cachePolicy = PFCachePolicy.CacheThenNetwork
+
         query?.findObjectsInBackgroundWithBlock({ (duelTeams, error) -> Void in
             if let duelTeams = duelTeams as? [PFDuelTeam] {
                 self.duelTeams = duelTeams

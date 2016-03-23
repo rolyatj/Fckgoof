@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class LiveContestsViewController: UIViewController {
 
@@ -16,16 +17,38 @@ class LiveContestsViewController: UIViewController {
             self.tableView?.reloadData()
         }
     }
+    var lastRefreshDate = [SportType:NSDate]()
+    let sport = SportType.MLB
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        fetchContests()
     }
     
-    func fetchContests() {
-        let sport = SportType.MLB
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        updateIfNeeded()
+    }
+    
+    func updateIfNeeded() {
+        if let lastRefreshDate = lastRefreshDate[sport] {
+            if (LDCoordinator.instance.shouldRefresh(lastRefreshDate, sport: SportType.MLB, dateTypes: [DateType.Start, DateType.End])) {
+                fetchContests(false)
+            }
+        } else {
+            fetchContests(true)
+        }
+        
+        lastRefreshDate[sport] = NSDate()
+    }
+    
+    func fetchContests(isFirstTime: Bool) {
+        print("LIVE fetchContests: \(isFirstTime)")
         let query = PFContestLineup.myLiveContestLineupsQuery(sport)
+        if (isFirstTime) {
+            query?.cachePolicy = PFCachePolicy.CacheThenNetwork
+        } else {
+            query?.cachePolicy = PFCachePolicy.NetworkOnly
+        }
         query?.findObjectsInBackgroundWithBlock({ (contestLineups, error) -> Void in
             if let contestLineups = contestLineups as? [PFContestLineup] {
                 self.contestLineups = contestLineups

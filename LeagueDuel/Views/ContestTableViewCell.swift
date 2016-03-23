@@ -11,7 +11,6 @@ import UIKit
 class ContestTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var sportLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
     override func awakeFromNib() {
@@ -26,15 +25,13 @@ class ContestTableViewCell: UITableViewCell {
     }
 
     func configureWithContestLineup(contestLineup: PFContestLineup) {
-        nameLabel.text = "TODO"//lineup.
-        sportLabel.text = "TODO"//lineup.event.sport.name
-        descriptionLabel.text = "TODO"
+        nameLabel.text = contestLineup.lineup.duelTeam.name
+        descriptionLabel.text = contestLineup.contest.league.name
     }
     
     func configureWithContest(contest: PFContest) {
-        nameLabel.text = "TODO"//lineup.
-        sportLabel.text = "TODO"//lineup.event.sport.name
-        descriptionLabel.text = "TODO"
+        nameLabel.text = contest.event.name
+        descriptionLabel.text = contest.league.name
     }
     
 }

@@ -11,12 +11,19 @@ import Parse
 
 class PFEvent: PFSuperclass {
     
+    @NSManaged var openDate: NSDate!
     @NSManaged var startDate: NSDate!
     @NSManaged var endDate: NSDate!
     @NSManaged var name: String?
     @NSManaged var maxSalary: Int
     
     static var importableLineups = [PFEvent:PFLineup]()
+    static var dateFormatter: NSDateFormatter {
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = .ShortStyle
+        formatter.timeStyle = .ShortStyle
+        return formatter
+    }
     
     class func myUpcomingAvailableEventsQuery(sport: SportType) -> PFQuery? {
         if let lineupQuery = PFLineup.myLineupsQuery(sport), let contestQuery = PFContest.query(sport), let contestLineupQuery = PFContestLineup.query(sport) {
@@ -50,34 +57,24 @@ class PFEvent: PFSuperclass {
         return eventQuery
     }
     
-    class func resetPinsForExpiredEvents() {
-        let allSports = [SportType.MLB]
-        
-        for sport in allSports {
-            if let liveEventsQuery = liveEventsQuery(sport), let upcomingEventsQuery = upcomingEventsQuery(sport) {
-                let query = PFQuery.orQueryWithSubqueries([liveEventsQuery, upcomingEventsQuery])
-                let playerEventQuery = PFPlayerEvent.query(sport)
-                playerEventQuery?.fromLocalDatastore()
-                playerEventQuery?.whereKey("event", doesNotMatchQuery: query)
-                playerEventQuery?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
-                    print("found \((objects ?? []).count) player events that were pinned to expired events")
-                    PFObject.unpinAllInBackground(objects, block: { (success, error) -> Void in
-                        // TODO?
-                    })
-                })
-                let gameQuery = PFGame.query(sport)
-                gameQuery?.fromLocalDatastore()
-                gameQuery?.whereKey("event", doesNotMatchQuery: query)
-                gameQuery?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
-                    print("found \((objects ?? []).count) games that were pinned to expired events")
-                    PFObject.unpinAllInBackground(objects, block: { (success, error) -> Void in
-                        // TODO?
-                    })
-                })
-            }
-
-        }
-        
+    func isUpcoming() -> Bool {
+        let hasNotStarted = startDate.compare(NSDate()) == .OrderedAscending
+        return hasNotStarted
+    }
+    
+    func isLive() -> Bool {
+        let hasStarted = startDate.compare(NSDate()) == .OrderedDescending
+        let hasNotEnded = endDate.compare(NSDate()) == .OrderedAscending
+        return hasStarted && hasNotEnded
+    }
+    
+    func isPast() -> Bool {
+        let hasEnded = endDate.compare(NSDate()) == .OrderedDescending
+        return hasEnded
+    }
+    
+    func dateString() -> String? {
+        return "\(PFEvent.dateFormatter.stringFromDate(startDate)) - \(PFEvent.dateFormatter.stringFromDate(endDate))"
     }
 
     func numberOfPositions() -> Int {
