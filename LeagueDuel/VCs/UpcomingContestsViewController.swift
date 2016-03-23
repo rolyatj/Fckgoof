@@ -60,6 +60,9 @@ class UpcomingContestsViewController: UIViewController {
     func toCreateLineupForEvent(event: PFEvent, duelTeam: PFDuelTeam) {
         var editableContestLineup: PFContestLineup?
         for contestLineup in contestLineups {
+            print("\(contestLineup.contest.league.objectId) == \(duelTeam.league.objectId)")
+            print("\(contestLineup.contest.leagueId) == \(duelTeam.league.objectId)")
+            print("\(contestLineup.contest.event.objectId) == \(event.objectId)")
             if (contestLineup.contest.league.objectId == duelTeam.league.objectId &&
                 contestLineup.contest.event.objectId == event.objectId) {
                     editableContestLineup = contestLineup
@@ -145,7 +148,7 @@ extension UpcomingContestsViewController: UITableViewDataSource, UITableViewDele
         if (section == 0) {
             return "Upcoming Events"
         } else {
-            return "Your Set Lineups"
+            return "Your Upcoming Lineups"
         }
     }
     

@@ -56,7 +56,7 @@ class LeagueContestViewController: UIViewController {
             if let vc = segue.destinationViewController as? PlayerEventViewController {
                 vc.playerEvent = sender as! PFPlayerEvent
             }
-        } else if (segue.identifier == "toDueler") {
+        } else if (segue.identifier == "toDuelTeam") {
             if let vc = segue.destinationViewController as? LeagueDuelTeamViewController {
                 vc.duelTeam = sender as! PFDuelTeam
                 vc.league = contest.league
@@ -70,7 +70,7 @@ class LeagueContestViewController: UIViewController {
 extension LeagueContestViewController: LeagueContestTableViewDelegate {
     
     func duelTeamTapped(duelTeam: PFDuelTeam) {
-        performSegueWithIdentifier("toDueler", sender:duelTeam)
+        performSegueWithIdentifier("toDuelTeam", sender:duelTeam)
     }
     
     func playerEventTapped(playerEvent: PFPlayerEvent) {

@@ -10,13 +10,9 @@ import UIKit
 
 class LeagueViewController: UIViewController {
 
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     var league: PFLeague!
-    var contests = [PFContest]() {
-        didSet {
-            self.tableView?.reloadData()
-        }
-    }
     var duelTeams = [PFDuelTeam]() {
         didSet {
             self.tableView?.reloadData()
@@ -38,16 +34,6 @@ class LeagueViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
-    }
-    
-    func fetchEvents() {
-        let sport = SportType.MLB
-        let query = PFContest.leagueContestsQuery(league, sport: sport)
-        query?.findObjectsInBackgroundWithBlock({ (contests, error) -> Void in
-            if let contests = contests as? [PFContest] {
-                self.contests = contests
-            }
-        })
     }
     
     func fetchDuelTeams() {
@@ -80,42 +66,25 @@ class LeagueViewController: UIViewController {
 
 extension LeagueViewController: UITableViewDataSource, UITableViewDelegate {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
-    }
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (section == 0) {
-            return contests.count
-        } else {
-            return duelTeams.count
-        }
-    }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if (indexPath.section == 0) {
-            return 78
-        } else {
-            return 44
-        }
+        return duelTeams.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if (indexPath.section == 0) {
-            let contest = contests[indexPath.row]
-            let cell = tableView.dequeueReusableCellWithIdentifier("ContestCell", forIndexPath: indexPath) as! ContestTableViewCell
-            cell.configureWithContest(contest)
-            return cell
-        } else {
-            let duelTeam = duelTeams[indexPath.row]
-            let cell = tableView.dequeueReusableCellWithIdentifier("DuelTeamCell", forIndexPath: indexPath)
-            cell.textLabel?.text = duelTeam.name
-            return cell
-        }
+        let duelTeam = duelTeams[indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier("DuelTeamCell", forIndexPath: indexPath)
+        cell.textLabel?.text = duelTeam.name
+        return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let duelTeam = duelTeams[indexPath.row]
+        if let vc = storyboard?.instantiateViewControllerWithIdentifier("DuelTeamVC") as? LeagueDuelTeamViewController {
+            vc.duelTeam = duelTeam
+            vc.league = league
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
 }

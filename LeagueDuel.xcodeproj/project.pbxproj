@@ -54,6 +54,7 @@
 		900E11F81C8F9EF300C4B7A4 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900E11C91C8F9EF200C4B7A4 /* EventTableViewCell.swift */; };
 		900E11F91C8F9EF300C4B7A4 /* LeagueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900E11CA1C8F9EF200C4B7A4 /* LeagueTableViewCell.swift */; };
 		900E11FA1C8F9EF300C4B7A4 /* LineupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900E11CB1C8F9EF300C4B7A4 /* LineupTableViewCell.swift */; };
+		903C534F1CA2E83800E20E93 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903C534D1CA2E83800E20E93 /* MenuViewController.swift */; };
 		90629A2F1C90919F0083680D /* ContestHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90629A2E1C90919F0083680D /* ContestHeaderView.swift */; };
 		90629A311C9091AF0083680D /* ContestHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90629A301C9091AF0083680D /* ContestHeaderView.xib */; };
 		90629A341C9095120083680D /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90629A331C9095120083680D /* Style.swift */; };
@@ -119,6 +120,7 @@
 		900E11C91C8F9EF200C4B7A4 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		900E11CA1C8F9EF200C4B7A4 /* LeagueTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueTableViewCell.swift; sourceTree = "<group>"; };
 		900E11CB1C8F9EF300C4B7A4 /* LineupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineupTableViewCell.swift; sourceTree = "<group>"; };
+		903C534D1CA2E83800E20E93 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		90629A2E1C90919F0083680D /* ContestHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContestHeaderView.swift; sourceTree = "<group>"; };
 		90629A301C9091AF0083680D /* ContestHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestHeaderView.xib; sourceTree = "<group>"; };
 		90629A331C9095120083680D /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				908528FE1CA1AA60000E606E /* Player */,
 				900E11FF1C8FA04F00C4B7A4 /* Profile */,
 				908528FF1CA1D1B2000E606E /* LDTabBarController.swift */,
+				903C534D1CA2E83800E20E93 /* MenuViewController.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -587,6 +590,7 @@
 				900E11E01C8F9EF300C4B7A4 /* PFMLBPlayer.swift in Sources */,
 				90629A361C90B5760083680D /* TextFieldTableViewCell.swift in Sources */,
 				900E11F11C8F9EF300C4B7A4 /* PlayerPickerViewController.swift in Sources */,
+				903C534F1CA2E83800E20E93 /* MenuViewController.swift in Sources */,
 				900E11D21C8F9EF300C4B7A4 /* MLBEditableContestLineup.swift in Sources */,
 				900E11D11C8F9EF300C4B7A4 /* EditableContestLineup.swift in Sources */,
 				900E11DF1C8F9EF300C4B7A4 /* PFMLBLineup.swift in Sources */,
@@ -726,7 +730,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/LeagueDuel/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.arborapps.Leagueduel;
+				PRODUCT_BUNDLE_IDENTIFIER = io.arborapps.LeagueDuel;
 				PRODUCT_NAME = LeagueDuel;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -740,7 +744,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/LeagueDuel/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.arborapps.Leagueduel;
+				PRODUCT_BUNDLE_IDENTIFIER = io.arborapps.LeagueDuel;
 				PRODUCT_NAME = LeagueDuel;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
