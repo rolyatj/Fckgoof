@@ -17,9 +17,10 @@ class PFMLBLineup: PFLineup, PFSubclassing {
         self.setRoster(editableContestLineup)
     }
     
-    convenience init(duelTeam: PFDuelTeam, editableContestLineup: MLBEditableContestLineup) {
+    convenience init(duelTeam: PFDuelTeam, contest: PFContest, editableContestLineup: MLBEditableContestLineup) {
         self.init()
         self.duelTeam = duelTeam
+        self.contestId = contest.objectId
         self.setRoster(editableContestLineup)
     }
     

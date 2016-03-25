@@ -11,8 +11,11 @@ import Parse
 
 class PFPlayerEventResult: PFSuperclass {
     
-    @NSManaged var score: Float
-    @NSManaged var result: String?
+    @NSManaged var PTS: Float
+
+    func resultString() -> String? {
+        return nil
+    }
     
     // SUPERCLASSING
     

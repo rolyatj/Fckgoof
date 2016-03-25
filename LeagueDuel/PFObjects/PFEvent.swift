@@ -58,18 +58,18 @@ class PFEvent: PFSuperclass {
     }
     
     func isUpcoming() -> Bool {
-        let hasNotStarted = startDate.compare(NSDate()) == .OrderedAscending
+        let hasNotStarted = startDate.compare(NSDate()) == .OrderedDescending
         return hasNotStarted
     }
     
     func isLive() -> Bool {
-        let hasStarted = startDate.compare(NSDate()) == .OrderedDescending
-        let hasNotEnded = endDate.compare(NSDate()) == .OrderedAscending
+        let hasStarted = startDate.compare(NSDate()) == .OrderedAscending
+        let hasNotEnded = endDate.compare(NSDate()) == .OrderedDescending
         return hasStarted && hasNotEnded
     }
     
     func isPast() -> Bool {
-        let hasEnded = endDate.compare(NSDate()) == .OrderedDescending
+        let hasEnded = endDate.compare(NSDate()) == .OrderedAscending
         return hasEnded
     }
     

@@ -21,15 +21,15 @@ class LeaguesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchLeagues(false)
+        fetchLeagues(true)
     }
     
-    func fetchLeagues(forceNetwork: Bool) {
+    func fetchLeagues(isFirstTime: Bool) {
         let query = PFLeague.myLeaguesQuery()
-        if (forceNetwork) {
-            query?.cachePolicy = PFCachePolicy.NetworkElseCache
+        if (isFirstTime) {
+            query?.cachePolicy = PFCachePolicy.CacheThenNetwork
         } else {
-            query?.cachePolicy = PFCachePolicy.CacheOnly
+            query?.cachePolicy = PFCachePolicy.NetworkOnly
         }
         query?.findObjectsInBackgroundWithBlock({ (leagues, error) -> Void in
             if let leagues = leagues as? [PFLeague] {
@@ -98,7 +98,7 @@ class LeaguesViewController: UIViewController {
 extension LeaguesViewController: CreateLeagueViewControllerDelegate {
     
     func didJoinLeague(league: PFLeague, shouldPromptShare: Bool) {
-        fetchLeagues(true)
+        fetchLeagues(false)
         if (shouldPromptShare) {
             // TODO
         }

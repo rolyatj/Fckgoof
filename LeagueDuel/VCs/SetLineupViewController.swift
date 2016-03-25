@@ -152,7 +152,7 @@ class SetLineupViewController: UIViewController {
                 } else {
                     // create contestLineup
                     do {
-                        let lineup = PFLineup.lineupFromEditableLineup(sport, duelTeam: self.duelTeam, editableContestLineup: editableContestLineup)
+                        let lineup = PFLineup.lineupFromEditableLineup(sport, duelTeam: self.duelTeam, contest: contest, editableContestLineup: editableContestLineup)
                         let contestLineup = PFContestLineup.contestLineupWithSport(sport, contest: contest, lineup: lineup)
                         try contestLineup.save()
                         self.delegate?.didAddOrChangeLineup()

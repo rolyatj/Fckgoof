@@ -30,22 +30,27 @@ class ProfileViewController: UIViewController {
             tableView?.reloadData()
         }
     }
-    var forceNetwork = false
+    var shouldFetchOnAppear = false // TODO set this to true on league join.
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchTeams(true)
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        fetchTeams(forceNetwork)
-        forceNetwork = false
+        if (shouldFetchOnAppear) {
+            fetchTeams(false)
+            shouldFetchOnAppear = false
+        }
     }
     
-    func fetchTeams(shouldForceNetwork: Bool) {
+    func fetchTeams(isFirstTime: Bool) {
         let query = PFDuelTeam.myTeamsQuery()
-        if (!shouldForceNetwork) {
-            query?.cachePolicy = PFCachePolicy.CacheElseNetwork
+        if (!isFirstTime) {
+            query?.cachePolicy = PFCachePolicy.CacheThenNetwork
+        } else {
+            query?.cachePolicy = PFCachePolicy.NetworkOnly
         }
         query?.findObjectsInBackgroundWithBlock({ (duelTeams, error) -> Void in
             if let duelTeams = duelTeams as? [PFDuelTeam] {

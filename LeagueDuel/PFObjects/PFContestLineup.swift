@@ -106,6 +106,7 @@ class PFContestLineup: PFSuperclass {
     class func leagueContestLineupsQuery(sport: SportType, contest: PFContest) -> PFQuery? {
         let query = PFContestLineup.queryWithIncludes(sport)
         query?.whereKey("contest", equalTo: contest)
+        query?.orderByDescending("points")
         return query
     }
     

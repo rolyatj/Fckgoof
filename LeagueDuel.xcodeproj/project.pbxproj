@@ -69,6 +69,7 @@
 		908529021CA1F715000E606E /* LeagueDuelTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908529011CA1F715000E606E /* LeagueDuelTeamViewController.swift */; };
 		908529041CA20C7E000E606E /* PFDuelTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908529031CA20C7E000E606E /* PFDuelTeam.swift */; };
 		908529061CA21307000E606E /* CreateTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908529051CA21307000E606E /* CreateTeamViewController.swift */; };
+		908699D51CA5B7F1005233A5 /* LeagueContestTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908699D41CA5B7F1005233A5 /* LeagueContestTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -137,6 +138,7 @@
 		908529011CA1F715000E606E /* LeagueDuelTeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueDuelTeamViewController.swift; sourceTree = "<group>"; };
 		908529031CA20C7E000E606E /* PFDuelTeam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFDuelTeam.swift; sourceTree = "<group>"; };
 		908529051CA21307000E606E /* CreateTeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTeamViewController.swift; sourceTree = "<group>"; };
+		908699D41CA5B7F1005233A5 /* LeagueContestTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueContestTableView.swift; sourceTree = "<group>"; };
 		90F7B2241C889B27003FBE49 /* LeagueDuel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeagueDuel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9C391357D720FBAC7B3D93D /* Pods-LeagueDuel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeagueDuel.release.xcconfig"; path = "Pods/Target Support Files/Pods-LeagueDuel/Pods-LeagueDuel.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -228,6 +230,7 @@
 		900E11C71C8F9EF200C4B7A4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				908699D41CA5B7F1005233A5 /* LeagueContestTableView.swift */,
 				900E11C81C8F9EF200C4B7A4 /* ContestTableViewCell.swift */,
 				900E11C91C8F9EF200C4B7A4 /* EventTableViewCell.swift */,
 				900E11CA1C8F9EF200C4B7A4 /* LeagueTableViewCell.swift */,
@@ -600,6 +603,7 @@
 				900E11F11C8F9EF300C4B7A4 /* PlayerPickerViewController.swift in Sources */,
 				903C534F1CA2E83800E20E93 /* MenuViewController.swift in Sources */,
 				900E11D21C8F9EF300C4B7A4 /* MLBEditableContestLineup.swift in Sources */,
+				908699D51CA5B7F1005233A5 /* LeagueContestTableView.swift in Sources */,
 				900E11D11C8F9EF300C4B7A4 /* EditableContestLineup.swift in Sources */,
 				900E11DF1C8F9EF300C4B7A4 /* PFMLBLineup.swift in Sources */,
 				900E11D71C8F9EF300C4B7A4 /* PFFlag.swift in Sources */,

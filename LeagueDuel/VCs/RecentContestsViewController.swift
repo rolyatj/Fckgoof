@@ -61,15 +61,16 @@ class RecentContestsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    /*
     // MARK: - Navigation
-    
+
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
+        if (segue.identifier == "toContest") {
+            if let vc = segue.destinationViewController as? LeagueContestViewController {
+                vc.contest = (sender as? PFContestLineup)?.contest
+            }
+        }
     }
-    */
     
 }
 
@@ -93,7 +94,7 @@ extension RecentContestsViewController: UITableViewDataSource, UITableViewDelega
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let contestLineup = contestLineups[indexPath.row]
-        
+        performSegueWithIdentifier("toContest", sender: contestLineup)
     }
     
 }

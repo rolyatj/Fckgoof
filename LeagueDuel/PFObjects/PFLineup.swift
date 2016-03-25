@@ -11,6 +11,8 @@ import Parse
 
 class PFLineup: PFSuperclass {
     
+    @NSManaged var points: Float
+    @NSManaged var contestId: String?
     @NSManaged var duelTeam: PFDuelTeam!
     @NSManaged var playerEvents0: [PFPlayerEvent]!
     @NSManaged var playerEvents1: [PFPlayerEvent]!
@@ -22,8 +24,6 @@ class PFLineup: PFSuperclass {
     @NSManaged var playerEvents7: [PFPlayerEvent]!
     @NSManaged var playerEvents8: [PFPlayerEvent]!
     @NSManaged var playerEvents9: [PFPlayerEvent]!
-    @NSManaged var score: Float
-    @NSManaged var rank: Int
     
     class func tempLineupFromEditableLineup(sport: SportType, editableContestLineup: EditableContestLineup) -> PFLineup {
         switch (sport) {
@@ -32,10 +32,10 @@ class PFLineup: PFSuperclass {
         }
     }
 
-    class func lineupFromEditableLineup(sport: SportType, duelTeam: PFDuelTeam, editableContestLineup: EditableContestLineup) -> PFLineup {
+    class func lineupFromEditableLineup(sport: SportType, duelTeam: PFDuelTeam, contest: PFContest, editableContestLineup: EditableContestLineup) -> PFLineup {
         switch (sport) {
         case .MLB:
-            return PFMLBLineup(duelTeam: duelTeam, editableContestLineup: editableContestLineup as! MLBEditableContestLineup)
+            return PFMLBLineup(duelTeam: duelTeam, contest: contest, editableContestLineup: editableContestLineup as! MLBEditableContestLineup)
         }
     }
     

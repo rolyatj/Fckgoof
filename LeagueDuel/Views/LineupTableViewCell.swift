@@ -13,7 +13,8 @@ class ResultLineupTableViewCell: LineupTableViewCell {
     
     @IBOutlet weak var rankLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
-    @IBOutlet weak var rankProgressView: UIProgressView!
+    @IBOutlet weak var rankProgressView: UIProgressView?
+    @IBOutlet weak var contestLabel: UILabel?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,18 +27,19 @@ class ResultLineupTableViewCell: LineupTableViewCell {
         // Configure the view for the selected state
     }
     
-    override func configureWithLineup(lineup: PFLineup, delegate: LineupTableViewCellDelegate?) {
-        super.configureWithLineup(lineup, delegate: delegate)
-        rankLabel.text = "\(lineup.rank)"
-        scoreLabel.text = "\(lineup.score)"
+    override func configureWithContestLineup(contestLineup: PFContestLineup, rank: Int, delegate: LineupTableViewCellDelegate?) {
+        super.configureWithContestLineup(contestLineup, rank: rank, delegate: delegate)
+        rankLabel.text = "\(rank)"
+        scoreLabel.text = "\(contestLineup.lineup.points)"
         var percentRemaining : Float = 0.0
-        let playerEvents = lineup.allPlayerEvents()
+        let playerEvents = contestLineup.lineup.allPlayerEvents()
         for playerEvent in playerEvents {
             percentRemaining += playerEvent.percentRemaining
         }
         if (playerEvents.count > 0) {
-            rankProgressView.progress = percentRemaining/Float(playerEvents.count)
+            rankProgressView?.progress = percentRemaining/Float(playerEvents.count)
         }
+        contestLabel?.text = contestLineup.contest.event.name
     }
     
 }
@@ -49,7 +51,6 @@ protocol LineupTableViewCellDelegate {
 class LineupTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var sportLabel: UILabel?
     @IBOutlet weak var descriptionLabel: UILabel?
     @IBOutlet weak var toggleButton: UIButton!
     var delegate: LineupTableViewCellDelegate?
@@ -76,9 +77,8 @@ class LineupTableViewCell: UITableViewCell {
         }
     }
 
-    func configureWithLineup(lineup: PFLineup, delegate: LineupTableViewCellDelegate?) {
-        nameLabel.text = lineup.duelTeam.name
-        sportLabel?.text = "TODO"//lineup.event.sport.name
+    func configureWithContestLineup(contestLineup: PFContestLineup, rank: Int, delegate: LineupTableViewCellDelegate?) {
+        nameLabel.text = contestLineup.lineup.duelTeam.name
         descriptionLabel?.text = "TODO"
         self.delegate = delegate
     }

@@ -64,8 +64,8 @@ class PlayerEventTableViewCell: UITableViewCell {
     func configureWithPlayerEvent(playerEvent: PFPlayerEvent) {
         nameLabel.text = playerEvent.player.name
         positionLabel.text = playerEvent.player.position
-        statusLabel.text = "\(playerEvent.result.score)"
-        //TODO infoLabel.text = playerEvent.result.toString()
+        statusLabel.text = "\(playerEvent.result.PTS)"
+        infoLabel.text = playerEvent.result.resultString()
         progressView?.progress = playerEvent.percentRemaining
     }
 
