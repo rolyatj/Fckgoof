@@ -16,6 +16,13 @@ class LeaguesViewController: UIViewController {
     var leagues = [PFLeague]() {
         didSet {
             self.tableView.reloadData()
+            if (leagues.count == 0) {
+                let actionFooterView = FooterView.actionFooterView(self)
+                tableView.tableFooterView = actionFooterView
+            } else {
+                tableView.tableFooterView?.removeFromSuperview()
+                tableView.tableFooterView = nil
+            }
         }
     }
     
@@ -93,6 +100,12 @@ class LeaguesViewController: UIViewController {
         }
     }
 
+}
+
+extension LeaguesViewController: FooterViewDelegate {
+    func footerViewActionTapped() {
+        performSegueWithIdentifier("toCreateLeague", sender: nil)
+    }
 }
 
 extension LeaguesViewController: CreateLeagueViewControllerDelegate {

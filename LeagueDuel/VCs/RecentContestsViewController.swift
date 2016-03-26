@@ -15,6 +15,14 @@ class RecentContestsViewController: UIViewController {
     var contestLineups = [PFContestLineup]() {
         didSet {
             self.tableView?.reloadData()
+            if (contestLineups.count == 0) {
+                let footerView = FooterView.footerView()
+                footerView.textLabel.text = "There are no recent events right now. Please check back soon!"
+                tableView.tableFooterView = footerView
+            } else {
+                tableView.tableFooterView?.removeFromSuperview()
+                tableView.tableFooterView = nil
+            }
         }
     }
     var lastRefreshDate = [SportType:NSDate]()

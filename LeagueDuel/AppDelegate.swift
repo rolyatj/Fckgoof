@@ -37,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             clientKey: "POiXIGUX5MbvWagON8sGOd0x9oyellwg0rgH3miD")
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
+        // UI APPEARANCE
         UINavigationBar.appearance().barTintColor = UIColor.defaultBarTintColor()
         UINavigationBar.appearance().tintColor = UIColor.defaultTintColor()
         UINavigationBar.appearance().barStyle = UIBarStyle.Black

@@ -28,6 +28,13 @@ class ProfileViewController: UIViewController {
             contestsEnteredLabel?.text = "\(numberContestsEntered)"
             contestsWonLabel?.text = "\(numberContestsWon)"
             tableView?.reloadData()
+            if (duelTeams.count == 0) {
+                let actionFooterView = FooterView.actionFooterView(self)
+                tableView.tableFooterView = actionFooterView
+            } else {
+                tableView.tableFooterView?.removeFromSuperview()
+                tableView.tableFooterView = nil
+            }
         }
     }
     var shouldFetchOnAppear = false // TODO set this to true on league join.
@@ -59,13 +66,6 @@ class ProfileViewController: UIViewController {
         })
     }
     
-    @IBAction func logoutTapped(sender: AnyObject) {
-        PFDueler.logOutInBackgroundWithBlock { (error) -> Void in
-            PFQuery.clearAllCachedResults()
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }
-    }
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -78,6 +78,12 @@ class ProfileViewController: UIViewController {
         }
     }
 
+}
+
+extension ProfileViewController: FooterViewDelegate {
+    func footerViewActionTapped() {
+        tabBarController?.selectedIndex = 0
+    }
 }
 
 extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {

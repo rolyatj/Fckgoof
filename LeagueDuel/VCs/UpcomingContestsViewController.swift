@@ -15,11 +15,13 @@ class UpcomingContestsViewController: UIViewController {
     var contestLineups = [PFContestLineup]() {
         didSet {
             self.tableView?.reloadData()
+            self.setupFooterView()
         }
     }
     var availableEvents = [PFEvent]() {
         didSet {
             self.tableView?.reloadData()
+            self.setupFooterView()
         }
     }
     var lastRefreshDate = [SportType:NSDate]()
@@ -76,6 +78,21 @@ class UpcomingContestsViewController: UIViewController {
                 self.availableEvents = events
             }
         })
+    }
+    
+    func setupFooterView() {
+        if (contestLineups.count == 0 && availableEvents.count == 0) {
+            let footerView = FooterView.footerView()
+            footerView.textLabel.text = "There are no upcoming events at the moment. Check back soon!"
+            tableView.tableFooterView = footerView
+        } else if (contestLineups.count == 0) {
+            let footerView = FooterView.footerView()
+            footerView.textLabel.text = "Create a lineup before the event starts!"
+            tableView.tableFooterView = footerView
+        } else {
+            tableView.tableFooterView?.removeFromSuperview()
+            tableView.tableFooterView = nil
+        }
     }
 
     func toCreateLineupForEvent(event: PFEvent, duelTeam: PFDuelTeam) {

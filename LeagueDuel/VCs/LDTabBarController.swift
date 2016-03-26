@@ -8,6 +8,7 @@
 
 import UIKit
 import SideMenu
+import SafariServices
 
 class LDTabBarController: UITabBarController {
 
@@ -47,7 +48,7 @@ class LDTabBarController: UITabBarController {
                 }
                 
                 if let vc = childViewController.childViewControllers.first {
-                    vc.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "menu", style: .Plain, target: self, action: "showLeftMenu")
+                    vc.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu-80"), style: .Plain, target: self, action: "showLeftMenu")
                 }
             }
 
