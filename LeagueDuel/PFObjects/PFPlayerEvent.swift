@@ -16,30 +16,9 @@ class PFPlayerEvent: PFSuperclass {
     @NSManaged var event: PFEvent!
     @NSManaged var player: PFPlayer!
     @NSManaged var result: PFPlayerEventResult!
-    
-    func toString() -> String? {
-        return "TODO"
-    }
-    
-    class func pinAllPlayersForEvent(event: PFEvent) {
-        return
-        
-        if let sport = event.dynamicType.sport() {
-            let query = PFPlayerEvent.queryWithIncludes(sport)
-            query?.limit = 1000
-            query?.whereKey("event", equalTo: event)
-            query?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
-                print("found \((objects ?? []).count) player events to pin for event \(event)")
-                PFObject.pinAllInBackground(objects, withName: event.objectId!+"PLAYEREVENT", block: { (success, error) -> Void in
-                    // TODO?
-                    NSNotificationCenter.defaultCenter().postNotificationName("pinnedPlayerEvents", object: event)
-                })
-            })
-        }
-    }
-    
+
     class func recentPlayerEventsForPlayerEvent(sport: SportType, playerEvent: PFPlayerEvent) -> PFQuery? {
-        // TODO
+        // TODO?
         if let recentEventsQuery = PFEvent.liveEventsQuery(sport) {
             let query = PFPlayerEvent.queryWithIncludes(sport)
             query?.whereKey("event", matchesQuery: recentEventsQuery)

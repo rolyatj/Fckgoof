@@ -51,7 +51,6 @@ protocol LineupTableViewCellDelegate {
 class LineupTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel?
     @IBOutlet weak var toggleButton: UIButton!
     var delegate: LineupTableViewCellDelegate?
     
@@ -79,7 +78,6 @@ class LineupTableViewCell: UITableViewCell {
 
     func configureWithContestLineup(contestLineup: PFContestLineup, rank: Int, delegate: LineupTableViewCellDelegate?) {
         nameLabel.text = contestLineup.lineup.duelTeam.name
-        descriptionLabel?.text = "TODO"
         self.delegate = delegate
     }
 

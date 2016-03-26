@@ -20,8 +20,8 @@ class CreateLineupViewController: SetLineupViewController {
     }
     
     @IBAction override func submitTapped(sender: AnyObject) {
-        if let errorMessage = editableContestLineup?.checkIfCanSubmit() {
-            // TODO
+        if let errorMessage = editableContestLineup?.errorMessageIfInvalid() {
+            showErrorPopup(errorMessage, completion: nil)
         } else {
             // check if there is an existing contest for selected league
             if let duelTeam = duelTeam {
@@ -46,13 +46,10 @@ class CreateLineupViewController: SetLineupViewController {
                         try contest.save()
                         self.saveToContest(contest)
                     } catch {
-                        // TODO
-                        print(error)
+                        self.showErrorPopup((error as NSError).localizedDescription, completion: nil)
                     }
                 }
             })
-        } else {
-            // TODO
         }
     }
     

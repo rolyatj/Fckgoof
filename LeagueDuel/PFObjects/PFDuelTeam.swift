@@ -24,6 +24,14 @@ class PFDuelTeam: PFObject, PFSubclassing {
         self.league = league
     }
     
+    func errorMessageIfInvalid() -> String? {
+        if (name ?? "").characters.count == 0 {
+            return "Please input a valid name"
+        }
+        return nil
+    }
+    
+    
     class func myTeamsQuery() -> PFQuery? {
         if let user = PFDueler.currentUser() {
             return PFDuelTeam.teamsForUserQuery(user)

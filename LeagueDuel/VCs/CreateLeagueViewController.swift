@@ -60,7 +60,7 @@ class CreateLeagueViewController: UIViewController {
     
     func save() {
         if let errorMessage = league.isValid() {
-            // TODO
+            showErrorPopup(errorMessage, completion: nil)
         } else {
             performSegueWithIdentifier("toCreateTeam", sender: nil)
         }

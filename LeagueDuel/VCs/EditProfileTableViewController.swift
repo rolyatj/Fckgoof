@@ -37,7 +37,7 @@ class EditProfileTableViewController: UITableViewController {
             user.username = usernameTextField.text?.lowercaseString
             user.email = emailTextField.text
             
-            if let profileError = user.profileError() {
+            if let profileError = user.errorMessageIfInvalid() {
                 self.showErrorPopup(profileError, completion: nil)
             } else {
                 user.saveInBackgroundWithBlock({ (success, error) -> Void in

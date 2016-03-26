@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class LeaguesViewController: UIViewController {
+class LeaguesViewController: MessageViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -49,7 +49,7 @@ class LeaguesViewController: UIViewController {
         performSegueWithIdentifier("toLeague", sender: league)
     }
     
-    @IBAction func joinLeagueTapped(sender: AnyObject) {
+    @IBAction func joinLeagueTapped(sender: AnyObject?) {
         let alertController = UIAlertController(title: "Join League", message: "What's the unique ID?", preferredStyle: .Alert)
         alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
             textField.placeholder = "10 Character ID"
@@ -58,7 +58,9 @@ class LeaguesViewController: UIViewController {
             if let text = alertController.textFields?.first?.text where text.characters.count == 10 {
                 self.findLeague(text)
             } else {
-                // TODO
+                self.showErrorPopup("The League ID must be 10 characters.", completion: { 
+                    self.joinLeagueTapped(nil)
+                })
             }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
@@ -71,11 +73,13 @@ class LeaguesViewController: UIViewController {
         let query = PFLeague.query()
         query?.getObjectInBackgroundWithId(objectId, block: { (league, error) -> Void in
             if let league = league as? PFLeague {
-                if true { // TODO //league.canAddAnotherMember() {
+                if league.canAddAnotherMember() {
                     self.performSegueWithIdentifier("toCreateTeam", sender: league)
+                } else {
+                    self.showErrorPopup("The league has reached capacity.", completion: nil)
                 }
             } else {
-                // TODO
+                self.showErrorPopup("Couldn't find league with id \(objectId)", completion: nil)
             }
         })
     }
@@ -113,7 +117,23 @@ extension LeaguesViewController: CreateLeagueViewControllerDelegate {
     func didJoinLeague(league: PFLeague, shouldPromptShare: Bool) {
         fetchLeagues(false)
         if (shouldPromptShare) {
-            // TODO
+            if let leagueId = league.objectId {
+                // TODO branch links
+                let body = "I set up a league for us on the LeagueDuel app, a free iOS app that keeps track of daily/weekly fantasy leagues for friends/family. Here's the league code so you can join in the fun! \(leagueId)"
+                
+                let alertController = UIAlertController(title: "Share League?", message: "In order for others to join they will need to enter the unique ID\n\n\(leagueId)", preferredStyle: .Alert)
+                let textAction = UIAlertAction(title: "Join", style: .Default) { (action) -> Void in
+                    self.sendText(body)
+                }
+                let emailAction = UIAlertAction(title: "Email", style: .Default) { (action) -> Void in
+                    self.sendEmail(nil, subject: "Join My League on LeagueDuel", body: body)
+                }
+                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+                alertController.addAction(cancelAction)
+                alertController.addAction(textAction)
+                alertController.addAction(emailAction)
+                self.presentViewController(alertController, animated: true, completion: nil)
+            }
         }
     }
     

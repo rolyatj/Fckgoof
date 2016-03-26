@@ -77,8 +77,8 @@ class EditLeagueViewController: UIViewController {
     }
     
     func save() {
-        if let errorMessage = league.isValid() {
-            // TODO
+        if let errorMessage = league.errorMessageIfInvalid() {
+            showErrorPopup(errorMessage, completion: nil)
         } else {
             league.saveEventually()
             self.navigationController?.popViewControllerAnimated(true)
@@ -145,7 +145,7 @@ extension EditLeagueViewController: UITableViewDataSource, UITableViewDelegate, 
             if (editingStyle == .Delete) {
                 let duelTeam = duelTeams[indexPath.row]
                 duelTeams.removeAtIndex(indexPath.row)
-                league.removeObject(duelTeam.objectId!, forKey: "duelers") // TODO
+                league.removeObject(duelTeam.objectId!, forKey: "duelers") // TODO?
             }
         }
     }

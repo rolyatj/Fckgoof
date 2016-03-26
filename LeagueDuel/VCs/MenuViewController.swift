@@ -8,10 +8,9 @@
 
 import UIKit
 import SDWebImage
-import MessageUI
 import SafariServices
 
-class MenuViewController: UIViewController {
+class MenuViewController: MessageViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -81,7 +80,7 @@ extension MenuViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if (indexPath.section == 0) {
-            sendEmail()
+            sendEmail(["arborapps+leagueduel@gmail.com"], subject: "Feedback", body: nil)
         } else if (indexPath.section == 1) {
             if (indexPath.row == 0) {
                 //"Like us on Facebook"
@@ -99,36 +98,4 @@ extension MenuViewController: UITableViewDelegate {
         }
 
     }
-}
-
-extension MenuViewController: MFMailComposeViewControllerDelegate {
-    func sendEmail() {
-        let mailComposeViewController = emptyMailComposeViewController()
-        if MFMailComposeViewController.canSendMail() {
-            self.presentViewController(mailComposeViewController, animated: true, completion: nil)
-        }
-    }
-    
-    func emptyMailComposeViewController() -> MFMailComposeViewController {
-        let mailComposerVC = MFMailComposeViewController()
-        mailComposerVC.mailComposeDelegate = self
-        
-        mailComposerVC.setToRecipients(["arborapps+leagueduel@gmail.com"])
-        mailComposerVC.setSubject("Feedback")
-        
-        return mailComposerVC
-    }
-    
-    // MARK: MFMailComposeViewControllerDelegate Method
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
-        controller.dismissViewControllerAnimated(true) { () -> Void in
-            if (result == MFMailComposeResultSent) {
-                let alertController = UIAlertController(title: "Feedback Sent", message: nil, preferredStyle: .Alert)
-                let okAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
-                alertController.addAction(okAction)
-                self.presentViewController(alertController, animated: true, completion: nil)
-            }
-        }
-    }
-    
 }

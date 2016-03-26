@@ -20,23 +20,6 @@ class PFGame: PFSuperclass {
         return "\(awayTeam.teamName ?? "") @ \(homeTeam.teamName ?? "") \(startDate)"
     }
     
-    class func pinAllGamesForEvent(event: PFEvent) {
-        return
-        
-        if let sport = event.dynamicType.sport() {
-            let query = PFGame.queryWithIncludes(sport)
-            query?.limit = 1000
-            query?.whereKey("event", equalTo: event)
-            query?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
-                print("found \((objects ?? []).count) games to pin for event \(event)")
-                PFObject.pinAllInBackground(objects, withName: event.objectId!+"GAME", block: { (success, error) -> Void in
-                    // TODO?
-                    NSNotificationCenter.defaultCenter().postNotificationName("pinnedGames", object: event)
-                })
-            })
-        }
-    }
-    
     class func gamesForTeam(sport: SportType, team: PFTeam, event: PFEvent) -> PFQuery? {
         if let queryH = PFGame.query(sport), let queryA = PFGame.query(sport) {
             queryH.whereKey("event", equalTo: event)

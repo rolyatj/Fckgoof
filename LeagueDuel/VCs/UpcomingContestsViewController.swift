@@ -152,7 +152,12 @@ class UpcomingContestsViewController: UIViewController {
         } else if let duelTeam = duelTeams.first {
             toCreateLineupForEvent(event, duelTeam: duelTeam)
         } else {
-            // TODO "you don't have any available leagues. Create one?"
+            let alertController = UIAlertController(title: "No Leagues", message: "You haven't created/joined any leagues yet.", preferredStyle: .Alert)
+            let createAction = UIAlertAction(title: "Create/Join League", style: .Cancel, handler: { (action) in
+                self.tabBarController?.selectedIndex = 0
+            })
+            alertController.addAction(createAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
         }
     }
     

@@ -59,7 +59,7 @@ class EditableContestLineup: NSObject {
         return nil
     }
     
-    func checkIfCanSubmit() -> String? {
+    func errorMessageIfInvalid() -> String? {
         // TODO
         return nil
     }

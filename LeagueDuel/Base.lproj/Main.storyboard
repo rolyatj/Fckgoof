@@ -151,6 +151,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="LEAGUES" id="bHm-tJ-GkD">
+                        <barButtonItem key="leftBarButtonItem" image="Menu-80" id="WPt-5m-rMO"/>
                         <rightBarButtonItems>
                             <barButtonItem title="Create" id="fSp-4f-UeA">
                                 <connections>
@@ -3326,6 +3327,7 @@
     </scenes>
     <resources>
         <image name="Future-96" width="32" height="32"/>
+        <image name="Menu-80" width="26" height="26"/>
         <image name="Minus-96" width="32" height="32"/>
         <image name="Past-96" width="32" height="32"/>
         <image name="Plus-96" width="32" height="32"/>

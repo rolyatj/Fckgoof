@@ -18,7 +18,7 @@ class PFDueler: PFUser {
         self.followingIds = [String]()
     }
     
-    func profileError() -> String? {
+    func errorMessageIfInvalid() -> String? {
         /*if (name == nil || name?.characters.count == 0) {
             return "Please enter a name"
         }*/

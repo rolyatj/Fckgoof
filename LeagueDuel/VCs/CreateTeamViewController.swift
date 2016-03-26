@@ -55,8 +55,9 @@ class CreateTeamViewController: UIViewController {
     }
     
     func saveLeagueIfNeededThenTeam() {
-        var isValidTeam = true
-        if (isValidTeam) { // TODO
+        if let errorMessage = duelTeam.errorMessageIfInvalid() {
+            showErrorPopup(errorMessage, completion: nil)
+        } else {
             if (isNewLeague) {
                 league.commissioner = PFDueler.currentUser()!
                 league.duelers = [PFDueler.currentUser()!.objectId!]
@@ -79,8 +80,9 @@ class CreateTeamViewController: UIViewController {
         query?.whereKey("dueler", equalTo: PFDueler.currentUser()!)
         query?.countObjectsInBackgroundWithBlock({ (count, error) -> Void in
             if (count > 0) {
-                //TODO error out
-                self.navigationController?.popToRootViewControllerAnimated(true)
+                self.howErrorPopup("You have already joined this league. You can only have one team per user per league.", completion: {
+                    self.navigationController?.popToRootViewControllerAnimated(true)
+                })
             } else {
                 self.saveTeam()
             }

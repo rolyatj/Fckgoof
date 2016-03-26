@@ -21,25 +21,19 @@ class PFLeague: PFObject, PFSubclassing {
         return "League"
     }
     
-    class func pinMyLeagues() {
-        let query = PFLeague.myLeaguesQuery()
-        query?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
-            PFObject.pinAllInBackground(objects, block: { (success, error) -> Void in
-                // TODO?
-                NSNotificationCenter.defaultCenter().postNotificationName("pinnedMyLeagues", object: nil)
-            })
-        })
-    }
-    
-    func isValid() -> String? {
+    func errorMessageIfInvalid() -> String? {
         if (name ?? "").characters.count == 0 {
-            return "You need to add a name"
+            return "Please input a valid name"
         }
         return nil
     }
     
     func isCommissioner() -> Bool {
         return self.commissioner.objectId == PFDueler.currentUser()?.objectId
+    }
+    
+    func canAddAnotherMember() -> Bool {
+        return true // TODO
     }
     
     class func myLeaguesQuery() -> PFQuery? {
@@ -51,6 +45,7 @@ class PFLeague: PFObject, PFSubclassing {
         return nil
     }
     
+    /*
     class func availableLeaguesForEvent(event: PFEvent) -> PFQuery? {
         if let sport = event.dynamicType.sport(), let lineupQuery = PFLineup.myLineupsQuery(sport), let contestQuery = PFContest.query(sport), let contestLineupQuery = PFContestLineup.query(sport) {
             contestLineupQuery.whereKey("event", equalTo: event)
@@ -62,7 +57,7 @@ class PFLeague: PFObject, PFSubclassing {
             
         }
         return nil
-    }
+    }*/
     
     class func queryWithIncludes() -> PFQuery? {
         let query = PFLeague.query()

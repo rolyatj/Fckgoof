@@ -122,8 +122,8 @@ class MLBEditableContestLineup: EditableContestLineup {
         return nil
     }
     
-    override func checkIfCanSubmit() -> String? {
-        // TODO
+    override func errorMessageIfInvalid() -> String? {
+        // TODO?
         return nil
     }
     

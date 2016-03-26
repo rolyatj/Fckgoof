@@ -190,7 +190,7 @@ extension PlayerEventViewController: UITableViewDataSource, UITableViewDelegate 
         } else {
             let recentPlayerEvent = recentPlayerEvents[indexPath.section]
             let cell = tableView.dequeueReusableCellWithIdentifier("PlayerEventCell", forIndexPath: indexPath)
-            cell.textLabel?.text = recentPlayerEvent.toString()
+            cell.textLabel?.text = recentPlayerEvent.result.resultString()
             return cell
         }
     }

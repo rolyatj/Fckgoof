@@ -146,7 +146,7 @@ class SetLineupViewController: UIViewController {
                         self.delegate?.didAddOrChangeLineup()
                         self.dismissViewControllerAnimated(true, completion: nil)
                     } catch {
-                        // TODO
+                        self.showErrorPopup((error as NSError).localizedDescription, completion: nil)
                         print(error)
                     }
                 } else {
@@ -158,7 +158,7 @@ class SetLineupViewController: UIViewController {
                         self.delegate?.didAddOrChangeLineup()
                         self.dismissViewControllerAnimated(true, completion: nil)
                     } catch {
-                        // TODO
+                        self.showErrorPopup((error as NSError).localizedDescription, completion: nil)
                         print(error)
                     }
                 }
