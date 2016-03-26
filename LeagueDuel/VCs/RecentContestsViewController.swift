@@ -17,7 +17,7 @@ class RecentContestsViewController: UIViewController {
             self.tableView?.reloadData()
             if (contestLineups.count == 0) {
                 let footerView = FooterView.footerView()
-                footerView.textLabel.text = "There are no recent events right now. Please check back soon!"
+                footerView.textLabel.text = "There are no recent events at the moment. Check back soon!"
                 tableView.tableFooterView = footerView
             } else {
                 tableView.tableFooterView?.removeFromSuperview()

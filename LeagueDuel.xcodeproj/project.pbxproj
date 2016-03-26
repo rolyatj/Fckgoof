@@ -74,6 +74,7 @@
 		90A610B21CA60882008BE1F0 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A610B11CA60882008BE1F0 /* FooterView.swift */; };
 		90A610B61CA60F9F008BE1F0 /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A610B51CA60F9F008BE1F0 /* EditProfileTableViewController.swift */; };
 		90A610B81CA61106008BE1F0 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A610B71CA61106008BE1F0 /* Util.swift */; };
+		90A610BA1CA62A06008BE1F0 /* TeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A610B91CA62A06008BE1F0 /* TeamTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -127,7 +128,7 @@
 		900E11C91C8F9EF200C4B7A4 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		900E11CA1C8F9EF200C4B7A4 /* LeagueTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueTableViewCell.swift; sourceTree = "<group>"; };
 		900E11CB1C8F9EF300C4B7A4 /* LineupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineupTableViewCell.swift; sourceTree = "<group>"; };
-		903C534D1CA2E83800E20E93 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		903C534D1CA2E83800E20E93 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = VCs/MenuViewController.swift; sourceTree = "<group>"; };
 		903C53501CA3132E00E20E93 /* LDCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDCoordinator.swift; sourceTree = "<group>"; };
 		903C53521CA3136C00E20E93 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		90629A2E1C90919F0083680D /* ContestHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContestHeaderView.swift; sourceTree = "<group>"; };
@@ -147,6 +148,7 @@
 		90A610B11CA60882008BE1F0 /* FooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		90A610B51CA60F9F008BE1F0 /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
 		90A610B71CA61106008BE1F0 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		90A610B91CA62A06008BE1F0 /* TeamTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamTableViewCell.swift; sourceTree = "<group>"; };
 		90F7B2241C889B27003FBE49 /* LeagueDuel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeagueDuel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9C391357D720FBAC7B3D93D /* Pods-LeagueDuel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeagueDuel.release.xcconfig"; path = "Pods/Target Support Files/Pods-LeagueDuel/Pods-LeagueDuel.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -188,9 +190,10 @@
 				900E11991C8F9EF200C4B7A4 /* Assets.xcassets */,
 				900E119A1C8F9EF200C4B7A4 /* LaunchScreen.storyboard */,
 				900E119C1C8F9EF200C4B7A4 /* Main.storyboard */,
+				903C534D1CA2E83800E20E93 /* MenuViewController.swift */,
+				90629A321C9094ED0083680D /* Supporting Files */,
 				900E11C71C8F9EF200C4B7A4 /* Views */,
 				900E11B91C8F9EF200C4B7A4 /* VCs */,
-				90629A321C9094ED0083680D /* Supporting Files */,
 				900E119F1C8F9EF200C4B7A4 /* PFObjects */,
 			);
 			path = LeagueDuel;
@@ -230,7 +233,6 @@
 				908528FE1CA1AA60000E606E /* Player */,
 				900E11FF1C8FA04F00C4B7A4 /* Profile */,
 				908528FF1CA1D1B2000E606E /* LDTabBarController.swift */,
-				903C534D1CA2E83800E20E93 /* MenuViewController.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -244,6 +246,7 @@
 				900E11CA1C8F9EF200C4B7A4 /* LeagueTableViewCell.swift */,
 				900E11CB1C8F9EF300C4B7A4 /* LineupTableViewCell.swift */,
 				908308FA1CA182750015AD07 /* PlayerEventTableViewCell.swift */,
+				90A610B91CA62A06008BE1F0 /* TeamTableViewCell.swift */,
 				90629A2E1C90919F0083680D /* ContestHeaderView.swift */,
 				90629A301C9091AF0083680D /* ContestHeaderView.xib */,
 				90629A351C90B5760083680D /* TextFieldTableViewCell.swift */,
@@ -581,6 +584,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90A610BA1CA62A06008BE1F0 /* TeamTableViewCell.swift in Sources */,
 				900E11F31C8F9EF300C4B7A4 /* RecentContestsViewController.swift in Sources */,
 				900E11FA1C8F9EF300C4B7A4 /* LineupTableViewCell.swift in Sources */,
 				903C53511CA3132E00E20E93 /* LDCoordinator.swift in Sources */,

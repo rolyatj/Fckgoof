@@ -44,7 +44,7 @@ class CreateLeagueViewController: UIViewController {
             if let text = alertController.textFields?.first?.text {
                 self.league.imageURL = text
                 if let url = NSURL(string: text) {
-                    self.imageView.sd_setImageWithURL(url)
+                    self.imageView.sd_setImageWithURL(url, placeholderImage: UIImage(named:"Camera-104"))
                 }
             }
         }
@@ -59,7 +59,7 @@ class CreateLeagueViewController: UIViewController {
     }
     
     func save() {
-        if let errorMessage = league.isValid() {
+        if let errorMessage = league.errorMessageIfInvalid() {
             showErrorPopup(errorMessage, completion: nil)
         } else {
             performSegueWithIdentifier("toCreateTeam", sender: nil)

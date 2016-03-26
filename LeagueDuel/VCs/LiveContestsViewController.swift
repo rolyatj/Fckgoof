@@ -17,7 +17,7 @@ class LiveContestsViewController: UIViewController {
             self.tableView?.reloadData()
             if (contestLineups.count == 0) {
                 let footerView = FooterView.footerView()
-                footerView.textLabel.text = "There are no live events (for which you submitted a lineup to) right now. Please check back soon!"
+                footerView.textLabel.text = "There are no live events (for which you submitted a lineup to) at the moment. Check back soon!"
                 tableView.tableFooterView = footerView
             } else {
                 tableView.tableFooterView?.removeFromSuperview()

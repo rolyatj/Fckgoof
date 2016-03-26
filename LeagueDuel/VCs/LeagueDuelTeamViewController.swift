@@ -8,12 +8,14 @@
 
 import UIKit
 import Parse
+import SDWebImage
 
 class LeagueDuelTeamViewController: UIViewController {
 
     @IBOutlet weak var tableView: LeagueContestTableView!
     @IBOutlet weak var contestsEnteredLabel: UILabel!
     @IBOutlet weak var contestsWonLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
     
     let sport = SportType.MLB // TODO
     var duelTeam: PFDuelTeam!
@@ -29,6 +31,10 @@ class LeagueDuelTeamViewController: UIViewController {
         
         contestsEnteredLabel.text = "\(duelTeam.numberContestsEntered)"
         contestsWonLabel.text = "\(duelTeam.numberContestsWon)"
+        
+        if let imageURL = duelTeam.imageURL, let url = NSURL(string: imageURL) {
+            imageView.sd_setImageWithURL(url, placeholderImage: UIImage(named:"Team-96"))
+        }
         
         tableView.lcDelegate = self
     }

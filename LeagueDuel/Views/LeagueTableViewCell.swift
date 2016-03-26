@@ -35,7 +35,7 @@ class LeagueTableViewCell: UITableViewCell {
         nameLabel.text = league.name
         descriptionLabel.text = league.tagline
         if let imageURL = league.imageURL, let url = NSURL(string: imageURL) {
-            leagueImageView.sd_setImageWithURL(url)
+            leagueImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "Trophy-104-Green"))
         }
     }
 

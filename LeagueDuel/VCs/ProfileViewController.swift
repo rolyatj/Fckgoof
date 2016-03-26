@@ -94,8 +94,8 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let team = duelTeams[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier("TeamCell", forIndexPath: indexPath)
-        cell.textLabel?.text = team.name
+        let cell = tableView.dequeueReusableCellWithIdentifier("DuelTeamCell", forIndexPath: indexPath) as! TeamTableViewCell
+        cell.configureWithDuelTeam(team)
         return cell
     }
     

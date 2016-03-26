@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import SDWebImage
 
 class LeagueViewController: UIViewController {
 
@@ -35,6 +36,10 @@ class LeagueViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         fetchDuelTeams()
+        
+        if let imageURL = league.imageURL, let url = NSURL(string: imageURL) {
+            imageView.sd_setImageWithURL(url, placeholderImage: UIImage(named:"Trophy-104-Green"))
+        }
     }
     
     func fetchDuelTeams() {
@@ -75,8 +80,8 @@ extension LeagueViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let duelTeam = duelTeams[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier("DuelTeamCell", forIndexPath: indexPath)
-        cell.textLabel?.text = duelTeam.name
+        let cell = tableView.dequeueReusableCellWithIdentifier("DuelTeamCell", forIndexPath: indexPath) as! TeamTableViewCell
+        cell.configureWithDuelTeam(duelTeam)
         return cell
     }
     

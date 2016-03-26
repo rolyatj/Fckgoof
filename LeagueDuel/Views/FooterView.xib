@@ -18,7 +18,6 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="QpY-0e-pWn" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="8ft-Lx-8t9"/>
                 <constraint firstItem="QpY-0e-pWn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="topMargin" id="tUo-QQ-5P1"/>
@@ -50,7 +49,6 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="4hZ-BQ-wPX" firstAttribute="bottom" secondItem="73t-nX-dSA" secondAttribute="bottomMargin" id="2ra-eL-cYB"/>
                 <constraint firstItem="rUF-FX-8lw" firstAttribute="centerX" secondItem="4hZ-BQ-wPX" secondAttribute="centerX" id="E0a-bn-DoQ"/>

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 import SDWebImage
 
 class EditLeagueViewController: UIViewController {
@@ -20,6 +21,7 @@ class EditLeagueViewController: UIViewController {
             self.tableView?.reloadData()
         }
     }
+    var duelTeamsToDelete = [PFDuelTeam]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +64,7 @@ class EditLeagueViewController: UIViewController {
             if let text = alertController.textFields?.first?.text {
                 self.league.imageURL = text
                 if let url = NSURL(string: text) {
-                    self.imageView.sd_setImageWithURL(url)
+                    self.imageView.sd_setImageWithURL(url, placeholderImage: UIImage(named:"Camera-104"))
                 }
             }
         }
@@ -80,7 +82,10 @@ class EditLeagueViewController: UIViewController {
         if let errorMessage = league.errorMessageIfInvalid() {
             showErrorPopup(errorMessage, completion: nil)
         } else {
-            league.saveEventually()
+            league.saveInBackground()
+            if (duelTeamsToDelete.count > 0) {
+                PFObject.deleteAllInBackground(duelTeamsToDelete)
+            }
             self.navigationController?.popViewControllerAnimated(true)
         }
     }
@@ -146,6 +151,7 @@ extension EditLeagueViewController: UITableViewDataSource, UITableViewDelegate, 
                 let duelTeam = duelTeams[indexPath.row]
                 duelTeams.removeAtIndex(indexPath.row)
                 league.removeObject(duelTeam.objectId!, forKey: "duelers") // TODO?
+                duelTeamsToDelete.append(duelTeam)
             }
         }
     }
