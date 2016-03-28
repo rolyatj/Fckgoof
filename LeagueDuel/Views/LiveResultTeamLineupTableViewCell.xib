@@ -53,7 +53,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="80" height="43"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j9T-bs-E1i">
-                                <rect key="frame" x="0.0" y="9" width="80" height="26"/>
+                                <rect key="frame" x="0.0" y="9" width="70" height="26"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9999" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="2FJ-wU-4V8">
                                         <rect key="frame" x="0.0" y="4" width="40" height="18"/>
@@ -95,7 +95,7 @@
                             <constraint firstAttribute="width" constant="80" id="J5e-US-blE"/>
                             <constraint firstItem="4nV-BB-iQM" firstAttribute="leading" secondItem="2FJ-wU-4V8" secondAttribute="trailing" constant="2" id="OAL-sK-DSM"/>
                             <constraint firstItem="j9T-bs-E1i" firstAttribute="leading" secondItem="GrC-fd-QpU" secondAttribute="leading" id="cKw-EL-h0m"/>
-                            <constraint firstAttribute="trailing" secondItem="j9T-bs-E1i" secondAttribute="trailing" id="jtG-kQ-HDo"/>
+                            <constraint firstAttribute="trailing" secondItem="j9T-bs-E1i" secondAttribute="trailing" constant="10" id="jtG-kQ-HDo"/>
                             <constraint firstAttribute="trailing" secondItem="4nV-BB-iQM" secondAttribute="trailing" id="olj-Ic-ixX"/>
                             <constraint firstItem="4nV-BB-iQM" firstAttribute="centerY" secondItem="GrC-fd-QpU" secondAttribute="centerY" id="qjI-SY-86M"/>
                         </constraints>

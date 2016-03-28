@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import MessageUI
+import SafariServices
 
 class MessageViewController: UIViewController, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate {
     
@@ -82,6 +83,18 @@ extension UIViewController {
     
     func showErrorPopup(message: String?, completion: (() -> Void)? ) {
         showPopup("Error", message: message, completion: completion)
+    }
+    
+    func showURL(urlString: String, inapp: Bool) {
+        if let url = NSURL(string: urlString) {
+            if (inapp) {
+                let svc = SFSafariViewController(URL: url)
+                self.presentViewController(svc, animated: true, completion: nil)
+            } else {
+                UIApplication.sharedApplication().openURL(url)
+            }
+        }
+        
     }
     
 }

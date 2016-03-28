@@ -8,23 +8,29 @@
 
 import UIKit
 import SDWebImage
-import SafariServices
 
 class MenuViewController: MessageViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var iapButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    func showURL(urlString: String) {
-        if let url = NSURL(string: urlString) {
-            let svc = SFSafariViewController(URL: url)
-            self.presentViewController(svc, animated: true, completion: nil)
-        }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        iapButton.enabled = !Settings.instance.isUpgradedValue()
     }
 
+    @IBAction func purchaseIAPtapped(sender: AnyObject) {
+        IAPHelper.instance.purchaseIAP { (success, errorMessage) in
+            if (!success) {
+                self.showErrorPopup(errorMessage, completion: nil)
+            }
+            self.iapButton.enabled = !Settings.instance.isUpgradedValue()
+        }
+    }
     /*
     // MARK: - Navigation
 
@@ -45,9 +51,9 @@ extension MenuViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (section == 0) {
-            return 1
-        } else if (section == 0) {
             return 2
+        } else if (section == 1) {
+            return 3
         } else {
             return 2
         }
@@ -56,12 +62,18 @@ extension MenuViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SettingsCell", forIndexPath: indexPath)
         if (indexPath.section == 0) {
-            cell.textLabel?.text = "Feedback"
+            if (indexPath.row == 0) {
+                cell.textLabel?.text = "Feedback"
+            } else if (indexPath.row == 1) {
+                cell.textLabel?.text = "Rate on App Store"
+            }
         } else if (indexPath.section == 1) {
             if (indexPath.row == 0) {
                 cell.textLabel?.text = "Like us on Facebook"
             } else if (indexPath.row == 1) {
                 cell.textLabel?.text = "Follow us on Twitter"
+            } else if (indexPath.row == 2) {
+                cell.textLabel?.text = "Share League Duel"
             }
         } else {
             if (indexPath.row == 0) {
@@ -80,20 +92,43 @@ extension MenuViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if (indexPath.section == 0) {
-            sendEmail(["arborapps+leagueduel@gmail.com"], subject: "Feedback", body: nil)
+            if (indexPath.row == 0) {
+                sendEmail(["arborapps+leagueduel@gmail.com"], subject: "Feedback", body: nil)
+            } else if (indexPath.row == 1) {
+                //app store
+                showURL(Constants.AppStoreURL, inapp: false)
+            }
         } else if (indexPath.section == 1) {
             if (indexPath.row == 0) {
                 //"Like us on Facebook"
             } else if (indexPath.row == 1) {
                 //"Follow us on Twitter"
+            } else if (indexPath.row == 2) {
+                //share
+                let text = "100% FREE weekly fantasy sports leagues."
+                let url = NSURL(string: Constants.AppStoreURL)!
+                let activityViewController = UIActivityViewController(activityItems: [text, url], applicationActivities: nil)
+                activityViewController.popoverPresentationController?.sourceView = tableView.cellForRowAtIndexPath(indexPath)
+                
+                activityViewController.excludedActivityTypes = [UIActivityTypePostToWeibo,
+                                                                UIActivityTypePrint,
+                                                                UIActivityTypeCopyToPasteboard,
+                                                                UIActivityTypeAssignToContact,
+                                                                UIActivityTypeAddToReadingList,
+                                                                UIActivityTypePostToFlickr,
+                                                                UIActivityTypePostToVimeo,
+                                                                UIActivityTypePostToTencentWeibo,
+                                                                UIActivityTypeAirDrop]
+                
+                self.presentViewController(activityViewController, animated: true, completion: nil)
             }
         } else {
             if (indexPath.row == 0) {
                 //"Terms and Conditions"
-                showURL("http://arborapps.io") // TODO
+                showURL("http://arborapps.io", inapp: true) // TODO
             } else if (indexPath.row == 1) {
                 //"Privacy Policy"
-                showURL("http://arborapps.io") // TODO
+                showURL("http://arborapps.io", inapp: true) // TODO
             }
         }
 

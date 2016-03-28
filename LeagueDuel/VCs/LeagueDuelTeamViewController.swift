@@ -38,6 +38,11 @@ class LeagueDuelTeamViewController: UIViewController {
         
         tableView.lcDelegate = self
         tableView.tableFooterView = UIView()
+        
+        if (duelTeam.isOwner()) {
+            let editButton = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: "editTeamTapped")
+            navigationItem.rightBarButtonItem = editButton
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -60,6 +65,10 @@ class LeagueDuelTeamViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func editTeamTapped() {
+        performSegueWithIdentifier("toEditTeam", sender: duelTeam)
+    }
+    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -67,6 +76,10 @@ class LeagueDuelTeamViewController: UIViewController {
         if (segue.identifier == "toPlayerEvent") {
             if let vc = segue.destinationViewController as? PlayerEventViewController {
                 vc.playerEvent = sender as! PFPlayerEvent
+            }
+        } else if (segue.identifier == "toEditTeam") {
+            if let vc = segue.destinationViewController as? EditTeamViewController {
+                vc.duelTeam = sender as! PFDuelTeam
             }
         }
     }

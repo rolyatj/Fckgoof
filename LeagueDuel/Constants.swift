@@ -20,4 +20,11 @@ class Constants {
     static let lastLiveEventsUpdate = "lastLiveEventsUpdate"
     static let lastRecentEventsUpdate = "lastRecentEventsUpdate"
 
+    static let KEY_NUMBER_APP_LAUNCHES = "KEY_NUMBER_APP_LAUNCHES"
+    static let KEY_IAP = "KEY_IAP"
+    static let KEY_PASSCODE = "KEY_PASSCODE"
+    static let KEY_FAILED_ATTEMPTS = "KEY_FAILED_ATTEMPTS"
+    
+    static let AppStoreURL = "https://itunes.apple.com/us/app/stack-searchable-notes-file/id1093840765?ls=1&mt=8" // TODO
+    
 }

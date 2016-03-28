@@ -68,6 +68,10 @@ class EditLeagueViewController: UIViewController {
                 }
             }
         }
+        let searchAction = UIAlertAction(title: "Search", style: .Default) { (action) -> Void in
+            self.showURL("http://images.google.com", inapp: false)
+        }
+        alertController.addAction(searchAction)
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         alertController.addAction(cancelAction)
         alertController.addAction(okAction)
@@ -82,11 +86,14 @@ class EditLeagueViewController: UIViewController {
         if let errorMessage = league.errorMessageIfInvalid() {
             showErrorPopup(errorMessage, completion: nil)
         } else {
-            league.saveInBackground()
             if (duelTeamsToDelete.count > 0) {
                 PFObject.deleteAllInBackground(duelTeamsToDelete)
             }
-            self.navigationController?.popViewControllerAnimated(true)
+            league.saveInBackgroundWithBlock({ (success, error) in
+                if (success) {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
+            })
         }
     }
     

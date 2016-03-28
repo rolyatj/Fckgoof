@@ -23,7 +23,9 @@ class ContestTeamLineupTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        layer.shadowRadius = 4
+        layer.shadowOpacity = 1
+        layer.shadowOffset = CGSizeMake(0,1)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

@@ -7,4 +7,8 @@ target :LeagueDuel do
     pod 'SDWebImage'
     pod 'SideMenu'
     pod 'MZFormSheetPresentationController'
+    pod 'Fabric'
+    pod 'TwitterKit'
+    pod 'TwitterCore'
+    pod 'Crashlytics'
 end

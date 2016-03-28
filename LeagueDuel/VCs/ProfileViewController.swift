@@ -50,6 +50,8 @@ class ProfileViewController: UIViewController {
         if (shouldFetchOnAppear) {
             fetchTeams(false)
             shouldFetchOnAppear = false
+        } else {
+            tableView.reloadData()
         }
     }
     

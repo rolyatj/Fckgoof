@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import TwitterKit
 
 enum SelectableType : Int {
     case Add = 0
@@ -46,6 +47,15 @@ class SelectablePlayerEventViewController: PlayerEventViewController {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+}
+
+class SearchTimelineViewController: TWTRTimelineViewController {
+    convenience init(searchString: String) {
+        let client = TWTRAPIClient()
+        let dataSource = TWTRSearchTimelineDataSource(searchQuery: searchString, APIClient: client)
+        
+        self.init(dataSource: dataSource)
+    }
 }
 
 class PlayerEventViewController: UIViewController {
@@ -118,6 +128,22 @@ class PlayerEventViewController: UIViewController {
         setupPlayerInfo()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        let searchTimelineViewController = SearchTimelineViewController(searchString: playerEvent.player.name ?? "MLB news")
+        searchTimelineViewController.willMoveToParentViewController(self)
+        newsView.addSubview(searchTimelineViewController.view)
+        addChildViewController(searchTimelineViewController)
+        searchTimelineViewController.didMoveToParentViewController(self)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        for subview in newsView.subviews {
+            subview.frame = newsView.bounds
+        }
+    }
+    
     func setupPlayerInfo() {
         //@IBOutlet weak var playerImageView: UIImageView!
         playerPositionLabel.text = playerEvent.player.position
@@ -134,7 +160,6 @@ class PlayerEventViewController: UIViewController {
             query?.orderByDescending("startDate")
             query?.findObjectsInBackgroundWithBlock({ (teamGames, error) -> Void in
                 if let teamGames = teamGames as? [PFGame] {
-                    print(teamGames)
                     self.teamGames = teamGames
                 }
             })
@@ -149,7 +174,6 @@ class PlayerEventViewController: UIViewController {
             query?.orderByDescending("startDate")
             query?.findObjectsInBackgroundWithBlock({ (playerEvents, error) -> Void in
                 if let playerEvents = playerEvents as? [PFPlayerEvent] {
-                    print(playerEvents)
                     self.recentPlayerEvents = playerEvents
                 }
             })

@@ -78,6 +78,9 @@ class TeamLineupTableViewCell: UITableViewCell {
     }
 
     func configureWithContestLineup(contestLineup: PFContestLineup, rank: Int, delegate: LineupTableViewCellDelegate?) {
+        if let imageURL = contestLineup.lineup.duelTeam.imageURL, let url = NSURL(string: imageURL) {
+            duelTeamImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named:"Team-96"))
+        }
         nameLabel.text = contestLineup.lineup.duelTeam.name
         self.delegate = delegate
     }

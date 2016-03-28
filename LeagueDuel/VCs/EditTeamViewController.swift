@@ -1,48 +1,51 @@
 //
-//  CreateLeagueViewController.swift
-//  FriendlyFanduel
+//  EditTeamViewController.swift
+//  LeagueDuel
 //
-//  Created by Kurt Jensen on 3/3/16.
+//  Created by Kurt Jensen on 3/28/16.
 //  Copyright © 2016 Arbor Apps LLC. All rights reserved.
 //
 
 import UIKit
-import SDWebImage
 
-protocol CreateLeagueViewControllerDelegate {
-    func didJoinLeague(league: PFLeague, shouldPromptShare: Bool)
-}
+class EditTeamViewController: UIViewController {
 
-class CreateLeagueViewController: UIViewController {
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imageView: UIImageView!
     
-    var league = PFLeague()
-    var delegate: CreateLeagueViewControllerDelegate?
-
+    var duelTeam: PFDuelTeam!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        if let imageURL = duelTeam.imageURL, let url = NSURL(string: imageURL) {
+            self.imageView.sd_setImageWithURL(url)
+        }
     }
-
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        if (duelTeam.dirty) {
+            duelTeam.revert()
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func leagueImageTapped(sender: AnyObject) {
-        changeLeagueImage()
+    @IBAction func teamImageTapped(sender: AnyObject) {
+        changeTeamImage()
     }
     
-    func changeLeagueImage() {
-        let alertController = UIAlertController(title: "League Image", message: nil, preferredStyle: .Alert)
+    func changeTeamImage() {
+        let alertController = UIAlertController(title: "Team Image", message: nil, preferredStyle: .Alert)
         alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
             textField.placeholder = "Image URL (ex: www.example.com/url.png)"
         }
         let okAction = UIAlertAction(title: "Save", style: .Default) { (action) -> Void in
             if let text = alertController.textFields?.first?.text {
-                self.league.imageURL = text
+                self.duelTeam.imageURL = text
                 if let url = NSURL(string: text) {
                     self.imageView.sd_setImageWithURL(url, placeholderImage: UIImage(named:"Camera-104"))
                 }
@@ -57,45 +60,37 @@ class CreateLeagueViewController: UIViewController {
         alertController.addAction(okAction)
         self.presentViewController(alertController, animated: true, completion: nil)
     }
-
+    
     @IBAction func saveTapped(sender: AnyObject) {
-        save()
+        saveTeam()
     }
     
-    func save() {
-        if let errorMessage = league.errorMessageIfInvalid() {
+    func saveTeam() {
+        if let errorMessage = duelTeam.errorMessageIfInvalid() {
             showErrorPopup(errorMessage, completion: nil)
         } else {
-            performSegueWithIdentifier("toCreateTeam", sender: nil)
+            duelTeam.saveInBackgroundWithBlock({ (success, error) in
+                if (success) {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
+            })
         }
     }
     
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "toCreateTeam") {
-            if let createTeamVC = segue.destinationViewController as? CreateTeamViewController {
-                createTeamVC.league = league
-                createTeamVC.isNewLeague = true
-                createTeamVC.delegate = delegate
-            }
-        }
-    }
-
 }
 
-extension CreateLeagueViewController: UITableViewDataSource, UITableViewDelegate, TextFieldTableViewCellDelegate {
-
+extension EditTeamViewController: UITableViewDataSource, UITableViewDelegate, TextFieldTableViewCellDelegate {
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("InputCell", forIndexPath: indexPath) as! TextFieldTableViewCell
         cell.delegate = self
         if (indexPath.row == 0) {
-            cell.textField.placeholder = "League Name"
+            cell.textField.placeholder = "Team Name"
+            cell.textField.text = duelTeam.name
         } else {
             cell.textField.placeholder = "Tagline (optional)"
         }
@@ -106,9 +101,9 @@ extension CreateLeagueViewController: UITableViewDataSource, UITableViewDelegate
     func textChanged(cell: TextFieldTableViewCell, text: String?) {
         if let indexPath = self.tableView.indexPathForCell(cell) {
             if (indexPath.row == 0) {
-                league.name = text
+                duelTeam.name = text
             } else {
-                league.tagline = text
+                //team.tagline = text
             }
         }
     }

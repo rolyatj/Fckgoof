@@ -28,11 +28,11 @@ class CreateTeamViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func leagueImageTapped(sender: AnyObject) {
-        changeLeagueImage()
+    @IBAction func teamImageTapped(sender: AnyObject) {
+        changeTeamImage()
     }
     
-    func changeLeagueImage() {
+    func changeTeamImage() {
         let alertController = UIAlertController(title: "Team Image", message: nil, preferredStyle: .Alert)
         alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
             textField.placeholder = "Image URL (ex: www.example.com/url.png)"
@@ -45,6 +45,10 @@ class CreateTeamViewController: UIViewController {
                 }
             }
         }
+        let searchAction = UIAlertAction(title: "Search", style: .Default) { (action) -> Void in
+            self.showURL("http://images.google.com", inapp: false)
+        }
+        alertController.addAction(searchAction)
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         alertController.addAction(cancelAction)
         alertController.addAction(okAction)

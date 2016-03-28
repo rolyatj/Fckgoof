@@ -8,6 +8,9 @@
 
 import UIKit
 import Parse
+import Fabric
+import TwitterKit
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        Twitter.sharedInstance().startWithConsumerKey("Kvd85UhWhdlPRMhl6ahI2brh3", consumerSecret: "oEUIYS3KvXLvDJjlMefsVKuwLeYu2jt1RCTEnKMKrCpUDGYxGc")
+        Fabric.with([Crashlytics.self, Twitter.self])
+        Twitter.sharedInstance().logInWithCompletion { (session, error) in
+            //
+        }
+
         // PARSE
         PFDueler.registerSubclass()
         PFDuelTeam.registerSubclass()

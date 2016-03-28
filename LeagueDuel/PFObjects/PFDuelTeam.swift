@@ -31,6 +31,9 @@ class PFDuelTeam: PFObject, PFSubclassing {
         return nil
     }
     
+    func isOwner() -> Bool {
+        return PFDueler.currentUser()?.objectId == dueler.objectId
+    }
     
     class func myTeamsQuery() -> PFQuery? {
         if let user = PFDueler.currentUser() {

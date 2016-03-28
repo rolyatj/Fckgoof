@@ -61,6 +61,8 @@
 		90629A311C9091AF0083680D /* ContestHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90629A301C9091AF0083680D /* ContestHeaderView.xib */; };
 		90629A341C9095120083680D /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90629A331C9095120083680D /* Style.swift */; };
 		90629A361C90B5760083680D /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90629A351C90B5760083680D /* TextFieldTableViewCell.swift */; };
+		90819C3C1CA9C39000DAF6DF /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90819C3B1CA9C39000DAF6DF /* IAPHelper.swift */; };
+		90819C3E1CA9C40700DAF6DF /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90819C3D1CA9C40700DAF6DF /* Settings.swift */; };
 		908308F71CA17C1B0015AD07 /* ResultRaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908308F61CA17C1B0015AD07 /* ResultRaceView.swift */; };
 		908308F91CA17F0E0015AD07 /* LeagueContestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908308F81CA17F0E0015AD07 /* LeagueContestViewController.swift */; };
 		908308FB1CA182750015AD07 /* PlayerEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908308FA1CA182750015AD07 /* PlayerEventTableViewCell.swift */; };
@@ -79,6 +81,7 @@
 		90A2BB951CA9796300569757 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90A2BB941CA9796300569757 /* EventTableViewCell.xib */; };
 		90A2BB971CA979F700569757 /* SelectablePlayerEventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90A2BB961CA979F700569757 /* SelectablePlayerEventTableViewCell.xib */; };
 		90A2BB991CA9895700569757 /* EventInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A2BB981CA9895700569757 /* EventInfoViewController.swift */; };
+		90A2BB9C1CA9B2CA00569757 /* EditTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A2BB9B1CA9B2CA00569757 /* EditTeamViewController.swift */; };
 		90A610B01CA6086C008BE1F0 /* FooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90A610AF1CA6086C008BE1F0 /* FooterView.xib */; };
 		90A610B21CA60882008BE1F0 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A610B11CA60882008BE1F0 /* FooterView.swift */; };
 		90A610B61CA60F9F008BE1F0 /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A610B51CA60F9F008BE1F0 /* EditProfileTableViewController.swift */; };
@@ -144,6 +147,8 @@
 		90629A301C9091AF0083680D /* ContestHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestHeaderView.xib; sourceTree = "<group>"; };
 		90629A331C9095120083680D /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		90629A351C90B5760083680D /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		90819C3B1CA9C39000DAF6DF /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
+		90819C3D1CA9C40700DAF6DF /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		908308F61CA17C1B0015AD07 /* ResultRaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultRaceView.swift; sourceTree = "<group>"; };
 		908308F81CA17F0E0015AD07 /* LeagueContestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueContestViewController.swift; sourceTree = "<group>"; };
 		908308FA1CA182750015AD07 /* PlayerEventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerEventTableViewCell.swift; sourceTree = "<group>"; };
@@ -162,6 +167,7 @@
 		90A2BB941CA9796300569757 /* EventTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventTableViewCell.xib; sourceTree = "<group>"; };
 		90A2BB961CA979F700569757 /* SelectablePlayerEventTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectablePlayerEventTableViewCell.xib; sourceTree = "<group>"; };
 		90A2BB981CA9895700569757 /* EventInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventInfoViewController.swift; sourceTree = "<group>"; };
+		90A2BB9B1CA9B2CA00569757 /* EditTeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTeamViewController.swift; sourceTree = "<group>"; };
 		90A610AF1CA6086C008BE1F0 /* FooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FooterView.xib; sourceTree = "<group>"; };
 		90A610B11CA60882008BE1F0 /* FooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		90A610B51CA60F9F008BE1F0 /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
@@ -437,6 +443,8 @@
 				903C53501CA3132E00E20E93 /* LDCoordinator.swift */,
 				903C53521CA3136C00E20E93 /* Constants.swift */,
 				90A610B71CA61106008BE1F0 /* Util.swift */,
+				90819C3B1CA9C39000DAF6DF /* IAPHelper.swift */,
+				90819C3D1CA9C40700DAF6DF /* Settings.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -455,6 +463,7 @@
 				900E11BA1C8F9EF200C4B7A4 /* CreateLeagueViewController.swift */,
 				900E11BC1C8F9EF200C4B7A4 /* EditLeagueViewController.swift */,
 				908529051CA21307000E606E /* CreateTeamViewController.swift */,
+				90A2BB9B1CA9B2CA00569757 /* EditTeamViewController.swift */,
 			);
 			name = "Create/Edit (Leagues & Teams)";
 			sourceTree = "<group>";
@@ -564,6 +573,7 @@
 				90F7B2221C889B27003FBE49 /* Resources */,
 				9D904FC3813B3FC1B5832E34 /* Embed Pods Frameworks */,
 				EBA051FC9B48E9066BDBD7C0 /* Copy Pods Resources */,
+				90A2BB9A1CA9A02800569757 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -646,6 +656,19 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		90A2BB9A1CA9A02800569757 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 9db088a49c5bca220f07c5debe182bece5157cbd 282c83d637cb181e3f3919041ae40b633d9c3b411b0af371b7ccb4efacf616c2";
+		};
 		9D904FC3813B3FC1B5832E34 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -686,6 +709,7 @@
 				90A610BA1CA62A06008BE1F0 /* TeamTableViewCell.swift in Sources */,
 				900E11F31C8F9EF300C4B7A4 /* RecentContestsViewController.swift in Sources */,
 				900E11FA1C8F9EF300C4B7A4 /* TeamLineupTableViewCell.swift in Sources */,
+				90A2BB9C1CA9B2CA00569757 /* EditTeamViewController.swift in Sources */,
 				903C53511CA3132E00E20E93 /* LDCoordinator.swift in Sources */,
 				900E11D61C8F9EF300C4B7A4 /* PFEvent.swift in Sources */,
 				900E11E41C8F9EF300C4B7A4 /* PFPlayer.swift in Sources */,
@@ -724,6 +748,7 @@
 				900E11D11C8F9EF300C4B7A4 /* EditableContestLineup.swift in Sources */,
 				900E11DF1C8F9EF300C4B7A4 /* PFMLBLineup.swift in Sources */,
 				900E11D71C8F9EF300C4B7A4 /* PFFlag.swift in Sources */,
+				90819C3E1CA9C40700DAF6DF /* Settings.swift in Sources */,
 				900E11E31C8F9EF300C4B7A4 /* PFMLBTeam.swift in Sources */,
 				900E11E11C8F9EF300C4B7A4 /* PFMLBPlayerEvent.swift in Sources */,
 				900E11D91C8F9EF300C4B7A4 /* PFLeague.swift in Sources */,
@@ -735,6 +760,7 @@
 				900E11DC1C8F9EF300C4B7A4 /* PFMLBContestLineup.swift in Sources */,
 				90A610B21CA60882008BE1F0 /* FooterView.swift in Sources */,
 				90A610B81CA61106008BE1F0 /* Util.swift in Sources */,
+				90819C3C1CA9C39000DAF6DF /* IAPHelper.swift in Sources */,
 				900E11E81C8F9EF300C4B7A4 /* PFSuperclassing.swift in Sources */,
 				900E11F51C8F9EF300C4B7A4 /* SplashViewController.swift in Sources */,
 				908308F71CA17C1B0015AD07 /* ResultRaceView.swift in Sources */,
