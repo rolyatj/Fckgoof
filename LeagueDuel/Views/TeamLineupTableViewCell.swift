@@ -1,5 +1,5 @@
 //
-//  LineupTableViewCell.swift
+//  ContestLineupTableViewCell.swift
 //  FriendlyFanduel
 //
 //  Created by Kurt Jensen on 3/3/16.
@@ -9,7 +9,7 @@
 import UIKit
 
 
-class ResultLineupTableViewCell: LineupTableViewCell {
+class ResultTeamLineupTableViewCell: TeamLineupTableViewCell {
     
     @IBOutlet weak var rankLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
@@ -48,9 +48,10 @@ protocol LineupTableViewCellDelegate {
     func lineupCellDropdownTapped(cell:UITableViewCell, selected:Bool)
 }
 
-class LineupTableViewCell: UITableViewCell {
+class TeamLineupTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var duelTeamImageView: UIImageView!
     @IBOutlet weak var toggleButton: UIButton!
     var delegate: LineupTableViewCellDelegate?
     
@@ -61,7 +62,7 @@ class LineupTableViewCell: UITableViewCell {
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        var rotation = CGAffineTransformMakeRotation(CGFloat(0))
+        var rotation = CGAffineTransformIdentity
         if (selected) {
             rotation = CGAffineTransformMakeRotation(CGFloat(-M_PI))
         }

@@ -42,6 +42,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchTeams(true)
+        tableView.registerNib(UINib(nibName: "TeamTableViewCell", bundle: nil), forCellReuseIdentifier: "TeamCell")
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -94,8 +95,8 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let team = duelTeams[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier("DuelTeamCell", forIndexPath: indexPath) as! TeamTableViewCell
-        cell.configureWithDuelTeam(team)
+        let cell = tableView.dequeueReusableCellWithIdentifier("TeamCell", forIndexPath: indexPath) as! TeamTableViewCell
+        cell.configureWithDuelTeam(team, showLeague: true)
         return cell
     }
     

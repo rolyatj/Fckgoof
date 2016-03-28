@@ -56,6 +56,7 @@ class PlayerPickerViewController: UIViewController, UISearchBarDelegate {
         super.viewDidLoad()
         
         isSearching = false
+        tableView.registerNib(UINib(nibName: "SelectablePlayerEventTableViewCell", bundle: nil), forCellReuseIdentifier: "SelectablePlayerEventCell")
     }
     
     @IBAction func searchingTapped(sender: AnyObject) {

@@ -1,5 +1,5 @@
 //
-//  ContestTableViewCell.swift
+//  ContestTeamLineupTableViewCell.swift
 //  FriendlyFanduel
 //
 //  Created by Kurt Jensen on 3/3/16.
@@ -9,11 +9,17 @@
 import UIKit
 import SDWebImage
 
-class ContestTableViewCell: UITableViewCell {
+class ContestTeamLineupTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var teamImageView: UIImageView?
+    @IBOutlet weak var teamImageView: UIImageView!
+    @IBOutlet weak var sportImageView: UIImageView!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var lineupLabel: UILabel!
+    @IBOutlet weak var pointsLabel: UILabel!
+    @IBOutlet weak var positionLabel: UILabel!
+    @IBOutlet weak var progressView: UIProgressView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,11 +43,13 @@ class ContestTableViewCell: UITableViewCell {
         if let imageURL = contestLineup.lineup.duelTeam.imageURL, let url = NSURL(string: imageURL) {
             teamImageView?.sd_setImageWithURL(url, placeholderImage: UIImage(named:"Team-96"))
         }
-    }
-    
-    func configureWithContest(contest: PFContest) {
-        nameLabel.text = contest.event.name
-        descriptionLabel.text = contest.league.name
+        dateLabel.text = contestLineup.contest.event.dateString()
+        lineupLabel.text = contestLineup.lineup.rosterString()
+        progressView.progress = contestLineup.lineup.percentRemaining()
+        positionLabel.text = "\(contestLineup.lineup.points)"
+        if let sport = contestLineup.dynamicType.sport() {
+            sportImageView.image = UIImage(named: sport.imageName())
+        }
     }
     
 }

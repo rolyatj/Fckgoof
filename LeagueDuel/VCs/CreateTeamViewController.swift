@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class CreateTeamViewController: UIViewController {
     
@@ -60,13 +61,7 @@ class CreateTeamViewController: UIViewController {
         } else {
             if (isNewLeague) {
                 league.commissioner = PFDueler.currentUser()!
-                league.duelers = [PFDueler.currentUser()!.objectId!]
-                
-                league.saveEventually({ (success, error) -> Void in
-                    if (success) {
-                        self.saveTeam()
-                    }
-                })
+                saveLeagueAndTeam()
             } else {
                 trySaveTeam()
             }
@@ -84,17 +79,21 @@ class CreateTeamViewController: UIViewController {
                     self.navigationController?.popToRootViewControllerAnimated(true)
                 })
             } else {
-                self.saveTeam()
+                self.saveLeagueAndTeam()
             }
         })
     }
     
-    func saveTeam() {
+    func saveLeagueAndTeam() {
         duelTeam.league = league
         duelTeam.dueler = PFDueler.currentUser()!
-        duelTeam.saveEventually()
-        navigationController?.popToRootViewControllerAnimated(true)
-        delegate?.didJoinLeague(league, shouldPromptShare: isNewLeague)
+        league.addUniqueObject(PFDueler.currentUser()!.objectId!, forKey: "duelers")
+        PFObject.saveAllInBackground([duelTeam, league], block: { (success, error) in
+            if (success) {
+                self.navigationController?.popToRootViewControllerAnimated(true)
+                self.delegate?.didJoinLeague(self.league, shouldPromptShare: self.isNewLeague)
+            }
+        })
     }
     
 }

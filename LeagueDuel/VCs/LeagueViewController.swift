@@ -31,6 +31,7 @@ class LeagueViewController: UIViewController {
             let editButton = UIBarButtonItem(title: "Edit", style: .Plain, target: self, action: "editLeague")
             navigationItem.rightBarButtonItem = editButton
         }
+        tableView.registerNib(UINib(nibName: "TeamTableViewCell", bundle: nil), forCellReuseIdentifier: "TeamCell")
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -80,8 +81,8 @@ extension LeagueViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let duelTeam = duelTeams[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier("DuelTeamCell", forIndexPath: indexPath) as! TeamTableViewCell
-        cell.configureWithDuelTeam(duelTeam)
+        let cell = tableView.dequeueReusableCellWithIdentifier("TeamCell", forIndexPath: indexPath) as! TeamTableViewCell
+        cell.configureWithDuelTeam(duelTeam, showLeague: false)
         return cell
     }
     

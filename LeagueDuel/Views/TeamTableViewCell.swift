@@ -13,6 +13,7 @@ class TeamTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var teamImageView: UIImageView!
+    @IBOutlet weak var leagueLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,10 +31,15 @@ class TeamTableViewCell: UITableViewCell {
         teamImageView.sd_cancelCurrentImageLoad()
     }
     
-    func configureWithDuelTeam(duelTeam: PFDuelTeam) {
+    func configureWithDuelTeam(duelTeam: PFDuelTeam, showLeague: Bool) {
         nameLabel.text = duelTeam.name
         if let imageURL = duelTeam.imageURL, let url = NSURL(string: imageURL) {
             teamImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named:"Team-96"))
+        }
+        if (showLeague) {
+            leagueLabel.text = duelTeam.league.name
+        } else {
+            leagueLabel.text = nil
         }
     }
 

@@ -29,6 +29,9 @@ class UpcomingContestsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.registerNib(UINib(nibName: "ContestTeamLineupTableViewCell", bundle: nil), forCellReuseIdentifier: "ContestTeamLineupCell")
+        tableView.registerNib(UINib(nibName: "EventTableViewCell", bundle: nil), forCellReuseIdentifier: "EventCell")
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -109,6 +112,7 @@ class UpcomingContestsViewController: UIViewController {
         } else if let createLineupVC = storyboard?.instantiateViewControllerWithIdentifier("CreateLineupVC") as? CreateLineupViewController {
             createLineupVC.event = event
             createLineupVC.duelTeam = duelTeam
+            createLineupVC.delegate = self
             let navigationController = UINavigationController(rootViewController: createLineupVC)
             self.presentViewController(navigationController, animated: true, completion: nil)
         }
@@ -117,6 +121,7 @@ class UpcomingContestsViewController: UIViewController {
     func toEditContestLineup(contestLineup: PFContestLineup) {
         if let editLineupVC = storyboard?.instantiateViewControllerWithIdentifier("EditLineupVC") as? EditLineupViewController {
             editLineupVC.contestLineup = contestLineup
+            editLineupVC.delegate = self
             let navigationController = UINavigationController(rootViewController: editLineupVC)
             self.presentViewController(navigationController, animated: true, completion: nil)
         }
@@ -181,6 +186,14 @@ extension UpcomingContestsViewController: UITableViewDataSource, UITableViewDele
         return 2
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if (indexPath.section == 0) {
+            return 60
+        } else {
+            return 132
+        }
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (section == 0) {
             return availableEvents.count
@@ -193,7 +206,7 @@ extension UpcomingContestsViewController: UITableViewDataSource, UITableViewDele
         if (section == 0) {
             return "Upcoming Events"
         } else {
-            return "Your Upcoming Lineups"
+            return "My Upcoming Lineups"
         }
     }
     
@@ -204,7 +217,7 @@ extension UpcomingContestsViewController: UITableViewDataSource, UITableViewDele
             cell.configureWithEvent(event)
             return cell
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("ContestLineupCell", forIndexPath: indexPath) as! ContestTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("ContestTeamLineupCell", forIndexPath: indexPath) as! ContestTeamLineupTableViewCell
             let contestLineup = contestLineups[indexPath.row]
             cell.configureWithContestLineup(contestLineup)
             return cell

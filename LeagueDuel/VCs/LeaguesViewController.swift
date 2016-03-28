@@ -29,6 +29,7 @@ class LeaguesViewController: MessageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchLeagues(true)
+        tableView.registerNib(UINib(nibName: "LeagueTableViewCell", bundle: nil), forCellReuseIdentifier: "LeagueCell")
     }
     
     func fetchLeagues(isFirstTime: Bool) {

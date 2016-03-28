@@ -27,6 +27,10 @@ class LeagueContestTableView: UITableView, UITableViewDataSource, UITableViewDel
         super.awakeFromNib()
         self.delegate = self
         self.dataSource = self
+
+        registerNib(UINib(nibName: "PlayerEventTableViewCell", bundle: nil), forCellReuseIdentifier: "PlayerEventCell")
+        registerNib(UINib(nibName: "LiveResultTeamLineupTableViewCell", bundle: nil), forCellReuseIdentifier: "LiveResultTeamLineupCell")
+        registerNib(UINib(nibName: "PastResultTeamLineupTableViewCell", bundle: nil), forCellReuseIdentifier: "PastResultTeamLineupCell")
     }
     
     func changeSelectedLineup(newSelectedLineup: Int?) {
@@ -95,14 +99,13 @@ class LeagueContestTableView: UITableView, UITableViewDataSource, UITableViewDel
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if (indexPath.row == 0) {
             let contestLineup = contestLineups[indexPath.section]
-            var cell:  ResultLineupTableViewCell!
+            var cell:  TeamLineupTableViewCell!
             if (contestLineup.contest.event.isPast()) {
-                cell = tableView.dequeueReusableCellWithIdentifier("ResultLineupEndedCell", forIndexPath: indexPath) as! ResultLineupTableViewCell
-                
+                cell = tableView.dequeueReusableCellWithIdentifier("PastResultTeamLineupCell", forIndexPath: indexPath) as! TeamLineupTableViewCell
             } else {
-                cell = tableView.dequeueReusableCellWithIdentifier("ResultLineupCell", forIndexPath: indexPath) as! ResultLineupTableViewCell
+                cell = tableView.dequeueReusableCellWithIdentifier("LiveResultTeamLineupCell", forIndexPath: indexPath) as! TeamLineupTableViewCell
             }
-            cell.configureWithContestLineup(contestLineup, rank: indexPath.row+1, delegate: self)
+            cell.configureWithContestLineup(contestLineup, rank: indexPath.section+1, delegate: self)
             cell.selected = indexPath.section == selectedLineup
             return cell
         } else {

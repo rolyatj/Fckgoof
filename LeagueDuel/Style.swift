@@ -8,11 +8,35 @@
 
 import UIKit
 
-class RoundedButton: UIButton {
-    override init (frame : CGRect) {
-        super.init(frame : frame)
+class RoundImageView: UIImageView {
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         setup()
     }
+    
+    func setup() {
+        layer.cornerRadius = bounds.width/2.0
+        layer.masksToBounds = true
+    }
+    
+}
+
+class RoundView: UIView {
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    func setup() {
+        layer.cornerRadius = bounds.width/2.0
+        layer.masksToBounds = true
+    }
+    
+}
+
+class RoundedButton: UIButton {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

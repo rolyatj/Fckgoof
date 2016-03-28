@@ -30,6 +30,7 @@ class RecentContestsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.registerNib(UINib(nibName: "ContestTeamLineupTableViewCell", bundle: nil), forCellReuseIdentifier: "ContestTeamLineupCell")
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -92,8 +93,12 @@ extension RecentContestsViewController: UITableViewDataSource, UITableViewDelega
         return contestLineups.count
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 132
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ContestLineupCell", forIndexPath: indexPath) as! ContestTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("ContestTeamLineupCell", forIndexPath: indexPath) as! ContestTeamLineupTableViewCell
         let contestLineup = contestLineups[indexPath.row]
         cell.configureWithContestLineup(contestLineup)
         return cell

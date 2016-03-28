@@ -38,10 +38,27 @@ class PFLineup: PFSuperclass {
             return PFMLBLineup(duelTeam: duelTeam, contest: contest, editableContestLineup: editableContestLineup as! MLBEditableContestLineup)
         }
     }
+
+    func rosterString() -> String? {
+        var rosterString = ""
+        let playerEvents = allPlayerEvents()
+        for playerEvent in playerEvents {
+            if (playerEvents.last == playerEvent) {
+                rosterString += "\(playerEvent.player.name ?? "")"
+            } else {
+                rosterString += "\(playerEvent.player.name ?? ""), "
+            }
+        }
+        
+        return rosterString
+    }
+    
+    func percentRemaining() -> Float {
+        return 0.0
+    }
     
     func setRoster(editableContestLineup: EditableContestLineup) {
     }
-    
     
     func positionMapping() -> [Int: [PFPlayerEvent]]? {
         return nil

@@ -32,6 +32,13 @@ enum SportType: Int {
         }
 
     }
+
+    func imageName() -> String {
+        switch self {
+        case .MLB:
+            return "Baseball Filled-50"
+        }
+    }
 }
 
 enum MLBPosition : Int {

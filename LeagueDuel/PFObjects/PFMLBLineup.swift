@@ -24,6 +24,18 @@ class PFMLBLineup: PFLineup, PFSubclassing {
         self.setRoster(editableContestLineup)
     }
     
+    override func percentRemaining() -> Float {
+        var percentRemaining : Float = 0.0
+        let playerEvents = allPlayerEvents()
+        for playerEvent in playerEvents {
+            percentRemaining += playerEvent.percentRemaining
+        }
+        if (playerEvents.count > 0) {
+            percentRemaining /= Float(playerEvents.count)
+        }
+        return percentRemaining
+    }
+    
     override func setRoster(editableContestLineup: EditableContestLineup) {
         self.playerEvents0 = [PFPlayerEvent]()
         self.playerEvents1 = [PFPlayerEvent]()
