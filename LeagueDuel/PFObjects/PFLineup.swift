@@ -12,6 +12,7 @@ import Parse
 class PFLineup: PFSuperclass {
     
     @NSManaged var points: Float
+    @NSManaged var rank: Int
     @NSManaged var contestId: String?
     @NSManaged var duelTeam: PFDuelTeam!
     @NSManaged var playerEvents0: [PFPlayerEvent]!

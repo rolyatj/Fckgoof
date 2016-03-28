@@ -32,6 +32,7 @@ class LeagueViewController: UIViewController {
             navigationItem.rightBarButtonItem = editButton
         }
         tableView.registerNib(UINib(nibName: "TeamTableViewCell", bundle: nil), forCellReuseIdentifier: "TeamCell")
+        tableView.tableFooterView = UIView()
     }
     
     override func viewWillAppear(animated: Bool) {

@@ -19,7 +19,7 @@ class PFPlayerEvent: PFSuperclass {
 
     class func recentPlayerEventsForPlayerEvent(sport: SportType, playerEvent: PFPlayerEvent) -> PFQuery? {
         // TODO?
-        if let recentEventsQuery = PFEvent.liveEventsQuery(sport) {
+        if let recentEventsQuery = PFEvent.recentEventsQuery(sport) {
             let query = PFPlayerEvent.queryWithIncludes(sport)
             query?.whereKey("event", matchesQuery: recentEventsQuery)
             query?.whereKey("player", equalTo: playerEvent.player)
@@ -35,6 +35,7 @@ class PFPlayerEvent: PFSuperclass {
         query?.includeKey("player")
         query?.includeKey("player.team")
         query?.includeKey("result")
+        query?.includeKey("event")
         return query
     }
     

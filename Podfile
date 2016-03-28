@@ -6,4 +6,5 @@ target :LeagueDuel do
     pod 'ParseUI'
     pod 'SDWebImage'
     pod 'SideMenu'
+    pod 'MZFormSheetPresentationController'
 end

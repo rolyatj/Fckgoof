@@ -1,5 +1,8 @@
 PODS:
   - Bolts/Tasks (1.6.0)
+  - MZAppearance (1.1.6)
+  - MZFormSheetPresentationController (2.3.2):
+    - MZAppearance
   - Parse (1.11.0):
     - Bolts/Tasks (~> 1.5)
   - ParseUI (1.2.0):
@@ -11,6 +14,7 @@ PODS:
   - SideMenu (1.0.3)
 
 DEPENDENCIES:
+  - MZFormSheetPresentationController
   - Parse (~> 1.11.0)
   - ParseUI
   - SDWebImage
@@ -18,11 +22,13 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Bolts: f52a250053bb517ca874523c3913776359ab3def
+  MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
+  MZFormSheetPresentationController: bba52eb65feb3b70ae83ed28fd20991802d4adeb
   Parse: 886af46a0a677402f6374bb97ac212e795f70afe
   ParseUI: af2eba584799da4a9fbdac0e178662d7438b502e
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SideMenu: 166ea23f143a8df84d0cf2170057793e26f0ba9e
 
-PODFILE CHECKSUM: 9c3c839953e875fd0bb7f2f2553c8a8735c6246b
+PODFILE CHECKSUM: dcd07bf1613fbaf835279473da522fc5a9ef4d2e
 
 COCOAPODS: 1.0.0.beta.4

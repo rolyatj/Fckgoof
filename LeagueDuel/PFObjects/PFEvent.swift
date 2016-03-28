@@ -16,6 +16,8 @@ class PFEvent: PFSuperclass {
     @NSManaged var endDate: NSDate!
     @NSManaged var name: String?
     @NSManaged var maxSalary: Int
+    @NSManaged var info: String?
+    @NSManaged var scoringInfo: String?
     
     static var importableLineups = [PFEvent:PFLineup]()
     static var dateFormatter: NSDateFormatter {

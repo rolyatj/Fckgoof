@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import MZFormSheetPresentationController
 
 protocol SetLineupViewControllerDelegate {
     func didAddOrChangeLineup()
@@ -48,6 +49,7 @@ class SetLineupViewController: UIViewController {
         navigationController?.setToolbarHidden(false, animated: false)
         
         exportButton.enabled = true
+        contestHeaderView.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -155,6 +157,8 @@ class SetLineupViewController: UIViewController {
                         let lineup = PFLineup.lineupFromEditableLineup(sport, duelTeam: self.duelTeam, contest: contest, editableContestLineup: editableContestLineup)
                         let contestLineup = PFContestLineup.contestLineupWithSport(sport, contest: contest, lineup: lineup)
                         try contestLineup.save()
+                        self.duelTeam.incrementKey("numberContestsEntered", byAmount: 1)
+                        self.duelTeam.saveInBackground()
                         self.delegate?.didAddOrChangeLineup()
                         self.dismissViewControllerAnimated(true, completion: nil)
                     } catch {
@@ -166,15 +170,25 @@ class SetLineupViewController: UIViewController {
         }
 
     }
-
-    @IBAction func infoTapped(sender: AnyObject) {
-    
-    }
     
     @IBAction func submitTapped(sender: AnyObject) {
         // subclassed
     }
     
+}
+
+extension SetLineupViewController: ContestHeaderViewDelegate {
+    func contestInfoTapped() {
+        if let event = editableContestLineup?.event {
+            let eventInfoViewController = self.storyboard!.instantiateViewControllerWithIdentifier("EventInfoVC") as! EventInfoViewController
+            eventInfoViewController.event = event
+            let nc = UINavigationController(rootViewController: eventInfoViewController)
+            let formSheetController = MZFormSheetPresentationViewController(contentViewController: nc)
+            formSheetController.presentationController?.shouldCenterVertically = true
+            formSheetController.presentationController?.contentViewSize = CGSizeMake(self.view.frame.size.width*0.9, self.view.frame.size.height*0.75)
+            self.presentViewController(formSheetController, animated: true, completion: nil)
+        }
+    }
 }
 
 extension SetLineupViewController: UITableViewDataSource, UITableViewDelegate {

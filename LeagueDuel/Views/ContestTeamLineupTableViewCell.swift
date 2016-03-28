@@ -43,10 +43,10 @@ class ContestTeamLineupTableViewCell: UITableViewCell {
         if let imageURL = contestLineup.lineup.duelTeam.imageURL, let url = NSURL(string: imageURL) {
             teamImageView?.sd_setImageWithURL(url, placeholderImage: UIImage(named:"Team-96"))
         }
-        dateLabel.text = contestLineup.contest.event.dateString()
+        dateLabel.text = "\(contestLineup.contest.event.name ?? "") \(contestLineup.contest.event.dateString() ?? "")"
         lineupLabel.text = contestLineup.lineup.rosterString()
         progressView.progress = contestLineup.lineup.percentRemaining()
-        positionLabel.text = "\(contestLineup.lineup.points)"
+        pointsLabel.text = "\(contestLineup.lineup.points)"
         if let sport = contestLineup.dynamicType.sport() {
             sportImageView.image = UIImage(named: sport.imageName())
         }

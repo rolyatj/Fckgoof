@@ -21,7 +21,7 @@ class LiveContestsViewController: UIViewController {
                 tableView.tableFooterView = footerView
             } else {
                 tableView.tableFooterView?.removeFromSuperview()
-                tableView.tableFooterView = nil
+                tableView.tableFooterView = UIView()
             }
         }
     }

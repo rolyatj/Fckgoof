@@ -21,8 +21,10 @@ class LeagueContestViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = contest.event.name
         tableView.lcDelegate = self
         fetchContests(true)
+        tableView.tableFooterView = UIView()
     }
     
     func fetchContests(isFirstTime: Bool) {

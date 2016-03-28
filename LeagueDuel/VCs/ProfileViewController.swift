@@ -33,7 +33,7 @@ class ProfileViewController: UIViewController {
                 tableView.tableFooterView = actionFooterView
             } else {
                 tableView.tableFooterView?.removeFromSuperview()
-                tableView.tableFooterView = nil
+                tableView.tableFooterView = UIView()
             }
         }
     }

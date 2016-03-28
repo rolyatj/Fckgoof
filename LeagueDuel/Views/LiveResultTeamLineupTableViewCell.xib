@@ -53,10 +53,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="80" height="43"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j9T-bs-E1i">
-                                <rect key="frame" x="0.0" y="8" width="80" height="27"/>
+                                <rect key="frame" x="0.0" y="9" width="80" height="26"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9999" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="2FJ-wU-4V8">
-                                        <rect key="frame" x="0.0" y="0.0" width="40" height="27"/>
+                                        <rect key="frame" x="0.0" y="4" width="40" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -65,8 +65,8 @@
                                 <color key="backgroundColor" red="0.40000000000000002" green="0.61176470589999998" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="2FJ-wU-4V8" firstAttribute="leading" secondItem="j9T-bs-E1i" secondAttribute="leading" id="Wms-Ce-hZs"/>
-                                    <constraint firstAttribute="bottom" secondItem="2FJ-wU-4V8" secondAttribute="bottom" id="XdM-Qa-LgX"/>
-                                    <constraint firstItem="2FJ-wU-4V8" firstAttribute="top" secondItem="j9T-bs-E1i" secondAttribute="top" id="gXU-r8-0bQ"/>
+                                    <constraint firstItem="2FJ-wU-4V8" firstAttribute="top" secondItem="j9T-bs-E1i" secondAttribute="top" constant="4" id="gXU-r8-0bQ"/>
+                                    <constraint firstItem="2FJ-wU-4V8" firstAttribute="centerY" secondItem="j9T-bs-E1i" secondAttribute="centerY" id="mKn-Tl-FPC"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4nV-BB-iQM" customClass="RoundView" customModule="LeagueDuel" customModuleProvider="target">
@@ -91,8 +91,7 @@
                             </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="j9T-bs-E1i" firstAttribute="top" secondItem="GrC-fd-QpU" secondAttribute="topMargin" id="0E5-5E-H6G"/>
-                            <constraint firstItem="j9T-bs-E1i" firstAttribute="bottom" secondItem="GrC-fd-QpU" secondAttribute="bottomMargin" id="Aat-J9-d92"/>
+                            <constraint firstItem="j9T-bs-E1i" firstAttribute="centerY" secondItem="GrC-fd-QpU" secondAttribute="centerY" id="8sP-3E-bVQ"/>
                             <constraint firstAttribute="width" constant="80" id="J5e-US-blE"/>
                             <constraint firstItem="4nV-BB-iQM" firstAttribute="leading" secondItem="2FJ-wU-4V8" secondAttribute="trailing" constant="2" id="OAL-sK-DSM"/>
                             <constraint firstItem="j9T-bs-E1i" firstAttribute="leading" secondItem="GrC-fd-QpU" secondAttribute="leading" id="cKw-EL-h0m"/>

@@ -102,10 +102,11 @@ class LeagueContestTableView: UITableView, UITableViewDataSource, UITableViewDel
             var cell:  TeamLineupTableViewCell!
             if (contestLineup.contest.event.isPast()) {
                 cell = tableView.dequeueReusableCellWithIdentifier("PastResultTeamLineupCell", forIndexPath: indexPath) as! TeamLineupTableViewCell
+                cell.configureWithContestLineup(contestLineup, rank: contestLineup.lineup.rank, delegate: self)
             } else {
                 cell = tableView.dequeueReusableCellWithIdentifier("LiveResultTeamLineupCell", forIndexPath: indexPath) as! TeamLineupTableViewCell
+                cell.configureWithContestLineup(contestLineup, rank: indexPath.section+1, delegate: self)
             }
-            cell.configureWithContestLineup(contestLineup, rank: indexPath.section+1, delegate: self)
             cell.selected = indexPath.section == selectedLineup
             return cell
         } else {

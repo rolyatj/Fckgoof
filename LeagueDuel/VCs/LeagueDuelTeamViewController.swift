@@ -37,6 +37,7 @@ class LeagueDuelTeamViewController: UIViewController {
         }
         
         tableView.lcDelegate = self
+        tableView.tableFooterView = UIView()
     }
     
     override func viewWillAppear(animated: Bool) {

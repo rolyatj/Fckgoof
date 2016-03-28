@@ -122,6 +122,7 @@ class PFContestLineup: PFSuperclass {
         for i in 0...9 {
             query?.includeKey("lineup.playerEvents\(i)")
             query?.includeKey("lineup.playerEvents\(i).player")
+            query?.includeKey("lineup.playerEvents\(i).player.team")
             query?.includeKey("lineup.playerEvents\(i).result")
         }
 

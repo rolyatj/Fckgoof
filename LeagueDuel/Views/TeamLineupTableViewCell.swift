@@ -62,7 +62,7 @@ class TeamLineupTableViewCell: UITableViewCell {
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        var rotation = CGAffineTransformIdentity
+        var rotation = CGAffineTransformMakeRotation(0)
         if (selected) {
             rotation = CGAffineTransformMakeRotation(CGFloat(-M_PI))
         }

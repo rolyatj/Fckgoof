@@ -78,6 +78,7 @@
 		90A2BB911CA978C900569757 /* LeagueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90A2BB901CA978C900569757 /* LeagueTableViewCell.xib */; };
 		90A2BB951CA9796300569757 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90A2BB941CA9796300569757 /* EventTableViewCell.xib */; };
 		90A2BB971CA979F700569757 /* SelectablePlayerEventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90A2BB961CA979F700569757 /* SelectablePlayerEventTableViewCell.xib */; };
+		90A2BB991CA9895700569757 /* EventInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A2BB981CA9895700569757 /* EventInfoViewController.swift */; };
 		90A610B01CA6086C008BE1F0 /* FooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90A610AF1CA6086C008BE1F0 /* FooterView.xib */; };
 		90A610B21CA60882008BE1F0 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A610B11CA60882008BE1F0 /* FooterView.swift */; };
 		90A610B61CA60F9F008BE1F0 /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A610B51CA60F9F008BE1F0 /* EditProfileTableViewController.swift */; };
@@ -160,6 +161,7 @@
 		90A2BB901CA978C900569757 /* LeagueTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeagueTableViewCell.xib; sourceTree = "<group>"; };
 		90A2BB941CA9796300569757 /* EventTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventTableViewCell.xib; sourceTree = "<group>"; };
 		90A2BB961CA979F700569757 /* SelectablePlayerEventTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectablePlayerEventTableViewCell.xib; sourceTree = "<group>"; };
+		90A2BB981CA9895700569757 /* EventInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventInfoViewController.swift; sourceTree = "<group>"; };
 		90A610AF1CA6086C008BE1F0 /* FooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FooterView.xib; sourceTree = "<group>"; };
 		90A610B11CA60882008BE1F0 /* FooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		90A610B51CA60F9F008BE1F0 /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				908528FE1CA1AA60000E606E /* Player */,
 				900E11FF1C8FA04F00C4B7A4 /* Profile */,
 				908528FF1CA1D1B2000E606E /* LDTabBarController.swift */,
+				90A2BB981CA9895700569757 /* EventInfoViewController.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -698,6 +701,7 @@
 				900E11D31C8F9EF300C4B7A4 /* PFContest.swift in Sources */,
 				908308FB1CA182750015AD07 /* PlayerEventTableViewCell.swift in Sources */,
 				900E11D51C8F9EF300C4B7A4 /* PFDueler.swift in Sources */,
+				90A2BB991CA9895700569757 /* EventInfoViewController.swift in Sources */,
 				900E11EE1C8F9EF300C4B7A4 /* LeaguesViewController.swift in Sources */,
 				900E11CC1C8F9EF300C4B7A4 /* AppDelegate.swift in Sources */,
 				900E11E91C8F9EF300C4B7A4 /* PFTeam.swift in Sources */,

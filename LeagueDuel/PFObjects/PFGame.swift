@@ -15,9 +15,19 @@ class PFGame: PFSuperclass {
     @NSManaged var awayTeam: PFTeam!
     @NSManaged var event: PFEvent!
     @NSManaged var startDate: NSDate!
+    static var dateFormatter: NSDateFormatter {
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = .ShortStyle
+        formatter.timeStyle = .ShortStyle
+        return formatter
+    }
     
     func toString() -> String? {
-        return "\(awayTeam.teamName ?? "") @ \(homeTeam.teamName ?? "") \(startDate)"
+        return "\(awayTeam.teamName ?? "") @ \(homeTeam.teamName ?? "")"
+    }
+    
+    func dateString() -> String? {
+        return PFGame.dateFormatter.stringFromDate(startDate)
     }
     
     class func gamesForTeam(sport: SportType, team: PFTeam, event: PFEvent) -> PFQuery? {

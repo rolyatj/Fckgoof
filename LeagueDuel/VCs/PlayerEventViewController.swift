@@ -122,7 +122,7 @@ class PlayerEventViewController: UIViewController {
         //@IBOutlet weak var playerImageView: UIImageView!
         playerPositionLabel.text = playerEvent.player.position
         playerNameLabel.text = playerEvent.player.name
-        //playerInfoLabel.text = playerEvent.player.team?.name
+        playerInfoLabel.text = playerEvent.player.team?.teamName
         playerStatusLabel.text = "$\(playerEvent.salary)"
     }
     
@@ -131,6 +131,7 @@ class PlayerEventViewController: UIViewController {
         if let sport = playerEvent!.dynamicType.sport(), let team = playerEvent.player.team {
             let query = PFGame.gamesForTeam(sport, team: team, event: playerEvent.event)
             query?.cachePolicy = PFCachePolicy.CacheElseNetwork
+            query?.orderByDescending("startDate")
             query?.findObjectsInBackgroundWithBlock({ (teamGames, error) -> Void in
                 if let teamGames = teamGames as? [PFGame] {
                     print(teamGames)
@@ -144,7 +145,8 @@ class PlayerEventViewController: UIViewController {
         hasFetchedPlayerEvents = true
         if let sport = playerEvent!.dynamicType.sport() {
             let query = PFPlayerEvent.recentPlayerEventsForPlayerEvent(sport, playerEvent: playerEvent)
-            query?.cachePolicy = PFCachePolicy.NetworkElseCache
+            query?.cachePolicy = PFCachePolicy.CacheElseNetwork
+            query?.orderByDescending("startDate")
             query?.findObjectsInBackgroundWithBlock({ (playerEvents, error) -> Void in
                 if let playerEvents = playerEvents as? [PFPlayerEvent] {
                     print(playerEvents)
@@ -183,14 +185,16 @@ extension PlayerEventViewController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if (tableView == teamGamesTableView) {
-            let teamGame = teamGames[indexPath.section]
+            let teamGame = teamGames[indexPath.row]
             let cell = tableView.dequeueReusableCellWithIdentifier("TeamGameCell", forIndexPath: indexPath)
             cell.textLabel?.text = teamGame.toString()
+            cell.detailTextLabel?.text = teamGame.dateString()
             return cell
         } else {
-            let recentPlayerEvent = recentPlayerEvents[indexPath.section]
+            let recentPlayerEvent = recentPlayerEvents[indexPath.row]
             let cell = tableView.dequeueReusableCellWithIdentifier("PlayerEventCell", forIndexPath: indexPath)
-            cell.textLabel?.text = recentPlayerEvent.result.resultString()
+            cell.textLabel?.text = recentPlayerEvent.event.name
+            cell.detailTextLabel?.text = recentPlayerEvent.result.resultString()
             return cell
         }
     }
