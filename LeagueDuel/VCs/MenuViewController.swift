@@ -130,7 +130,7 @@ extension MenuViewController: UITableViewDelegate {
                 showURL("http://www.leagueduelapp.com/terms", inapp: true)
             } else if (indexPath.row == 1) {
                 //"Privacy Policy"
-                showURL("http://www.leagueduelapp.com/policy", inapp: true)
+                showURL("http://www.leagueduelapp.com/privacy", inapp: true)
             }
         }
 

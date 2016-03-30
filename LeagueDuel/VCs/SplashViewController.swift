@@ -14,13 +14,35 @@ class SplashViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if (isValidAppVersion()) {
+        start()
+    }
+    
+    func start() {
+        PFConfig.getConfigInBackgroundWithBlock { (config, error) -> Void in
+            let minimumVersion = config?["minimumVersion"] as? String
+            let activeSports = config?["activeSports"] as? [Int]
+            self.startApp(minimumVersion, activeSports: activeSports)
+        }
+    }
+    
+    func startApp(minimumVersion: String?, activeSports: [Int]?) {
+        if (isValidAppVersion(minimumVersion)) {
             if let _ = PFDueler.currentUser() {
-                setupApp({ (success, error) -> Void in
-                    if (success) {
-                        self.performSegueWithIdentifier("toApp", sender: nil)
+                if let activeSports = activeSports {
+                    var activeSportTypes = [SportType]()
+                    for activeSport in activeSports {
+                        if let sportType = SportType(rawValue: activeSport) {
+                            activeSportTypes.append(sportType)
+                        }
                     }
-                })
+                    print("starting app with active sports: \(activeSportTypes)")
+                    LDCoordinator.instance.setupRefreshTimes(activeSportTypes)
+                    self.performSegueWithIdentifier("toApp", sender: nil)
+                } else {
+                    showErrorPopup("The app couldn't start.\n\n1. Please update if you don't have the lastest version\n2. Make sure you have internet access\n\nRestart?", completion: {
+                        self.start()
+                    })
+                }
             } else {
                 let loginVC = LogInViewController()
                 loginVC.fields = [PFLogInFields.LogInButton, PFLogInFields.UsernameAndPassword, PFLogInFields.SignUpButton, PFLogInFields.PasswordForgotten]
@@ -29,37 +51,30 @@ class SplashViewController: UIViewController {
                 loginVC.delegate = self
                 self.presentViewController(loginVC, animated: true, completion: nil)
             }
+        } else {
+            let alertController = UIAlertController(title: "Sorry!", message: "Your version of the app is outdated. Please update on the App Store to continue using!", preferredStyle: .Alert)
+            let okAction = UIAlertAction(title: "Update", style: .Cancel) { (action) -> Void in
+                self.showURL(Constants.AppStoreURL, inapp: false)
+            }
+            alertController.addAction(okAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
         }
     }
     
-    func isValidAppVersion() -> Bool {
-        let isValid = true  // TODO
-        if (!isValid) {
-            showUpdatePrompt()
+    func isValidAppVersion(minimumVersionString: String?) -> Bool {
+        var isValid = false
+        if let minimumVersionString = minimumVersionString, let currentVersionString = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String {
+            if let minimumVersionNumber = versionNumber(minimumVersionString), let currentVersionNumber = versionNumber(currentVersionString) {
+                //print("minimum:\(minimumVersionString) current:\(currentVersionString)")
+                isValid = currentVersionNumber >= minimumVersionNumber
+            }
         }
         return isValid
     }
     
-    func showUpdatePrompt() {
-        let alertController = UIAlertController(title: "Hey!", message: "Your version of the app is outdated. Please update to continue playing!", preferredStyle: .Alert)
-        let okAction = UIAlertAction(title: "Download", style: .Cancel) { (action) -> Void in
-            if let url = NSURL(string: "www.google.com") {
-                UIApplication.sharedApplication().openURL(url)
-            }
-        }
-        alertController.addAction(okAction)
-        self.presentViewController(alertController, animated: true, completion: nil)
-    }
-
-    func setupApp(completion: (success: Bool, error: NSError?) -> Void) {
-        
-        
-        let activeSports = [SportType.MLB] // TODO async
-
-        LDCoordinator.instance.setupRefreshTimes(activeSports)
-        
-        completion(success: true, error: nil)
-
+    func versionNumber(versionString: String) -> Int? {
+        let versionNumbers = versionString.componentsSeparatedByString(".")
+        return Int(versionNumbers.joinWithSeparator(""))
     }
     
 }

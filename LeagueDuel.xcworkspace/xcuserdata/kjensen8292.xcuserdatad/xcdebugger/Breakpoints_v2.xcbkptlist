@@ -936,5 +936,101 @@
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeagueDuel/VCs/SplashViewController.swift"
+            timestampString = "481064131.275287"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "isValidAppVersion(_:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LeagueDuel.SplashViewController.isValidAppVersion (Swift.Optional&lt;Swift.String&gt;) -&gt; Swift.Bool"
+                  moduleName = "LeagueDuel"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kjensen8292/Developer/LeagueDuel/LeagueDuel/VCs/SplashViewController.swift"
+                  timestampString = "481063726.983392"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LeagueDuel.SplashViewController.isValidAppVersion (Swift.Optional&lt;Swift.String&gt;) -&gt; Swift.Bool"
+                  moduleName = "LeagueDuel"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kjensen8292/Developer/LeagueDuel/LeagueDuel/VCs/SplashViewController.swift"
+                  timestampString = "481063726.983656"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "152">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeagueDuel/VCs/SplashViewController.swift"
+            timestampString = "481064131.275287"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "isValidAppVersion(_:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LeagueDuel.SplashViewController.isValidAppVersion (Swift.Optional&lt;Swift.String&gt;) -&gt; Swift.Bool"
+                  moduleName = "LeagueDuel"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kjensen8292/Developer/LeagueDuel/LeagueDuel/VCs/SplashViewController.swift"
+                  timestampString = "481063733.936475"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "936">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LeagueDuel.SplashViewController.isValidAppVersion (Swift.Optional&lt;Swift.String&gt;) -&gt; Swift.Bool"
+                  moduleName = "LeagueDuel"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kjensen8292/Developer/LeagueDuel/LeagueDuel/VCs/SplashViewController.swift"
+                  timestampString = "481063733.936735"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "1044">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

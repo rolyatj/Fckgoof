@@ -1,6 +1,6 @@
 //
 //  IAPHelper.swift
-//  Stack
+//  LeagueDuel
 //
 //  Created by Kurt Jensen on 2/29/16.
 //  Copyright © 2016 Arbor Apps LLC. All rights reserved.
@@ -17,8 +17,8 @@ class IAPHelper: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserv
     var isPurchasing = false
     var isRefreshing = false
     
-    static let storeURL = NSURL(string: "https://sandbox.itunes.apple.com/verifyReceipt")! // TODO
-    //static let storeURL = NSURL(string: "https://buy.itunes.apple.com/verifyReceipt")!
+    static let sandboxStoreURL = NSURL(string: "https://sandbox.itunes.apple.com/verifyReceipt")!
+    static let storeURL = NSURL(string: "https://buy.itunes.apple.com/verifyReceipt")!
     static var iapIdentifier = "io.arborapps.LeagueDuel.monthlySubscription"
     static let sharedSecret = "dd80960b3e3046648ab92c87e15fee1c"
     static let instance = IAPHelper()
@@ -50,7 +50,8 @@ class IAPHelper: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserv
     }
     
     func purchaseIAP(purchaseCompleted:((success: Bool, errorMessage: String?) -> Void)?) {
-        startPurchaseFor(IAPHelper.iapIdentifier, purchaseCompleted: purchaseCompleted)
+        self.purchaseCompleted = purchaseCompleted
+        startPurchaseFor(IAPHelper.iapIdentifier)
     }
     
     func restoreIAP(purchaseCompleted:((success: Bool, errorMessage: String?) -> Void)?) {
@@ -58,16 +59,15 @@ class IAPHelper: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserv
         refreshReceipt()
     }
     
-    func startPurchaseFor(productIDString: String, purchaseCompleted:((success: Bool, errorMessage: String?) -> Void)?) {
+    func startPurchaseFor(productIDString: String) {
         
         if SKPaymentQueue.canMakePayments() {
             
             if let product: SKProduct = products[productIDString] {
                 
-                self.purchaseCompleted = purchaseCompleted
                 let payment = SKPayment(product: product)
                 SKPaymentQueue.defaultQueue().addTransactionObserver(self)
-                SKPaymentQueue.defaultQueue().addPayment(payment);
+                SKPaymentQueue.defaultQueue().addPayment(payment)
                 
             } else {
                 purchaseCompleted?(success: false, errorMessage: "Product \(productIDString) not found")
@@ -90,7 +90,7 @@ class IAPHelper: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserv
             case .Failed:
                 
                 self.isPurchasing = false
-                purchaseCompleted?(success: false, errorMessage: transaction.error?.localizedDescription)
+                //purchaseCompleted?(success: false, errorMessage: transaction.error?.localizedDescription)
                 
                 SKPaymentQueue.defaultQueue().finishTransaction(transaction)
                 break
@@ -154,14 +154,14 @@ class IAPHelper: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserv
                     "password" : IAPHelper.sharedSecret]
                 do {
                     let requestData = try NSJSONSerialization.dataWithJSONObject(receiptDictionary, options: [])
-                    receiptValidation(requestData)
+                    receiptValidation(requestData, url: IAPHelper.storeURL)
                 } catch {
                     print(error)
                 }
         }
     }
     
-    func receiptValidation(requestData: NSData) {
+    func receiptValidation(requestData: NSData, url: NSURL) {
         let storeRequest = NSMutableURLRequest(URL: IAPHelper.storeURL)
         storeRequest.HTTPMethod = "POST"
         storeRequest.HTTPBody = requestData
@@ -175,11 +175,15 @@ class IAPHelper: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserv
                 do {
                     let jsonResponse : NSDictionary = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers) as! NSDictionary
                     print(jsonResponse)
-                    if let receipt = jsonResponse["receipt"] as? NSDictionary, let in_app = receipt["in_app"] as? NSArray {
-                        Settings.instance.isUpgraded = true
-                        self.purchaseCompleted?(success: true, errorMessage: "Purchase succeeded")
+                    if let status = jsonResponse["status"] as? Int where status == 21007 {
+                        self.receiptValidation(requestData, url: IAPHelper.sandboxStoreURL)
                     } else {
-                        self.purchaseCompleted?(success: false, errorMessage: "Could not validate receipt")
+                        if let receipt = jsonResponse["receipt"] as? NSDictionary, let in_app = receipt["in_app"] as? NSArray, let product_id = (in_app.firstObject as? NSDictionary)?["product_id"] as? String {
+                            Settings.instance.isUpgraded = (product_id == IAPHelper.iapIdentifier)
+                            self.purchaseCompleted?(success: true, errorMessage: "Purchase succeeded")
+                        } else {
+                            self.purchaseCompleted?(success: false, errorMessage: "Could not validate receipt")
+                        }
                     }
                 } catch {
                     print(error)
