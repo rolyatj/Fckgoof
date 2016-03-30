@@ -101,11 +101,13 @@ extension MenuViewController: UITableViewDelegate {
         } else if (indexPath.section == 1) {
             if (indexPath.row == 0) {
                 //"Like us on Facebook"
+                showURL("fb://profile/1543903319243024", inapp: false, backupUrlString:"https://www.facebook.com/LeagueDuel")
             } else if (indexPath.row == 1) {
                 //"Follow us on Twitter"
+                showURL("twitter://user?screen_name=LeagueDuel", inapp: false, backupUrlString:"https://www.twitter.com/LeagueDuel")
             } else if (indexPath.row == 2) {
                 //share
-                let text = "100% FREE weekly fantasy sports leagues."
+                let text = "100% FREE weekly fantasy sports leagues with people you know."
                 let url = NSURL(string: Constants.AppStoreURL)!
                 let activityViewController = UIActivityViewController(activityItems: [text, url], applicationActivities: nil)
                 activityViewController.popoverPresentationController?.sourceView = tableView.cellForRowAtIndexPath(indexPath)
@@ -125,10 +127,10 @@ extension MenuViewController: UITableViewDelegate {
         } else {
             if (indexPath.row == 0) {
                 //"Terms and Conditions"
-                showURL("http://arborapps.io", inapp: true) // TODO
+                showURL("http://www.leagueduelapp.com/terms", inapp: true)
             } else if (indexPath.row == 1) {
                 //"Privacy Policy"
-                showURL("http://arborapps.io", inapp: true) // TODO
+                showURL("http://www.leagueduelapp.com/policy", inapp: true)
             }
         }
 

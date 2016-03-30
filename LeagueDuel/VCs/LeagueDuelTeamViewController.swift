@@ -52,7 +52,7 @@ class LeagueDuelTeamViewController: UIViewController {
     
     func fetchContests() {
         let query = PFContestLineup.recentContestLineupsQueryForDuelTeam(sport, duelTeam: duelTeam)
-        query?.cachePolicy = PFCachePolicy.NetworkElseCache
+        query?.cachePolicy = PFCachePolicy.CacheThenNetwork
         query?.findObjectsInBackgroundWithBlock({ (contestLineups, error) -> Void in
             if let contestLineups = contestLineups as? [PFContestLineup] {
                 self.contestLineups = contestLineups

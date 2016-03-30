@@ -86,12 +86,20 @@ extension UIViewController {
     }
     
     func showURL(urlString: String, inapp: Bool) {
+        showURL(urlString, inapp: inapp, backupUrlString: nil)
+    }
+    
+    func showURL(urlString: String, inapp: Bool, backupUrlString: String?) {
         if let url = NSURL(string: urlString) {
             if (inapp) {
                 let svc = SFSafariViewController(URL: url)
                 self.presentViewController(svc, animated: true, completion: nil)
             } else {
-                UIApplication.sharedApplication().openURL(url)
+                if (UIApplication.sharedApplication().canOpenURL(url)) {
+                    UIApplication.sharedApplication().openURL(url)
+                } else if let backupUrlString = backupUrlString, let url = NSURL(string: backupUrlString) {
+                    UIApplication.sharedApplication().openURL(url)
+                }
             }
         }
         

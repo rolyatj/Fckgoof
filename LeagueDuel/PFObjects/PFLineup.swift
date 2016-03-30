@@ -45,9 +45,13 @@ class PFLineup: PFSuperclass {
         let playerEvents = allPlayerEvents()
         for playerEvent in playerEvents {
             if (playerEvents.last == playerEvent) {
-                rosterString += "\(playerEvent.player.name ?? "")"
+                if let name = playerEvent.player.name, let lastName = name.componentsSeparatedByString(" ").last {
+                    rosterString += "\(lastName)"
+                }
             } else {
-                rosterString += "\(playerEvent.player.name ?? ""), "
+                if let name = playerEvent.player.name, let lastName = name.componentsSeparatedByString(" ").last {
+                    rosterString += "\(lastName), "
+                }
             }
         }
         

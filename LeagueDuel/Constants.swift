@@ -25,6 +25,6 @@ class Constants {
     static let KEY_PASSCODE = "KEY_PASSCODE"
     static let KEY_FAILED_ATTEMPTS = "KEY_FAILED_ATTEMPTS"
     
-    static let AppStoreURL = "https://itunes.apple.com/us/app/stack-searchable-notes-file/id1093840765?ls=1&mt=8" // TODO
+    static let AppStoreURL = "https://itunes.apple.com/us/app/league-duel/id1098228976?ls=1&mt=8"
     
 }

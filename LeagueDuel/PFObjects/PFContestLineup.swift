@@ -87,6 +87,7 @@ class PFContestLineup: PFSuperclass {
             let query = PFContestLineup.queryWithIncludes(sport)
             query?.whereKey("contest", matchesQuery: contestQuery)
             query?.whereKey("lineup", matchesQuery: lineupQuery)
+            query?.orderByDescending("createdAt")
             return query
         }
         return nil
@@ -98,6 +99,7 @@ class PFContestLineup: PFSuperclass {
             let query = PFContestLineup.queryWithIncludes(sport)
             query?.whereKey("contest", matchesQuery: contestQuery)
             query?.whereKey("lineup", matchesQuery: lineupQuery)
+            query?.orderByDescending("createdAt")
             return query
         }
         return nil

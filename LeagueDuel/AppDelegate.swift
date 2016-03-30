@@ -22,9 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Twitter.sharedInstance().startWithConsumerKey("Kvd85UhWhdlPRMhl6ahI2brh3", consumerSecret: "oEUIYS3KvXLvDJjlMefsVKuwLeYu2jt1RCTEnKMKrCpUDGYxGc")
         Fabric.with([Crashlytics.self, Twitter.self])
-        Twitter.sharedInstance().logInWithCompletion { (session, error) in
-            //
-        }
 
         // PARSE
         PFDueler.registerSubclass()

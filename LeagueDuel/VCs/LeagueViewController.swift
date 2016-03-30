@@ -14,6 +14,7 @@ class LeagueViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var taglineLabel: UILabel!
     
     var league: PFLeague!
     var duelTeams = [PFDuelTeam]() {
@@ -42,6 +43,7 @@ class LeagueViewController: UIViewController {
         if let imageURL = league.imageURL, let url = NSURL(string: imageURL) {
             imageView.sd_setImageWithURL(url, placeholderImage: UIImage(named:"Trophy-104-Green"))
         }
+        taglineLabel.text = league.tagline
     }
     
     func fetchDuelTeams() {

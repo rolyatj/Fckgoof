@@ -61,6 +61,7 @@
 		90629A311C9091AF0083680D /* ContestHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90629A301C9091AF0083680D /* ContestHeaderView.xib */; };
 		90629A341C9095120083680D /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90629A331C9095120083680D /* Style.swift */; };
 		90629A361C90B5760083680D /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90629A351C90B5760083680D /* TextFieldTableViewCell.swift */; };
+		907B4FD01CAC26B300BE68C8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 907B4FCF1CAC26B300BE68C8 /* StoreKit.framework */; };
 		90819C3C1CA9C39000DAF6DF /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90819C3B1CA9C39000DAF6DF /* IAPHelper.swift */; };
 		90819C3E1CA9C40700DAF6DF /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90819C3D1CA9C40700DAF6DF /* Settings.swift */; };
 		908308F71CA17C1B0015AD07 /* ResultRaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908308F61CA17C1B0015AD07 /* ResultRaceView.swift */; };
@@ -140,13 +141,14 @@
 		900E11C91C8F9EF200C4B7A4 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		900E11CA1C8F9EF200C4B7A4 /* LeagueTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueTableViewCell.swift; sourceTree = "<group>"; };
 		900E11CB1C8F9EF300C4B7A4 /* TeamLineupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamLineupTableViewCell.swift; sourceTree = "<group>"; };
-		903C534D1CA2E83800E20E93 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = VCs/MenuViewController.swift; sourceTree = "<group>"; };
+		903C534D1CA2E83800E20E93 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		903C53501CA3132E00E20E93 /* LDCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDCoordinator.swift; sourceTree = "<group>"; };
 		903C53521CA3136C00E20E93 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		90629A2E1C90919F0083680D /* ContestHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContestHeaderView.swift; sourceTree = "<group>"; };
 		90629A301C9091AF0083680D /* ContestHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestHeaderView.xib; sourceTree = "<group>"; };
 		90629A331C9095120083680D /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		90629A351C90B5760083680D /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		907B4FCF1CAC26B300BE68C8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		90819C3B1CA9C39000DAF6DF /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		90819C3D1CA9C40700DAF6DF /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		908308F61CA17C1B0015AD07 /* ResultRaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultRaceView.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A07F4CCC36B7EAFAC1779CA /* Pods_LeagueDuel.framework in Frameworks */,
+				907B4FD01CAC26B300BE68C8 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +204,7 @@
 		813AC46DD38CE82E9DBE70C7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				907B4FCF1CAC26B300BE68C8 /* StoreKit.framework */,
 				17BB96FF7EA2EB5B037B1C44 /* Pods_FriendlyFanduel.framework */,
 				7545B34206AA5C59A63C456E /* Pods_LeagueDuel.framework */,
 			);
@@ -214,7 +218,6 @@
 				900E11991C8F9EF200C4B7A4 /* Assets.xcassets */,
 				900E119A1C8F9EF200C4B7A4 /* LaunchScreen.storyboard */,
 				900E119C1C8F9EF200C4B7A4 /* Main.storyboard */,
-				903C534D1CA2E83800E20E93 /* MenuViewController.swift */,
 				90629A321C9094ED0083680D /* Supporting Files */,
 				900E11C71C8F9EF200C4B7A4 /* Views */,
 				900E11B91C8F9EF200C4B7A4 /* VCs */,
@@ -256,8 +259,10 @@
 				900E11FE1C8FA04B00C4B7A4 /* Recent */,
 				908528FE1CA1AA60000E606E /* Player */,
 				900E11FF1C8FA04F00C4B7A4 /* Profile */,
+				907B4FD11CAC3F2E00BE68C8 /* DuelTeam */,
 				908528FF1CA1D1B2000E606E /* LDTabBarController.swift */,
 				90A2BB981CA9895700569757 /* EventInfoViewController.swift */,
+				903C534D1CA2E83800E20E93 /* MenuViewController.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -266,10 +271,10 @@
 			isa = PBXGroup;
 			children = (
 				908699D41CA5B7F1005233A5 /* LeagueContestTableView.swift */,
-				90A2BB921CA978D200569757 /* LeagueTableViewCell */,
-				90A2BB8F1CA978A300569757 /* TeamTableViewCell */,
 				90A2BB891CA743A500569757 /* ContestHeaderView */,
 				90A2BB8A1CA743AB00569757 /* FooterView */,
+				90A2BB921CA978D200569757 /* LeagueTableViewCell */,
+				90A2BB8F1CA978A300569757 /* TeamTableViewCell */,
 				908308F61CA17C1B0015AD07 /* ResultRaceView.swift */,
 				90629A351C90B5760083680D /* TextFieldTableViewCell.swift */,
 				90A2BB8C1CA9739300569757 /* EventTableViewCell */,
@@ -304,7 +309,6 @@
 			children = (
 				900E11C01C8F9EF200C4B7A4 /* LiveContestsViewController.swift */,
 				908308F81CA17F0E0015AD07 /* LeagueContestViewController.swift */,
-				908529011CA1F715000E606E /* LeagueDuelTeamViewController.swift */,
 			);
 			name = Live;
 			sourceTree = "<group>";
@@ -447,6 +451,14 @@
 				90819C3D1CA9C40700DAF6DF /* Settings.swift */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		907B4FD11CAC3F2E00BE68C8 /* DuelTeam */ = {
+			isa = PBXGroup;
+			children = (
+				908529011CA1F715000E606E /* LeagueDuelTeamViewController.swift */,
+			);
+			name = DuelTeam;
 			sourceTree = "<group>";
 		};
 		908528FE1CA1AA60000E606E /* Player */ = {
@@ -596,6 +608,18 @@
 				TargetAttributes = {
 					90F7B2231C889B27003FBE49 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = JSQ8N76B4C;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};

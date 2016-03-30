@@ -15,17 +15,22 @@ class ContestTeamLineupTableViewCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var teamImageView: UIImageView!
     @IBOutlet weak var sportImageView: UIImageView!
+    @IBOutlet weak var eventLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var lineupLabel: UILabel!
     @IBOutlet weak var pointsLabel: UILabel!
     @IBOutlet weak var positionLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
     
+    @IBOutlet weak var bgView: UIView!
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        layer.shadowRadius = 4
-        layer.shadowOpacity = 1
-        layer.shadowOffset = CGSizeMake(0,1)
+        bgView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        bgView.layer.borderWidth = 0.5
+        bgView.layer.shadowRadius = 4
+        bgView.layer.shadowOpacity = 0.4
+        bgView.layer.shadowOffset = CGSizeMake(0,1)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -45,7 +50,8 @@ class ContestTeamLineupTableViewCell: UITableViewCell {
         if let imageURL = contestLineup.lineup.duelTeam.imageURL, let url = NSURL(string: imageURL) {
             teamImageView?.sd_setImageWithURL(url, placeholderImage: UIImage(named:"Team-96"))
         }
-        dateLabel.text = "\(contestLineup.contest.event.name ?? "") \(contestLineup.contest.event.dateString() ?? "")"
+        eventLabel.text = contestLineup.contest.event.name
+        dateLabel.text = contestLineup.contest.event.dateString()
         lineupLabel.text = contestLineup.lineup.rosterString()
         progressView.progress = contestLineup.lineup.percentRemaining()
         pointsLabel.text = "\(contestLineup.lineup.points)"

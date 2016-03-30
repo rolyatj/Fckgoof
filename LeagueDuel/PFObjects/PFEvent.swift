@@ -76,7 +76,10 @@ class PFEvent: PFSuperclass {
     }
     
     func dateString() -> String? {
-        return "\(PFEvent.dateFormatter.stringFromDate(startDate)) - \(PFEvent.dateFormatter.stringFromDate(endDate))"
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([NSCalendarUnit.Day], fromDate: startDate, toDate: endDate, options: [])
+        let days = components.day
+        return "\(PFEvent.dateFormatter.stringFromDate(startDate)) (\(days == 7 ? "1 Week" : "\(days) Day\(days > 1 ? "s" : "")"))"
     }
 
     func numberOfPositions() -> Int {

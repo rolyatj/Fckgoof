@@ -36,6 +36,20 @@ class RoundView: UIView {
     
 }
 
+class RoundLabel: UILabel {
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    func setup() {
+        layer.cornerRadius = bounds.width/2.0
+        layer.masksToBounds = true
+    }
+    
+}
+
 class RoundedButton: UIButton {
     
     required init?(coder aDecoder: NSCoder) {

@@ -15,9 +15,15 @@ class LeagueTableViewCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var leagueImageView: UIImageView!
     
+    @IBOutlet weak var bgView: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        bgView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        bgView.layer.borderWidth = 0.5
+        bgView.layer.shadowRadius = 4
+        bgView.layer.shadowOpacity = 0.4
+        bgView.layer.shadowOffset = CGSizeMake(0,1)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

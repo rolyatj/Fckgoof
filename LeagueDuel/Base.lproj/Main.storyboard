@@ -62,7 +62,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ceP-nb-G03">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ceP-nb-G03">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="Erz-Xe-qQJ">
@@ -221,7 +221,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ycg-ch-U4M">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ycg-ch-U4M">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="DBR-WS-vzf">
@@ -518,7 +518,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cFH-T8-wAg">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cFH-T8-wAg">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="ltJ-yq-SGI">
@@ -539,13 +539,22 @@
                                                 <constraint firstAttribute="height" constant="80" id="u9q-6H-CBw"/>
                                             </constraints>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8dx-bW-dbI">
+                                            <rect key="frame" x="8" y="96" width="304" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" red="0.15294117647058825" green="0.18431372549019609" blue="0.20392156862745098" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstItem="rxz-7x-F3c" firstAttribute="top" secondItem="ltJ-yq-SGI" secondAttribute="topMargin" id="C1p-63-kB8"/>
+                                        <constraint firstItem="8dx-bW-dbI" firstAttribute="top" secondItem="rxz-7x-F3c" secondAttribute="bottom" constant="8" id="JsX-vM-BrY"/>
                                         <constraint firstItem="XX0-Bm-aW2" firstAttribute="leading" secondItem="ltJ-yq-SGI" secondAttribute="leadingMargin" id="LM1-cu-4tV"/>
                                         <constraint firstItem="XX0-Bm-aW2" firstAttribute="trailing" secondItem="ltJ-yq-SGI" secondAttribute="trailingMargin" id="Sk0-vf-c4g"/>
+                                        <constraint firstItem="8dx-bW-dbI" firstAttribute="leading" secondItem="ltJ-yq-SGI" secondAttribute="leading" constant="8" id="XOK-vq-8fN"/>
                                         <constraint firstItem="XX0-Bm-aW2" firstAttribute="top" secondItem="rxz-7x-F3c" secondAttribute="bottom" constant="8" id="bK9-ct-RU0"/>
+                                        <constraint firstItem="8dx-bW-dbI" firstAttribute="centerX" secondItem="ltJ-yq-SGI" secondAttribute="centerX" id="coF-mo-YvH"/>
                                         <constraint firstItem="rxz-7x-F3c" firstAttribute="centerX" secondItem="XX0-Bm-aW2" secondAttribute="centerX" id="ekC-tw-xP5"/>
                                         <constraint firstItem="XX0-Bm-aW2" firstAttribute="bottom" secondItem="ltJ-yq-SGI" secondAttribute="bottomMargin" id="zw9-Yf-ahA"/>
                                     </constraints>
@@ -570,6 +579,7 @@
                     <connections>
                         <outlet property="imageView" destination="rxz-7x-F3c" id="oMO-nb-Q8v"/>
                         <outlet property="tableView" destination="cFH-T8-wAg" id="pbF-3O-zeF"/>
+                        <outlet property="taglineLabel" destination="8dx-bW-dbI" id="2lE-T6-UMj"/>
                         <segue destination="w0V-EY-uNM" kind="show" identifier="toEditLeague" id="zh2-lz-8CV"/>
                     </connections>
                 </viewController>
@@ -2070,24 +2080,26 @@
                                     </constraints>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="VgE-hI-1Vz">
-                                    <rect key="frame" x="0.0" y="220" width="320" height="140"/>
+                                    <rect key="frame" x="0.0" y="220" width="320" height="200"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version (1.0)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XdT-ea-Mcd">
-                                            <rect key="frame" x="125" y="117" width="71" height="15"/>
+                                            <rect key="frame" x="125" y="177" width="71" height="15"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSy-Ej-M8F">
-                                            <rect key="frame" x="8" y="8" width="306" height="63"/>
-                                            <string key="text">We encourage you to show your support of this app in rapid ongoing development by providing feedback, rating it on the App Store, sharing it, or 100% optional IAP</string>
+                                            <rect key="frame" x="8" y="8" width="306" height="94"/>
+                                            <string key="text">League Duel is in rapid ongoing development.
+
+We encourage you to support it by providing feedback, rating it on the App Store, sharing it, or purchasing the optional IAP to support the development team.</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYK-iD-juE">
-                                            <rect key="frame" x="49" y="79" width="224" height="30"/>
+                                            <rect key="frame" x="49" y="110" width="224" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="NlI-9f-4ld"/>
                                             </constraints>
@@ -2490,10 +2502,10 @@
         <image name="logo_text" width="764" height="363"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="ezq-2K-jTn"/>
         <segue reference="NPS-q6-twj"/>
-        <segue reference="bqF-pT-HaQ"/>
+        <segue reference="VWs-da-x6t"/>
         <segue reference="1dP-4V-GKA"/>
-        <segue reference="SDf-pj-Pm6"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.40000000000000002" green="0.61176470588235299" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
 </document>
