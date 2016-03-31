@@ -162,7 +162,7 @@ class IAPHelper: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserv
     }
     
     func receiptValidation(requestData: NSData, url: NSURL) {
-        let storeRequest = NSMutableURLRequest(URL: IAPHelper.storeURL)
+        let storeRequest = NSMutableURLRequest(URL: url)
         storeRequest.HTTPMethod = "POST"
         storeRequest.HTTPBody = requestData
         
@@ -178,8 +178,15 @@ class IAPHelper: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserv
                     if let status = jsonResponse["status"] as? Int where status == 21007 {
                         self.receiptValidation(requestData, url: IAPHelper.sandboxStoreURL)
                     } else {
-                        if let receipt = jsonResponse["receipt"] as? NSDictionary, let in_app = receipt["in_app"] as? NSArray, let product_id = (in_app.firstObject as? NSDictionary)?["product_id"] as? String {
-                            Settings.instance.isUpgraded = (product_id == IAPHelper.iapIdentifier)
+                        if let latest_receipt_info = jsonResponse["latest_receipt_info"] as? NSArray,
+                            let receipt = latest_receipt_info.firstObject as? NSDictionary,
+                            let product_id = receipt["product_id"] as? String,
+                            let expires_date_ms = receipt["expires_date_ms"] as? String,
+                            var db_expires_date_ms = Double(expires_date_ms) {
+                            db_expires_date_ms /= 1000.0
+                            let expires_date = NSDate(timeIntervalSince1970: db_expires_date_ms)
+                            let isUpgraded = (product_id == IAPHelper.iapIdentifier) && expires_date.compare(NSDate()) == .OrderedDescending
+                            Settings.instance.isUpgraded = isUpgraded
                             self.purchaseCompleted?(success: true, errorMessage: "Purchase succeeded")
                         } else {
                             self.purchaseCompleted?(success: false, errorMessage: "Could not validate receipt")

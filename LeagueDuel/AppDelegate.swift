@@ -78,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // PUSH
     
-    func application(application: UIApplication, didReceiveRemoteNotification launchOptions: [NSObject: AnyObject]?) -> Void {
+    func application(application: UIApplication, didReceiveRemoteNotification launchOptions: [NSObject: AnyObject]) -> Void {
         Branch.getInstance().handlePushNotification(launchOptions)
     }
     

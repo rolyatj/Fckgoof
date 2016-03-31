@@ -87,7 +87,11 @@ class EditLeagueViewController: UIViewController {
             showErrorPopup(errorMessage, completion: nil)
         } else {
             if (duelTeamsToDelete.count > 0) {
-                PFObject.deleteAllInBackground(duelTeamsToDelete)
+                for duelTeam in duelTeamsToDelete {
+                    league.removeObject(duelTeam.dueler.objectId!, forKey: "duelers")
+                    duelTeam.isDeleted = true
+                }
+                PFObject.saveAllInBackground(duelTeamsToDelete)
             }
             league.saveInBackgroundWithBlock({ (success, error) in
                 if (success) {

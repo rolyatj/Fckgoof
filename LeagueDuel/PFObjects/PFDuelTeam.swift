@@ -17,6 +17,7 @@ class PFDuelTeam: PFObject, PFSubclassing {
     @NSManaged var numberContestsWon: Int
     @NSManaged var dueler: PFDueler!
     @NSManaged var league: PFLeague!
+    @NSManaged var isDeleted: Bool
     
     convenience init(dueler: PFDueler, league: PFLeague) {
         self.init()
@@ -45,6 +46,7 @@ class PFDuelTeam: PFObject, PFSubclassing {
     class func teamsForUserQuery(user: PFDueler) -> PFQuery? {
         let query = PFDuelTeam.queryWithIncludes()
         query?.whereKey("dueler", equalTo: user)
+        query?.whereKey("isDeleted", notEqualTo: true)
         return query
     }
     

@@ -37,7 +37,7 @@ class LeagueContestViewController: UIViewController {
                     query?.cachePolicy = PFCachePolicy.NetworkOnly
                 }
             } else {
-                query?.cachePolicy = PFCachePolicy.IgnoreCache
+                query?.cachePolicy = PFCachePolicy.NetworkOnly
             }
             query?.findObjectsInBackgroundWithBlock({ (contestLineups, error) -> Void in
                 if let contestLineups = contestLineups as? [PFContestLineup] {

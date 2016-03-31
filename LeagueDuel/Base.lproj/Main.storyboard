@@ -2121,6 +2121,7 @@ We encourage you to support it by providing feedback, rating it on the App Store
                                                 <constraint firstAttribute="height" constant="30" id="NlI-9f-4ld"/>
                                             </constraints>
                                             <state key="normal" title="Purchase a monthly subscription"/>
+                                            <state key="disabled" title="Thank you!"/>
                                             <connections>
                                                 <action selector="purchaseIAPtapped:" destination="gwM-uc-B1K" eventType="touchUpInside" id="tlB-wi-t35"/>
                                             </connections>
