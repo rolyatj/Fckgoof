@@ -38,8 +38,23 @@ class LeaguesViewController: MessageViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         if let leagueIdToJoin = LeaguesViewController.leagueIdToJoin {
-            findLeague(leagueIdToJoin)
             LeaguesViewController.leagueIdToJoin = nil
+            var hasJoined = false
+            for league in leagues {
+                if (league.objectId == leagueIdToJoin) {
+                    hasJoined = true
+                }
+            }
+            if (!hasJoined) {
+                let alertController = UIAlertController(title: "Join League?", message: "Do you want to join the league with id \(leagueIdToJoin)?", preferredStyle: .Alert)
+                let okAction = UIAlertAction(title: "Join", style: .Default) { (action) -> Void in
+                    self.findLeague(leagueIdToJoin)
+                }
+                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+                alertController.addAction(cancelAction)
+                alertController.addAction(okAction)
+                self.presentViewController(alertController, animated: true, completion: nil)
+            }
         }
     }
     

@@ -34,7 +34,7 @@ class PFLeague: PFObject, PFSubclassing {
     }
     
     func canAddAnotherMember() -> Bool {
-        return true // TODO
+        return duelers.count < Constants.maxLeagueSize
     }
     
     func getShareURL(completion: ((url: String?) -> Void)?) {

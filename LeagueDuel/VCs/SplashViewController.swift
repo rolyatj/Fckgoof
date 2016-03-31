@@ -21,6 +21,10 @@ class SplashViewController: UIViewController {
         PFConfig.getConfigInBackgroundWithBlock { (config, error) -> Void in
             let minimumVersion = config?["minimumVersion"] as? String
             let activeSports = config?["activeSports"] as? [Int]
+            if let maxLeagueSize = config?["maxLeagueSize"] as? Int {
+                Constants.maxLeagueSize = maxLeagueSize
+            }
+            
             self.startApp(minimumVersion, activeSports: activeSports)
         }
     }

@@ -65,18 +65,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerForRemoteNotifications()
         
         Branch.getInstance().initSessionWithLaunchOptions(launchOptions, isReferrable: true, andRegisterDeepLinkHandler: { params, error in
+            print(params)
             if let params = params {
                 if let leagueId = params["leagueId"] as? String {
-                    
+                    LeaguesViewController.leagueIdToJoin = leagueId
                 }
             }
-            
         })
         
         return true
     }
 
     // PUSH
+    
+    func application(application: UIApplication, didReceiveRemoteNotification launchOptions: [NSObject: AnyObject]?) -> Void {
+        Branch.getInstance().handlePushNotification(launchOptions)
+    }
     
     func application(application: UIApplication,  didReceiveRemoteNotification userInfo: [NSObject : AnyObject],  fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         print(userInfo)
@@ -125,6 +129,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Branch.getInstance().handleDeepLink(url)
         
+        return true
+    }
+    
+    func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+        Branch.getInstance().continueUserActivity(userActivity)
         return true
     }
 

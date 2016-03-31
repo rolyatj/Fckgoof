@@ -10,6 +10,8 @@ import UIKit
 
 class Constants {
     
+    static var maxLeagueSize = 20
+    
     static let notificationLeaguesChanged = "notificationLeaguesChanged"
     static let notificationUpcomingEventsChanged = "notificationUpcomingEventsChanged"
     static let notificationLiveEventsChanged = "notificationLiveEventsChanged"
