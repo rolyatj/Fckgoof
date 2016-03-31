@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import Branch
 
 class PFLeague: PFObject, PFSubclassing {
     
@@ -34,6 +35,28 @@ class PFLeague: PFObject, PFSubclassing {
     
     func canAddAnotherMember() -> Bool {
         return true // TODO
+    }
+    
+    func getShareURL(completion: ((url: String?) -> Void)?) {
+        if let objectId = objectId {
+            let branchUniversalObject: BranchUniversalObject = BranchUniversalObject(canonicalIdentifier: objectId)
+            branchUniversalObject.title = name
+            //branchUniversalObject.contentDescription = content.text
+            //branchUniversalObject.imageUrl = "https://example.com/mycontent-12345.png"
+            branchUniversalObject.addMetadataKey("leagueId", value: objectId)
+            
+            let linkProperties: BranchLinkProperties = BranchLinkProperties()
+            linkProperties.feature = "sharing"
+            //linkProperties.channel = "facebook"
+            //linkProperties.addControlParam("$desktop_url", withValue: "http://example.com/home")
+            //linkProperties.addControlParam("$ios_url", withValue: "http://example.com/ios")
+            branchUniversalObject.getShortUrlWithLinkProperties(linkProperties,  andCallback: { (url: String?, error: NSError?) -> Void in
+                completion?(url: url)
+            })
+        } else {
+            completion?(url: nil)
+        }
+
     }
     
     class func myLeaguesQuery() -> PFQuery? {

@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import SDWebImage
 
-class LeagueViewController: UIViewController {
+class LeagueViewController: MessageViewController {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
@@ -33,7 +33,6 @@ class LeagueViewController: UIViewController {
             navigationItem.rightBarButtonItem = editButton
         }
         tableView.registerNib(UINib(nibName: "TeamTableViewCell", bundle: nil), forCellReuseIdentifier: "TeamCell")
-        tableView.tableFooterView = UIView()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -61,6 +60,10 @@ class LeagueViewController: UIViewController {
     
     func editLeague() {
         performSegueWithIdentifier("toEditLeague", sender: nil)
+    }
+    
+    @IBAction func shareLeagueTapped(sender: AnyObject) {
+        shareLeague(league)
     }
 
     // MARK: - Navigation

@@ -1,5 +1,6 @@
 PODS:
   - Bolts/Tasks (1.6.0)
+  - Branch (0.11.18)
   - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
   - Fabric (1.6.7)
@@ -21,6 +22,7 @@ PODS:
     - TwitterCore (= 2.0.1)
 
 DEPENDENCIES:
+  - Branch
   - Crashlytics
   - Fabric
   - MZFormSheetPresentationController
@@ -33,6 +35,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Bolts: f52a250053bb517ca874523c3913776359ab3def
+  Branch: 64f4f08eaf69bdb5b1f46d4f1f4479494755a073
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
@@ -44,6 +47,6 @@ SPEC CHECKSUMS:
   TwitterCore: f8575c28412ab2e3fed1a153764397771de06efb
   TwitterKit: ebc84244d4ada8cc673afd4ae7b67277e1f05a65
 
-PODFILE CHECKSUM: 0ed17b1cf0ed31b933df923c34d71d393df99340
+PODFILE CHECKSUM: 43fab44617a743876aa14acfd4aa373656384b1a
 
 COCOAPODS: 1.0.0.beta.4

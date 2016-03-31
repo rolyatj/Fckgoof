@@ -11,6 +11,7 @@ import Parse
 import Fabric
 import TwitterKit
 import Crashlytics
+import Branch
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -63,6 +64,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
         
+        Branch.getInstance().initSessionWithLaunchOptions(launchOptions, isReferrable: true, andRegisterDeepLinkHandler: { params, error in
+            if let params = params {
+                if let leagueId = params["leagueId"] as? String {
+                    
+                }
+            }
+            
+        })
+        
         return true
     }
 
@@ -111,6 +121,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        
+        Branch.getInstance().handleDeepLink(url)
+        
+        return true
+    }
 
 }
 

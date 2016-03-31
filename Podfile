@@ -11,4 +11,5 @@ target :LeagueDuel do
     pod 'TwitterKit'
     pod 'TwitterCore'
     pod 'Crashlytics'
+    pod 'Branch'
 end

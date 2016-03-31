@@ -31,6 +31,7 @@ class MenuViewController: MessageViewController {
             self.iapButton.enabled = !Settings.instance.isUpgradedValue()
         }
     }
+    
     /*
     // MARK: - Navigation
 

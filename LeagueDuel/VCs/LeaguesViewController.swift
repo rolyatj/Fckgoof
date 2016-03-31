@@ -10,6 +10,8 @@ import UIKit
 import Parse
 
 class LeaguesViewController: MessageViewController {
+    
+    static var leagueIdToJoin: String?
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -31,6 +33,14 @@ class LeaguesViewController: MessageViewController {
         fetchLeagues(true)
         tableView.registerNib(UINib(nibName: "LeagueTableViewCell", bundle: nil), forCellReuseIdentifier: "LeagueCell")
         tableView.tableFooterView = UIView()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if let leagueIdToJoin = LeaguesViewController.leagueIdToJoin {
+            findLeague(leagueIdToJoin)
+            LeaguesViewController.leagueIdToJoin = nil
+        }
     }
     
     func fetchLeagues(isFirstTime: Bool) {
@@ -119,23 +129,7 @@ extension LeaguesViewController: CreateLeagueViewControllerDelegate {
     func didJoinLeague(league: PFLeague, shouldPromptShare: Bool) {
         fetchLeagues(false)
         if (shouldPromptShare) {
-            if let leagueId = league.objectId {
-                // TODO branch links
-                let body = "I set up a league for us on the LeagueDuel app, a free iOS app that keeps track of daily/weekly fantasy leagues for friends/family. Here's the league code so you can join in the fun! \(leagueId)"
-                
-                let alertController = UIAlertController(title: "Share League?", message: "In order for others to join they will need to enter the unique ID\n\n\(leagueId)", preferredStyle: .Alert)
-                let textAction = UIAlertAction(title: "Join", style: .Default) { (action) -> Void in
-                    self.sendText(body)
-                }
-                let emailAction = UIAlertAction(title: "Email", style: .Default) { (action) -> Void in
-                    self.sendEmail(nil, subject: "Join My League on LeagueDuel", body: body)
-                }
-                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-                alertController.addAction(cancelAction)
-                alertController.addAction(textAction)
-                alertController.addAction(emailAction)
-                self.presentViewController(alertController, animated: true, completion: nil)
-            }
+            shareLeague(league)
         }
     }
     

@@ -359,54 +359,6 @@
             timestampString = "480878229.109506"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
-            landmarkName = "didJoinLeague(_:shouldPromptShare:)"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "LeagueDuel.LeaguesViewController.didCreateLeague (LeagueDuel.LeaguesViewController)(LeagueDuel.PFLeague) -&gt; ()"
-                  moduleName = "LeagueDuel"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kjensen8292/Developer/LeagueDuel/LeagueDuel/VCs/LeaguesViewController.swift"
-                  timestampString = "480386929.626858"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "104"
-                  endingLineNumber = "104"
-                  offsetFromSymbolStart = "20">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "dynamic LeagueDuel.LeaguesViewController.didCreateLeague (LeagueDuel.LeaguesViewController)(LeagueDuel.PFLeague) -&gt; ()"
-                  moduleName = "LeagueDuel"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kjensen8292/Developer/LeagueDuel/LeagueDuel/VCs/LeaguesViewController.swift"
-                  timestampString = "480386929.627247"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "104"
-                  endingLineNumber = "104"
-                  offsetFromSymbolStart = "64">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LeagueDuel/VCs/LeaguesViewController.swift"
-            timestampString = "480878229.109506"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
             startingLineNumber = "99"
             endingLineNumber = "99"
             landmarkName = "prepareForSegue(_:sender:)"
@@ -911,11 +863,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeagueDuel/VCs/LeagueViewController.swift"
-            timestampString = "481050365.353731"
+            timestampString = "481149503.698365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -927,11 +879,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeagueDuel/VCs/LeagueViewController.swift"
-            timestampString = "481050365.353731"
+            timestampString = "481149503.698365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "5">
          </BreakpointContent>

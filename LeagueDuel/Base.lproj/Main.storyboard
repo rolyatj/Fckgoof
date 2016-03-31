@@ -559,6 +559,23 @@
                                         <constraint firstItem="XX0-Bm-aW2" firstAttribute="bottom" secondItem="ltJ-yq-SGI" secondAttribute="bottomMargin" id="zw9-Yf-ahA"/>
                                     </constraints>
                                 </view>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="Kvh-xx-94h">
+                                    <rect key="frame" x="0.0" y="132" width="320" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aD7-go-Yvi">
+                                            <rect key="frame" x="113" y="7" width="94" height="30"/>
+                                            <state key="normal" title="Share League"/>
+                                            <connections>
+                                                <action selector="shareLeagueTapped:" destination="SJ6-ZA-zDN" eventType="touchUpInside" id="MMW-on-nwg"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="aD7-go-Yvi" firstAttribute="centerX" secondItem="Kvh-xx-94h" secondAttribute="centerX" id="0uF-pg-rnD"/>
+                                        <constraint firstItem="aD7-go-Yvi" firstAttribute="centerY" secondItem="Kvh-xx-94h" secondAttribute="centerY" id="WMA-5h-k0d"/>
+                                    </constraints>
+                                </view>
                                 <connections>
                                     <outlet property="dataSource" destination="SJ6-ZA-zDN" id="DkG-vr-bcK"/>
                                     <outlet property="delegate" destination="SJ6-ZA-zDN" id="Ien-hF-9rp"/>

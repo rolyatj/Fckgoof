@@ -8,68 +8,7 @@
 
 import Foundation
 import UIKit
-import MessageUI
 import SafariServices
-
-class MessageViewController: UIViewController, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate {
-    
-    func sendEmail(toEmails: [String]?, subject: String, body: String?) {
-        if MFMailComposeViewController.canSendMail() {
-            let mailComposerVC = mailComposeViewController(toEmails, subject: subject, body: body)
-            self.presentViewController(mailComposerVC, animated: true, completion: nil)
-        }
-    }
-    
-    func mailComposeViewController(toEmails: [String]?, subject: String, body: String?) -> MFMailComposeViewController {
-        let mailComposerVC = MFMailComposeViewController()
-        mailComposerVC.mailComposeDelegate = self
-        
-        mailComposerVC.setToRecipients(toEmails)
-        mailComposerVC.setSubject(subject)
-        if let body = body {
-            mailComposerVC.setMessageBody(body, isHTML: false)
-        }
-        return mailComposerVC
-    }
-    
-    // MARK: MFMailComposeViewControllerDelegate Method
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
-        controller.dismissViewControllerAnimated(true) { () -> Void in
-            if (result == MFMailComposeResultSent) {
-                let alertController = UIAlertController(title: "Email Sent", message: nil, preferredStyle: .Alert)
-                let okAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
-                alertController.addAction(okAction)
-                self.presentViewController(alertController, animated: true, completion: nil)
-            }
-        }
-    }
-    
-    func sendText(body: String?) {
-        if MFMessageComposeViewController.canSendText() {
-            let messageComposerVC = messageComposerViewController(body)
-            self.presentViewController(messageComposerVC, animated: true, completion: nil)
-        }
-    }
-    
-    func messageComposerViewController(body: String?) -> MFMessageComposeViewController {
-        let messageComposerVC = MFMessageComposeViewController()
-        messageComposerVC.messageComposeDelegate = self
-        
-        messageComposerVC.body = body
-        return messageComposerVC
-    }
-    
-    func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
-        controller.dismissViewControllerAnimated(true) { () -> Void in
-            if (result == MessageComposeResultSent) {
-                let alertController = UIAlertController(title: "Message Sent", message: nil, preferredStyle: .Alert)
-                let okAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
-                alertController.addAction(okAction)
-                self.presentViewController(alertController, animated: true, completion: nil)
-            }
-        }
-    }
-}
 
 extension UIViewController {
     func showPopup(title: String?, message: String?, completion: (() -> Void)? ) {
