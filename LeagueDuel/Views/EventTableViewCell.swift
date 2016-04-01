@@ -32,7 +32,7 @@ class EventTableViewCell: UITableViewCell {
 
     func configureWithEvent(event: PFEvent) {
         nameLabel.text = event.name
-        descriptionLabel.text = event.dateString()
+        descriptionLabel.text = event.dateString(false)
     }
     
 }

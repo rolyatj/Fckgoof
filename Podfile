@@ -12,4 +12,5 @@ target :LeagueDuel do
     pod 'TwitterCore'
     pod 'Crashlytics'
     pod 'Branch'
+    pod 'NVActivityIndicatorView'
 end

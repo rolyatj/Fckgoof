@@ -65,8 +65,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerForRemoteNotifications()
         
         Branch.getInstance().initSessionWithLaunchOptions(launchOptions, isReferrable: true, andRegisterDeepLinkHandler: { params, error in
-            print(params)
             if let params = params {
+                print(params)
                 if let leagueId = params["leagueId"] as? String {
                     LeaguesViewController.leagueIdToJoin = leagueId
                 }

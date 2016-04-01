@@ -164,11 +164,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeagueDuel/PFObjects/MLBEditableContestLineup.swift"
-            timestampString = "480388164.89121"
+            timestampString = "481212181.426608"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
             landmarkName = "playerEventForPositionSpot(_:spot:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -180,23 +180,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeagueDuel/PFObjects/MLBEditableContestLineup.swift"
-            timestampString = "480388164.89121"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
-            landmarkName = "playerEventForPositionSpot(_:spot:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LeagueDuel/PFObjects/MLBEditableContestLineup.swift"
-            timestampString = "480388164.89121"
+            timestampString = "481212181.426608"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "148"
@@ -211,13 +195,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LeagueDuel/VCs/SetLineupViewController.swift"
-            timestampString = "480874866.83895"
+            filePath = "LeagueDuel/PFObjects/MLBEditableContestLineup.swift"
+            timestampString = "481212181.426608"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
-            landmarkName = "saveToContest(_:)"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "playerEventForPositionSpot(_:spot:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -276,11 +260,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeagueDuel/PFObjects/MLBEditableContestLineup.swift"
-            timestampString = "480388164.89121"
+            timestampString = "481212181.426608"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "hasSelectedPlayerEvent(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1205,6 +1189,102 @@
             startingLineNumber = "112"
             endingLineNumber = "112"
             landmarkName = "leagueContestLineupsQuery(_:contest:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeagueDuel/VCs/SetLineupViewController.swift"
+            timestampString = "481212064.277317"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "saveToContest(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeagueDuel/VCs/SetLineupViewController.swift"
+            timestampString = "481212106.610459"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "saveToContest(_:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LeagueDuel.SetLineupViewController.saveToContest (LeagueDuel.PFContest) -&gt; ()"
+                  moduleName = "LeagueDuel"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kjensen8292/Developer/LeagueDuel/LeagueDuel/VCs/SetLineupViewController.swift"
+                  timestampString = "481212181.856072"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "137"
+                  endingLineNumber = "137"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LeagueDuel.SetLineupViewController.saveToContest (LeagueDuel.PFContest) -&gt; ()"
+                  moduleName = "LeagueDuel"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kjensen8292/Developer/LeagueDuel/LeagueDuel/VCs/SetLineupViewController.swift"
+                  timestampString = "481212181.856319"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "137"
+                  endingLineNumber = "137"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeagueDuel/VCs/SetLineupViewController.swift"
+            timestampString = "481212929.835538"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "saveToContest(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeagueDuel/VCs/SetLineupViewController.swift"
+            timestampString = "481212929.835538"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "saveToContest(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

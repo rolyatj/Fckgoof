@@ -17,7 +17,7 @@ class EventInfoViewController: UIViewController {
         super.viewDidLoad()
         setupText()
         navigationItem.title = event.name
-        navigationItem.prompt = event.dateString()
+        navigationItem.prompt = event.dateString(true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,7 +31,7 @@ class EventInfoViewController: UIViewController {
     
     func setupText() {
         var text = ""
-        if let event = event, let sport = event.dynamicType.sport(), let dateString = event.dateString() {
+        if let event = event, let sport = event.dynamicType.sport(), let dateString = event.dateString(true) {
             text += "--INFO--\n\n"
             text += "This is an \(sport.name()) event between the dates \(dateString). All games played during the event will score points for your chosen lineup. The team with the most points scored over the course of the event is the winner. All stats and scores are at the discretion of League  Duel. This is intended to be a fun way to follow the real season!\n\n"
         }
@@ -48,7 +48,7 @@ class EventInfoViewController: UIViewController {
         text += "\nHITTERS\n"
         text += "Hits (per game) +6\n"
         text += "Home Runs (per game) +12\n"
-        text += "Runs Batted In (per game) +3"
+        text += "Runs Batted In (per game) +3\n"
         text += "Runs Scored (per game) +3\n"
         text += "Walks Taken (per game) +3\n"
         text += "Stolen Bases (per game) +6\n"

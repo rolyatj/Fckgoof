@@ -123,8 +123,7 @@ class MLBEditableContestLineup: EditableContestLineup {
     }
     
     override func errorMessageIfInvalid() -> String? {
-        // TODO?
-        return nil
+        return super.errorMessageIfInvalid()
     }
     
     // DATASOURCE

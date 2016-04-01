@@ -157,7 +157,7 @@ class PlayerEventViewController: UIViewController {
         if let sport = playerEvent!.dynamicType.sport(), let team = playerEvent.player.team {
             let query = PFGame.gamesForTeam(sport, team: team, event: playerEvent.event)
             query?.cachePolicy = PFCachePolicy.CacheElseNetwork
-            query?.orderByDescending("startDate")
+            query?.orderByAscending("startDate")
             query?.findObjectsInBackgroundWithBlock({ (teamGames, error) -> Void in
                 if let teamGames = teamGames as? [PFGame] {
                     self.teamGames = teamGames

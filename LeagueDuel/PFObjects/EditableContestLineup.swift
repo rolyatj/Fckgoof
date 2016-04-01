@@ -60,7 +60,9 @@ class EditableContestLineup: NSObject {
     }
     
     func errorMessageIfInvalid() -> String? {
-        // TODO
+        if (currentSalary() > maxSalary()) {
+            return "Roster salary is over the maximum allowed"
+        }
         return nil
     }
     

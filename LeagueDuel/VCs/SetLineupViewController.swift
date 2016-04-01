@@ -14,7 +14,7 @@ protocol SetLineupViewControllerDelegate {
     func didAddOrChangeLineup()
 }
 
-class SetLineupViewController: UIViewController {
+class SetLineupViewController: LoadingViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var remainingLabel: UILabel!
@@ -135,38 +135,44 @@ class SetLineupViewController: UIViewController {
     
     func saveToContest(contest: PFContest) {
         if let editableContestLineup = editableContestLineup, let sport = contest.dynamicType.sport(), let lineupQuery = PFLineup.myLineupsQuery(sport) {
-            let query = PFContestLineup.query(sport)
-            query?.whereKey("contest", equalTo: contest)
-            query?.whereKey("lineup", matchesQuery: lineupQuery)
-            query?.getFirstObjectInBackgroundWithBlock({ (contestLineup, error) -> Void in
-                if let contestLineup = contestLineup as? PFContestLineup {
-                    // update
-                    do {
-                        let lineup = contestLineup.lineup
-                        lineup.setRoster(editableContestLineup)
-                        try lineup.save()
-                        self.delegate?.didAddOrChangeLineup()
-                        self.dismissViewControllerAnimated(true, completion: nil)
-                    } catch {
-                        self.showErrorPopup((error as NSError).localizedDescription, completion: nil)
-                        print(error)
+            if let errorMesssage = editableContestLineup.errorMessageIfInvalid() {
+                self.showErrorPopup(errorMesssage, completion: nil)
+            } else {
+                startAnimating()
+                let query = PFContestLineup.query(sport)
+                query?.whereKey("contest", equalTo: contest)
+                query?.whereKey("lineup", matchesQuery: lineupQuery)
+                query?.getFirstObjectInBackgroundWithBlock({ (contestLineup, error) -> Void in
+                    if let contestLineup = contestLineup as? PFContestLineup {
+                        // update
+                        do {
+                            let lineup = contestLineup.lineup
+                            lineup.setRoster(editableContestLineup)
+                            try lineup.save()
+                            self.delegate?.didAddOrChangeLineup()
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                        } catch {
+                            self.showErrorPopup((error as NSError).localizedDescription, completion: nil)
+                            print(error)
+                        }
+                    } else {
+                        // create contestLineup
+                        do {
+                            let lineup = PFLineup.lineupFromEditableLineup(sport, duelTeam: self.duelTeam, contest: contest, editableContestLineup: editableContestLineup)
+                            let contestLineup = PFContestLineup.contestLineupWithSport(sport, contest: contest, lineup: lineup)
+                            try contestLineup.save()
+                            self.duelTeam.incrementKey("numberContestsEntered", byAmount: 1)
+                            self.duelTeam.saveInBackground()
+                            self.delegate?.didAddOrChangeLineup()
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                        } catch {
+                            self.showErrorPopup((error as NSError).localizedDescription, completion: nil)
+                            print(error)
+                        }
                     }
-                } else {
-                    // create contestLineup
-                    do {
-                        let lineup = PFLineup.lineupFromEditableLineup(sport, duelTeam: self.duelTeam, contest: contest, editableContestLineup: editableContestLineup)
-                        let contestLineup = PFContestLineup.contestLineupWithSport(sport, contest: contest, lineup: lineup)
-                        try contestLineup.save()
-                        self.duelTeam.incrementKey("numberContestsEntered", byAmount: 1)
-                        self.duelTeam.saveInBackground()
-                        self.delegate?.didAddOrChangeLineup()
-                        self.dismissViewControllerAnimated(true, completion: nil)
-                    } catch {
-                        self.showErrorPopup((error as NSError).localizedDescription, completion: nil)
-                        print(error)
-                    }
-                }
-            })
+                    self.stopAnimating()
+                })
+            }
         }
 
     }

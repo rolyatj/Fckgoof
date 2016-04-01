@@ -7,6 +7,7 @@ PODS:
   - MZAppearance (1.1.6)
   - MZFormSheetPresentationController (2.3.2):
     - MZAppearance
+  - NVActivityIndicatorView (2.3)
   - Parse (1.11.0):
     - Bolts/Tasks (~> 1.5)
   - ParseUI (1.2.0):
@@ -26,6 +27,7 @@ DEPENDENCIES:
   - Crashlytics
   - Fabric
   - MZFormSheetPresentationController
+  - NVActivityIndicatorView
   - Parse (~> 1.11.0)
   - ParseUI
   - SDWebImage
@@ -40,6 +42,7 @@ SPEC CHECKSUMS:
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   MZFormSheetPresentationController: bba52eb65feb3b70ae83ed28fd20991802d4adeb
+  NVActivityIndicatorView: c7ef25ef527ab5e51b00322cb1ddd58681bcf2a3
   Parse: 886af46a0a677402f6374bb97ac212e795f70afe
   ParseUI: af2eba584799da4a9fbdac0e178662d7438b502e
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
@@ -47,6 +50,6 @@ SPEC CHECKSUMS:
   TwitterCore: f8575c28412ab2e3fed1a153764397771de06efb
   TwitterKit: ebc84244d4ada8cc673afd4ae7b67277e1f05a65
 
-PODFILE CHECKSUM: 43fab44617a743876aa14acfd4aa373656384b1a
+PODFILE CHECKSUM: 3d557b5a1cc731c12d0660953f8f362a98ef2d1d
 
 COCOAPODS: 1.0.0.beta.4

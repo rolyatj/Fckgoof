@@ -51,7 +51,7 @@ class ContestTeamLineupTableViewCell: UITableViewCell {
             teamImageView?.sd_setImageWithURL(url, placeholderImage: UIImage(named:"Team-96"))
         }
         eventLabel.text = contestLineup.contest.event.name
-        dateLabel.text = contestLineup.contest.event.dateString()
+        dateLabel.text = contestLineup.contest.event.dateString(false)
         lineupLabel.text = contestLineup.lineup.rosterString()
         progressView.progress = contestLineup.lineup.percentRemaining()
         pointsLabel.text = "\(contestLineup.lineup.points)"

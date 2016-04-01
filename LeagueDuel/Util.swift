@@ -9,6 +9,34 @@
 import Foundation
 import UIKit
 import SafariServices
+import NVActivityIndicatorView
+
+class LoadingViewController: UIViewController {
+    private var activityIndicatorView = NVActivityIndicatorView(frame: CGRectMake(0,0,50,50))
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        activityIndicatorView.type = .BallBeat
+        activityIndicatorView.color = UIColor.defaultTintColor()
+        activityIndicatorView.hidesWhenStopped = true
+        view.addSubview(activityIndicatorView)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        activityIndicatorView.center = view.center
+    }
+    
+    func startAnimating() {
+        view.bringSubviewToFront(activityIndicatorView)
+        activityIndicatorView.startAnimation()
+    }
+    
+    func stopAnimating() {
+        activityIndicatorView.stopAnimation()
+    }
+    
+}
 
 extension UIViewController {
     func showPopup(title: String?, message: String?, completion: (() -> Void)? ) {
