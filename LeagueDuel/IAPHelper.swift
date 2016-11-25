@@ -19,7 +19,7 @@ class IAPHelper: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserv
     
     static let sandboxStoreURL = NSURL(string: "https://sandbox.itunes.apple.com/verifyReceipt")!
     static let storeURL = NSURL(string: "https://buy.itunes.apple.com/verifyReceipt")!
-    static var iapIdentifier = "io.arborapps.LeagueDuel.monthlySubscription"
+    static var iapIdentifier = "io.arborapps.LeagueDuel.monthSubscription"
     static let sharedSecret = "dd80960b3e3046648ab92c87e15fee1c"
     static let instance = IAPHelper()
     

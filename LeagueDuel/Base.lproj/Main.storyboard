@@ -2424,6 +2424,7 @@ We encourage you to support it by providing feedback, rating it on the App Store
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Camera-104" translatesAutoresizingMaskIntoConstraints="NO" id="bQ6-yQ-Kos">
                                             <rect key="frame" x="118" y="8" width="84" height="84"/>
+                                            <color key="tintColor" red="0.40000000000000002" green="0.61176470588235299" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="bQ6-yQ-Kos" secondAttribute="height" multiplier="1:1" id="uGG-DB-gcZ"/>
                                             </constraints>
